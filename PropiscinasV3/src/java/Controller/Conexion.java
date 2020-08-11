@@ -22,7 +22,7 @@ public class Conexion
   private static final String driver="com.mysql.jdbc.Driver";
   private static final String usuario="root";
   private static final String password="";
-  private static final String url="jdbc:mysql://localhost:3306/propiscinasv3";
+  private static final String url="http://35.245.144.165/prueba";
   private static String mensaje;
  
  public static Connection getConexion()
