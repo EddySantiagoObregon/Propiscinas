@@ -650,12 +650,13 @@ function listarInventarioPorFecha(fecha){
 function listarInventarioPorFechaYCodigo(fecha){
 
     $("tbody tr").remove(); 
-     
+     var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
       var parametros=
             {
                 accion:"listarInventarioPorFechaYCodigo",
                 fecha:fecha,
-                codigo:$("#txt_Buscar").val()
+                codigo:buscar
                 
             };
             $.ajax({
@@ -789,12 +790,13 @@ function listarInventarioPorFechaYCodigo(fecha){
 function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
 
     $("tbody tr").remove(); 
-     
+     var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
       var parametros=
             {
                 accion:"listarInventarioPorFechaYCodigoYInfraestructura",
                 fecha:fecha,
-                codigo:$("#txt_Buscar").val().trim(),
+                codigo:buscar,
                 infraestructura:infraestructura
                 
             };
@@ -930,11 +932,12 @@ function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
 function buscarInventarioDatosHistoricos(){
 
     $("tbody tr").remove(); 
-     
+     var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
       var parametros=
             {
                 accion:"buscarInventarioDatosHistoricos",
-                codigo:$("#txt_Buscar").val().trim()
+                codigo:buscar
                 
                 
             };

@@ -13,7 +13,7 @@ $(function ()
   
           $("#cb_Opciones").change(function(){
         numero = $("#cb_Opciones").val();
-    
+        
         $("tbody tr").remove(); 
         if(numero==='0'){
            
@@ -34,9 +34,22 @@ $(function ()
        }
 
     });
+ 
     $("#btnBuscar").click(function(){
+         var buscar;
         $("tbody tr").remove(); 
-    BuscarProducto();
+       buscar = $("#txt_Buscar").val();
+       numero = $("#cb_Opciones").val();
+     if(numero==="0"&&buscar!==null){
+         alert("Hola");
+       BuscarProducto();
+       } else  if(numero!=="0"&&buscar!==""){
+           alert("Hola2");
+         numero=numero-1;
+
+       BuscarCantidadActualizadaPorNombreYInfraestructura(numero);
+       
+       }
   });
    $("#btnListar").click(function(){
         $("tbody tr").remove();
@@ -78,7 +91,7 @@ function listarCantidadActualizada(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -106,14 +119,9 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  var cantidadInventrario=unInventario.cantidad;
+  
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
-   if(cantidadInventrario<5){
-      hilera.setAttribute('id','alertaRoja');
-  }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
-      hilera.setAttribute('id','alertaAmarilla');
-  }
+ 
   if(cantidad===0){
   if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
@@ -149,7 +157,51 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-
+ var cantidadInventrario=unInventario.cantidad;
+   if(cantidadInventrario<5){
+         if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                        button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🔴";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+  if(cantidadInventrario>5&&cantidadInventrario<20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟡";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+    if(cantidadInventrario>5&&cantidadInventrario>20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟢";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
   
   
   
@@ -209,7 +261,7 @@ function listarCantidadActualizada(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -237,14 +289,9 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  var cantidadInventrario=unInventario.cantidad;
+
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
-   if(cantidadInventrario<5){
-      hilera.setAttribute('id','alertaRoja');
-  }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
-      hilera.setAttribute('id','alertaAmarilla');
-  }
+
   if(cantidad===0){
   if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
@@ -280,7 +327,51 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  
+   var cantidadInventrario=unInventario.cantidad;
+   if(cantidadInventrario<5){
+         if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                        button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🔴";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+  if(cantidadInventrario>5&&cantidadInventrario<20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟡";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+    if(cantidadInventrario>5&&cantidadInventrario>20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟢";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
   
   
   
@@ -310,9 +401,11 @@ function listarCantidadActualizada(){
     }
     function BuscarProductoDeInfraestructura(){
         $("tbody tr").remove(); 
+        var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
            var parametros = {
                accion: "BuscarProductoDeInfraestructura",
-               producto: $("#txt_Buscar").val(),
+               producto: buscar,
                infraestructura: $("#cb_Infraestura").val()
               
     };    
@@ -341,7 +434,7 @@ function listarCantidadActualizada(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -405,7 +498,51 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  
+  var cantidadInventrario=unInventario.cantidad;
+   if(cantidadInventrario<5){
+         if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                        button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🔴";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+  if(cantidadInventrario>5&&cantidadInventrario<20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟡";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+    if(cantidadInventrario>5&&cantidadInventrario>20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟢";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
   
   
   
@@ -465,7 +602,7 @@ function listarCantidadActualizada(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -493,14 +630,9 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  var cantidadInventrario=unInventario.cantidad;
+
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
-   if(cantidadInventrario<5){
-      hilera.setAttribute('id','alertaRoja');
-  }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
-      hilera.setAttribute('id','alertaAmarilla');
-  }
+  
   if(cantidad===0){
   if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
@@ -537,7 +669,51 @@ function listarCantidadActualizada(){
   
   }
 
-  
+  var cantidadInventrario=unInventario.cantidad;
+   if(cantidadInventrario<5){
+         if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                        button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🔴";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+  if(cantidadInventrario>5&&cantidadInventrario<20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟡";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+    if(cantidadInventrario>5&&cantidadInventrario>20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟢";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
   
   
   
@@ -566,10 +742,12 @@ function listarCantidadActualizada(){
     }
       function BuscarCantidadActualizadaPorCodigoYInfraestructura(numero){
           $("tbody tr").remove(); 
+          var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
      var parametros = {
                accion: "BuscarCantidadActualizadaPorCodigoYInfraestructura",
                infraestructura:numero,
-               buscar1: $("#txt_Buscar1").val()
+               buscar1: buscar
               
     };    
     $.ajax({          
@@ -597,7 +775,7 @@ function listarCantidadActualizada(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -625,14 +803,9 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  var cantidadInventrario=unInventario.cantidad;
+
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
-   if(cantidadInventrario<5){
-      hilera.setAttribute('id','alertaRoja');
-  }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
-      hilera.setAttribute('id','alertaAmarilla');
-  }
+
   if(cantidad===0){
   if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
@@ -668,7 +841,51 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-
+var cantidadInventrario=unInventario.cantidad;
+   if(cantidadInventrario<5){
+         if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                        button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🔴";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+  if(cantidadInventrario>5&&cantidadInventrario<20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟡";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+    if(cantidadInventrario>5&&cantidadInventrario>20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟢";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
   
   
   
@@ -698,10 +915,12 @@ function listarCantidadActualizada(){
     }
      function BuscarCantidadActualizadaPorNombreYInfraestructura(numero){
          $("tbody tr").remove(); 
+         var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
      var parametros = {
                accion: "BuscarCantidadActualizadaPorNombreYInfraestructura",
                infraestructura:numero,
-                buscar1: $("#txt_Buscar1").val()
+                buscar1: buscar
               
     };    
     $.ajax({          
@@ -729,7 +948,7 @@ function listarCantidadActualizada(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -757,14 +976,9 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  var cantidadInventrario=unInventario.cantidad;
+ 
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
-   if(cantidadInventrario<5){
-      hilera.setAttribute('id','alertaRoja');
-  }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
-      hilera.setAttribute('id','alertaAmarilla');
-  }
+
   if(cantidad===0){
   if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
@@ -801,7 +1015,51 @@ function listarCantidadActualizada(){
   
   }
 
-  
+  var cantidadInventrario=unInventario.cantidad;
+   if(cantidadInventrario<5){
+         if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                        button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🔴";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+  if(cantidadInventrario>5&&cantidadInventrario<20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟡";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+    if(cantidadInventrario>5&&cantidadInventrario>20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟢";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
   
   
   
@@ -830,9 +1088,11 @@ function listarCantidadActualizada(){
     }
      function BuscarProducto(){
          $("tbody tr").remove(); 
+         var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
      var parametros = {
               accion: "BuscarProducto",
-                buscar: $("#txt_Buscar1").val().trim()
+                buscar:buscar
               
     };    
     $.ajax({          
@@ -860,7 +1120,7 @@ function listarCantidadActualizada(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 8; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -888,14 +1148,9 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-  var cantidadInventrario=unInventario.cantidad;
+
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
-   if(cantidadInventrario<5){
-      hilera.setAttribute('id','alertaRoja');
-  }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
-      hilera.setAttribute('id','alertaAmarilla');
-  }
+
   if(cantidad===0){
   if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
@@ -931,7 +1186,51 @@ function listarCantidadActualizada(){
       hilera.appendChild(celda);
   
   }
-
+var cantidadInventrario=unInventario.cantidad;
+   if(cantidadInventrario<5){
+         if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                        button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🔴";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+  if(cantidadInventrario>5&&cantidadInventrario<20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟡";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
+    if(cantidadInventrario>5&&cantidadInventrario>20){
+      if(j===8){
+     
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                          
+                           button.setAttribute('class','agregar');
+                           button.setAttribute('id','agregar');
+                           const img= document.createElement('img');
+                           button.innerHTML="🟢";
+       button.appendChild(img);
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+      }
+  }
   
   
   

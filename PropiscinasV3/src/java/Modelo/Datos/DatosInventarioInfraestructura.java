@@ -326,10 +326,10 @@ public class DatosInventarioInfraestructura {
 "INNER JOIN detalle_producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=detalle_producto.detalle_producto_producto_id INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id \n" +
 "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id \n" +
 "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id \n" +
-"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id WHERE infraestructura.infraestructura_id=? AND producto.producto_nombre  LIKE '?'  ORDER BY inventario_fecha_registro DESC";
+"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id WHERE infraestructura.infraestructura_id=? AND producto.producto_id=?  ORDER BY inventario_fecha_registro DESC";
    ps=this.miConexion.prepareStatement(consulta);
           ps.setInt(1,infraestructura);
-          ps.setString(1, nombre);
+          ps.setString(2, nombre);
             rs = ps.executeQuery();
             
             while(rs.next())

@@ -190,9 +190,11 @@ function ListarProducto(){
 ////Esta funcion es la que busca todo los productso para poder agregar la cantidad al producto
 function  BuscarProducto(){
      $("tbody tr").remove(); 
+     var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
      var parametros = {
                accion: "Buscar",
-              txt_Buscar: $("#txt_Buscar").val().trim() 
+              txt_Buscar: buscar
               
     };    
     $.ajax({          

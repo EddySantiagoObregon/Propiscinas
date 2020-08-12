@@ -8,7 +8,7 @@
 $(function(){
     listarVenta();
     $("#btn_Buscar").click(function(){
-        alert("hsad");
+  
         BuscarVenta();
         var fecha = $("#fecha").val();
         var buscar = $("#txt_Buscar").val();

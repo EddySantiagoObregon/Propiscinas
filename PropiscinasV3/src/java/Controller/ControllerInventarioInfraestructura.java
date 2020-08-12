@@ -203,7 +203,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
                    private void BuscarCantidadActualizadaPorNombreYInfraestructura(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
-       String buscar = request.getParameter("buscar");
+       String buscar = request.getParameter("buscar1");
        int Infraestructura = Integer.parseInt(request.getParameter("infraestructura"));
        ArrayList<InventarioInfraestructura> lista= dInventario.BuscarProductoCantidadActualPorNombreYInfraestructura(buscar,Infraestructura);
        PrintWriter out= response.getWriter();
