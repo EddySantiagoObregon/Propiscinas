@@ -97,7 +97,7 @@ public class DatosUsuario {
         boolean actualizado = false;
         this.mensaje=null;
     
-                String consulta="UPDATE USUARIO   SET usuario_contrasena =? " 
+                String consulta="UPDATE usuario   SET usuario_contrasena =? " 
                         +" where usuario_identificacion=? and usuario_correo=? ";
                 try {
                     ps=miConexion.prepareStatement(consulta);
