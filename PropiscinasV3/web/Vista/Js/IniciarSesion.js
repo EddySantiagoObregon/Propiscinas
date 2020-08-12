@@ -125,6 +125,8 @@ $(function(){
 
 function RegistrarPersona(){
          
+         
+
         var parametros=
             {
                 accion: "RegistrarPersona",

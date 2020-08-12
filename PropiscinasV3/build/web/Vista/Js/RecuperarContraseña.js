@@ -15,6 +15,7 @@ $(function ()
 });
 
 function recuperarClave(){
+    document.body.style.cursor = "progress";
     var parametros = {
         accion: "ActualizarPassword",
         identificacion: $("#txtIdentificacion").val(),
@@ -32,15 +33,18 @@ function recuperarClave(){
                    console.log(resultado);
                    if(resultado)
                    {
+                       document.body.style.cursor = "default";
                       alert("Se ha enviado un mensaje a su correo con su nueva contraseña");
                    }else
                    {
+                       document.body.style.cursor = "default";
                        alert("Identificación o correo electrónico incorrectos");
                    }
                     $("#modalRecuperarClave").hide();
             },
             error: function(ex)
             {
+                document.body.style.cursor = "default";
                 alert("Identificación o correo electrónico incorrectos");
                 console.log(ex.responseText);
             }

@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 
 public class Correo {
      private static final String remitente = "propiscinasdelhuila2020";
-    private static final String clave = "jsueaskjluohtoly";
+    private static final String clave = "alkbqdafxplsmfhn";
     public static String mensaje;
    
     public static boolean enviarCorreo(String destinatario, String asunto, String cuerpo) {  
