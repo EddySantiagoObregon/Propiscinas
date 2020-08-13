@@ -98,8 +98,9 @@
                                  </button>
                                     <div class="dropdown-menu">
                                     
-                                        <a class="dropdown-item" href="#">Registrar </a>
-                                        <a class="dropdown-item" href="#">Proveedor-Producto</a>
+                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
+                                        <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
+                                        <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
                             <a href="Salir.jsp" style="height: 40px;margin-left: 417px;"type="button" class="btn btn-primary">

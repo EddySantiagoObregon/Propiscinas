@@ -59,7 +59,9 @@ import Modelo.Entidad.Transaccion;
 import Modelo.Entidad.UnidadMedida;
 import Modelo.Entidad.Usuario;
 import com.google.gson.Gson;
+import com.sun.tools.ws.wsdl.document.Output;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -786,33 +788,31 @@ public class ControllerProducto extends HttpServlet {
                                  private void GenerarCodigoDeBarras(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
         
-     
-  ArrayList<Producto> lista= dProducto.generarCodigoBarras();
+      response.setContentType("application/pdf");
+        OutputStream out = response.getOutputStream();
+        ArrayList<Producto> lista= dProducto.generarCodigoBarras();
        int numero = lista.size();
        int positionx=50;
-                 int positiony=750;
-                 int nuevahoja=59;
-                 int contador=3;
-                 
-                             try {
-                                  Document doc = new Document();
-                                  
-               String fecha= obtenerFechaParaImprimir();
-               String nombreCod = "CODBAR"+fecha;
-
-                 String ruta= System.getProperty("user.home");
-                 PdfWriter pdf = PdfWriter.getInstance(doc,new FileOutputStream(ruta+"/Desktop/imprimir/"+nombreCod+".pdf"));
-                 doc.open();
+       int positiony=750;
+       int nuevahoja=59;
+       int contador=3;
+        try  {
+            try{
+                Document documento = new Document();
+           
+                PdfWriter pdf = PdfWriter.getInstance(documento,out);
+                documento.open();
+                 Barcode128 code128 = new Barcode128();
                 for(int x=0;x<numero;x++){
               
-                 Barcode128 code128 = new Barcode128();
+                 
                  code128.setCode(lista.get(x).getIdProducto());
                  
                  
                  Image img128 = code128.createImageWithBarcode(pdf.getDirectContentUnder(), BaseColor.BLACK, BaseColor.BLACK);
                    
                    img128.setAbsolutePosition(positionx,positiony);
-                  doc.add(img128);
+                  documento.add(img128);
                     positionx+=130;
                   
                
@@ -823,20 +823,21 @@ public class ControllerProducto extends HttpServlet {
                   }
                  if(x==nuevahoja){
                       nuevahoja+=60;
-                      doc.newPage();
+                      documento.newPage();
                       positionx=50;
                       positiony=750;
                   }
                  
             } 
-                 FuncWindows fw = new FuncWindows();
-                 fw.fnOpenFileFromCMD(ruta+"/Desktop/imprimir/"+nombreCod+".pdf");
-                 
-                 doc.close();
-                }catch (FileNotFoundException | DocumentException ex) {
+                documento.close();
+                }catch (DocumentException ex) {
                 Logger.getLogger(DatosProducto.class.getName()).log(Level.SEVERE, null, ex);
+                ex.getMessage();
             }
-                 boolean generado =false;
+        
+        }finally{
+            out.close();
+        }
    
                       
 }
@@ -856,10 +857,10 @@ public class ControllerProducto extends HttpServlet {
                                   Document doc = new Document();
                                   
                String fecha= obtenerFechaParaImprimir();
-               String nombreCod = "CODBAR"+fecha;
-
+      
+                OutputStream out = response.getOutputStream();
                  String ruta= System.getProperty("user.home");
-                 PdfWriter pdf = PdfWriter.getInstance(doc,new FileOutputStream(ruta+"/Desktop/imprimir/"+nombreCod+".pdf"));
+                 PdfWriter pdf = PdfWriter.getInstance(doc,out);
                  doc.open();
                 for(int x=0;x<numero;x++){
               
@@ -887,9 +888,7 @@ public class ControllerProducto extends HttpServlet {
                   }
                  
             } 
-                 FuncWindows fw = new FuncWindows();
-                 fw.fnOpenFileFromCMD(ruta+"/Desktop/imprimir/"+nombreCod+".pdf");
-                 
+             
                  doc.close();
                 }catch (FileNotFoundException | DocumentException ex) {
                 Logger.getLogger(DatosProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -914,9 +913,10 @@ public class ControllerProducto extends HttpServlet {
                String fecha= obtenerFechaParaImprimir();
                String nombreCod = "CODBAR"+fecha;
 
+                OutputStream out = response.getOutputStream();
                  String ruta= System.getProperty("user.home");
-                 PdfWriter pdf = PdfWriter.getInstance(doc,new FileOutputStream(ruta+"/Desktop/imprimir/"+nombreCod+".pdf"));
-                 doc.open();
+                 PdfWriter pdf = PdfWriter.getInstance(doc,out);
+               doc.open();
                 for(int x=0;x<numero;x++){
               
                  Barcode128 code128 = new Barcode128();
@@ -945,10 +945,7 @@ public class ControllerProducto extends HttpServlet {
                   }
                  
             } 
-                 FuncWindows fw = new FuncWindows();
-                 fw.fnOpenFileFromCMD(ruta+"/Desktop/imprimir/"+nombreCod+".pdf");
-                 
-                 doc.close();
+                doc.close();
                 }catch (FileNotFoundException | DocumentException ex) {
                 Logger.getLogger(DatosProducto.class.getName()).log(Level.SEVERE, null, ex);
             }

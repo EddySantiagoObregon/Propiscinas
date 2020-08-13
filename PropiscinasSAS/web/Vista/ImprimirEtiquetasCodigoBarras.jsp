@@ -48,13 +48,16 @@
                         
                     </div>
         <div style="margin-top: 0px;   padding-top: 0px;" class="modal-body">
-        <form>
-            <a style="margin-bottom: 30px;
+        
+            <form action="/PropiscinasSAS/pdfTodosLosCodigos">
+         
+                <input type="submit" value="Generar todos los de codigos de barras"style="margin-bottom: 30px;
     padding-top: 2px;
     padding-bottom: 4px;
     margin-left: 143px;
-    margin-top: 44px;" class="btn btn-primary btnListar" id="btnGenerarTodos"><img width="55" height="30" src="Imagenes/cod.png"/>Generar todos los de codigos de barras</a>
-          
+    margin-top: 44px;" class="btn btn-primary btnListar"><img width="55" height="30" src="Imagenes/cod.png"/>Generar todos los de codigos de barras</a>
+             </form>
+            
     <a style="    background-color: white;
     color: #d2d2d2;
     margin-top: 1px;
@@ -70,7 +73,8 @@
                                 <option value="0">Seleccione</option>
 					</select> 
           </div>
-            <a id="btnGenerCodigoBarrasPorGrupo" style="    margin-top: 49px;
+            <form>
+            <a  style="    margin-top: 49px;
     margin-left: 286px;
     color: white;"class="btn btn-primary">Generar</a>
       <a style="    background-color: white;
@@ -79,6 +83,7 @@
     border-bottom-width: 30px;
     margin-bottom: 55px;">_____________________________________________________________________________________________________</a>
     <br>
+    </form>
    
     
     <a style="margin-left: 143px;"><h6 style="margin-left: 194px;">Codigo de barra independiente</h6></a>
@@ -91,7 +96,7 @@
       <a id="btnGenerCodigoBarrasIndenpendiente" style="    margin-top: 9px;
     margin-left: 286px;
     color: white;"class="btn btn-primary">Generar</a>
-        </form>
+
       </div>
        
       <div class="modal-footer">

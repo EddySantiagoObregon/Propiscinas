@@ -12,13 +12,13 @@ package Modelo.Entidad;
 public class ProveedorProducto {
     private int idProveedorProducto;
     private Proveedor unProveedor;
-    private Producto unProducto;
-    public ProveedorProducto(Proveedor unProveedor,Producto unProducto){
+    private DetalleProducto unDetalleProducto;
+    public ProveedorProducto(Proveedor unProveedor,DetalleProducto unDetalleProducto){
         this.unProveedor=unProveedor;
-        this.unProducto=unProducto;
+        this.unDetalleProducto=unDetalleProducto;
     }
     public ProveedorProducto(){
-        unProducto = new Producto();
+        unDetalleProducto = new DetalleProducto();
         unProveedor = new Proveedor();
     }
 
@@ -38,14 +38,14 @@ public class ProveedorProducto {
         this.unProveedor = unProveedor;
     }
 
-    public Producto getUnProducto() {
-        return unProducto;
+    public DetalleProducto getUnDetalleProducto() {
+        return unDetalleProducto;
     }
 
-    public void setUnProducto(Producto unProducto) {
-        this.unProducto = unProducto;
+    public void setUnDetalleProducto(DetalleProducto unDetalleProducto) {
+        this.unDetalleProducto = unDetalleProducto;
     }
-    
-    
+
+   
     
 }

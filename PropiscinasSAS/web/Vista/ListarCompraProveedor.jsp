@@ -14,14 +14,15 @@
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="Js/jsAutoCompleteProducto.js" type="text/javascript"></script>
+       
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
-        <link href="Css/ListarMovimiento.css" rel="stylesheet" type="text/css"/>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
-        <script src="Js/ListarVenta.js" type="text/javascript"></script>
+        <link href="Css/AgregarProducto.css" rel="stylesheet" type="text/css"/>
+        <script src="Js/ListarProveedorProductoCompra.js" type="text/javascript"></script>
+        <script src="Js/jsAutocomplete.js" type="text/javascript"></script>
     </head>
     <body>
        <header>
@@ -108,20 +109,12 @@
 			<table  style="width: 95% ;font-size: 12.6px;"  id="tblMovimiento" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
-            <th style="background-color: #007bff;color: #fff;">Codigo</th>
-            <th style="background-color: #007bff;color: #fff;">Nombre</th>
-            <th style="background-color: #007bff;color: #fff;">Fecha venta</th>
-            <th style="background-color: #007bff;color: #fff;">Cantidad</th>         
-            <th style="background-color: #007bff;color: #fff;">Valor</th>
-            <th style="background-color: #007bff;color: #fff;">Estado</th>
-            <th style="background-color: #007bff;color: #fff;">Usuario</th>
-           
-         
-            
-            
-            
-         
-           
+            <th style="background-color: #007bff;color: #fff;">Nombre proveedor</th>
+            <th style="background-color: #007bff;color: #fff;">Producto</th>
+            <th style="background-color: #007bff;color: #fff;">Fecha </th>
+            <th style="background-color: #007bff;color: #fff;">Precio compra</th>         
+            <th style="background-color: #007bff;color: #fff;">Numero de documento</th>
+        
         </tr>
     </thead>
     <tbody id="Container" class="Container">
