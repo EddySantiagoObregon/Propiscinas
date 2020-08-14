@@ -54,8 +54,8 @@
                 <input type="submit" value="Generar todos los de codigos de barras"style="margin-bottom: 30px;
     padding-top: 2px;
     padding-bottom: 4px;
-    margin-left: 143px;
-    margin-top: 44px;" class="btn btn-primary btnListar"><img width="55" height="30" src="Imagenes/cod.png"/>Generar todos los de codigos de barras</a>
+    margin-left: 165px;
+    margin-top: 44px;" class="btn btn-primary btnListar">
              </form>
             
     <a style="    background-color: white;
@@ -63,40 +63,44 @@
     margin-top: 1px;
     border-bottom-width: 30px;
     margin-bottom: 55px;">_____________________________________________________________________________________________________</a>
-          <div style="height: 60px;" class="form-group">
+     <form action="/PropiscinasSAS/pdfCodigosPorGrupo">     
+    <div style="height: 60px;" class="form-group">
+             
               <label for="message-text" class="col-form-label" style="margin-left: 190px;
+                     
     margin-top: 39px;">Generar codigos de barra por grupo:</label>
           <select style="width: 360px;
     margin-left: 140px;     
   
-    border-color: #d2d2d2;" name="cb_Grupo" id="cb_Grupo" class="btn">
+    border-color: #d2d2d2;" name="cb_Grupo" id="cb_Grupo" class="btn cb_Grupo">
                                 <option value="0">Seleccione</option>
 					</select> 
+             
+
           </div>
-            <form>
-            <a  style="    margin-top: 49px;
+         <input  type="submit"style="    margin-top: 49px;
     margin-left: 286px;
-    color: white;"class="btn btn-primary">Generar</a>
+    color: white;"class="btn btn-primary" value="Generar">
       <a style="    background-color: white;
     color: #d2d2d2;
     margin-top: 1px;
     border-bottom-width: 30px;
-    margin-bottom: 55px;">_____________________________________________________________________________________________________</a>
-    <br>
-    </form>
+    margin-bottom: 55px;">_____________________________________________________________________________________________________
    
+    </form>
+            <form action="/PropiscinasSAS/pdfImprimirCodigo">
     
     <a style="margin-left: 143px;"><h6 style="margin-left: 194px;">Codigo de barra independiente</h6></a>
     <a style="margin-left: 143px;">Ingrese el código para generar el código de barras</a>
     <br>
     <input style="    width: 362px;
-           margin-left: 140px; margin-bottom: 2px;"type="number" placeholder="INGRESE CODIGO" id="txt_Codigo" class="form-control">
+           margin-left: 140px; margin-bottom: 2px;"type="number" placeholder="INGRESE CODIGO" id="codigo" class="codigo form-control" name="codigo" class="form-control">
      <input style="    width: 362px;
-           margin-left: 140px;"type="number" placeholder="CANTIDAD QUE IMPRIMIRA" id="txt_Cantidad" class="form-control">
-      <a id="btnGenerCodigoBarrasIndenpendiente" style="    margin-top: 9px;
+            margin-left: 140px;"type="number" placeholder="CANTIDAD QUE IMPRIMIRA" name="cantidad" class="cantidad form-control" id="cantidad" class="form-control">
+     <input value="Generar"id="generar" type="submit" style="    margin-top: 9px;
     margin-left: 286px;
-    color: white;"class="btn btn-primary">Generar</a>
-
+    color: white;"class="btn btn-primary">
+           </form>
       </div>
        
       <div class="modal-footer">

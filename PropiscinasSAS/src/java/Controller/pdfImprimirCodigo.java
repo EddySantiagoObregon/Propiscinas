@@ -8,34 +8,29 @@ package Controller;
 import Modelo.Datos.DatosProducto;
 import Modelo.Entidad.Producto;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.Barcode128;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPTable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author PAULA
  */
-@WebServlet(name = "pdfTodosLosCodigos", urlPatterns = {"/pdfTodosLosCodigos"})
-public class pdfTodosLosCodigos extends HttpServlet {
+@WebServlet(name = "pdfImprimirCodigo", urlPatterns = {"/pdfImprimirCodigo"})
+public class pdfImprimirCodigo extends HttpServlet {
 DatosProducto dProducto = new DatosProducto();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,50 +42,49 @@ DatosProducto dProducto = new DatosProducto();
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, DocumentException {
-     Producto unProducto = new Producto();
-      response.setContentType("application/pdf");
+            throws ServletException, IOException {
+       response.setContentType("application/pdf");
+         String codigo = request.getParameter("codigo");
+      int cantidad= Integer.parseInt(request.getParameter("cantidad"));
         OutputStream out = response.getOutputStream();
-        ArrayList<Producto> lista= dProducto.generarCodigoBarras();
-       int numero = lista.size();
       
-         if (numero%2!=0){
-           numero++;
-           String a="dsad";
-           unProducto.setIdProducto("0000000000000");
-           unProducto.setNombre("xxxxxxxxxx");
-              lista.add(unProducto);
-            }
+       int positionx=50;
+       int positiony=750;
+       int nuevahoja=59;
+       int contador=3;
         try  {
             try{
                 Document documento = new Document();
-                documento.setMargins(0, 0, 30, 0);
-                 PdfWriter pdf = PdfWriter.getInstance(documento,out);
+           
+                PdfWriter pdf = PdfWriter.getInstance(documento,out);
                 documento.open();
                  Barcode128 code128 = new Barcode128();
+                for(int x=0;x<cantidad;x++){
+              
                  
-
-          PdfPTable table = new PdfPTable(4);  
-          table.getDefaultCell().setBorderWidth(0f);
-
-        float[] columnWidths = new float[]{40f, 40f, 40f, 40f};
-        table.setWidths(columnWidths);
-                for(int x=0;x<numero;x++){
-            
-
+                 code128.setCode(codigo);
                  
-                 code128.setCode(lista.get(x).getIdProducto());
+                 
+                 Image img128 = code128.createImageWithBarcode(pdf.getDirectContentUnder(), BaseColor.BLACK, BaseColor.BLACK);
                    
-               Image img128 = code128.createImageWithBarcode(pdf.getDirectContentUnder(), BaseColor.BLACK, BaseColor.BLACK);
-                   table.addCell(lista.get(x).getNombre());
-                   table.addCell(img128);
-                 
-                  
+                   img128.setAbsolutePosition(positionx,positiony);
+                  documento.add(img128);
+                    positionx+=130;
                   
                
+                if((x%10==(contador%10))){
+                    positionx=50;
+                    positiony-=50;
+                    contador=contador+4;
+                  }
+                 if(x==nuevahoja){
+                      nuevahoja+=60;
+                      documento.newPage();
+                      positionx=50;
+                      positiony=750;
+                  }
                  
             } 
-                documento.add(table);
                 documento.close();
                 }catch (DocumentException ex) {
                 Logger.getLogger(DatosProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,11 +108,7 @@ DatosProducto dProducto = new DatosProducto();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
         processRequest(request, response);
-    } catch (DocumentException ex) {
-        Logger.getLogger(pdfTodosLosCodigos.class.getName()).log(Level.SEVERE, null, ex);
-    }
     }
 
     /**
@@ -132,11 +122,7 @@ DatosProducto dProducto = new DatosProducto();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
         processRequest(request, response);
-    } catch (DocumentException ex) {
-        Logger.getLogger(pdfTodosLosCodigos.class.getName()).log(Level.SEVERE, null, ex);
-    }
     }
 
     /**

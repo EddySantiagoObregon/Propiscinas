@@ -246,12 +246,11 @@
                     </td>
                     
                     </tr>
-                    <tr  style="height: 40px;">
-                        <td class="negrita"><font color="black">Cuantos codigos de   </font><br><font color="black">barras imprimira?</font> </td>
-                        <td><input  type="number" name="txt_cancod" id="txt_cancod" class="form-control"   required>
-                        <div class="requerimientos"  id="msjCod" style="text-align: center"></div>
-                        </td>
-                    </tr>
+                   
+                 
+                    <td><input  type="hidden" name="txt_cancod" id="txt_cancod" class="form-control"   required>
+                      
+                     
                     
                     
                     <tr  style="height: 10px;">

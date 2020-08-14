@@ -6,6 +6,14 @@
 package Controller;
 
 import Modelo.Datos.DatosProducto;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import Modelo.Datos.DatosProducto;
 import Modelo.Entidad.Producto;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -34,8 +42,8 @@ import javax.servlet.http.HttpServlet;
  *
  * @author PAULA
  */
-@WebServlet(name = "pdfTodosLosCodigos", urlPatterns = {"/pdfTodosLosCodigos"})
-public class pdfTodosLosCodigos extends HttpServlet {
+@WebServlet(name = "pdfCodigosPorGrupo", urlPatterns = {"/pdfCodigosPorGrupo"})
+public class pdfCodigosPorGrupo extends HttpServlet {
 DatosProducto dProducto = new DatosProducto();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,21 +55,21 @@ DatosProducto dProducto = new DatosProducto();
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, DocumentException {
-     Producto unProducto = new Producto();
-      response.setContentType("application/pdf");
+            throws ServletException, IOException {
+        Producto unProducto = new Producto();
+         response.setContentType("application/pdf");
         OutputStream out = response.getOutputStream();
-        ArrayList<Producto> lista= dProducto.generarCodigoBarras();
+        int cb_Grupo = Integer.parseInt(request.getParameter("cb_Grupo"));
+        ArrayList<Producto> lista= dProducto.generarCodigoBarrasPorGrupo(cb_Grupo);
        int numero = lista.size();
-      
-         if (numero%2!=0){
+       if (numero%2!=0){
            numero++;
            String a="dsad";
            unProducto.setIdProducto("0000000000000");
            unProducto.setNombre("xxxxxxxxxx");
               lista.add(unProducto);
             }
-        try  {
+      try  {
             try{
                 Document documento = new Document();
                 documento.setMargins(0, 0, 30, 0);
@@ -114,11 +122,7 @@ DatosProducto dProducto = new DatosProducto();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
         processRequest(request, response);
-    } catch (DocumentException ex) {
-        Logger.getLogger(pdfTodosLosCodigos.class.getName()).log(Level.SEVERE, null, ex);
-    }
     }
 
     /**
@@ -132,11 +136,7 @@ DatosProducto dProducto = new DatosProducto();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
         processRequest(request, response);
-    } catch (DocumentException ex) {
-        Logger.getLogger(pdfTodosLosCodigos.class.getName()).log(Level.SEVERE, null, ex);
-    }
     }
 
     /**

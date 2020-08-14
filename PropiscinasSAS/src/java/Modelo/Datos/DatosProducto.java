@@ -908,15 +908,17 @@ private String obtenerFechaActual(){
     
      try
      {
-         String consultaa="SELECT producto.*,detalle_producto.*,grupo.* FROM producto INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id INNER JOIN grupo ON detalle_producto.detalle_producto_grupo_id=grupo.grupo_id where producto_genero_codigo_barra='SI' AND grupo.grupo_id= ? ORDER BY producto.producto_nombre ASC";
+         String consultaa="SELECT (SELECT DISTINCT concat_ws(' ',producto_nombre,forma_descripcion,detalle_producto_cantidad_medida,unidad_medida_descripcion,presentacion_descripcion) as productoNom),producto.*,detalle_producto.*,forma.*,unidad_medida.*,presentacion.*,grupo.* FROM detalle_producto INNER JOIN producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id INNER JOIN grupo ON detalle_producto.detalle_producto_grupo_id=grupo.grupo_id where producto_genero_codigo_barra='SI' AND grupo.grupo_id= ? ORDER BY producto.producto_nombre ASC";
          ps=miConexion.prepareStatement(consultaa);
          ps.setInt(1,idGrupo);
          rs= ps.executeQuery();
          while(rs.next())
+            
          {
-               Producto unProducto = new Producto();
+                 Producto unProducto = new Producto();
                  unProducto.setIdProducto(rs.getString("producto_id"));
-                lista.add(unProducto);
+                 unProducto.setNombre(rs.getString("(SELECT DISTINCT concat_ws(' ',producto_nombre,forma_descripcion,detalle_producto_cantidad_medida,unidad_medida_descripcion,presentacion_descripcion) as productoNom)"));
+                 lista.add(unProducto);
          }
          rs.close();
                  
