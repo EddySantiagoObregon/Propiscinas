@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>AgregarProducto</title>
+        <title>RegistrarEntradaProducto</title>
            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -90,7 +90,19 @@
             
                                     </div>
                             </div>
-                            <button id="btnSalir" style="height: 40px;margin-left: 544px;"type="button" class="btn btn-primary">
+                            
+                                                           <div class="btn-group navuldiv">
+                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Proveedores
+                                 </button>
+                                    <div class="dropdown-menu">
+                                       <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
+                                        <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
+                                        <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
+                                    </div>
+                            </div>
+                            <button id="btnSalir" style="height: 40px;margin-left: 427px;"type="button" class="btn btn-primary">
                                  Salir
                                  </button>
 				
@@ -209,7 +221,7 @@
                     
                       <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Observación producto</font></td>
-                        <td><textarea type="text" name="txt_Observacion" id="txt_Observacion" class="form-control"  value="" required/></textarea></td>
+                            <td><textarea type="text" name="txt_Observacion" id="txt_Observacion" class="form-control" maxlength="150"  value="" required/></textarea></td>
                    
                     </tr>
                   

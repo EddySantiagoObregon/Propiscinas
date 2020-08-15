@@ -193,14 +193,15 @@ public class DatosInventarioInfraestructura {
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
         String consulta=" SELECT  inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
-"FROM inventario_infraestructura_cantidad_actual " +
-"INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id " +
-"INNER JOIN infraestructura on inventario_infraestructura_cantidad_actual.inventario_infraestructura_id=infraestructura.infraestructura_id " +
-"INNER JOIN detalle_producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=detalle_producto.detalle_producto_producto_id " +
-"INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id " +
-"INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id " +
-"INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id " +
-"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id   ORDER BY inventario_fecha_registro DESC";
+"FROM inventario_infraestructura_cantidad_actual \n" +
+"INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
+"INNER JOIN infraestructura on inventario_infraestructura_cantidad_actual.inventario_infraestructura_id=infraestructura.infraestructura_id \n" +
+"INNER JOIN detalle_producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=detalle_producto.detalle_producto_producto_id\n" +
+"INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id\n" +
+"INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id\n" +
+"INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id \n" +
+"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id  \n" +
+"ORDER BY inventario_infraestructura_cantidad_actual.inventario_cantidad_total ASC";
    ps=this.miConexion.prepareStatement(consulta);
           
             rs = ps.executeQuery();
@@ -282,13 +283,57 @@ public class DatosInventarioInfraestructura {
         String consulta="SELECT SUM(inventario_cantidad_total) AS SUMA,inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
 "FROM inventario_infraestructura_cantidad_actual \n" +
 "INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
-"INNER JOIN infraestructura on inventario_infraestructura_cantidad_actual.inventario_infraestructura_id=infraestructura.infraestructura_id  INNER JOIN detalle_producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=detalle_producto.detalle_producto_producto_id \n" +
+"INNER JOIN infraestructura on inventario_infraestructura_cantidad_actual.inventario_infraestructura_id=infraestructura.infraestructura_id  INNER JOIN detalle_producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=detalle_producto.detalle_producto_producto_id\n" +
 "INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id\n" +
 "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id \n" +
 "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id \n" +
-"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id group by inventario_producto_id ORDER BY inventario_fecha_registro ASC";
+"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id group by inventario_producto_id  \n" +
+"ORDER BY SUMA ASC";
    ps=this.miConexion.prepareStatement(consulta);
           
+            rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                InventarioInfraestructura unInventario = new InventarioInfraestructura();
+               
+                unInventario.getUnDetalleProducto().setIdProducto(rs.getString("inventario_producto_id"));
+                unInventario.setFecha(rs.getString("inventario_fecha_registro"));
+                unInventario.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                unInventario.setCantidad(rs.getInt("SUMA"));
+                unInventario.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unInventario.getUnDetalleProducto().setCantidadUnidad(rs.getDouble("detalle_producto_cantidad_medida"));
+                unInventario.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                unInventario.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
+                unInventario.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unInventario.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
+                unInventario.setObservacion(rs.getString("inventario_observacion"));
+               
+                lista.add(unInventario);
+            }
+             rs.close();
+            this.miConexion.commit();
+        }catch(SQLException ex)
+        {
+            this.mensaje= ex.getMessage();
+        }
+        return lista;
+}
+             public ArrayList<InventarioInfraestructura> totalProductosInfraestructuraYcodigo(String codigo){
+        ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
+        try{
+             
+        String consulta="SELECT SUM(inventario_cantidad_total) AS SUMA,inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
+"FROM inventario_infraestructura_cantidad_actual \n" +
+"INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
+"INNER JOIN infraestructura on inventario_infraestructura_cantidad_actual.inventario_infraestructura_id=infraestructura.infraestructura_id  INNER JOIN detalle_producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=detalle_producto.detalle_producto_producto_id\n" +
+"INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id\n" +
+"INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id \n" +
+"INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id \n" +
+"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id WHERE producto.producto_id=? group by inventario_producto_id  \n" +
+"ORDER BY SUMA ASC";
+            ps=this.miConexion.prepareStatement(consulta);
+            ps.setString(1,codigo);
             rs = ps.executeQuery();
             
             while(rs.next())

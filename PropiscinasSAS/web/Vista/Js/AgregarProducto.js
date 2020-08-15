@@ -18,7 +18,7 @@ $(function ()
         ListarProducto();
     });
     $('#btnBuscar').click(function(){ 
- 
+        alert("goas");
         BuscarProducto();
       
    }); 

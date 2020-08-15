@@ -453,7 +453,48 @@ private String obtenerFechaActual(){
                  + "INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id "
                  + "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "
                  + "INNER JOIN presentacion on detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id "
-                 + "INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id";
+                 + "INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id where detalle_producto_estado = 'A' ";
+            ps=this.miConexion.prepareStatement(consulta);
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                DetalleProducto unDetalleProducto = new DetalleProducto();
+                unDetalleProducto.setIdProducto(rs.getString("producto_id"));
+                unDetalleProducto.setReferencia(rs.getString("producto_referencia"));
+                unDetalleProducto.setNombre(rs.getString("producto_nombre"));
+                unDetalleProducto.setAbreviatura(rs.getString("producto_abreviatura"));
+                unDetalleProducto.getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unDetalleProducto.getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
+                unDetalleProducto.getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unDetalleProducto.setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                unDetalleProducto.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                unDetalleProducto.setObservacion(rs.getString("detalle_producto_observacion"));
+                unDetalleProducto.setEstado(rs.getString("detalle_producto_estado"));
+                lista.add(unDetalleProducto);
+            }
+             rs.close();
+            this.miConexion.commit();
+        }catch(SQLException ex)
+        {
+            this.mensaje= ex.getMessage();
+        }
+        return lista;
+}
+        public ArrayList<DetalleProducto>ListarProductoEliminarJSP()
+    {
+            this.mensaje=null;
+     ArrayList<DetalleProducto> lista= new ArrayList<>();
+        try
+        {
+            this.miConexion.setAutoCommit(false);
+            String consulta = "SELECT detalle_producto.*,producto.*,grupo.*,presentacion.*,forma.*,unidad_medida.* "
+                 +" FROM detalle_producto INNER JOIN producto on detalle_producto.detalle_producto_producto_id=producto.producto_id "
+                 + "INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id "
+                 + "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "
+                 + "INNER JOIN presentacion on detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id "
+                 + "INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id  ";
             ps=this.miConexion.prepareStatement(consulta);
             
             rs = ps.executeQuery();
@@ -487,18 +528,49 @@ private String obtenerFechaActual(){
             try{  
   
             
-        String consulta1="DELETE FROM detalle_producto WHERE detalle_producto_producto_id  = ?"; 
+        String consulta1="UPDATE detalle_producto SET detalle_producto_estado = 'I' WHERE detalle_producto.detalle_producto_producto_id = ?"; 
             this.miConexion.setAutoCommit(false);   
             
             ps=miConexion.prepareStatement(consulta1);
             ps.setString(1,id);
             ps.executeUpdate();
-            String consulta2="DELETE FROM producto WHERE producto_id  = ?"; 
-         
+
             
-            ps=miConexion.prepareStatement(consulta2);
+                                   
+         
+      
+           this.miConexion.commit();
+    
+           
+           eliminado=true;
+         
+                    
+          
+       }catch(SQLException ex)
+       {
+         try
+         {
+             this.mensaje=ex.getMessage();
+             this.miConexion.rollback();
+         }catch(SQLException ex1)
+                 {
+                     this.mensaje= ex1.getMessage();
+                 }
+       }
+        return eliminado;
+    }
+                        public boolean Activar(String id){
+        boolean eliminado = false;
+            try{  
+  
+            
+        String consulta1="UPDATE detalle_producto SET detalle_producto_estado = 'A' WHERE detalle_producto.detalle_producto_producto_id = ?"; 
+            this.miConexion.setAutoCommit(false);   
+            
+            ps=miConexion.prepareStatement(consulta1);
             ps.setString(1,id);
             ps.executeUpdate();
+
             
                                    
          
@@ -525,6 +597,62 @@ private String obtenerFechaActual(){
     }
    
                 public ArrayList<DetalleProducto>buscarProducto(String buscar)
+    {
+            this.mensaje=null;
+     ArrayList<DetalleProducto> lista= new ArrayList<>();
+        try
+        {
+            this.miConexion.setAutoCommit(false);
+            String consulta = "SELECT detalle_producto.*,producto.*,grupo.*,presentacion.*,forma.*,  unidad_medida.* " 
+                    +"FROM detalle_producto INNER JOIN producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id "
+                    +"INNER JOIN grupo ON detalle_producto.detalle_producto_grupo_id = grupo.grupo_id "
+                    +"INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id = presentacion.presentacion_id "
+                    + "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "
+                    +"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id "
+                    +"WHERE   producto_id LIKE ?  OR producto_referencia LIKE ?  OR producto_nombre LIKE ? OR producto_abreviatura LIKE ?   OR forma_descripcion=? OR grupo_descripcion LIKE ? OR presentacion_descripcion LIKE ?  OR unidad_medida_descripcion LIKE ? OR detalle_producto_observacion LIKE ?   and detalle_producto_estado = 'A' ";
+            ps=this.miConexion.prepareStatement(consulta);
+            ps.setString(1,buscar);
+            ps.setString(2,buscar);
+            ps.setString(3,buscar);
+            ps.setString(4,buscar);
+            ps.setString(5,buscar);
+            ps.setString(6,buscar);
+            ps.setString(7,buscar);
+            ps.setString(8,buscar);
+            ps.setString(9,buscar);
+         
+         
+           
+            
+            
+            rs = ps.executeQuery();
+            
+           while(rs.next())
+            {
+                DetalleProducto unDetalleProducto = new DetalleProducto();
+                unDetalleProducto.setIdProducto(rs.getString("producto_id"));
+                unDetalleProducto.setReferencia(rs.getString("producto_referencia"));
+                unDetalleProducto.setNombre(rs.getString("producto_nombre"));
+                unDetalleProducto.setAbreviatura(rs.getString("producto_abreviatura"));
+                unDetalleProducto.getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unDetalleProducto.getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
+                unDetalleProducto.getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unDetalleProducto.setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                unDetalleProducto.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                unDetalleProducto.setObservacion(rs.getString("detalle_producto_observacion"));
+                unDetalleProducto.setEstado(rs.getString("detalle_producto_estado"));
+                lista.add(unDetalleProducto);
+            }
+             rs.close();
+            this.miConexion.commit();
+        }catch(SQLException ex)
+        {
+            this.mensaje= ex.getMessage();
+        }
+        return lista;
+}
+                
+                                      public ArrayList<DetalleProducto>BuscarEliminarJSP(String buscar)
     {
             this.mensaje=null;
      ArrayList<DetalleProducto> lista= new ArrayList<>();

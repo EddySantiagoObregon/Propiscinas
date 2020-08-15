@@ -46,7 +46,7 @@
 		<nav>
 			<ul>
                             <li><a href="MenuPrincipal.jsp">Pro-Piscinas</a></li>
-                            <div class="btn-group navuldiv">
+                           <div class="btn-group navuldiv">
                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Producto
                                  </button>
@@ -91,9 +91,22 @@
             
                                     </div>
                             </div>
-                            <button id="btnSalir" style="height: 40px;margin-left: 660px;;"type="button" class="btn btn-primary">
+                            
+                                                           <div class="btn-group navuldiv">
+                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Proveedores
+                                 </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
+                                        <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
+                                        <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
+                                    </div>
+                            </div>
+                            <button id="btnSalir" style="height: 40px;margin-left: 427px;"type="button" class="btn btn-primary">
                                  Salir
                                  </button>
+				
 				
                                  
 			</ul>

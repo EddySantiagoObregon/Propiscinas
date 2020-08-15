@@ -23,7 +23,7 @@ $(function ()
 
 function ListarProducto(){
      var parametros = {
-               accion: "listarDetalleProducto"
+               accion: "ListarProductoEliminarJSP"
               
     };    
     $.ajax({          
@@ -129,18 +129,37 @@ function ListarProducto(){
       hilera.appendChild(celda);
      
   }
-  if(j===10){
+  var Estado = detalleproducto.estado;
+  if(Estado==="A"){
+      if(j===10){
       var id = detalleproducto.idProducto;
       const fragment= document.createDocumentFragment();
       const button= document.createElement('a');
                            button.setAttribute('onclick', 'abrirModal('+ id+')');
                            button.setAttribute('class','btn btn-danger');
+                           button.setAttribute('style','cursor:pointer;');
                            button.setAttribute('id','btnn');
                            button.innerHTML="❌";
       
       fragment.appendChild(hilera);
       hilera.appendChild(button);
   }
+  }else{
+       if(j===10){
+      var id = detalleproducto.idProducto;
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                           button.setAttribute('onclick', 'abrirModalActivar('+ id+')');
+                           button.setAttribute('class','btn btn-green');
+                           button.setAttribute('style','color:green; background:green;cursor:pointer;');
+                           button.setAttribute('id','btnn');
+                           button.innerHTML="✔️";
+      
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+  }
+  }
+ 
   
     
  
@@ -165,6 +184,7 @@ function ListarProducto(){
         }
     });          
 }
+
 function abrirModal(id){
   
     
@@ -208,12 +228,56 @@ function abrirModal(id){
             }
         });
 }
+
+function abrirModalActivar(id){
+  
+    
+     $("#mensaje").html("");
+   
+     var parametros=
+            {
+                accion: "Activar",
+                id:id
+      
+            };
+    
+         $.ajax({
+               url: '../ControllerProducto' ,
+               data: parametros,
+               type: 'post',
+               dataType: 'json',
+               cache: false,
+               success: function(resultado)
+               {
+                   
+                   console.log(resultado);
+                   if(resultado)
+                   {
+                     
+                      $("tbody tr").remove(); 
+                      alert("Activado correctamente");
+                    
+                       ListarProducto();
+                       limpiar();
+                   }else
+                   {
+                       alert("fallo");
+                  
+                   }
+                   $("#msj").show();
+            },
+            error: function(ex)
+            {
+                console.log(ex.responseText);
+            }
+        });
+}
 function  BuscarProducto(){
      $("tbody tr").remove(); 
        var txtBuscar =$("#txt_Buscar").val().trim();
     var buscar=txtBuscar.substring(0,13);
      var parametros = {
-               accion: "Buscar",
+               accion: "BuscarEliminarJSP",
               txt_Buscar: buscar
               
     };    
@@ -320,17 +384,35 @@ function  BuscarProducto(){
       hilera.appendChild(celda);
      
   }
-  if(j===10){
+ var Estado = detalleproducto.estado;
+  if(Estado==="A"){
+      if(j===10){
       var id = detalleproducto.idProducto;
       const fragment= document.createDocumentFragment();
       const button= document.createElement('a');
                            button.setAttribute('onclick', 'abrirModal('+ id+')');
                            button.setAttribute('class','btn btn-danger');
+                           button.setAttribute('style','cursor:pointer;');
                            button.setAttribute('id','btnn');
                            button.innerHTML="❌";
       
       fragment.appendChild(hilera);
       hilera.appendChild(button);
+  }
+  }else{
+       if(j===10){
+      var id = detalleproducto.idProducto;
+      const fragment= document.createDocumentFragment();
+      const button= document.createElement('a');
+                           button.setAttribute('onclick', 'abrirModalActivar('+ id+')');
+                           button.setAttribute('class','btn btn-green');
+                           button.setAttribute('id','btnn');
+                           button.setAttribute('style','color:green; background:green;cursor:pointer;');
+                           button.innerHTML="✔️";
+      
+      fragment.appendChild(hilera);
+      hilera.appendChild(button);
+  }
   }
   
     

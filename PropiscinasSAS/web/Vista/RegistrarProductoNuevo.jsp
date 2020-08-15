@@ -73,7 +73,7 @@
 		<nav>
 			<ul>
                             <li><a href="MenuPrincipal.jsp">Pro-Piscinas</a></li>
-                            <div class="btn-group navuldiv">
+                           <div class="btn-group navuldiv">
                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Producto
                                  </button>
@@ -118,11 +118,22 @@
             
                                     </div>
                             </div>
-                            <button id="btnSalir" style="height: 40px;margin-left: 544px;"type="button" class="btn btn-primary">
+                            
+                                                           <div class="btn-group navuldiv">
+                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Proveedores
+                                 </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
+                                        <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
+                                        <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
+                                    </div>
+                            </div>
+                            <button id="btnSalir" style="height: 40px;margin-left: 427px;"type="button" class="btn btn-primary">
                                  Salir
                                  </button>
 				
-                                 
 			</ul>
 		</nav>
 	</header>
@@ -156,12 +167,12 @@
     top: 358px;
     margin-top: 30px;
    "
-    type="checkbox" name="check" id="check" class="check" value="SI" onchange="javascript:showContent()" onclick="borrarCod()"></td>
+   type="checkbox" name="check" id="check" class="check" value="SI"  onchange="javascript:showContent()" onclick="borrarCod()"></td>
                    
                         <td>
                             
                            
-                            <input id="content" onkeypress="return validarNumero(event)" style="display: none;" type="text" name="content"  class="form-control"  >
+                            <input id="content" onkeypress="return validarNumero(event)" style="display: none;" maxlength="13" minlength="13" type="text" name="content"  class="form-control"  >
                             <div  class="requerimientos"  id="msjContent" style="text-align: center"></div>                       
                      
                         </td>

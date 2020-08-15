@@ -82,6 +82,10 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
          
             case "ListarProveedorProductoCompra":ListarProveedorProductoCompra(request,response);
             break;
+            case "BuscarPorNombre":BuscarPorNombre(request,response);
+            break;
+            case "BuscarPorNombreYFecha":BuscarPorNombreYFecha(request,response);
+            break;
         }
      }
 
@@ -105,4 +109,23 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
         return "Short description";
     }// </editor-fold>
 
+    private void BuscarPorNombre(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+        String buscar = request.getParameter("buscar");
+        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorNombre(buscar);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+ private void BuscarPorNombreYFecha(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+        String buscar = request.getParameter("buscar");
+        String fecha = request.getParameter("fecha");
+        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorNombreYFecha(buscar,fecha);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
 }

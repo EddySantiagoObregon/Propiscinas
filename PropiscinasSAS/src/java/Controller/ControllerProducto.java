@@ -195,6 +195,11 @@ public class ControllerProducto extends HttpServlet {
             break;
             case "GenerarCodigoDeBarraIndependiente":GenerarCodigoDeBarraIndependiente(request,response);
             break;
+            case "Activar":Activar(request,response);
+            break;
+            case "ListarProductoEliminarJSP":ListarProductoEliminarJSP(request,response);
+            break;
+            case "BuscarEliminarJSP":BuscarEliminarJSP(request,response);
          }
     }
 
@@ -555,6 +560,16 @@ public class ControllerProducto extends HttpServlet {
        out.print(json);
      
 }
+      
+               private void ListarProductoEliminarJSP(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException
+    {
+       ArrayList<DetalleProducto> lista= dProducto.ListarProductoEliminarJSP();
+       PrintWriter out= response.getWriter();
+       String json= new Gson().toJson(lista);
+       out.print(json);
+     
+}
       //Este metodo listamos todas las formas de producto
        private void listarForma(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
@@ -576,6 +591,18 @@ public class ControllerProducto extends HttpServlet {
        out.print(json);
      
 }
+       //Activar producto
+      
+                  private void Activar(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException
+    {
+       String id = request.getParameter("id");
+       boolean eliminado= dProducto.Activar(id);
+       PrintWriter out= response.getWriter();
+       String json= new Gson().toJson(eliminado);
+       out.print(json);
+     
+}
        //Este metodo lo que hace es buscar el producto mediante un parametro que llegue desde la vista 
        private void Buscar(HttpServletRequest request, HttpServletResponse response)            throws ServletException, IOException
     {
@@ -586,6 +613,15 @@ public class ControllerProducto extends HttpServlet {
        out.print(json);
        }
        
+              //Buscar el prodocuto en el formulario eliminar Producto
+              private void BuscarEliminarJSP(HttpServletRequest request, HttpServletResponse response)            throws ServletException, IOException
+    {
+       String buscar =request.getParameter("txt_Buscar");
+       ArrayList<DetalleProducto> lista= dProducto.BuscarEliminarJSP(buscar);
+       PrintWriter out= response.getWriter();
+       String json= new Gson().toJson(lista);
+       out.print(json);
+       }
        //Este metodo  lo que hace es obtener el producto seleccionado en la vista
           private void Seleccionado(HttpServletRequest request, HttpServletResponse response)            throws ServletException, IOException
     {

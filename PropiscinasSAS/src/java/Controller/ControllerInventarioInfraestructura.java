@@ -108,6 +108,8 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
              break;
              case "buscarInventarioDatosHistoricos":buscarInventarioDatosHistoricos(request,response);
              break;
+             case "totalProductosInfraestructuraYcodigo":totalProductosInfraestructuraYcodigo(request,response);
+             break;
 
          }
     }
@@ -178,6 +180,15 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
             throws ServletException, IOException
     {
        ArrayList<InventarioInfraestructura> lista= dInventario.totalProductosInfraestructura();
+       PrintWriter out= response.getWriter();
+       String json= new Gson().toJson(lista);
+       out.print(json);
+    }
+                private void totalProductosInfraestructuraYcodigo(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException
+    {
+       String buscar = request.getParameter("buscar");
+       ArrayList<InventarioInfraestructura> lista= dInventario.totalProductosInfraestructuraYcodigo(buscar);
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
        out.print(json);
