@@ -89,6 +89,8 @@ DatosProveedor dProveedor = new DatosProveedor();
             break;
             case "EditarProveedor":EditarProveedor(request,response);
             break;
+            case "buscarProveedor":buscarProveedor(request,response);
+            break;
             
         }
     }
@@ -155,6 +157,17 @@ DatosProveedor dProveedor = new DatosProveedor();
         boolean Editado = dProveedor.EditarProveedor(nit, numero, telefono,estado, Proveedor);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(Editado);
+        out.print(json);
+    }
+    
+            
+    private void buscarProveedor(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+       
+        String buscar = request.getParameter("buscar");
+        ArrayList<Proveedor> lista = dProveedor.buscarProveedor(buscar);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
         out.print(json);
     }
      

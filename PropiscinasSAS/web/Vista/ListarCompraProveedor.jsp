@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-       
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -31,7 +30,7 @@
                     <a style="background-color: #007bff; position: fixed; font-family: sans-serif; border-radius: 10px;    left: 730px; color: white;  border-bottom: 40px;  padding-bottom: 10px;   padding-top: 10px;  padding-right: 10px; padding-left: 10px;" id="sNombre"></a>
                       
             
-                      <img src="Imagenes/Pro-piscinas.png" width="1300" height="300"alt="">
+                      <img src="Imagenes/Pro-piscinas.png" width="1200" height="300"alt="">
 		
 		</div>
                     <input type="hidden" name="Correo" id="Correo" value="<%
@@ -114,7 +113,7 @@
 		<section class="articles">
 			<article>
                             <input class="btn btn-primary" id="fecha" type="date">
-                              <input autocomplete="off" style="display: inline-grid; width: 572px; padding-top: 1px;" placeholder="BUSQUEDA POR CODIGO DE PRODUCTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                              <input autocomplete="off" style="display: inline-grid; width: 572px; padding-top: 1px;" placeholder="BUSQUEDA POR CODIGO DE PRODUCTO O NUMERO DE DOCUMENTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
                          
                          <button style="" class="btn btn-primary btnBuscar" id="btn_Buscar" >🔎</button>
                                 <button style="" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/>

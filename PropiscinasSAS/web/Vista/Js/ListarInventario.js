@@ -264,40 +264,42 @@ function ListarInventario(){
       hilera.appendChild(celda);
   
   }
-  if(j===3){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
-  if(j===4){
+  if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
-      if(j===4){
+      if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
-  if(j===5){
+    if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===6){
+  if(j===5){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+
+  if(j===6){
+     var textoCelda = document.createTextNode(unInventario.cantidad);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+
 
 
     if(j===7){
@@ -398,40 +400,42 @@ function ListarInventarioPorIdInfraestructura(){
       hilera.appendChild(celda);
   
   }
-  if(j===3){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
-  if(j===4){
+  if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
-      if(j===4){
+      if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
-  if(j===5){
+    if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===6){
+  if(j===5){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+
+  if(j===6){
+     var textoCelda = document.createTextNode(unInventario.cantidad);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+
 
 
     if(j===7){
@@ -566,37 +570,37 @@ function listarInventarioPorFecha(fecha){
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
-  }
-  if(j===3){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+  }  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
-  if(j===4){
+  if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
-      if(j===4){
+      if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
-  if(j===5){
+    if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===6){
+  if(j===5){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+
+  if(j===6){
+     var textoCelda = document.createTextNode(unInventario.cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -707,36 +711,37 @@ function listarInventarioPorFechaYCodigo(fecha){
       hilera.appendChild(celda);
   
   }
-  if(j===3){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
-  if(j===4){
+  if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
-      if(j===4){
+      if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
-  if(j===5){
+    if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===6){
+  if(j===5){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+
+  if(j===6){
+     var textoCelda = document.createTextNode(unInventario.cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -848,40 +853,44 @@ function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
       hilera.appendChild(celda);
   
   }
-  if(j===3){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
-  if(j===4){
+  if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
-      if(j===4){
+      if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
-  if(j===5){
+ 
+    if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===6){
+  if(j===5){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+
+  if(j===6){
+     var textoCelda = document.createTextNode(unInventario.cantidad);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+
+
 
 
     if(j===7){
@@ -989,40 +998,44 @@ function buscarInventarioDatosHistoricos(){
       hilera.appendChild(celda);
   
   }
-  if(j===3){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
-  if(j===4){
+  if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
-      if(j===4){
+      if(j===3){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
-  if(j===5){
+  
+    if(j===4){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===6){
+  if(j===5){
      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+
+  if(j===6){
+     var textoCelda = document.createTextNode(unInventario.cantidad);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+
+
 
 
     if(j===7){

@@ -182,6 +182,37 @@ public class DatosProveedor {
           return agregado;
       }     
       
+                public ArrayList<Proveedor> buscarProveedor(String buscar)
+   {
+     this.mensaje=null;
+        ArrayList<Proveedor> lista= new ArrayList<>();
+     String consulta="SELECT * FROM proveedor where proveedor_nombre like ?  ";
+     try
+     {
+         ps=miConexion.prepareStatement(consulta);
+         ps.setString(1, buscar);
+         rs= ps.executeQuery();
+         while(rs.next())
+         {
+             
+             Proveedor unProveedor= new Proveedor();
+             unProveedor.setIdProveedor(rs.getInt("proveedor_id"));
+             unProveedor.setNitProveedor(rs.getString("proveedor_nit"));
+             unProveedor.setNombre(rs.getString("proveedor_nombre"));
+             unProveedor.setTelefono(rs.getString("proveedor_telefono"));
+             unProveedor.setEstado(rs.getString("proveedor_estado"));
+             lista.add(unProveedor);
+           
+         }
+         rs.close();
+                 
+     }catch(SQLException ex)
+     {
+         this.mensaje=ex.getMessage();
+     }
+     
+     return lista;
+   }   
 
 
 }

@@ -254,7 +254,7 @@
 			 
                             
 			<table   style="    width: 1200px;
-    font-size: 20.6px;
+    font-size: 19.9px;
 display: none;"  id="tblMovimiento" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >

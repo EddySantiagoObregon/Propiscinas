@@ -86,6 +86,8 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
             break;
             case "BuscarPorNombreYFecha":BuscarPorNombreYFecha(request,response);
             break;
+            case "BuscarPorFecha":BuscarPorFecha(request,response);
+            break;
         }
      }
 
@@ -113,10 +115,20 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     throws ServletException, IOException
     {
         String buscar = request.getParameter("buscar");
-        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorNombre(buscar);
-        PrintWriter out = response.getWriter();
-        String json = new Gson().toJson(lista);
-        out.print(json);
+       ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorNombre(buscar);
+        int numero = lista.size();
+        if(numero==0){
+           
+                     ArrayList<ProveedorProductoCompra> listaa= dproveedorProductoCompra.BuscarPorDocumento(buscar);
+                     PrintWriter out = response.getWriter();
+                     String json = new Gson().toJson(listaa);
+                     out.print(json);
+        }else{
+            PrintWriter out = response.getWriter();
+            String json = new Gson().toJson(lista);
+            out.print(json);
+        }
+        
     }
  private void BuscarPorNombreYFecha(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
@@ -124,6 +136,16 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
         String buscar = request.getParameter("buscar");
         String fecha = request.getParameter("fecha");
         ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorNombreYFecha(buscar,fecha);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+  private void BuscarPorFecha(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+      
+        String fecha = request.getParameter("fecha");
+        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorFecha(fecha);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
         out.print(json);

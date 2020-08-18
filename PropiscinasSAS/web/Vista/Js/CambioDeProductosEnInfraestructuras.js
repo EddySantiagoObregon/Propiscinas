@@ -539,7 +539,9 @@ function listarInfraestructuraCambio()
 
 //Esta funcion agrega la cantidad de productos
 function CambioProductos(correo){
-         
+         var txt_CantidadExistente= $("#txt_CantidadExistente").val();
+         var txt_Cantidad_Enviara = $("#txt_Cantidad_Enviara").val();
+         if(txt_CantidadExistente>=txt_Cantidad_Enviara){
         var parametros=
             {
                 accion: "CambioProductosEnInfraestructuras",
@@ -587,6 +589,9 @@ function CambioProductos(correo){
                     console.log(ex);
                 }
             });
+        }else{
+            alert("La cantidad que quiere enviar debe ser menos a la cantidad actual en esta infraestructura");
+        }
 }
 function limpiarModal(){
     

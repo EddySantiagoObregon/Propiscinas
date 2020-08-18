@@ -20,7 +20,7 @@ $(function(){
         var fecha = $("#fecha").val();
         var buscar = $("#txt_Buscar").val();
         var idTipoDocumento = $("#cb_TipoDocumento").val();
-        if(fecha!==''&&buscar!==''&&idTipoDocumento>'0'){
+        if(fecha!==''&&buscar!==''&&idTipoDocumento!=='0'){
             BuscarPorProductoYTipoDocumentoYFecha();
            alert('1');
         }
@@ -221,7 +221,7 @@ if(estado==='I'){
 function abrirModal(autoincrementable){
     var parametros = {
                accion: "DevolucionProductos",
-               txt_Correo:correo,
+               txt_Correo:$("#Correo").val(),
                codigo:cadigo[autoincrementable],
                fecha:fecha[autoincrementable],
                cantidad:cantidadd[autoincrementable],

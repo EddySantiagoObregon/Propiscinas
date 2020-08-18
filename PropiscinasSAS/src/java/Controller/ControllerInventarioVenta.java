@@ -228,6 +228,7 @@ DatosUsuario dUsuario = new DatosUsuario();
     throws ServletException, IOException{
         String correo = request.getParameter("txt_Correo");
         int idUsuario = dUsuario.idUsuario(correo);
+        if(idUsuario>0){
         Usuario unUsuario = new Usuario();
         unUsuario.setIdUsuario(idUsuario);
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
@@ -277,7 +278,12 @@ DatosUsuario dUsuario = new DatosUsuario();
         String json = new Gson().toJson(agregadoo);
         out.print(json);
         }
-      
+      }else{
+            boolean agregadoo=false;
+            PrintWriter out = response.getWriter();
+            String json = new Gson().toJson(agregadoo);
+            out.print(json);
+        }
     }
              private String obtenerFechaActual(){
           Calendar miCalendario = Calendar.getInstance();

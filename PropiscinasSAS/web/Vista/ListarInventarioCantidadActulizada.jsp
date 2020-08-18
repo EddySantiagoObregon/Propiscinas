@@ -135,11 +135,11 @@
         <tr class="bg-info text-white" >
             <th style="background-color: #007bff;color: #fff;">Codigo</th>
             <th style="background-color: #007bff;color: #fff;">Fecha</th>
-            <th style="background-color: #007bff;color: #fff;">Nombre</th>           
-            <th style="background-color: #007bff;color: #fff;">Cantidad</th>
-            <th style="background-color: #007bff;color: #fff;">Unidad medida</th>           
+            <th style="background-color: #007bff;color: #fff;">Nombre</th>    
+            <th style="background-color: #007bff;color: #fff;">Unidad medida</th> 
             <th style="background-color: #007bff;color: #fff;">Presentacion</th>
             <th style="background-color: #007bff;color: #fff;">Grupo</th>
+             <th style="background-color: #007bff;color: #fff;">Cantidad</th>
            <th style="background-color: #007bff;color: #fff;">Infraestructuara</th>
            <th style="background-color: #007bff;color: #fff;">Alertas</th>
            
