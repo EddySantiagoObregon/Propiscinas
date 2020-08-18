@@ -1,8 +1,12 @@
 <%-- 
-    Document   : ListarMovimiento
-    Created on : 8/07/2020, 10:18:18 AM
+    Document   : MiPerfil
+    Created on : 18/08/2020, 03:16:27 PM
     Author     : PAULA
 --%>
+
+
+
+<!DOCTYPE html>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -30,7 +34,24 @@
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
     </head>
     <body>
-     
+        <script>
+              function mostrarContrasena(){
+      var tipo = document.getElementById("password");
+      if(tipo.type === "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+    function mostrarContrasenaa(){
+      var tipo = document.getElementById("passwordd");
+      if(tipo.type === "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+        </script>
        <header>
 <div class="logotipo">
              
@@ -119,43 +140,85 @@
 	<section class="main">
 		<section class="articles">
 			<article>
-                            <input class="btn btn-primary" id="fecha" type="date">
-                            <input autocomplete="off" style="display: inline-grid; width: 610px; padding-top: 1px;" placeholder="BUSQUEDA POR NUMERO DE DOCUMENTO O CODIGO DE PRODUCTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
-                                
-                         <select class="btn btn-primary" style="display: inline-grid; width: 320px;" name="cb_TipoDocumento" id="cb_TipoDocumento" class="form-control">
-                                <option value="0">TODOS LOS TIPOS DE DOCUMENTOS</option>
-                        </select>
-                         <button style="" class="btn btn-primary btnBuscar" id="btn_Buscar" >🔎</button>
-                                <button style="" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/>
-                                </button>   
-			<table  style="width: 98% ;font-size: 12.6px;"  id="tblMovimiento" class="table  table-striped" align="center">
-    <thead>
-        <tr class="bg-info text-white" >
-            <th style="background-color: #007bff;color: #fff;">Infraestructura</th>
-            <th style="background-color: #007bff;color: #fff;">Transaccion</th>
-            <th style="background-color: #007bff;color: #fff;">Nombre Producto</th>         
-            <th style="background-color: #007bff;color: #fff;">Caracteristicas</th>
-            <th style="background-color: #007bff;color: #fff;">Grupo</th>
-            <th style="background-color: #007bff;color: #fff;">Fecha registro</th>
-            <th style="background-color: #007bff;color: #fff;">Cantidad</th>           
-            <th style="background-color: #007bff;color: #fff;">Numero documento</th>
-            <th style="background-color: #007bff;color: #fff;">Tipo documento</th>
-            <th style="background-color: #007bff;color: #fff;">Observacion documento</th>
-            <th style="background-color: #007bff;color: #fff;">Despacho</th>
-            <th style="background-color: #007bff;color: #fff;">Obvservacion movimiento</th>
-            <th style="background-color: #007bff;color: #fff;">Usuario</th>
-         
-            
-            
-            
-         
-           
-        </tr>
-    </thead>
-    <tbody id="Container" class="Container">
-        
-    </tbody>
-</table>
+                                                            <center>
+
+                            <div style=" background-color: #007bff;
+                                 width: 806px; padding-top: 30px;"> <div style=" background-color: #007bff;
+    margin-left: 40px;
+    margin-right: 40px;">
+                          <form>
+  <div class="form-group">
+      <label for="exampleInputEmail1" style="    text-align: left;
+             margin-right: 629px; color: #ffffff;">Identificacion</label>
+    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1" style="    text-align: left;
+    margin-right: 667px; color: #ffffff;">Nombre</label>
+    <input type="text" class="form-control" id="exampleInputPassword1">
+  </div>
+       <div class="form-group">
+    <label for="exampleInputPassword1" style="    text-align: left;
+    margin-right: 667px; color: #ffffff;">Telefono</label>
+    <input type="email" class="form-control" id="exampleInputPassword1">
+  </div>
+       <div class="form-group">
+    <label for="exampleInputPassword1" style="    text-align: left;
+    margin-right: 670px;color: #ffffff;">Correo</label>
+    <input type="email" class="form-control" id="exampleInputPassword1">
+  </div>
+       
+  <div class="form-group form-check">
+    
+  </div>
+                        
+      
+       <details close>
+          
+
+           <summary style="color: #ffffff;">Actualizar contraseña</summary>
+<div class="form-row" style="color: #ffffff;"> Contraseña nueva
+    <div class="col">
+        <input  class="form-control" type="password" name="password" id="password" style="width: 608px;">
+</div>
+    <div class="col">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="mostrarContrasena()" style="left: 25px;
+    top: 5px;">
+        <label class="form-check-label" onclick="mostrarContrasena()" style="    margin-right: 0px;
+    margin-left: 23px;
+    margin-top: 3px;" for="exampleCheck1">   <img src="Imagenes/ojo.png" width="25" height="25" alt=""/></label>
+    
+  
+</div>
+    <div class="form-row"style="color: #ffffff;" > Contraseña antigua
+    <div class="col">
+        <input  class="form-control" type="password" name="password" id="passwordd" style="width: 608px;    margin-left: 6px;">
+</div>
+    <div class="col">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="mostrarContrasenaa()" style="left: 25px;
+    top: 5px;">
+        <label class="form-check-label" onclick="mostrarContrasena()" style="    margin-right: 0px;
+    margin-left: 23px;
+    margin-top: 3px;" for="exampleCheck1">   <img src="Imagenes/ojo.png" width="25" height="25" alt=""/></label>
+    
+  
+</div>
+        <input style="    margin-left: 283px;
+               margin-top: 6px;background-color: #ffffff; cursor: pointer;" class="btn"type="submit" value="Actualizar contraseña" />
+    </details>
+                              
+</div>
+    <br>
+    <br>
+    <a id="btnActualizar" style="background-color: #ffffff; cursor: pointer;"class="btn">Actualizar</a>
+   
+    <br>
+     <br>
+  </div>
+ 
+ 
+    </center>
+
                         </article>
 			
 			
