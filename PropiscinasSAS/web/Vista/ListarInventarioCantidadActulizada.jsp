@@ -24,7 +24,8 @@
         <link href="Css/AgregarProducto.css" rel="stylesheet" type="text/css"/>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body style="-webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #4998e8;">
        <header>
 <div class="logotipo">
              
@@ -101,9 +102,15 @@
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
-                            <button id="btnSalir" style="height: 40px;margin-left: 427px;"type="button" class="btn btn-primary">
-                                 Salir
+                                                        <div class="btn-group navuldiv" style="float: right;">
+                              <button style="height: 40px; "type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <a id="perfilNombre"></a>
                                  </button>
+                                 <div class="dropdown-menu">
+                                 <a class="dropdown-item" href="MiPerfil.jsp">Editar perfil </a>
+                                 <a class="dropdown-item" href="Salir.jsp">Salir</a>
+                                 </div>
+                            </div>
                         </ul>
 		</nav>
 	</header>

@@ -27,13 +27,12 @@
         
     </head>
    
-    <body>
+    <body style="-webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #4998e8;">
        <header>
 <div class="logotipo">
              
-                    <a style="background-color: #007bff; position: fixed; font-family: sans-serif; border-radius: 10px;    left: 660px; color: white;  border-bottom: 40px;  padding-bottom: 10px;   padding-top: 10px;  padding-right: 10px; padding-left: 10px;" id="sNombre"></a>
-                      
-            
+                  
                       <img src="Imagenes/Pro-piscinas.png" width="1200" height="250"alt="">
 		
 		</div>
@@ -104,11 +103,15 @@
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
-                            <button id="btnSalir" style="height: 40px;margin-left: 427px;"type="button" class="btn btn-primary">
-                                 Salir
+                                                        <div class="btn-group navuldiv" style="float: right;">
+                              <button style="height: 40px; "type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <a id="perfilNombre"></a>
                                  </button>
-				
-                                 
+                                 <div class="dropdown-menu">
+                                 <a class="dropdown-item" href="MiPerfil.jsp">Editar perfil </a>
+                                 <a class="dropdown-item" href="Salir.jsp">Salir</a>
+                                 </div>
+                            </div>
 			</ul>
 		</nav>
 	</header>
@@ -170,7 +173,7 @@
           </div>
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Referencia:</label>
-            <input  onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" name="txt_Referencia"  id="txt_Referencia" class="form-control" autocomplete="off" required>
+            <input  onkeyup="javascript:this.value=this.value.toUpperCase();" type="text"  name="txt_Referencia"  id="txt_Referencia" class="form-control" autocomplete="off" required>
              <div class="requerimientos" id="msjReferencia" style="text-align: center"></div>                       
           </div>
           <div style="height: 60px;" class="form-group">
@@ -180,31 +183,30 @@
           </div>
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Abreviatura:</label>
-          <input onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Abreviatura"  id="txt_Abreviatura" class="form-control"  required>
+            <input onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="5" type="text" name="txt_Abreviatura"  id="txt_Abreviatura" class="form-control"  required>
           </div>
           
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Grupo:</label>
           <select name="cb_Grupo" id="cb_Grupo" class="form-control">
-                                <option value="0">Seleccione</option>
+                               
 					</select> 
           </div>
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Presentación:</label>
           <select name="cb_Presentacion" id="cb_Presentacion" class="form-control">
-                                       <option value="0">Seleccione</option>
+                                      
 					</select> 
           </div>
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Forma:</label>
           <select name="cb_Forma" id="cb_Forma" class="form-control">
-                                <option value="0">Seleccione</option>
+                               
 					</select> 
           </div>
              <div style="height: 60px;" class="form-group">    
             <label for="message-text" class="col-form-label">Unidad Medida:</label>
           <select name="cb_UnidadMedida" id="cb_UnidadMedida" class="form-control">
-                                      <option value="0">Seleccione</option>
 					</select> 
           </div>
           <div style="height: 60px;" class="form-group">

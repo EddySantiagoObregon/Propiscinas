@@ -25,12 +25,15 @@ function MiPerfil(){
                 type: 'post',
                 cache: false,
                 success: function(resultado){
-                    console.log(resultado);
                     var usuario= resultado;
                     
                              $("#sNombre").html(usuario.nombre);
+                             $("#perfilNombre").html(usuario.nombre);
+                             $("#txt_Identificacionnn").val(usuario.identificacion);
+                             $("#txt_Nombreee").val(usuario.nombre);
+                             $("#txt_Telefonooo").val(usuario.telefono);
+                             $("#txt_Correooo").val(usuario.correo);
                            
-                    
                 },
                 error:function(ex)
                 {

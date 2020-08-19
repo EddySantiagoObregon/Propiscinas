@@ -88,6 +88,14 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
             break;
             case "BuscarPorFecha":BuscarPorFecha(request,response);
             break;
+            case "BuscarPorProveedor":BuscarPorProveedor(request,response);
+            break;
+            case "BuscarPorProveedorYFecha":BuscarPorProveedorYFecha(request,response);
+            break;
+            case "BuscarPorProveedorYFechaYidProducto":BuscarPorProveedorYFechaYidProducto(request,response);
+            break;
+            case "BuscarPorProveedorYidProducto":BuscarPorProveedorYidProducto(request,response);
+            break;
         }
      }
 
@@ -120,9 +128,19 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
         if(numero==0){
            
                      ArrayList<ProveedorProductoCompra> listaa= dproveedorProductoCompra.BuscarPorDocumento(buscar);
+                     int numeroo = listaa.size();
+                     if(numeroo==0){
+                         ArrayList<ProveedorProductoCompra> listaaa= dproveedorProductoCompra.BuscarPorIdProducto(buscar);
+                         PrintWriter out = response.getWriter();
+                         String json = new Gson().toJson(listaaa);
+                     out.print(json);
+                     }else{
                      PrintWriter out = response.getWriter();
                      String json = new Gson().toJson(listaa);
-                     out.print(json);
+                     out.print(json); 
+                     }
+                    
+                     
         }else{
             PrintWriter out = response.getWriter();
             String json = new Gson().toJson(lista);
@@ -149,5 +167,67 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
         out.print(json);
+    }
+  
+          private void BuscarPorProveedor(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+      
+        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorProveedor(idProveedor);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+                private void BuscarPorProveedorYFecha(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+      
+        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        String fecha = request.getParameter("fecha");
+        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorProveedorYFecha(idProveedor,fecha);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+                private void BuscarPorProveedorYFechaYidProducto(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+      
+        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        String fecha = request.getParameter("fecha");
+        String idProducto = request.getParameter("idProducto");
+        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorProveedorYFechaYidProducto(idProveedor,fecha,idProducto);
+        int numero= lista.size();
+        if(numero==0){
+             ArrayList<ProveedorProductoCompra> listaa= dproveedorProductoCompra.BuscarPorProveedorYFechaYnumeroDocumento(idProveedor,fecha,idProducto);
+             PrintWriter out = response.getWriter();
+             String json = new Gson().toJson(listaa);
+            out.print(json);
+        }else{
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+        }
+        }
+                
+                                private void BuscarPorProveedorYidProducto(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+      
+        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        String idProducto = request.getParameter("idProducto");
+        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorProveedorYidProducto(idProveedor,idProducto);
+         int numero= lista.size();
+        if(numero==0){
+             ArrayList<ProveedorProductoCompra> listaa= dproveedorProductoCompra.BuscarPorProveedorYnumeroDocumento(idProveedor,idProducto);
+             PrintWriter out = response.getWriter();
+             String json = new Gson().toJson(listaa);
+            out.print(json);
+        }else{
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+        }
     }
 }

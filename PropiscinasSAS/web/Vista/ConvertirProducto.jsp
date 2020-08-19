@@ -26,13 +26,12 @@
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
         
     </head>
-    <body>
+    <body style="-webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #4998e8;">
        <header>
 <div class="logotipo">
              
-                    <a style="background-color: #007bff; position: fixed; font-family: sans-serif; border-radius: 10px;    left: 660px; color: white;  border-bottom: 40px;  padding-bottom: 10px;   padding-top: 10px;  padding-right: 10px; padding-left: 10px;" id="sNombre"></a>
-                      
-            
+                  
                       <img src="Imagenes/Pro-piscinas.png" width="1200" height="250"alt="">
 		
 		</div>
@@ -103,14 +102,15 @@
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
-                            <button id="btnSalir" style="height: 40px;margin-left: 427px;"type="button" class="btn btn-primary">
-                                 Salir
+                                                      <div class="btn-group navuldiv" style="float: right;">
+                              <button style="height: 40px; "type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <a id="perfilNombre"></a>
                                  </button>
-				
-                            <button id="btnSalir" style="height: 40px;margin-left: 544px;"type="button" class="btn btn-primary">
-                                 Salir
-                                 </button>
-				
+                                 <div class="dropdown-menu">
+                                 <a class="dropdown-item" href="MiPerfil.jsp">Editar perfil </a>
+                                 <a class="dropdown-item" href="Salir.jsp">Salir</a>
+                                 </div>
+                            </div>
                                  
 			</ul>
 		</nav>

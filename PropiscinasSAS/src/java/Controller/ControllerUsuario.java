@@ -91,6 +91,10 @@ DatosUsuario dUsuario = new DatosUsuario();
               break  ;  
              case "Nombre" : nombre(request,response);
              break;
+             case "ActualizarDatos":ActualizarDatos(request,response);
+             break;
+             case "EditarContrasena":EditarContrasena(request,response);
+             break;
            
     }}
     private void iniciarSesion(HttpServletRequest request, HttpServletResponse response)
@@ -198,6 +202,33 @@ DatosUsuario dUsuario = new DatosUsuario();
         Usuario unUsuario = dUsuario.nombre(correo);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(unUsuario);
+        out.print(json);
+    }
+    
+            private void ActualizarDatos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        int identificacion = Integer.parseInt(request.getParameter("identificacion"));
+        String nombre = request.getParameter("nombre");
+        String telefono = request.getParameter("telefono");
+        String correo = request.getParameter("correo");
+        String correoDeBusqueda = request.getParameter("correoDeBusqueda");
+        boolean agregado = dUsuario.EditarUsuario(identificacion, nombre, telefono, correo,correoDeBusqueda);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(agregado);
+        out.print(json);
+    }
+            
+                     private void EditarContrasena(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        
+        String correoDeBusqueda = request.getParameter("correoDeBusqueda");
+        String contrasenaAntigua = request.getParameter("contrasenaAntigua");
+        String contrasenaNueva= request.getParameter("contrasenaNueva");
+        boolean agregado = dUsuario.EditarContrasena(correoDeBusqueda,contrasenaAntigua,contrasenaNueva);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(agregado);
         out.print(json);
     }
 }

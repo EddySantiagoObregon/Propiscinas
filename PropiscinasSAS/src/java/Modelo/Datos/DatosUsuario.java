@@ -115,7 +115,7 @@ public class DatosUsuario {
       Usuario unUsuario = null;
       
         
-        String consultica = "SELECT usuario_nombre FROM usuario where usuario_correo=?";
+        String consultica = "SELECT * FROM usuario where usuario_correo=?";
          try
        {
         ps=this.miConexion.prepareStatement(consultica);
@@ -124,7 +124,10 @@ public class DatosUsuario {
         if(rs.next())
         {
                 unUsuario = new Usuario();
+                unUsuario.setIdentificacion(rs.getInt("usuario_identificacion"));
                 unUsuario.setNombre(rs.getString("usuario_nombre"));
+                unUsuario.setTelefono(rs.getString("usuario_telefono"));
+                unUsuario.setCorreo(rs.getString("usuario_correo"));
          
             
         }
@@ -167,4 +170,78 @@ public class DatosUsuario {
       return idUsuario;
       
   }
+        public boolean EditarUsuario(int identificacion,String nombre,String telefono,String correo,String correoBusqueda){
+           boolean agregado = false; 
+           int idUsuario=0;
+          try
+     {
+          String consultica = "SELECT idUsuario FROM usuario where usuario_correo=?";
+         
+       
+        ps=this.miConexion.prepareStatement(consultica);
+        ps.setString(1,correoBusqueda);
+        rs= ps.executeQuery();
+        if(rs.next())
+        {
+                idUsuario = rs.getInt("idUsuario");
+         
+            
+        }
+        rs.close();
+          String consulta ="UPDATE usuario SET usuario_identificacion =?,usuario_nombre =?,usuario_telefono=? ,usuario_correo=? WHERE idUsuario=?";
+        ps=miConexion.prepareStatement(consulta);
+         ps.setInt(1, identificacion);
+         ps.setString(2,nombre);
+         ps.setString(3, telefono);
+         ps.setString(4,correo);
+         ps.setInt(5,idUsuario);
+         ps.executeUpdate();
+         int si =ps.executeUpdate();
+         if(si>0){
+               agregado = true;
+         }
+        
+  }catch(SQLException ex)
+     {
+         this.mensaje=ex.getMessage();
+     }          
+          return agregado;
+      } 
+           public boolean EditarContrasena(String correo,String contrasenaVieja,String contrasenaNueva){
+           boolean actualizado = false; 
+           String contraseñaAntiguaMySql = "";
+          try
+     {
+          String consultica = "SELECT usuario_contrasena FROM usuario where usuario_correo=?";
+         
+       
+        ps=this.miConexion.prepareStatement(consultica);
+        ps.setString(1,correo);
+        rs= ps.executeQuery();
+        if(rs.next())
+        {
+                contraseñaAntiguaMySql = rs.getString("usuario_contrasena");
+         
+            
+        }
+        rs.close();
+        if(contrasenaVieja.equals(contraseñaAntiguaMySql)){
+          String consulta ="UPDATE usuario SET usuario_contrasena =? WHERE usuario_correo=?";
+        ps=miConexion.prepareStatement(consulta);
+         
+         ps.setString(1,contrasenaNueva);
+         ps.setString(2,correo);
+         ps.executeUpdate();
+         int si =ps.executeUpdate();
+         if(si>0){
+               actualizado = true;
+         }
+        }
+  }catch(SQLException ex)
+     {
+         this.mensaje=ex.getMessage();
+     }          
+          return actualizado;
+      }  
+      
 }

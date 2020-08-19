@@ -21,14 +21,16 @@
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
         <link href="Css/AgregarProducto.css" rel="stylesheet" type="text/css"/>
         <script src="Js/ListarProveedorProductoCompra.js" type="text/javascript"></script>
-        <script src="Js/jsAutocomplete.js" type="text/javascript"></script>
+        <script src="Js/jsAutoCompleteProducto.js" type="text/javascript"></script>
+        
+   
     </head>
-    <body>
+    <body style="-webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #4998e8;">
        <header>
 <div class="logotipo">
              
-                    <a style="background-color: #007bff; position: fixed; font-family: sans-serif; border-radius: 10px;    left: 730px; color: white;  border-bottom: 40px;  padding-bottom: 10px;   padding-top: 10px;  padding-right: 10px; padding-left: 10px;" id="sNombre"></a>
-                      
+                    
             
                       <img src="Imagenes/Pro-piscinas.png" width="1200" height="300"alt="">
 		
@@ -101,11 +103,15 @@
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
-                            <button id="btnSalir" style="height: 40px;margin-left: 427px;"type="button" class="btn btn-primary">
-                                 Salir
+                                                         <div class="btn-group navuldiv" style="float: right;">
+                              <button style="height: 40px; "type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <a id="perfilNombre"></a>
                                  </button>
-			
-                                 
+                                 <div class="dropdown-menu">
+                                 <a class="dropdown-item" href="MiPerfil.jsp">Editar perfil </a>
+                                 <a class="dropdown-item" href="Salir.jsp">Salir</a>
+                                 </div>
+                            </div>
 			</ul>
 		</nav>
 	</header>
@@ -118,7 +124,10 @@
                          <button style="" class="btn btn-primary btnBuscar" id="btn_Buscar" >🔎</button>
                                 <button style="" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/>
                                 </button>
-			<table  style="width: 95% ;font-size: 12.6px;"  id="tblMovimiento" class="table  table-striped" align="center">
+                         <select class="btn btn-primary" style="display: inline-grid; width: 280px;" name="cb_Proveedor" id="cb_Proveedor" class="form-control">
+                                <option value="0">SELECCIONE PROVEEDOR</option>
+                        </select>
+			<table  style="width: 99.5% ;font-size: 12.6px;"  id="tblMovimiento" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
             <th style="background-color: #007bff;color: #fff;">Nombre proveedor</th>
