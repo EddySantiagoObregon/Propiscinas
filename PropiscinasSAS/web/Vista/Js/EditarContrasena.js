@@ -9,7 +9,7 @@
 $(function(){
   
     $("#btnEditarContrasena").click(function(){
-        alert("HOLA");
+        
        EditarContrasena();
     });
 });

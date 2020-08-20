@@ -19,6 +19,7 @@
         <script src="Js/GenerarCodigosBarra.js" type="text/javascript"></script>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
          <script src="Js/jsAutocomplete.js" type="text/javascript"></script>
+          <link rel="icon" href="Imagenes/logopropi.png" src=""/>
     </head>
    
     <body>

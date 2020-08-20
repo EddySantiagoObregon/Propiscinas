@@ -24,7 +24,7 @@
         <script src="Js/ConvertirProducto.js" type="text/javascript"></script>
         <link href="Css/ConvertirProducto.css" rel="stylesheet" type="text/css"/>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
-        
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
     </head>
     <body style="-webkit-box-shadow: 2px 2px 5px #999;
   -moz-box-shadow: 2px 2px 5px #4998e8;">

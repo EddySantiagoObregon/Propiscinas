@@ -27,6 +27,7 @@
         <link href="Css/AgregarProductoNuevo.css" rel="stylesheet" type="text/css"/>
         <script src="Js/ListarAtributos.js" type="text/javascript"></script>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
     </head>
     <script type="text/javascript">
    

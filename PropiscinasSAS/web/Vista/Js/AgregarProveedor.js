@@ -393,7 +393,7 @@ function Buscar(id){
 //Esta funcion agrega la cantidad de productos
 function AgregarProveedor(){
     var idPro = $("#idProducto").val();     
-    alert(idPro);
+
         var parametros=
             {
                 accion: "Agregar",

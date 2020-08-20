@@ -24,6 +24,7 @@
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
         <script src="Js/Pagination.js" type="text/javascript"></script>
          <script src="Js/ListarAtributos.js" type="text/javascript"></script>
+          <link rel="icon" href="Imagenes/logopropi.png" src=""/>
         
     </head>
    

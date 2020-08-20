@@ -14,7 +14,7 @@ $(function(){
         if(buscar!==""&&fecha===""&&cb_Proveedor==='0'){
             BuscarPorNombre();
         }else if(buscar!==""&&fecha!==""&&cb_Proveedor==='0'){
-            alert("sdasd");
+            
             BuscarPorNombreYFecha();
         }else if(fecha!==""&&buscar===""&&cb_Proveedor==='0'){
             BuscarPorFecha();

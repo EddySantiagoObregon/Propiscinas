@@ -22,7 +22,7 @@
         <link href="Css/AgregarProducto.css" rel="stylesheet" type="text/css"/>
         <script src="Js/ListarProveedorProductoCompra.js" type="text/javascript"></script>
         <script src="Js/jsAutoCompleteProducto.js" type="text/javascript"></script>
-        
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
    
     </head>
     <body style="-webkit-box-shadow: 2px 2px 5px #999;
@@ -120,13 +120,14 @@
 			<article>
                             <input class="btn btn-primary" id="fecha" type="date">
                               <input autocomplete="off" style="display: inline-grid; width: 572px; padding-top: 1px;" placeholder="BUSQUEDA POR CODIGO DE PRODUCTO O NUMERO DE DOCUMENTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
-                         
-                         <button style="" class="btn btn-primary btnBuscar" id="btn_Buscar" >🔎</button>
-                                <button style="" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/>
-                                </button>
                          <select class="btn btn-primary" style="display: inline-grid; width: 280px;" name="cb_Proveedor" id="cb_Proveedor" class="form-control">
                                 <option value="0">SELECCIONE PROVEEDOR</option>
                         </select>
+                              <button style="" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/>
+                                </button>
+                         <button style="" class="btn btn-primary btnBuscar" id="btn_Buscar" >🔎</button>
+                                
+                         
 			<table  style="width: 99.5% ;font-size: 12.6px;"  id="tblMovimiento" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >

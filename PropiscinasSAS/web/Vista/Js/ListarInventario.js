@@ -14,7 +14,7 @@ $(function ()
           let numeroInfraestructura=0;
           numeroInfraestructura= $("#cb_Infraestructura").val();
           if(buscar!==''&&numeroInfraestructura==='0'&&fecha===''){
-              alert("1");
+             
               buscarInventarioDatosHistoricos();
           }
           else if (numeroInfraestructura==='0') {

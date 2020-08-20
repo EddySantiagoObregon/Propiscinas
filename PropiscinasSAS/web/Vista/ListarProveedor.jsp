@@ -23,6 +23,7 @@
         <link href="Css/AgregarProducto.css" rel="stylesheet" type="text/css"/>
         <script src="Js/ListarProveedor.js" type="text/javascript"></script>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
    
     </head>
 

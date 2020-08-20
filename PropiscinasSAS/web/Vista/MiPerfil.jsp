@@ -34,6 +34,7 @@
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
         <script src="Js/ActualizarDatos.js" type="text/javascript"></script>
         <script src="Js/EditarContrasena.js" type="text/javascript"></script>
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
         
     </head>
     <body style="-webkit-box-shadow: 2px 2px 5px #999;

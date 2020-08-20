@@ -25,6 +25,7 @@
         <link href="Css/AgregarVenta.css" rel="stylesheet" type="text/css"/>
         <script src="Js/RegistrarVenta.js" type="text/javascript"></script>
          <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
+          <link rel="icon" href="Imagenes/logopropi.png" src=""/>
     </head>
     <script type="text/javascript">
    
@@ -217,7 +218,7 @@
                     
                     <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Numero de factura</font></td>
-                       <td><input style="height: 24.5px;" type="text" onkeypress="return validarNumero(event)" name="txt_NumeroFactura" id="txt_NumeroFactura" class="form-control"  value="" required></textarea></td>
+                       <td><input style="height: 24.5px;" type="text" onkeypress="return validarNumero(event)" maxlength="9" name="txt_NumeroFactura" id="txt_NumeroFactura" class="form-control"  value="" required></textarea></td>
                     </tr>
                      <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Tipo de documento </font></td>
@@ -258,8 +259,8 @@
 			<article>
 			 
                             
-			<table   style="    width: 1200px;
-    font-size: 19.9px;
+			<table   style="    width:1150px; 
+    font-size: 19.7px;
 display: none;"  id="tblMovimiento" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >

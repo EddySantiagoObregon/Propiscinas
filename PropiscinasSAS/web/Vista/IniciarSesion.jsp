@@ -48,6 +48,7 @@ if (session.getAttribute("idUsuario")!=null){
         <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
         <script src="Js/IniciarSesion.js" type="text/javascript"></script>
         <script src="Js/RecuperarContraseña.js" type="text/javascript"></script>
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
 </head>
 <script>
 

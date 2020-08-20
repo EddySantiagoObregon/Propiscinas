@@ -32,6 +32,7 @@ public class Correo {
         props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
         props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
         props.put("mail.smtp.port", "587"); //El puerto SMTP seguro de Google
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
        
         Session session = Session.getDefaultInstance(props);
         MimeMessage message = new MimeMessage(session);

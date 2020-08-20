@@ -20,7 +20,7 @@ $(function ()
            listarCantidadActualizada();
        }
        if(numero==='1'){
-           alert(1);
+          
            totalProductosInfraestructura();
        }
        if(numero==='2'){
@@ -41,16 +41,16 @@ $(function ()
        buscar = $("#txt_Buscar").val();
        numero = $("#cb_Opciones").val();
      if(numero==="0"&&buscar!==null){
-         alert("Hola");
+     
        BuscarProducto();
        } else  if(numero!=="0"&&buscar!==""&&numero!=="1"){
-           alert("Hola2");
+        
          numero=numero-1;
 
        BuscarCantidadActualizadaPorNombreYInfraestructura(numero);
        
        }else if(buscar!==""&&numero==="1"){
-           alert("adadaaa");
+
            totalProductosInfraestructuraYcodigo();
        }
   });

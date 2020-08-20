@@ -22,29 +22,29 @@ $(function(){
         var idTipoDocumento = $("#cb_TipoDocumento").val();
         if(fecha!==''&&buscar!==''&&idTipoDocumento!=='0'){
             BuscarPorProductoYTipoDocumentoYFecha();
-           alert('1');
+         
         }
         else if(fecha!==''&&buscar===''&&idTipoDocumento<'1'){
-             alert('2');
+            
             buscarInventarioVentaPorFecha();
         }
         else if(fecha===''&&buscar!==''&&idTipoDocumento<'1'){
-             alert('3');
+            
             buscarVenta();
         }
         else if(fecha!==""&&buscar!==''&&idTipoDocumento<'1'){
-            alert('4');
+         
             buscarInventarioVentaPorProductoYFecha();
         }else if(fecha===""&&buscar===""&&idTipoDocumento>'0'){
-           alert('5');
+       
             BuscarPorTipoDocumento();
         }
         else if (fecha!==""&&buscar===""&&idTipoDocumento>'0'){
-            alert('6');
+            
             BuscarPorTipoDocumentoYFecha();
         }
        else if(fecha===''&&buscar!==''&&idTipoDocumento>'1'){
-            alert('7');
+          
             BuscarPorProductoYTipoDocumento();
         }
     });

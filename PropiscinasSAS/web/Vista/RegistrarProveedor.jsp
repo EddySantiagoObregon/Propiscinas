@@ -19,6 +19,7 @@
         <link href="Css/AgregarProducto.css" rel="stylesheet" type="text/css"/>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
         <meta charset="UTF-8">
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     </head>
     <body style="-webkit-box-shadow: 2px 2px 5px #999;

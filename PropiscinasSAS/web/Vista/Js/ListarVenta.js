@@ -68,12 +68,24 @@ function listarVenta(){
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre);
+  var forma=venta.unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  }else{
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
+  }
+
+  
+ 
   if(j===2){
      var textoCelda = document.createTextNode(venta.fecharegistro);
       celda.appendChild(textoCelda);
@@ -175,10 +187,20 @@ function BuscarVenta(){
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre);
+  var forma=venta.unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  }else{
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+
   }
 
   if(j===2){
@@ -283,10 +305,20 @@ function BuscarVentaPorProductoYFecha(){
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre);
+   var forma=venta.unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  }else{
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+
   }
 
   if(j===2){
@@ -386,12 +418,21 @@ function BuscarProductoPorFecha(){
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre);
+  var forma=venta.unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  }else{
+       if(j===1){
+      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
+  }
   if(j===2){
      var textoCelda = document.createTextNode(venta.fecharegistro);
       celda.appendChild(textoCelda);

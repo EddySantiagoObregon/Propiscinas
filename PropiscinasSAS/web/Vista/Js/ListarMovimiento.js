@@ -13,23 +13,22 @@ $(function(){
         var fecha = $("#fecha").val();
         var buscar = $("#txt_Buscar").val();
         var idTipoDocumento = $("#cb_TipoDocumento").val();
-       alert(fecha);
-       alert(buscar);
+      
        if(fecha!==null&&buscar!==''&&idTipoDocumento>0){
-           alert(2313);
+         
        BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento();
         }    
         else if(fecha!==''&&buscar!==''&&idTipoDocumento<1){
-          alert(1);
+      
             BuscarMovimientoPorFechaYNumeroDocumento();
         }else if(fecha===''&&buscar!==''&&idTipoDocumento<1){
-            alert(2);
+       
              BuscarMovimiento(); 
         }else if(fecha!==''&&buscar===''&&idTipoDocumento<1){
-            alert(3);
+ 
             BuscarMovimientoPorFecha();
         }else if(idTipoDocumento>0&&fecha===''&&buscar===''){
-            alert(4);
+        
             BuscarMovimientoTipoDocumento();
         }
         else if(idTipoDocumento>0&&fecha!==''&&buscar===''){

@@ -165,11 +165,14 @@ public class DatosVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT detalle_producto.*,venta.*,producto.*,forma.*,usuario.* FROM venta "
-                    + "INNER JOIN producto ON venta.venta_producto_id=producto.producto_id "
-                    + "INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id "
-                    + "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "
-                    + "INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario ORDER BY venta.venta_fecha_registro DESC";
+            String consulta = "SELECT detalle_producto.*,venta.*,producto.*,forma.*,unidad_medida.*,presentacion.*,usuario.* FROM venta \n" +
+"                    INNER JOIN producto ON venta.venta_producto_id=producto.producto_id \n" +
+"                    INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id \n" +
+"                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id \n" +
+"                    INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario\n" +
+"                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id\n" +
+"                    INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id\n" +
+"                    ORDER BY venta.venta_fecha_registro DESc";
             ps=this.miConexion.prepareStatement(consulta);
             rs = ps.executeQuery();
             
@@ -179,6 +182,9 @@ public class DatosVenta{
                 unaVenta.getUnDetalleProducto().setIdProducto(rs.getString("detalle_producto_producto_id"));
                 unaVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                  unaVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                 unaVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                 unaVenta.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                  unaVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unaVenta.setFecharegistro(rs.getString("venta_fecha_registro"));
                 unaVenta.setCantidad(rs.getInt("venta_cantidad"));
                 unaVenta.setValor(rs.getString("venta_valor"));
@@ -205,11 +211,13 @@ public class DatosVenta{
         {
             this.miConexion.setAutoCommit(false);
             String consulta =
-                    "SELECT detalle_producto.*,venta.*,producto.*,forma.*,usuario.* FROM venta "+ 
-                    "INNER JOIN producto ON venta.venta_producto_id=producto.producto_id "+  
-                    "INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id "+ 
-                    "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "+ 
-                    "INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario "+ 
+                   "SELECT detalle_producto.*,venta.*,producto.*,forma.*,unidad_medida.*,presentacion.*,usuario.* FROM venta \n" +
+"                    INNER JOIN producto ON venta.venta_producto_id=producto.producto_id \n" +
+"                    INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id \n" +
+"                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id \n" +
+"                    INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario\n" +
+"                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id\n" +
+"                    INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id\n" +
                     "WHERE producto.producto_nombre LIKE ? OR   producto.producto_id LIKE ? OR venta.venta_valor LIKE ? OR  venta.venta_cantidad LIKE ? OR forma.forma_descripcion LIKE ? OR venta_fecha_registro LIKE ? OR usuario.usuario_nombre LIKE ? OR usuario.usuario_identificacion LIKE ? ORDER BY venta.venta_fecha_registro DESC";
                     ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1,buscar);
@@ -228,6 +236,9 @@ public class DatosVenta{
                 unaVenta.getUnDetalleProducto().setIdProducto(rs.getString("detalle_producto_producto_id"));
                 unaVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                  unaVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                   unaVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                 unaVenta.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                  unaVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unaVenta.setFecharegistro(rs.getString("venta_fecha_registro"));
                 unaVenta.setCantidad(rs.getInt("venta_cantidad"));
                 unaVenta.setValor(rs.getString("venta_valor"));
@@ -253,11 +264,13 @@ public class DatosVenta{
         {
             this.miConexion.setAutoCommit(false);
             String consulta =
-                    "SELECT detalle_producto.*,venta.*,producto.*,forma.*,usuario.* FROM venta "+ 
-                    "INNER JOIN producto ON venta.venta_producto_id=producto.producto_id "+  
-                    "INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id "+ 
-                    "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "+ 
-                    "INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario "+ 
+                      "SELECT detalle_producto.*,venta.*,producto.*,forma.*,unidad_medida.*,presentacion.*,usuario.* FROM venta \n" +
+"                    INNER JOIN producto ON venta.venta_producto_id=producto.producto_id \n" +
+"                    INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id \n" +
+"                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id \n" +
+"                    INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario\n" +
+"                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id\n" +
+"                    INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id \n" +
                     "WHERE producto.producto_nombre LIKE ? OR   producto.producto_id LIKE ? OR venta.venta_valor LIKE ? OR  venta.venta_cantidad LIKE ? OR forma.forma_descripcion LIKE ? OR venta_fecha_registro LIKE ? OR usuario.usuario_nombre LIKE ? OR usuario.usuario_identificacion LIKE ? ORDER BY venta.venta_fecha_registro DESC";
                     ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1,buscar);
@@ -276,6 +289,9 @@ public class DatosVenta{
                 unaVenta.getUnDetalleProducto().setIdProducto(rs.getString("detalle_producto_producto_id"));
                 unaVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                  unaVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                    unaVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                 unaVenta.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                  unaVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unaVenta.setFecharegistro(rs.getString("venta_fecha_registro"));
                 unaVenta.setCantidad(rs.getInt("venta_cantidad"));
                 unaVenta.setValor(rs.getString("venta_valor"));
@@ -301,11 +317,13 @@ public class DatosVenta{
         {
             this.miConexion.setAutoCommit(false);
             String consulta =
-                    "SELECT detalle_producto.*,venta.*,producto.*,forma.*,usuario.* FROM venta "+ 
-                    "INNER JOIN producto ON venta.venta_producto_id=producto.producto_id "+  
-                    "INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id "+ 
-                    "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "+ 
-                    "INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario "+ 
+                      "SELECT detalle_producto.*,venta.*,producto.*,forma.*,unidad_medida.*,presentacion.*,usuario.* FROM venta \n" +
+"                    INNER JOIN producto ON venta.venta_producto_id=producto.producto_id \n" +
+"                    INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id=producto.producto_id \n" +
+"                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id \n" +
+"                    INNER JOIN usuario ON venta.venta_usuario=usuario.idUsuario\n" +
+"                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id\n" +
+"                    INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id \n" +
                     "WHERE venta_fecha_registro LIKE ?  ORDER BY venta.venta_fecha_registro DESC";
                     ps=this.miConexion.prepareStatement(consulta);
                     ps.setString(1,"%"+fecha+"%");
@@ -317,6 +335,9 @@ public class DatosVenta{
                 unaVenta.getUnDetalleProducto().setIdProducto(rs.getString("detalle_producto_producto_id"));
                 unaVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unaVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                 unaVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                 unaVenta.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                  unaVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unaVenta.setFecharegistro(rs.getString("venta_fecha_registro"));
                 unaVenta.setCantidad(rs.getInt("venta_cantidad"));
                 unaVenta.setValor(rs.getString("venta_valor"));

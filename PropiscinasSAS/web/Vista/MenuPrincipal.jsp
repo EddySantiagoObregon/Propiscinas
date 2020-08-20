@@ -24,6 +24,7 @@
         <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
         <link href="Css/AgregarProductoNuevo.css" rel="stylesheet" type="text/css"/>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
+         <link rel="icon" href="Imagenes/logopropi.png" src=""/>
         
     </head >
     <body style="-webkit-box-shadow: 2px 2px 5px #999;

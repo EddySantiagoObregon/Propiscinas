@@ -185,6 +185,14 @@ function listarVentaPorFactura(){
       hilera.appendChild(celda);
   }
   var cantidadU =inventarioventa.cantidadUnidad;
+  var forma = inventarioventa.unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
+        if(j===1){
+      var textoCelda = document.createTextNode(inventarioventa.unDetalleProducto.nombre+" "+inventarioventa.unaUnidadMedida.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  }else{
   if(cantidadU>0){
   if(j===1){
       var textoCelda = document.createTextNode(inventarioventa.unDetalleProducto.unaForma.descripcion+" DE "+inventarioventa.unDetalleProducto.nombre+" "+inventarioventa.cantidadUnidad+" "+inventarioventa.unaUnidadMedida.descripcion);
@@ -199,7 +207,8 @@ function listarVentaPorFactura(){
       hilera.appendChild(celda);
   }   
   }
-
+  }
+  
   if(j===2){
      var textoCelda = document.createTextNode(inventarioventa.fecharegistro);
       celda.appendChild(textoCelda);
