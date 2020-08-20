@@ -116,7 +116,7 @@ DatosUsuario dUsuario = new DatosUsuario();
                 session.setAttribute("correo", user.getCorreo());
                 session.setAttribute("telefono", user.getTelefono());
                 session.setAttribute("nombre", user.getNombre());
-                response.sendRedirect(request.getContextPath() + "/Vista/MenuPrincipal.jsp");   
+                response.sendRedirect(request.getContextPath() + "/Vista/MenuPrincipal.jsp");  
                        
                 
          

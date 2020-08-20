@@ -30,7 +30,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
         <link href="Css/ListarMovimiento.css" rel="stylesheet" type="text/css"/>
-        <script src="Js/ListarMovimiento.js" type="text/javascript"></script>
+        
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
         <script src="Js/ActualizarDatos.js" type="text/javascript"></script>
         <script src="Js/EditarContrasena.js" type="text/javascript"></script>
@@ -206,7 +206,7 @@
         <input  class="form-control" type="password" name="password" id="passwordd" style="width: 608px;margin-left: 6px;">
 </div>
     <div class="col">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="mostrarContrasenaa()" style="left: 25px;
+        <input type="checkbox" class="form-check-input" id="exampleCheck11" onclick="mostrarContrasenaa()" style="left: 25px;
     top: 5px;">
         <label class="form-check-label" style="    margin-right: 0px;
     margin-left: 23px;

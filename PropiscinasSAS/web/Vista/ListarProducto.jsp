@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ListarProducto</title>
+        <script src="Js/jquery.dataTables.min.js" type="text/javascript"></script>
          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -25,7 +26,7 @@
         <script src="Js/Pagination.js" type="text/javascript"></script>
          <script src="Js/ListarAtributos.js" type="text/javascript"></script>
           <link rel="icon" href="Imagenes/logopropi.png" src=""/>
-        
+
     </head>
    
     <body style="-webkit-box-shadow: 2px 2px 5px #999;
@@ -126,7 +127,7 @@
                                 <a style="margin-bottom: 5px; padding-top: 2px;padding-bottom: 4px;" class="btn btn-primary btnListar" href="ImprimirEtiquetasCodigoBarras.jsp"><img width="40" height="30" src="Imagenes/cod.png"/>Generar etiquetas de codigo de barras</a>
                          
                             
-			<table  style="width: 100% ;font-size: 12px;"  id="tblProducto" class="table  table-striped" align="center">
+			<table  style="width: 100% ;font-size: 12px;" number-per-page="3" current-page=""  id="tblProducto" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
             <th style="background-color: #007bff;color: #fff;">Codigo</th>

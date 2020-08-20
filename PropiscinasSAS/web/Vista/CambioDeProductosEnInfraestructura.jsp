@@ -33,6 +33,15 @@
     <body style="-webkit-box-shadow: 2px 2px 5px #999;
   -moz-box-shadow: 2px 2px 5px #4998e8;">
     <header>
+            <script>
+     function validarNumero(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla===8) return true; 
+    patron =/[0-9]/;
+    te = String.fromCharCode(tecla); 
+    return patron.test(te); 
+ }   
+    </script>
 <div class="logotipo">
              
                  
@@ -193,7 +202,7 @@
                     </tr>
                     <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Cantidad de productos que enviara</font></td>
-                        <td><input type="number" name="txt_Cantidad_Enviara" id="txt_Cantidad_Enviara" class="form-control"  value="" required/></input></td>
+                        <td><input onkeypress="return validarNumero(event)" maxlength="10" type="text" name="txt_Cantidad_Enviara" id="txt_Cantidad_Enviara" class="form-control"  value="" required/></input></td>
                    
                     </tr> 
                     <td class="negrita"><font color="black">Infraestructura que recibe los productos</font></td>
@@ -222,20 +231,20 @@
                     
                       <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Observación producto</font></td>
-                        <td><textarea type="text" name="txt_Observacion" id="txt_Observacion" class="form-control"  value="" required/></textarea></td>
+                        <td><textarea type="text" maxlength="150" name="txt_Observacion" id="txt_Observacion" class="form-control"  value="" required/></textarea></td>
                    
                     </tr>
                   
                       
                       <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Numero de documento</font></td>
-                        <td><input type="number" name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
+                        <td><input type="text" onkeypress="return validarNumero(event)" maxlength="11" name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
                    
                     </tr>    
                    
                      <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Observacion documento</font></td>
-                        <td><input type="text" name="txt_ObservacionDocumento" id="txt_ObservacionDocumento" class="form-control"  value="" required/></input></td>
+                        <td><textarea type="text" name="txt_ObservacionDocumento" id="txt_ObservacionDocumento"  maxlength="45" class="form-control"  value="" required/></textarea></td>
                    
                     </tr>   
                        

@@ -191,7 +191,7 @@
                              
                                             <tr style="height: 40px;">
                         <td class="negrita"><font color="black">Cantidad nueva </font></td>
-                         <td><input type="number" name="txt_Cantidad"  id="txt_Cantidad" class="form-control"  required>
+                        <td><input type="text"  onkeypress="return validarNumero(event)" maxlength="10" name="txt_Cantidad"  id="txt_Cantidad" class="form-control"  required>
                          <div id="msjCantidad" style="text-align: center"></div>                       
                       </td>
                     </tr>
@@ -235,13 +235,13 @@
                       
                       <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Numero de documento</font></td>
-                        <td><input type="number" name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
+                            <td><input type="text"  onkeypress="return validarNumero(event)" maxlength="11"name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
                    
                     </tr>    
                    
                      <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Observacion documento</font></td>
-                        <td><input type="text" name="txt_ObservacionDocumento" id="txt_ObservacionDocumento" class="form-control"  value="" required/></input></td>
+                            <td><textarea type="text" name="txt_ObservacionDocumento" id="txt_ObservacionDocumento" maxlength="45" class="form-control"  value="" required/></textarea></td>
                    
                     </tr>   
                        
