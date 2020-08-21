@@ -118,6 +118,8 @@ DatosUsuario dUsuario = new DatosUsuario();
             break;
             case "BuscarPorProductoYTipoDocumento":BuscarPorProductoYTipoDocumento(request,response);
             break;
+            case "Productomasvendido":toptresproductosmasvendidos(request,response);
+            break;
          }
     }
 
@@ -296,5 +298,13 @@ DatosUsuario dUsuario = new DatosUsuario();
            String fecha = year + "-" + mes + "-" + dia+" "+hora+":"+minutos+":"+segundos ;
            return fecha;
      }
+            
+            private void toptresproductosmasvendidos(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException{
+                 ArrayList<InventarioVenta> lista= dInventarioVenta.Productomasvendido();
+                 PrintWriter out = response.getWriter();
+                 String json = new Gson().toJson(lista);
+                 out.print(json);
+        }
              }
     

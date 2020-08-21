@@ -21,6 +21,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"></script>
+        <script src="Js/Graficos.js" type="text/javascript"></script>
         <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
         <link href="Css/AgregarProductoNuevo.css" rel="stylesheet" type="text/css"/>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
@@ -123,11 +130,16 @@
 	</header>
 	<section class="main">
 		<section class="articles">
-			<article>
-				<h2>Quiénes somos</h2>
-				<p>Pro-piscinas del Huila Ltda., cuenta con una amplia línea de productos de excelente calidad que se ajustan a las necesidades requeridas por nuestros clientes ya sea para piscinas privadas o públicas.</p>
-			</article>
+                    
+                    <article>
 			
+			<article>
+                             <details id="detalle" close>
+          
+
+                                 <summary ><a style="color:#23186b;font-size: 30.5px !important;">Prodúcto mas vendido</a></summary>
+                                <canvas id="myChart" width="300" height="300"></canvas>
+                    </details>
 			<article>
 				<h2>Misión</h2>
 				<p>Somos una empresa creada para la distribución de los mejores productos químicos, servicios tanto de instalación de equipos para el tratamiento en las piscinas, confromando por un personal altamente capacitado y con una excelente calidad humana para satisfacer las necesidades de nuestros clientes.</p>

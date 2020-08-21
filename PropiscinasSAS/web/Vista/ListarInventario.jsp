@@ -165,10 +165,7 @@
 </table>
                         </article>
 			
-			<article>
-				<h2>Este es el titulo de mi sitio web</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, iure corporis quod ratione dolorum non aliquam reiciendis dolores perferendis doloremque. Architecto doloremque iusto consequatur assumenda saepe voluptate minus harum, eos!</p>
-			</article>
+			
 		</section>
             
 		

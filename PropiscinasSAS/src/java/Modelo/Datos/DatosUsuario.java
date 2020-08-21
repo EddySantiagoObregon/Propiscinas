@@ -175,6 +175,7 @@ public class DatosUsuario {
            int idUsuario=0;
           try
      {
+         
           String consultica = "SELECT idUsuario FROM usuario where usuario_correo=?";
          
        
@@ -210,12 +211,26 @@ public class DatosUsuario {
            public boolean EditarContrasena(String correo,String contrasenaVieja,String contrasenaNueva){
            boolean actualizado = false; 
            String contraseñaAntiguaMySql = "";
+           int idUsuario=0;
           try
     {
-          String consultica = "SELECT usuario_contrasena FROM usuario where usuario_correo=?";
+         this.miConexion.setAutoCommit(false); 
+          String consultica1 = "SELECT idUsuario FROM usuario where usuario_correo=?";
          
        
-        ps=this.miConexion.prepareStatement(consultica);
+        ps=this.miConexion.prepareStatement(consultica1);
+        ps.setString(1,correo);
+        rs= ps.executeQuery();
+        if(rs.next())
+        {
+                idUsuario = rs.getInt("idUsuario");
+         
+            
+        }
+          String consultica2 = "SELECT usuario_contrasena FROM usuario where usuario_correo=?";
+         
+       
+        ps=this.miConexion.prepareStatement(consultica2);
         ps.setString(1,correo);
         rs= ps.executeQuery();
         if(rs.next())
@@ -226,17 +241,18 @@ public class DatosUsuario {
         }
         rs.close();
         if(contrasenaVieja.equals(contraseñaAntiguaMySql)){
-          String consulta ="UPDATE usuario SET usuario_contrasena=? WHERE usuario_correo=?";
+          String consulta ="UPDATE usuario SET usuario_contrasena=? WHERE idUsuario=?";
         ps=miConexion.prepareStatement(consulta);
          
         ps.setString(1,contrasenaNueva);
-        ps.setString(2,correo);
+        ps.setInt(2,idUsuario);
         ps.executeUpdate();
         int si =ps.executeUpdate();
         if(si>0){
                actualizado = true;
         }
         }
+        this.miConexion.commit();
   }catch(SQLException ex)
     {
          this.mensaje=ex.getMessage();
