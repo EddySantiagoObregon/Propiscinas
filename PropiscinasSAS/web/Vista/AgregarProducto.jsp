@@ -235,7 +235,7 @@
                       
                       <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Numero de documento</font></td>
-                            <td><input type="text"  onkeypress="return validarNumero(event)" maxlength="11"name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
+                            <td><input type="text"  onkeypress="return validarNumero(event)" maxlength="9"name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
                    
                     </tr>    
                    

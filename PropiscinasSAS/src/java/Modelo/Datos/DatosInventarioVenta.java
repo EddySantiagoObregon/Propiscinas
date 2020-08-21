@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -600,4 +601,61 @@ public class DatosInventarioVenta{
         }
         return lista;
 }
+                                     public ArrayList<InventarioVenta>Productomasvendidohoy()
+    {
+        Calendar miCalendario = Calendar.getInstance();
+           int dia = miCalendario.get(Calendar.DAY_OF_MONTH);
+           int mes = miCalendario.get(Calendar.MONTH) + 1;
+           int year = miCalendario.get(Calendar.YEAR);
+               int n = mes;
+        int res=0;
+        int d=10;
+        int cifra=0;
+        do{
+        res = n % d;
+        cifra++;
+        d=d*10;
+        }while(res != n);
+        String ano = "";
+       if(cifra==1){
+           ano = year + "-" + "0"+mes + "-" + dia;
+       }else{
+          ano =year + "-" + mes + "-" + dia;
+       }
+            this.mensaje=null;
+     ArrayList<InventarioVenta> lista= new ArrayList<>();
+        try
+        {
+            this.miConexion.setAutoCommit(false);
+          
+            String consulta = "SELECT (SELECT SUM(inventario_venta_cantidad_total))AS SUMA,producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id INNER JOIN usuario ON inventario_venta.inventario_venta_usuario=usuario.idUsuario WHERE inventario_venta.inventario_venta_fecha_registro LIKE ? GROUP BY inventario_venta_producto_id ORDER BY `SUMA` DESC LIMIT 3";
+            ps=this.miConexion.prepareStatement(consulta);
+            ps.setString(1,"%"+ano+"%");
+            rs = ps.executeQuery();
+            
+           while(rs.next())
+            {
+                InventarioVenta unInventarioVenta = new InventarioVenta();
+                unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
+                unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                unInventarioVenta.setFecharegistro(rs.getString("inventario_venta_fecha_registro"));
+                unInventarioVenta.setCantidadTotal(rs.getInt("SUMA"));
+                unInventarioVenta.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
+                unInventarioVenta.getUnDocumento().getUnTipoDocumento().setDescripcion(rs.getString("tipo_documento_descripcion"));
+                unInventarioVenta.setEstado(rs.getString("inventario_venta_estado"));
+                unInventarioVenta.getUnUsuario().setNombre(rs.getString("usuario_nombre"));
+                lista.add(unInventarioVenta);
+            }
+             rs.close();
+            this.miConexion.commit();
+        }catch(SQLException ex)
+        {
+            this.mensaje= ex.getMessage();
+        }
+        return lista;
+}
+       
 }

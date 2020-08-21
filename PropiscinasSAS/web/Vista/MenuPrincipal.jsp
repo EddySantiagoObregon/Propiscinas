@@ -32,7 +32,8 @@
         <link href="Css/AgregarProductoNuevo.css" rel="stylesheet" type="text/css"/>
         <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
          <link rel="icon" href="Imagenes/logopropi.png" src=""/>
-        
+         <link href="Css/Canva.css" rel="stylesheet" type="text/css"/>
+         <script src="Js/Canva.js" type="text/javascript"></script>
     </head >
     <body style="-webkit-box-shadow: 2px 2px 5px #999;
   -moz-box-shadow: 2px 2px 5px #4998e8;">
@@ -135,19 +136,78 @@
 			
 			<article>
                              <details id="detalle" close>
-          
+                                 
 
-                                 <summary ><a style="color:#23186b;font-size: 30.5px !important;">Prodúcto mas vendido</a></summary>
-                                <canvas id="myChart" width="300" height="300"></canvas>
+                                 <summary ><a style="color:#23186b;font-size: 30.5px !important;">Producto más vendido </a></summary>
+                                 <center>
+                                 <div style="width: 700px;
+    position: sticky;">
+                                <canvas style="    
+    width: 735px;
+    height: 682px; "  id="myChart" ></canvas>
+    </div>
+                                     </center>
                     </details>
-			<article>
-				<h2>Misión</h2>
-				<p>Somos una empresa creada para la distribución de los mejores productos químicos, servicios tanto de instalación de equipos para el tratamiento en las piscinas, confromando por un personal altamente capacitado y con una excelente calidad humana para satisfacer las necesidades de nuestros clientes.</p>
-			</article>
+                            
+                        </article>
                         <article>
-				<h2>Visión</h2>
-				<p>Somos una empresa creada para la distribución de los mejores productos químicos, servicios tanto de instalación de equipos para el tratamiento en las piscinas, confromando por un personal altamente capacitado y con una excelente calidad humana para satisfacer las necesidades de nuestros clientes.</p>
-			</article>
+                             <details id="detalle" close>
+                                 
+
+                                 <summary ><a style="color:#23186b;font-size: 30.5px !important;">Producto más vendido hoy</a></summary>
+                                 <center>
+                                 <div style="width: 700px;
+    position: sticky;">
+                                <canvas style="    
+    width: 735px;
+    height: 682px; "  id="myChar" ></canvas>
+    </div>
+                                     </center>
+                    </details>
+                            
+                            
+                
+                       
+                        </article>
+                        <article>
+                            
+                            <div class="card-deck">
+    <div style="   -webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+  filter: shadow(color=#999999, direction=135, strength=2);" class="card">
+      <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">SALA DE VENTAS</h4>
+        <p class="card-text">Todos los productos vendidos se descontara del inventario de la sala de ventas</p>
+       
+      </div>
+    </div>
+    <div style="-webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+  filter: shadow(color=#999999, direction=135, strength=2);" class="card">
+      <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">BODEGA 1</h4>
+        <p class="card-text">Se referencia bodega 1 a la bodega que queda en el barrio Caracoli</p>
+      
+      </div>
+    </div>
+    <div style=" -webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+  filter: shadow(color=#999999, direction=135, strength=2);" class="card">
+      <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">BODEGA 2</h4>
+        <p class="card-text">Se referencia bodega 2 a la bodega que queda en las bodegas de palermo</p>
+       
+      </div>
+    </div>
+</div>
+                            
+</article>
+                    
+
+			
 		</section>
 			
             
