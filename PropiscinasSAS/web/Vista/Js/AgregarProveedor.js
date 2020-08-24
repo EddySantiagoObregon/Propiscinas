@@ -367,16 +367,15 @@ function Buscar(id){
                     console.log(resultado);
                     var producto= resultado;
                             
-                     
                          
                      var cantidad=producto.cantidadUnidad;
                     if(cantidad===0){
                   
-                        $("#sNombree").html(producto.nombre+" "+producto.unaUnidadMedida.descripcion);
+                        $("#nombreproducto").html(producto.nombre+" "+producto.unaUnidadMedida.descripcion);
                       
                     }else{
                     
-                        $("#sNombree").html(producto.nombre+" "+producto.unaForma.descripcion+" "+producto.cantidadUnidad+" "+producto.unaUnidadMedida.descripcion);
+                        $("#nombreproducto").html(producto.nombre+" "+producto.unaForma.descripcion+" "+producto.cantidadUnidad+" "+producto.unaUnidadMedida.descripcion);
                       
                     }
  
@@ -413,14 +412,14 @@ function AgregarProveedor(){
                     if(resultado){
                      
                       
-                          
+                       
                       
                     
                       alert("Proveedor agregado correctamente al producto");
                  
                       limpiarModal();
                 } else{
-                    alert("error");
+                    alert("Este producto ya tiene este proveedor");
                 }
                            
  

@@ -95,7 +95,7 @@
     <a style="margin-left: 143px;">Ingrese el código para generar el código de barras</a>
     <br>
     <input style="    width: 362px;
-           margin-left: 140px; margin-bottom: 2px;"type="number" placeholder="INGRESE CODIGO" id="codigo" class="codigo form-control" name="codigo" class="form-control">
+           margin-left: 140px; margin-bottom: 2px;"type="text" placeholder="INGRESE CODIGO" maxlength="13" id="codigo" class="codigo form-control" name="codigo" class="form-control">
      <input style="    width: 362px;
             margin-left: 140px;"type="number" placeholder="CANTIDAD QUE IMPRIMIRA" name="cantidad" class="cantidad form-control" id="cantidad" class="form-control">
      <input value="Generar"id="generar" type="submit" style="    margin-top: 9px;

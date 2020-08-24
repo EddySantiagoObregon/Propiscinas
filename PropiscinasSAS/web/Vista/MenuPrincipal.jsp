@@ -171,10 +171,10 @@
                         </article>
                         <article>
                             
-                            <div class="card-deck">
+                            <div class="card-deck"  >
     <div style="   -webkit-box-shadow: 2px 2px 5px #999;
   -moz-box-shadow: 2px 2px 5px #999;
-  filter: shadow(color=#999999, direction=135, strength=2);" class="card">
+  filter: shadow(color=#999999, direction=135, strength=2);cursor: pointer;;" class="card">
       <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
       <div class="card-block">
         <h4 class="card-title">SALA DE VENTAS</h4>
@@ -184,21 +184,21 @@
     </div>
     <div style="-webkit-box-shadow: 2px 2px 5px #999;
   -moz-box-shadow: 2px 2px 5px #999;
-  filter: shadow(color=#999999, direction=135, strength=2);" class="card">
+  filter: shadow(color=#999999, direction=135, strength=2);cursor: pointer;" class="card">
       <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
       <div class="card-block">
         <h4 class="card-title">BODEGA 1</h4>
-        <p class="card-text">Se referencia bodega 1 a la bodega que queda en el barrio Caracoli</p>
+        <p class="card-text">Se referencia bodega 1 a la bodega ubicada en el barrio Caracoli</p>
       
       </div>
     </div>
     <div style=" -webkit-box-shadow: 2px 2px 5px #999;
   -moz-box-shadow: 2px 2px 5px #999;
-  filter: shadow(color=#999999, direction=135, strength=2);" class="card">
+  filter: shadow(color=#999999, direction=135, strength=2);cursor: pointer;" class="card">
       <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
       <div class="card-block">
         <h4 class="card-title">BODEGA 2</h4>
-        <p class="card-text">Se referencia bodega 2 a la bodega que queda en las bodegas de palermo</p>
+        <p class="card-text">Se referencia bodega 2 a la bodega ubicada en las bodegas de palermo</p>
        
       </div>
     </div>

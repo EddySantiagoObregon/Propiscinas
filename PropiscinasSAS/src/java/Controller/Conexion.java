@@ -24,7 +24,6 @@ public class Conexion
   private static final String password="";
   private static final String url="jdbc:mysql://localhost:3306/propiscinasv3";
   private static String mensaje;
- 
  public static Connection getConexion()
   {
      if(conexion!=null)

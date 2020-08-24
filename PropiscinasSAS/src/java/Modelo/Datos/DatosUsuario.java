@@ -259,5 +259,90 @@ public class DatosUsuario {
     }          
           return actualizado;
       }  
+     
+         public ArrayList<Usuario> ListarUsuarios()
+   {
+     this.mensaje=null;
+     ArrayList<Usuario> lista= new ArrayList<>();
+     String consulta="SELECT * FROM usuario ORDER BY usuario_nombre ASC";
+     try
+     {
+         ps=miConexion.prepareStatement(consulta);
+         rs= ps.executeQuery();
+         while(rs.next())
+         {
+             Usuario  unUsuario= new Usuario();
+             unUsuario.setIdUsuario(rs.getInt("idUsuario"));
+             unUsuario.setIdentificacion(rs.getInt("usuario_identificacion"));
+             unUsuario.setNombre(rs.getString("usuario_nombre"));
+             unUsuario.setTelefono(rs.getString("usuario_Telefono"));
+             unUsuario.setCorreo(rs.getString("usuario_correo"));
+             lista.add(unUsuario);
+         }
+         rs.close();
+                 
+     }catch(SQLException ex)
+     {
+         this.mensaje=ex.getMessage();
+     }
+     
+     return lista;
+   }
+         public boolean EditarUsuarioDesdeAdministrador(int identificacion,String nombre,String telefono,String correo,int idUsuario){
+           boolean agregado = false; 
+          
+          try
+     {
+         
+          String consulta ="UPDATE usuario SET usuario_identificacion =?,usuario_nombre =?,usuario_telefono=? ,usuario_correo=? WHERE idUsuario=?";
+        ps=miConexion.prepareStatement(consulta);
+         ps.setInt(1, identificacion);
+         ps.setString(2,nombre);
+         ps.setString(3, telefono);
+         ps.setString(4,correo);
+         ps.setInt(5,idUsuario);
+         ps.executeUpdate();
+         int si =ps.executeUpdate();
+         if(si>0){
+               agregado = true;
+         }
+        
+  }catch(SQLException ex)
+    {
+         this.mensaje=ex.getMessage();
+    }          
+          return agregado;
+      } 
+             public Usuario obtenerUsuario(int idUsuario){
+      Usuario unUsuario = null;
       
+        
+        String consultica = "SELECT * FROM usuario where idUsuario=?";
+         try
+       {
+        ps=this.miConexion.prepareStatement(consultica);
+        ps.setInt(1,idUsuario);
+        rs= ps.executeQuery();
+        if(rs.next())
+        {
+                unUsuario = new Usuario();
+                unUsuario.setIdentificacion(rs.getInt("usuario_identificacion"));
+                unUsuario.setNombre(rs.getString("usuario_nombre"));
+                unUsuario.setTelefono(rs.getString("usuario_telefono"));
+                unUsuario.setCorreo(rs.getString("usuario_correo"));
+         
+            
+        }
+        rs.close();
+       }catch(SQLException ex)
+       {
+           this.mensaje= ex.getMessage();
+       }
+       
+      
+      
+      
+      return unUsuario;
+      
+  }
 }

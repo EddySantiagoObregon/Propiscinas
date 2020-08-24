@@ -36,30 +36,39 @@ public class DatosProveedorProducto {
    
 public boolean agregado(int idProveedor,String idProducto){
        boolean agregado = false;
+       int ProveedorProducto=0;
             try{  
   
-     
+                    
             this.miConexion.setAutoCommit(false);   
             
-           
+             String consulta5="SELECT proveedor_producto_proveedor_id from proveedor_producto where proveedor_producto_producto_id=? ";
+               ps=miConexion.prepareStatement(consulta5);
+               ps.setString(1, idProducto);
+               rs = ps.executeQuery();
+                         
+                if(rs.next())
+            {
+               ProveedorProducto= rs.getInt("proveedor_producto_proveedor_id");
+            } 
 
            
-            
+            if(ProveedorProducto==0){
             String consulta1= "insert into proveedor_producto values(null,?,?)";
             ps=miConexion.prepareStatement(consulta1);
             ps.setInt(1,idProveedor);
             ps.setString(2,idProducto);
 
             ps.executeUpdate();
-            
-
+               agregado=true;
            
-           this.miConexion.commit();
+           
+          
            this.mensaje="Agregado correctamente ";
-           
-           agregado=true;
+            }
+        
          
-                    
+                     this.miConexion.commit();
           
        }catch(SQLException ex)
        {

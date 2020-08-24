@@ -230,7 +230,7 @@
                     </tr>
                     
                      <tr style="height: 40px;">
-                       <td class="negrita"><font color="black">Presentacion: </font></td>
+                       <td class="negrita"><font color="black">Presentación: </font></td>
                         <td><select name="cb_Presentacion" id="cb_Presentacion" class="form-control">
                                 <option value="0">Seleccione</option>
                         </td>

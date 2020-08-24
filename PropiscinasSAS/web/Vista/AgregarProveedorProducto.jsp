@@ -165,7 +165,7 @@
                 <div class="modal-content">
                     
                     <div style="color: white; background-color: #007bff; "class="modal-header  text-white">
-                        <h4 class="modal-title" >Agregar proveedores al producto</h4>
+                        <h4 class="modal-title" >Agregar proveedores al producto <a id="nombreproducto"></a></h4>
                         <button type="button" onclick="limpiarModal()" class="text-white close" data-dismiss="modal">&times;</button>
                     </div>
                     

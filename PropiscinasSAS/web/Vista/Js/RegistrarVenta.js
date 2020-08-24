@@ -38,15 +38,16 @@ $(function(){
 });
 
 function buscarProducto(){
-    
+    var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
     //obtiene la cajita de texto
-    var busqueda =  $("#txt_Codigo").val();
+
     //verifica que no hallan campos vacios y pasa los daots a la variable busqueda1
-    var busqueda1=busqueda.trim();
+   
   
      var parametros = {
                accion: "Consulta",
-              txt_Buscar: busqueda1
+              txt_Buscar: buscar
               
     };   
     $.ajax({

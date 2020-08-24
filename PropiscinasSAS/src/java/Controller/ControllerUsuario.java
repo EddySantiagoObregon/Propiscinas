@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -95,6 +96,12 @@ DatosUsuario dUsuario = new DatosUsuario();
              break;
              case "EditarContrasena":EditarContrasena(request,response);
              break;
+             case "listarUsuario":ListarUsuario(request,response);
+             break;
+             case "obtenerUsuario":obtenerUsuario(request,response);
+             break;
+             case "EditarUsuario":EditarUsuario(request,response);
+             break;
            
     }}
     private void iniciarSesion(HttpServletRequest request, HttpServletResponse response)
@@ -102,6 +109,15 @@ DatosUsuario dUsuario = new DatosUsuario();
     {
         String login = request.getParameter("txtLogin");
         String password = request.getParameter("txtPassword");
+        if("propiscinasdelhuila2020@gmail.com".equals(login)&&"propiscinas123".equals(password)){
+                HttpSession session = request.getSession(true);
+                session.setAttribute("idUsuario","Administrador");
+                session.setAttribute("identificacion", "Administrador");
+                session.setAttribute("correo","Administrador");
+                session.setAttribute("telefono","Administrador");
+                session.setAttribute("nombre", "Administrador");
+                response.sendRedirect(request.getContextPath() + "/Vista/AdministradorMenuPrincipal.jsp");
+        }else{
         Usuario unUsuario = new Usuario();
         unUsuario.setCorreo(login);
         unUsuario.setContrasena(password);
@@ -123,6 +139,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         }else
         {
             response.sendRedirect(request.getContextPath() + "/Vista/IniciarSesion.jsp?valor=x");
+        }
         }
     }
     private void RegistrarPersona(HttpServletRequest request, HttpServletResponse response)
@@ -229,6 +246,38 @@ DatosUsuario dUsuario = new DatosUsuario();
         boolean agregado = dUsuario.EditarContrasena(correoDeBusqueda,contrasenaAntigua,contrasenaNueva);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregado);
+        out.print(json);
+    }
+                        private void ListarUsuario(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+       
+       
+        ArrayList<Usuario> lista = dUsuario.ListarUsuarios();
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+                        
+  private void obtenerUsuario(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+       
+       int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+        Usuario unUsuario = dUsuario.obtenerUsuario(idUsuario);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(unUsuario);
+        out.print(json);
+    }
+  
+          private void EditarUsuario(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException{
+       int identificacion =  Integer.parseInt(request.getParameter("identificacion"));
+       String nombre = request.getParameter("txt_Nombre");
+       String telefono = request.getParameter("txt_Telefono");
+       String correo = request.getParameter("txt_Correo");
+       int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+        boolean editado= dUsuario.EditarUsuarioDesdeAdministrador(identificacion,nombre,telefono,correo,idUsuario);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(editado);
         out.print(json);
     }
 }

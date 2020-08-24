@@ -17,8 +17,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar venta</title>
+         <script src="Js/jquery.dataTables.min.js" type="text/javascript"></script>
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+         <script src="Js/jsAutoCompleteProducto.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
@@ -165,7 +170,7 @@
                         <td><input style="border-left-width: 0px; 
   
     height: 40px;
-    ;" onkeyup="buscarProducto()"onkeypress="return validarNumero(event)" maxlength="20" type="text" name="txt_Codigo"  id="txt_Codigo" class="form-control"  required>
+    ;" onkeyup="buscarProducto()" maxlength="20" type="text" name="txt_Buscar"  id="txt_Buscar" class="form-control"  required>
                          <div id="msjNombre" style="text-align: center"></div>                       
                       </td>
                     </tr>
