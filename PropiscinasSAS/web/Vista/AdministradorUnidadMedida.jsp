@@ -1,9 +1,8 @@
 <%-- 
-    Document   : AdministradorGrupo
-    Created on : 24/08/2020, 04:53:44 PM
+    Document   : AdministradorUnidadMedida
+    Created on : 25/08/2020, 10:09:42 AM
     Author     : PAULA
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -17,7 +16,7 @@
 <head>
          <meta charset="utf-8">
          <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title>ListarGrupoDesdeAdmininstrador</title>
+         <title>ListarUnidadMedidaDesdeAdmininstrador</title>
          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
          <link rel="stylesheet" href="/resources/demos/style.css">
          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -28,9 +27,9 @@
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
          <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
          <link href="Css/AgregarProducto.css" rel="stylesheet" type="text/css"/>
+         <script src="Js/AdministradorUnidadMedida.js" type="text/javascript"></script>
          <script src="Js/MenuPrincipal.js" type="text/javascript"></script>
          <link rel="icon" href="Imagenes/logopropi.png" src=""/>
-         <script src="Js/AdministradorGrupo.js" type="text/javascript"></script>
     </head>
 
    
@@ -117,7 +116,7 @@
            <div class="modal-dialog" role="document">
     <div class="modal-content">
        <div style="color: white; background-color: #007bff; "class="modal-header  text-white">
-                        <h4 class="modal-title" >Editar grupo</h4>
+                        <h4 class="modal-title" >Editar unidad de medida</h4>
                         <button type="button" onclick="limpiarModal()" class="text-white close" data-dismiss="modal">&times;</button>
                     </div>
         <input id="id" type="hidden">

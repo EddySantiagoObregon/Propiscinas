@@ -51,7 +51,18 @@ if (session.getAttribute("idUsuario")!=null){
          <link rel="icon" href="Imagenes/logopropi.png" src=""/>
 </head>
 <script>
-
+      function mostrarContrasena(){
+      var tipo = document.getElementById("txtPassword");
+       var ojo = document.getElementById("imgOjo");
+      
+      if(tipo.type === "password"){
+          tipo.type = "text";
+           ojo.style.display='none';
+      }else{
+          tipo.type = "password";
+          ojo.style.display='block';
+      }
+  }
 </script>
 
 <body>
@@ -68,9 +79,21 @@ if (session.getAttribute("idUsuario")!=null){
                 </div>
             </div>
             <div class=" w3l-form-group">
-                <label>Contraseña:</label>
+                <label>Contraseña:</label>   <img  style=" position: absolute;
+    width: 29px;
+    height: 30px;
+    margin-left: 357px;
+    margin-top: 16px;
+    cursor: pointer; z-index: 2; background-color: white;" id="imgOjo" onclick="mostrarContrasena()" src="Imagenes/ojoCerrado.png" width="300" height="300" alt=""/>
+                <img  style=" position: absolute;
+    width: 29px;
+    height: 30px;
+    margin-left: 357px;
+    margin-top: 16px;
+    cursor: pointer; " onclick="mostrarContrasena()" src="Imagenes/ojoAbierto.png" width="300" height="300" alt=""/>
                 <div class="group">
                     <i class="fas fa-unlock"></i>
+                    
                     <input id="txtPassword" name="txtPassword" autocomplete="off" type="password"  placeholder="Contraseña" required="required" />
                 </div>
             </div>

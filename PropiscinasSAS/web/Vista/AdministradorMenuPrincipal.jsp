@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
   
- if (session.getAttribute("idUsuario")==null){
+ if (session.getAttribute("idUsuario")!="900127905"){
    response.sendRedirect("Salir.jsp");
  }
 %>
@@ -82,7 +82,7 @@
 	<section style="    height: 373px;"class="main">
             <section style="    height: 373px;" class="articles">
                     
-                <article style="    margin-top: 60px;
+                <article style="    margin-top: 5px;;
 ">
 			
 		
@@ -98,7 +98,7 @@
         <h4 class="card-title">Usuarios</h4>
         <p class="card-text">Visualiza los usuarios creados,  editar el correo electronico y identificacion de un usuario.</p>
         <center>
-        <a href="AdministradorUsuario.jsp" class="btn btn-primary">Clic aquí</a>
+        <a style="    margin-bottom: 12px;" href="AdministradorUsuario.jsp" class="btn btn-primary">Clic aquí</a>
         </center>
       </div>
     </div>
@@ -109,7 +109,9 @@
       <div class="card-block">
         <h4 class="card-title">Grupo</h4>
         <p class="card-text">Vizualida los grupos creados y desactiva o activa el grupo</p>
-      
+       <center>
+           <a href="AdministradorGrupo.jsp" class="btn btn-primary">Clic aquí</a>
+        </center>
       </div>
     </div>
     <div style=" -webkit-box-shadow: 2px 2px 5px #999;
@@ -119,7 +121,9 @@
       <div class="card-block">
         <h4 class="card-title">Presentación</h4>
         <p class="card-text">Visualiza las presentaciones creadas y desactiva o activa la presentación</p>
-       
+        <center>
+        <a href="AdministradorPresentacion.jsp" class="btn btn-primary">Clic aquí</a>
+        </center>
       </div>
     </div>
                               
@@ -138,7 +142,9 @@
       <div class="card-block">
         <h4 class="card-title">Unidad de Medida</h4>
         <p class="card-text">Visualiza las unidades de medida creadas y desactiva o activa unidades de medidas.</p>
-       
+       <center>
+           <a  style="    margin-bottom: 12px;"href="AdministradorUnidadMedida.jsp" class="btn btn-primary">Clic aquí</a>
+        </center>
       </div>
     </div>
     <div style="-webkit-box-shadow: 2px 2px 5px #999;
@@ -147,8 +153,10 @@
       
       <div class="card-block">
         <h4 class="card-title">Forma</h4>
-        <p class="card-text">Vizualiza los grupos creados y desactiva el grupo</p>
-      
+        <p class="card-text">Vizualiza las formas creadas y desactiva o activa las formas</p>
+        <center>
+        <a href="AdministradorForma.jsp" class="btn btn-primary">Clic aquí</a>
+        </center>
       </div>
     </div>
     <div style=" -webkit-box-shadow: 2px 2px 5px #999;

@@ -111,7 +111,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         String password = request.getParameter("txtPassword");
         if("propiscinasdelhuila2020@gmail.com".equals(login)&&"propiscinas123".equals(password)){
                 HttpSession session = request.getSession(true);
-                session.setAttribute("idUsuario","Administrador");
+                session.setAttribute("idUsuario","900127905");
                 session.setAttribute("identificacion", "Administrador");
                 session.setAttribute("correo","Administrador");
                 session.setAttribute("telefono","Administrador");

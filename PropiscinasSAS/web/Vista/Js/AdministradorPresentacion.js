@@ -7,11 +7,10 @@
 
 
 
-
 $(function(){
-      ListarGrupos();
+    listarPresentacion(); 
     $("#btnEditar").click(function(){
-      
+   
          Editar();
     });
     $("#btnAgregar").click(function(){
@@ -21,13 +20,13 @@ $(function(){
 
 });
 function Agregar(){
-    
+   alert("qweeerty");
      var parametros = {
                accion: "agregar",
                nombre:$("#txt_Nombre1").val()
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerPresentacion',         
         data:parametros,
         dataType:'json',
         type: 'post',        
@@ -37,7 +36,7 @@ function Agregar(){
                         if (resultado) {
                 alert("Agregado correctamente");
                  $("tbody tr").remove(); 
-                 ListarGrupos();
+                 listarPresentacion();
          
               }else{
                   alert("Problemas al agregar");
@@ -55,14 +54,14 @@ function Agregar(){
         }
     });          
 }
-function ListarGrupos(){
+function listarPresentacion(){
     $("tbody tr").remove(); 
      var parametros = {
                accion: "listar"
               
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerPresentacion',         
         data:parametros,
         dataType:'json',
         type: 'post',        
@@ -70,16 +69,16 @@ function ListarGrupos(){
         success: function (resultado) {
             console.log(resultado);
             
-            grupos = resultado;          
+            presentacions = resultado;          
             var cantidad;
-            cantidad= grupos.length;
+            cantidad= presentacions.length;
              var body =document.getElementsByTagName("tbody")[0];
              
  
 
  
 
-                $.each(grupos, function(j,grupo){
+                $.each(presentacions, function(j,presentacion){
 
   
  
@@ -95,20 +94,20 @@ function ListarGrupos(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(grupo.descripcion);
+      var textoCelda = document.createTextNode(presentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===1){
-     var textoCelda = document.createTextNode(grupo.estado);
+     var textoCelda = document.createTextNode(presentacion.estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
      if(j===2){
-      var id=grupo.idGrupo;
+      var id=presentacion.idPresentacion;
       const fragment= document.createDocumentFragment();
       const button= document.createElement('a');
                            button.setAttribute('onclick', 'abrirModal('+id+')');
@@ -148,24 +147,24 @@ function ListarGrupos(){
 }
 function abrirModal(id){
    
-  $("#id").val(id);
+    $("#id").val(id);
    $('#modal').modal({backdrop: 'static', keyboard: false});
     $("#modal").modal();
      var parametros = {
-               accion: "obtenerGrupo",
+               accion: "obtenerPresentacion",
                id:id
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerPresentacion',         
         data:parametros,
         dataType:'json',
         type: 'post',        
         cache: false,
         success: function (resultado) {
             console.log(resultado);
-            var grupo =resultado;
+            var presentacion =resultado;
             if (resultado) {
-                $("#cb_Estado").val(grupo.estado); 
+                $("#cb_Estado").val(presentacion.estado); 
              
          
               }else{
@@ -193,7 +192,7 @@ function Editar(){
               
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerPresentacion',         
         data:parametros,
         dataType:'json',
         type: 'post',        
@@ -203,9 +202,9 @@ function Editar(){
          
             if (resultado) {
                
-                alert("Se desactivo el grupo correctamente!");
+                alert("Se desactivo la presentación correctamente!");
                  $("tbody tr").remove();
-               ListarGrupos();
+              listarPresentacion(); 
               }else{
                   alert("No se ha editado correctamente!");
               }

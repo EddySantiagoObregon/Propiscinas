@@ -38,7 +38,7 @@ public class DatosGrupo {
    {
      this.mensaje=null;
      ArrayList<Grupo> lista= new ArrayList<>();
-     String consulta="select * from grupo";
+     String consulta="select * from grupo where grupo_estado='A' ";
      try
      {
          ps=miConexion.prepareStatement(consulta);

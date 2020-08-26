@@ -38,26 +38,26 @@ public class DatosVenta{
    }
    
    public int cantidad(String idProducto){
-       int cantidad =0;
+       int cantida =0;
         try
        {
-           this.miConexion.setAutoCommit(false); 
+        
        
-       String consulta2="SELECT inventario_cantidad_total FROM inventario_infraestructura_cantidad_actual WHERE inventario_producto_id=? AND inventario_infraestructura_id=?";
+       String consulta2=" SELECT inventario_cantidad_total FROM inventario_infraestructura_cantidad_actual WHERE inventario_producto_id=? AND inventario_infraestructura_id=1 ";
                 ps=miConexion.prepareStatement(consulta2);
                 ps.setString(1,idProducto);
-                ps.setInt(2,1);
                 rs= ps.executeQuery();
-             
-                if(rs.next())
+              if(rs.next())
                 {
-                cantidad= rs.getInt("inventario_cantidad_total");
+                cantida= rs.getInt("inventario_cantidad_total");
                 }
+                rs.close();
+               
                  }catch(SQLException ex)
        {
            this.mensaje= ex.getMessage();
        }
-       return cantidad;
+       return cantida;
        
    }
  public boolean RegistrarVenta(Venta unaVenta,InventarioVenta unInventarioVenta,Documento unDocumento,String idProducto,int idUsuario){
@@ -126,37 +126,26 @@ public class DatosVenta{
        }
        return agregado;
    }
- public int UnidadMedida(String idProducto){
-     int UnidadMedida = 0;
-     try{
-                String Consulta= "SELECT detalle_unidad_medida FROM detalle_producto WHERE detalle_producto_producto_id=?";
-                ps=miConexion.prepareStatement(Consulta);
-                ps.setString(1,idProducto);
-                rs= ps.executeQuery();
-              
-               
-                if(rs.next())
-                {
-                UnidadMedida= rs.getInt("detalle_unidad_medida");
-               
-                }
+ public int UnidadMedidaa(String idProducto){
+    int UnidadMedida=0;
+        String consultica = "SELECT detalle_unidad_medida FROM detalle_producto WHERE detalle_producto_producto_id=?";
+         try
+       {
+        ps=this.miConexion.prepareStatement(consultica);
+        ps.setString(1,idProducto);
+        rs= ps.executeQuery();
+        if(rs.next())
+        {
+            UnidadMedida= rs.getInt("detalle_unidad_medida");
          
             
-        }catch(SQLException ex)
-        {
-
-         
-          
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
-                 {
-                     this.mensaje= ex1.getMessage();
-                 }
+        }
+        rs.close();
+       }catch(SQLException ex)
+       {
+           this.mensaje= ex.getMessage();
        }
-     return UnidadMedida;
+       return UnidadMedida;
  }
              public ArrayList<Venta>listarVenta()
     {

@@ -89,13 +89,14 @@ function buscarProducto(){
     });
 }
 function AgregarVenta(correo){
- 
+ var txtBuscar =$("#txt_Buscar").val().trim();
+    var buscar=txtBuscar.substring(0,13);
    
     var parametros=
             {
                accion: "RegistrarVenta",
               txt_Correo: correo,
-              txt_Codigo: $("#txt_Codigo").val().trim(),
+              txt_Codigo: buscar,
               txt_CantidadVendidaa: $("#txt_CantidadVendidaa").val().trim(),
               txt_NumeroFactura:$("#txt_NumeroFactura").val().trim(),
               txt_Valor:$("#txt_Valor").val().trim(),

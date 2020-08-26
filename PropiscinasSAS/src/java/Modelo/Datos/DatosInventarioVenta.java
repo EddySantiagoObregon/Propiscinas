@@ -117,22 +117,25 @@ public class DatosInventarioVenta{
         }
         return lista;
 }
-              public boolean desactivado(int cantidad,String fecha,String codigo){
+              public boolean desactivado(int cantidad,String fecha,String codigo,int cantidadNueva){
                   boolean desactivado=false;
+                  
                   try
         {
              this.miConexion.setAutoCommit(false);
-              String consulta= "UPDATE inventario_venta SET inventario_venta_estado = 'I' where 	inventario_venta_cantidad_total=? and inventario_venta_fecha_registro=? AND inventario_venta_producto_id =?";
+              String consulta= "UPDATE inventario_venta SET inventario_venta_cantidad_total = ? where 	inventario_venta_cantidad_total=? and inventario_venta_fecha_registro=? AND inventario_venta_producto_id =?";
                 ps=miConexion.prepareStatement(consulta);
-                ps.setInt(1,cantidad);
-                ps.setString(2,fecha);
-                ps.setString(3,codigo);
+                ps.setInt(1, cantidadNueva);
+                ps.setInt(2,cantidad);
+                ps.setString(3,fecha);
+                ps.setString(4,codigo);
                 ps.executeUpdate();
-                 String consulta2= "UPDATE venta SET venta_estado = 'I' where 	venta_cantidad=	? and venta_fecha_registro=? AND venta_producto_id  =?";
+                 String consulta2= "UPDATE venta SET venta_cantidad=? where 	venta_cantidad=	? and venta_fecha_registro=? AND venta_producto_id  =?";
                 ps=miConexion.prepareStatement(consulta2);
-                ps.setInt(1,cantidad);
-                ps.setString(2,fecha);
-                ps.setString(3,codigo);
+                ps.setInt(1, cantidadNueva);
+                ps.setInt(2,cantidad);
+                ps.setString(3,fecha);
+                ps.setString(4,codigo);
                 ps.executeUpdate();
                 
                  desactivado=true;
@@ -154,6 +157,7 @@ public class DatosInventarioVenta{
             {
                idTipoDocumento= rs.getInt("tipo_documento_id");
             } 
+                rs.close();
             
                    }catch(SQLException ex)
         { 
@@ -177,7 +181,7 @@ public class DatosInventarioVenta{
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
 "                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  \n" +
 "   WHERE inventario_venta.inventario_venta_producto_id LIKE ? OR producto.producto_referencia LIKE ? OR producto.producto_nombre LIKE ? OR producto.producto_abreviatura LIKE ? OR \n" +
-"   forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? ORDER BY inventario_venta_fecha_registro";
+"   forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, buscar);
             ps.setString(2, buscar);
@@ -234,7 +238,7 @@ public class DatosInventarioVenta{
 "                    INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id \n" +
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
 "                   INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario " +
-"   WHERE  inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro";
+"   WHERE  inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, "%"+fecha+"%");
     
@@ -282,7 +286,7 @@ public class DatosInventarioVenta{
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
                   "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
   " WHERE inventario_venta.inventario_venta_producto_id LIKE ? OR producto.producto_referencia LIKE ? OR producto.producto_nombre LIKE ? OR producto.producto_abreviatura LIKE ? OR  "+
- "  forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro";
+ "  forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, buscar);
             ps.setString(2, buscar);
@@ -339,7 +343,7 @@ public class DatosInventarioVenta{
 "                    INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id \n" +
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
 "                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  \n" +
-"  WHERE tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro";
+"  WHERE tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setInt(1, TipoDocumento);
       
@@ -385,7 +389,7 @@ public class DatosInventarioVenta{
 "                    INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id \n" +
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
 "                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  \n" +
-"  WHERE tipo_documento.tipo_documento_id=? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro";
+"  WHERE tipo_documento.tipo_documento_id=? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setInt(1, TipoDocumento);
             ps.setString(2, "%"+fecha+"%");
@@ -432,7 +436,7 @@ public class DatosInventarioVenta{
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
                   "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
   " WHERE inventario_venta.inventario_venta_producto_id LIKE ? OR producto.producto_referencia LIKE ? OR producto.producto_nombre LIKE ? OR producto.producto_abreviatura LIKE ? OR  "+
- "  forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? AND tipo_documento.tipo_documento_id=? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro";
+ "  forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? AND tipo_documento.tipo_documento_id=? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, buscar);
             ps.setString(2, buscar);
@@ -489,7 +493,7 @@ public class DatosInventarioVenta{
                   "  INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id "+
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
                   "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
-  " WHERE inventario_venta.inventario_venta_producto_id LIKE ? AND tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro";
+  " WHERE inventario_venta.inventario_venta_producto_id LIKE ? AND tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, buscar);
             ps.setInt(2, tipoDocumento);
@@ -535,7 +539,7 @@ public class DatosInventarioVenta{
                   "  INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id "+
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
                   "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
-  " WHERE documento.documento_numero_documento LIKE ? AND tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro";
+  " WHERE documento.documento_numero_documento LIKE ? AND tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, buscar);
             ps.setInt(2, tipoDocumento);

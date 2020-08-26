@@ -37,7 +37,7 @@ public class DatosPresentacion {
    {
      this.mensaje=null;
      ArrayList<Presentacion> lista= new ArrayList<>();
-     String consulta="select * from presentacion";
+     String consulta="select * from presentacion where presentacion_estado='A' ";
      try
      {
          ps=miConexion.prepareStatement(consulta);
@@ -129,4 +129,135 @@ public class DatosPresentacion {
      
      return lista;
    }
+           
+         public boolean RegistrarPresentacion(Presentacion unaPresentacion){
+        boolean agregado = false;
+            try{  
+         this.miConexion.setAutoCommit(false); 
+       
+        String consulta2="insert into presentacion "
+             + " values(null,?,?,?)"; 
+              
+            
+            ps=miConexion.prepareStatement(consulta2);
+            ps.setString(1,unaPresentacion.getDescripcion());
+            ps.setString(2,unaPresentacion.getObservacion());
+            ps.setString(3,unaPresentacion.getEstado());
+            ps.executeUpdate();
+           
+           
+           this.miConexion.commit();
+           this.mensaje="presentacion agregada Correctamente";
+           
+           agregado=true;
+         
+                    
+          
+       }catch(SQLException ex)
+       {
+         try
+         {
+             this.mensaje=ex.getMessage();
+             this.miConexion.rollback();
+         }catch(SQLException ex1)
+                 {
+                     this.mensaje= ex1.getMessage();
+                 }
+       }
+        return agregado;
+   }  
+           public boolean DesactivaroActivar(int id,String estado){
+        boolean eliminado = false;
+            try{  
+  
+            
+        String consulta1="UPDATE presentacion SET presentacion_estado = ? WHERE presentacion.presentacion_id = ?"; 
+            this.miConexion.setAutoCommit(false);   
+            
+            ps=miConexion.prepareStatement(consulta1);
+            ps.setString(1,estado);
+            ps.setInt(2,id);
+            ps.executeUpdate();
+
+            
+                                   
+         
+      
+           this.miConexion.commit();
+    
+           
+           eliminado=true;
+         
+                    
+          
+       }catch(SQLException ex)
+       {
+         try
+         {
+             this.mensaje=ex.getMessage();
+             this.miConexion.rollback();
+         }catch(SQLException ex1)
+                 {
+                     this.mensaje= ex1.getMessage();
+                 }
+       }
+        return eliminado;
+    }
+           
+      
+           public ArrayList<Presentacion> ListarPresentaciones()
+   {
+     this.mensaje=null;
+     ArrayList<Presentacion> lista= new ArrayList<>();
+     String consulta="select * from presentacion";
+     try
+     {
+         ps=miConexion.prepareStatement(consulta);
+         rs= ps.executeQuery();
+         while(rs.next())
+         {  Presentacion unaPresentacion = new Presentacion();
+            
+             unaPresentacion.setIdPresentacion(rs.getInt("presentacion_id"));
+             unaPresentacion.setDescripcion(rs.getString("presentacion_descripcion"));
+             unaPresentacion.setEstado(rs.getString("presentacion_estado"));
+             lista.add(unaPresentacion);
+         }
+         rs.close();
+                 
+     }catch(SQLException ex)
+     {
+         this.mensaje=ex.getMessage();
+     }
+     
+     return lista;
+   }
+        
+    
+           
+                       public Presentacion obetenerPresentacionId(int id)
+   {
+     this.mensaje=null;
+     Presentacion unaPresentacion = new Presentacion();
+     String consulta="select * from presentacion where presentacion_id=?";
+     try
+     {
+         ps=miConexion.prepareStatement(consulta);
+         ps.setInt(1, id);
+         rs= ps.executeQuery();
+         while(rs.next())
+         {  
+            
+           
+             unaPresentacion.setEstado(rs.getString("presentacion_estado"));
+             
+         }
+         rs.close();
+                 
+     }catch(SQLException ex)
+     {
+         this.mensaje=ex.getMessage();
+     }
+     
+     return unaPresentacion;
+   }   
 }

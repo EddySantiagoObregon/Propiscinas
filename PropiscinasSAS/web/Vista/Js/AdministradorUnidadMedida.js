@@ -7,11 +7,10 @@
 
 
 
-
 $(function(){
-      ListarGrupos();
+    listarUnidadMedida(); 
     $("#btnEditar").click(function(){
-      
+   
          Editar();
     });
     $("#btnAgregar").click(function(){
@@ -21,13 +20,13 @@ $(function(){
 
 });
 function Agregar(){
-    
+   
      var parametros = {
                accion: "agregar",
                nombre:$("#txt_Nombre1").val()
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerUnidadMedida',         
         data:parametros,
         dataType:'json',
         type: 'post',        
@@ -37,7 +36,7 @@ function Agregar(){
                         if (resultado) {
                 alert("Agregado correctamente");
                  $("tbody tr").remove(); 
-                 ListarGrupos();
+                 listarUnidadMedida();
          
               }else{
                   alert("Problemas al agregar");
@@ -55,14 +54,14 @@ function Agregar(){
         }
     });          
 }
-function ListarGrupos(){
+function listarUnidadMedida(){
     $("tbody tr").remove(); 
      var parametros = {
                accion: "listar"
               
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerUnidadMedida',         
         data:parametros,
         dataType:'json',
         type: 'post',        
@@ -70,16 +69,16 @@ function ListarGrupos(){
         success: function (resultado) {
             console.log(resultado);
             
-            grupos = resultado;          
+            UnidadMedidas = resultado;          
             var cantidad;
-            cantidad= grupos.length;
+            cantidad= UnidadMedidas.length;
              var body =document.getElementsByTagName("tbody")[0];
              
  
 
  
 
-                $.each(grupos, function(j,grupo){
+                $.each(UnidadMedidas, function(j,UnidadMedida){
 
   
  
@@ -95,20 +94,20 @@ function ListarGrupos(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(grupo.descripcion);
+      var textoCelda = document.createTextNode(UnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===1){
-     var textoCelda = document.createTextNode(grupo.estado);
+     var textoCelda = document.createTextNode(UnidadMedida.estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
      if(j===2){
-      var id=grupo.idGrupo;
+      var id=UnidadMedida.idUnidadMedida;
       const fragment= document.createDocumentFragment();
       const button= document.createElement('a');
                            button.setAttribute('onclick', 'abrirModal('+id+')');
@@ -148,24 +147,24 @@ function ListarGrupos(){
 }
 function abrirModal(id){
    
-  $("#id").val(id);
+    $("#id").val(id);
    $('#modal').modal({backdrop: 'static', keyboard: false});
     $("#modal").modal();
      var parametros = {
-               accion: "obtenerGrupo",
+               accion: "obtener",
                id:id
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerUnidadMedida',         
         data:parametros,
         dataType:'json',
         type: 'post',        
         cache: false,
         success: function (resultado) {
             console.log(resultado);
-            var grupo =resultado;
+            var UnidadMedida =resultado;
             if (resultado) {
-                $("#cb_Estado").val(grupo.estado); 
+                $("#cb_Estado").val(UnidadMedida.estado); 
              
          
               }else{
@@ -193,7 +192,7 @@ function Editar(){
               
     };    
     $.ajax({          
-        url: '../ControllerGrupo',         
+        url: '../ControllerUnidadMedida',         
         data:parametros,
         dataType:'json',
         type: 'post',        
@@ -203,9 +202,9 @@ function Editar(){
          
             if (resultado) {
                
-                alert("Se desactivo el grupo correctamente!");
+                alert("Se desactivo la presentación correctamente!");
                  $("tbody tr").remove();
-               ListarGrupos();
+              listarUnidadMedida(); 
               }else{
                   alert("No se ha editado correctamente!");
               }

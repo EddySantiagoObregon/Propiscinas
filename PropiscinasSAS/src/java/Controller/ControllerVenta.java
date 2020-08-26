@@ -148,7 +148,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         String numeroDocumento = request.getParameter("txt_NumeroFactura"); //numero de factura
         String obsevacion=" ";
         Documento unDocumento = new Documento(numeroDocumento,unTipoDocumento,obsevacion);
-        int idUnidadMedida = dVenta.UnidadMedida(IdProducto); //averiguamos el id de la unidad de medida
+        int idUnidadMedida = dVenta.UnidadMedidaa(IdProducto); //averiguamos el id de la unidad de medida
         UnidadMedida unaUnidadMedida = new UnidadMedida();
         unaUnidadMedida.setIdUnidadMedida(idUnidadMedida);
         int cantidadNueva = cantidadAcutal-cantidad; // creamos una varible de la cnatidad nueva y hacemos una operacion de restar la cantidad de venta con la cantidad actual

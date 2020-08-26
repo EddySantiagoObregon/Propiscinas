@@ -5,8 +5,8 @@
  */
 package Controller;
 
-import Modelo.Datos.DatosGrupo;
-import Modelo.Entidad.Grupo;
+import Modelo.Datos.DatosUnidadMedida;
+import Modelo.Entidad.UnidadMedida;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author PAULA
  */
-@WebServlet(name = "ControllerGrupo", urlPatterns = {"/ControllerGrupo"})
-public class ControllerGrupo extends HttpServlet {
-DatosGrupo dGrupo = new DatosGrupo();
+@WebServlet(name = "ControllerUnidadMedida", urlPatterns = {"/ControllerUnidadMedida"})
+public class ControllerUnidadMedida extends HttpServlet {
+DatosUnidadMedida dUnidadMedida = new DatosUnidadMedida();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,10 +41,10 @@ DatosGrupo dGrupo = new DatosGrupo();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerGrupo</title>");            
+            out.println("<title>Servlet ControllerUnidadMedida</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControllerGrupo at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControllerUnidadMedida at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,19 +74,19 @@ DatosGrupo dGrupo = new DatosGrupo();
      * @throws IOException if an I/O error occurs
      */
     @Override
-       protected void doPost(HttpServletRequest request, HttpServletResponse response)
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       
         String tarea= request.getParameter("accion");
         switch(tarea)
         {
             case "agregar":Agregar(request, response);
-                break;
-            case "listar":listarGrupos(request,response);
             break;
-            case "Editar":desactivarGrupo(request,response);
+            case "listar":listarUnidadMedida(request,response);
             break;
-            case "obtenerGrupo":obtenerGrupo(request,response);
+            case "Editar":desactivarUnidadMedida(request,response);
+            break;
+            case "obtener":obtenerUnidadMedida(request,response);
             break;
             
            
@@ -100,39 +100,39 @@ DatosGrupo dGrupo = new DatosGrupo();
         String descripcion = request.getParameter("nombre");
         String observacion = " ";
         String estado ="A";
-        Grupo unGrupo = new Grupo(descripcion, observacion, estado);
-        boolean agregado = dGrupo.RegistrarGrupo(unGrupo);
+        UnidadMedida unaUnidadMedida = new UnidadMedida(descripcion, observacion, estado);
+        boolean agregado = dUnidadMedida.RegistrarUnidadMedida(unaUnidadMedida);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregado);
         out.print(json);
     }
-                        private void listarGrupos(HttpServletRequest request,HttpServletResponse response)
+                        private void listarUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
        
-        ArrayList<Grupo> lista = dGrupo.ListarGrupos();
+        ArrayList<UnidadMedida> lista = dUnidadMedida.ListarUnidadMedidas();
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
         out.print(json);
     }
-                                       private void desactivarGrupo(HttpServletRequest request,HttpServletResponse response)
+                                       private void desactivarUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
-        int idGrupo = Integer.parseInt(request.getParameter("id"));
+        int idUnidadMedida = Integer.parseInt(request.getParameter("id"));
         String estado  = request.getParameter("cb_Estado");
-        boolean  desactivar = dGrupo.DesactivaroActivar(idGrupo, estado);
+        boolean  desactivar = dUnidadMedida.DesactivaroActivar(idUnidadMedida, estado);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(desactivar);
         out.print(json);
     }
-            private void obtenerGrupo(HttpServletRequest request,HttpServletResponse response)
+            private void obtenerUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
         int idGrupo = Integer.parseInt(request.getParameter("id"));
   
-        Grupo unGrupo = dGrupo.obetenerGrupoId(idGrupo);
+        UnidadMedida unaUnidadMedida = dUnidadMedida.obetenerUnidadMedidaId(idGrupo);
         PrintWriter out = response.getWriter();
-        String json = new Gson().toJson(unGrupo);
+        String json = new Gson().toJson(unaUnidadMedida);
         out.print(json);
     }
                         

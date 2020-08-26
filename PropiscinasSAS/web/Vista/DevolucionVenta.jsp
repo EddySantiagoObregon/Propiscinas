@@ -158,7 +158,68 @@
             
 		
 	</section>
+        <div class="modal" id="modal">
+           <div class="modal-dialog" role="document">
+    <div style="height: 764px;"class="modal-content">
+       <div style="color: white; background-color: #007bff; "class="modal-header  text-white">
+                        <h4 class="modal-title" >Devolución de venta</h4>
+                        <button type="button" onclick="limpiarModal()" class="text-white close" data-dismiss="modal">&times;</button>
+                    </div>
+            <form>
+            
+        <div style="margin-top: 0px;   padding-top: 0px;" class="modal-body">
+          <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Numero de documento:</label>
+            <input  readonly="readonly"type="number" name="txt_numeroDocumento"  id="txt_numeroDocumento" class="form-control"  required>
+          </div>
+        <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Tipo de documento:</label>
+            <input readonly="readonly"  type="text" name="txt_tipoDocumento"  id="txt_tipoDocumento" class="form-control"  required>
+          </div>
+            <div style="height: 60px;" class="form-group">
+            <label for="recipient-name" class="col-form-label">Codigo:</label>
+            <input readonly="readonly" type="text" name="txt_Codigo"  id="txt_Codigo" class="form-control" autocomplete="off" required>
+          </div>
+          <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Nombre:</label>
+            <input readonly="readonly" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text"  name="txt_Nombre"  id="txt_Nombre" class="form-control" autocomplete="off" required>
+             <div class="requerimientos" id="msjReferencia" style="text-align: center"></div>                       
+          </div>
+          <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Fecha compra:</label>
+            <input readonly="readonly" style="padding-right: 31px; margin-right: 9px; " onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Fecha"  id="txt_Fecha" autocomplete="off" class="form-control"  required>
+            <div class="requerimientos"  id="msjNombre" style="text-align: center"></div>  
+          </div>
+          <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Cantidad vendida:</label>
+            <input  readonly="readonly" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="5" type="number" name="txt_cantidadVenta"  id="txt_cantidadVenta" class="form-control"  required>
+          </div>
+             <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Cantidad de vuelta:</label>
+            <input  onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="5" type="text" name="txt_cantidadDevuelta"  id="txt_cantidadDevuelta" class="form-control"  required>
+          </div>
+             <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Observación de devolución:</label>
+            <textarea  onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="45" type="text" name="txt_ObservacionDocumento"  id="txt_ObservacionDocumento" class="form-control"  required></textarea>
+          </div>
+          </div>
+               <div style="position: absolute;
+    top: 698px;
+    left: 242px;" >
+          <button style="background-color: #007bff;
+    color: #fff;
+    margin-top: 13px;" type="button" class="btn" id="btnEditar" class="btnEditar" >Hacer devolución</button>
+                     
+                        <button style="background-color: #007bff;color: #fff;margin-top: 12px;" onclick="limpiarModal()" type="button" class="btn" data-dismiss="modal">Cerrar</button>
+                       
+      </div>
         
+        </form>
+      </div>
+          
+    </div>
+  </div>
+</div>
 	<footer>
 		<p>Pro-piscinas 2020</p>
 	</footer>

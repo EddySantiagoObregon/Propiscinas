@@ -235,12 +235,17 @@ DatosUsuario dUsuario = new DatosUsuario();
         if(idUsuario>0){
         Usuario unUsuario = new Usuario();
         unUsuario.setIdUsuario(idUsuario);
+        int cantidadDeVuelta  = Integer.parseInt(request.getParameter("cantidadDevuelta"));
+        int cantidadNueva = Integer.parseInt(request.getParameter("cantidadNueva"));
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        if(cantidad>=cantidadDeVuelta&&cantidadDeVuelta>0){
         String fech = request.getParameter("fecha");
         String IdProducto=request.getParameter("codigo");
         String nombreTipoDocumento = request.getParameter("tipoDocumento");
         String numeroDocumento = request.getParameter("numeroDocumento");
-        boolean desactivado = dInventarioVenta.desactivado(cantidad, fech, IdProducto);
+        
+        String observacionDocumento=request.getParameter("txt_ObservacionDocumento");
+        boolean desactivado = dInventarioVenta.desactivado(cantidad, fech, IdProducto,cantidadNueva);
         if(desactivado==true){
         int idTipoDocumento = dInventarioVenta.TipoDocumentos(nombreTipoDocumento);
         int cantidadAcutal = dVenta.cantidad(IdProducto);
@@ -250,12 +255,12 @@ DatosUsuario dUsuario = new DatosUsuario();
         String fecha = obtenerFechaActual(); 
         TipoDocumento unTipoDocumento = new TipoDocumento();
         unTipoDocumento.setIdTipoDocumento(idTipoDocumento);
-        String obsevacion=" ";
-        Documento unDocumento = new Documento(numeroDocumento,unTipoDocumento,obsevacion);
-        int idUnidadMedida = dVenta.UnidadMedida(IdProducto);
+        
+        Documento unDocumento = new Documento(numeroDocumento,unTipoDocumento,observacionDocumento);
+        int idUnidadMedida = dVenta.UnidadMedidaa(IdProducto);
         UnidadMedida unaUnidadMedida = new UnidadMedida();
         unaUnidadMedida.setIdUnidadMedida(idUnidadMedida);
-        int cantidadNueva = cantidadAcutal+cantidad; 
+        int cantidadNuevaa = cantidadAcutal+cantidadDeVuelta; 
         String observacion = "REGISTRO DE DEVOLUCIÓN DE PRODUCTOS";
         unDetalleProducto.setIdProducto(IdProducto); 
         int idInfraestructura= 1; //idInfraestructura = sala de ventas
@@ -265,13 +270,13 @@ DatosUsuario dUsuario = new DatosUsuario();
         Transaccion unaTransaccion = new Transaccion();
         unaTransaccion.setIdTransaccion(idTransaccion);
         String observacionn ="DEVOLUCION DEL PRODUCTO";
-        InventarioInfraestructura unInventarioInfraestructura = new InventarioInfraestructura(unDetalleProducto,fecha,unaInfraestructura,cantidadNueva,observacion,unUsuario);
+        InventarioInfraestructura unInventarioInfraestructura = new InventarioInfraestructura(unDetalleProducto,fecha,unaInfraestructura,cantidadNuevaa,observacion,unUsuario);
          String estado="A";
         int numeroFactura=Integer.parseInt(numeroDocumento);
         int idInfraestructuraDespacho = 4; //Infrtaestructura despacho (ninguna)
         Infraestructura unaInfraestructuraDespacho = new Infraestructura();
         unaInfraestructuraDespacho.setIdInfraestructura(idInfraestructuraDespacho);
-        Movimiento unMovimiento = new Movimiento(unaInfraestructura, unaTransaccion, numeroFactura,unDetalleProducto, fecha, cantidad,unaUnidadMedida ,unDocumento, unaInfraestructuraDespacho, observacionn, estado,unUsuario);
+        Movimiento unMovimiento = new Movimiento(unaInfraestructura, unaTransaccion, numeroFactura,unDetalleProducto, fecha, cantidadDeVuelta,unaUnidadMedida ,unDocumento, unaInfraestructuraDespacho, observacionn, estado,unUsuario);
         boolean agregadoo = dProducto.agregarProducto(unInventarioInfraestructura,unMovimiento,idUsuario);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregadoo);
@@ -282,6 +287,13 @@ DatosUsuario dUsuario = new DatosUsuario();
         String json = new Gson().toJson(agregadoo);
         out.print(json);
         }
+        }else{
+           boolean agregadoo=false;
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(agregadoo);
+        out.print(json);
+        }  
+        
       }else{
             boolean agregadoo=false;
             PrintWriter out = response.getWriter();
