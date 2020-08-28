@@ -5,7 +5,9 @@
 --%>
 <%
   
-
+ if (session.getAttribute("idUsuario")==null){
+   response.sendRedirect("Salir.jsp");
+ }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -96,6 +98,7 @@
                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
                                         <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
                                         <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarProductoDeProveedor.jsp">Listar producto de proveedor</a>
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
@@ -170,7 +173,7 @@
         <div style="margin-top: 0px;   padding-top: 0px;" class="modal-body">
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Numero de documento:</label>
-            <input  readonly="readonly"type="number" name="txt_numeroDocumento"  id="txt_numeroDocumento" class="form-control"  required>
+            <input  readonly="readonly"type="text" name="txt_numeroDocumento"  id="txt_numeroDocumento" class="form-control"  required>
           </div>
         <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Tipo de documento:</label>

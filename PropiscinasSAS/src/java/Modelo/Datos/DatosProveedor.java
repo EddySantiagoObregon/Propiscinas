@@ -80,7 +80,7 @@ public class DatosProveedor {
    {
      this.mensaje=null;
      ArrayList<Proveedor> lista= new ArrayList<>();
-     String consulta="SELECT * FROM proveedor ORDER BY proveedor_nombre ASC";
+     String consulta="SELECT * FROM proveedor WHERE proveedor_estado='A' ORDER BY proveedor_nombre ASC ";
      try
      {
          ps=miConexion.prepareStatement(consulta);

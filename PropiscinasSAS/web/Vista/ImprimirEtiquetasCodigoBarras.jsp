@@ -3,7 +3,12 @@
     Created on : 5/08/2020, 10:27:24 AM
     Author     : PAULA
 --%>
-
+<%
+  
+ if (session.getAttribute("idUsuario")==null){
+   response.sendRedirect("Salir.jsp");
+ }
+%>
 
 <!DOCTYPE html>
 <html>

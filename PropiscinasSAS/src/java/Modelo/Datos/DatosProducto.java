@@ -331,9 +331,8 @@ private String obtenerFechaActual(){
             ps.setInt(2,unMovimiento.getUnDocumento().getUnTipoDocumento().getIdTipoDocumento());
             ps.setString(3,unMovimiento.getUnDocumento().getObservacion());
             ps.executeUpdate();
-             String consultica="select documento_id from documento where documento_numero_documento=?";
+               String consultica="SELECT MAX(documento_id) AS documento_id FROM documento";
             ps=miConexion.prepareStatement(consultica);
-            ps.setString(1,unMovimiento.getUnDocumento().getNumerodocumento());
             rs= ps.executeQuery();
             int idDocumento=0;
             if(rs.next())
@@ -344,7 +343,7 @@ private String obtenerFechaActual(){
             ps=miConexion.prepareStatement(consulta6);
             ps.setInt(1,unMovimiento.getUnaInfraestructura().getIdInfraestructura());
             ps.setInt(2, unMovimiento.getUnaTransaccion().getIdTransaccion());
-            ps.setInt(3, unMovimiento.getNumerofactura());
+            ps.setString(3, unMovimiento.getNumerofactura());
             ps.setString(4,unMovimiento.getUnDetalleProducto().getIdProducto());
             ps.setString(5,unMovimiento.getFecharegistro());
             ps.setInt(6, unMovimiento.getCantidad());
@@ -380,7 +379,106 @@ private String obtenerFechaActual(){
        }
         return agregado;
     }
-    
+    public boolean agregarProductoDevolucionVenta(InventarioInfraestructura unInventarioInfraestructura,Movimiento unMovimiento,int idUsuario){
+        boolean agregado = false;
+            try{  
+  
+     
+            this.miConexion.setAutoCommit(false);   
+            
+           
+
+           
+            
+            String consulta1= "insert into inventario_infraestructura values(null,?,?,?,?,?,?)";
+            ps=miConexion.prepareStatement(consulta1);
+            ps.setString(1,unInventarioInfraestructura.getUnDetalleProducto().getIdProducto());
+            ps.setString(2,unInventarioInfraestructura.getFecha());
+            ps.setInt(3,unInventarioInfraestructura.getUnaInfraestructura().getIdInfraestructura());
+            ps.setInt(4, unInventarioInfraestructura.getCantidad());
+            ps.setString(5,unInventarioInfraestructura.getObservacion());
+            ps.setInt(6,idUsuario);
+            ps.executeUpdate();
+            
+            String consulta2= "select * from inventario_infraestructura_cantidad_actual where inventario_producto_id=? and inventario_infraestructura_id=?";
+            ps=miConexion.prepareStatement(consulta2);
+            ps.setString(1,unInventarioInfraestructura.getUnDetalleProducto().getIdProducto());
+            ps.setInt(2,unInventarioInfraestructura.getUnaInfraestructura().getIdInfraestructura());
+            rs= ps.executeQuery();
+            if(rs.next())
+            {
+                String consulta3= "UPDATE inventario_infraestructura_cantidad_actual SET inventario_cantidad_total = ? ,inventario_fecha_registro=? where inventario_producto_id=? and inventario_infraestructura_id=?";
+                ps=miConexion.prepareStatement(consulta3);
+                ps.setInt(1, unInventarioInfraestructura.getCantidad());
+                ps.setString(2,unInventarioInfraestructura.getFecha());
+                ps.setString(3,unInventarioInfraestructura.getUnDetalleProducto().getIdProducto());
+                ps.setInt(4,unInventarioInfraestructura.getUnaInfraestructura().getIdInfraestructura());
+                ps.executeUpdate();
+            }
+            else{
+             String consulta4= "insert into inventario_infraestructura_cantidad_actual values(null,?,?,?,?,?)";
+            ps=miConexion.prepareStatement(consulta4);
+            ps.setString(1,unInventarioInfraestructura.getUnDetalleProducto().getIdProducto());
+            ps.setString(2,unInventarioInfraestructura.getFecha());
+            ps.setInt(3,unInventarioInfraestructura.getUnaInfraestructura().getIdInfraestructura());
+            ps.setInt(4, unInventarioInfraestructura.getCantidad());
+            ps.setString(5,unInventarioInfraestructura.getObservacion());
+            ps.executeUpdate();
+            }
+            String consulta5= "insert into documento values(null,?,?,?)";
+            ps=miConexion.prepareStatement(consulta5);
+            ps.setString(1,unMovimiento.getUnDocumento().getNumerodocumento());
+            ps.setInt(2,unMovimiento.getUnDocumento().getUnTipoDocumento().getIdTipoDocumento());
+            ps.setString(3,unMovimiento.getUnDocumento().getObservacion());
+            ps.executeUpdate();
+             String consultica="SELECT MAX(documento_id) AS documento_id FROM documento";
+            ps=miConexion.prepareStatement(consultica);
+            rs= ps.executeQuery();
+            int idDocumento=0;
+            if(rs.next())
+            {
+               idDocumento= rs.getInt("documento_id");
+            }
+            String consulta6="insert into movimiento values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
+            ps=miConexion.prepareStatement(consulta6);
+            ps.setInt(1,unMovimiento.getUnaInfraestructura().getIdInfraestructura());
+            ps.setInt(2, unMovimiento.getUnaTransaccion().getIdTransaccion());
+            ps.setString(3, unMovimiento.getNumerofactura());
+            ps.setString(4,unMovimiento.getUnDetalleProducto().getIdProducto());
+            ps.setString(5,unMovimiento.getFecharegistro());
+            ps.setInt(6, unMovimiento.getCantidad());
+            ps.setInt(7, unMovimiento.getUnaUnidadMedida().getIdUnidadMedida());
+            ps.setInt(8,idDocumento);
+            ps.setInt(9, unMovimiento.getUnaInfraestructuraDespacho().getIdInfraestructura());
+            ps.setString(10,unMovimiento.getObservacion());
+            ps.setString(11,unMovimiento.getEstado());
+            ps.setInt(12,idUsuario);
+            ps.executeUpdate();
+           
+            
+            
+           
+           
+           this.miConexion.commit();
+           this.mensaje="usuario agregado Correctamente";
+           
+           agregado=true;
+         
+                    
+          
+       }catch(SQLException ex)
+       {
+         try
+         {
+             this.mensaje=ex.getMessage();
+             this.miConexion.rollback();
+         }catch(SQLException ex1)
+                 {
+                     this.mensaje= ex1.getMessage();
+                 }
+       }
+        return agregado;
+    }
      public boolean agregarProvedorProductoCompra(int idProveedorProducto,String fecha,String precioCompra,int idUsuario){
         boolean agregado = false;
             try{  

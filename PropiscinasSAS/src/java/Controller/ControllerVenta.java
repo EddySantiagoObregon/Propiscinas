@@ -146,13 +146,15 @@ DatosUsuario dUsuario = new DatosUsuario();
         TipoDocumento unTipoDocumento = new TipoDocumento();
         unTipoDocumento.setIdTipoDocumento(idTipoDocumento);
         String numeroDocumento = request.getParameter("txt_NumeroFactura"); //numero de factura
-        String obsevacion=" ";
-        Documento unDocumento = new Documento(numeroDocumento,unTipoDocumento,obsevacion);
+       
+         int cantidadNueva = cantidadAcutal-cantidad; // creamos una varible de la cnatidad nueva y hacemos una operacion de restar la cantidad de venta con la cantidad actual
+        String observacionn ="PRODUCTO VENDIDO";
+        String observacion = "REGISTRO DE VENTA, SE VENDIERON "+cantidad+" "+"Y QUEDARON "+cantidadNueva;
+        Documento unDocumento = new Documento(numeroDocumento,unTipoDocumento,observacionn);
         int idUnidadMedida = dVenta.UnidadMedidaa(IdProducto); //averiguamos el id de la unidad de medida
         UnidadMedida unaUnidadMedida = new UnidadMedida();
         unaUnidadMedida.setIdUnidadMedida(idUnidadMedida);
-        int cantidadNueva = cantidadAcutal-cantidad; // creamos una varible de la cnatidad nueva y hacemos una operacion de restar la cantidad de venta con la cantidad actual
-        String observacion = "REGISTRO DE VENTA, SE VENDIERON "+cantidad+" "+"Y QUEDARON "+cantidadNueva;
+       
         String Estado = "A";
      
         String valor =  request.getParameter("txt_Valor");
@@ -170,14 +172,14 @@ DatosUsuario dUsuario = new DatosUsuario();
         unaTransaccion.setIdTransaccion(idTransaccion);
        
         
-        String observacionn ="PRODUCTO VENDIDO";
+        
         InventarioInfraestructura unInventarioInfraestructura = new InventarioInfraestructura(unDetalleProducto,fecha,unaInfraestructura,cantidadNueva,observacion,unUsuario);
          String estado="A";
-        int numeroFactura=Integer.parseInt(numeroDocumento);
+   
         int idInfraestructuraDespacho = 4; //Infrtaestructura despacho (ninguna)
         Infraestructura unaInfraestructuraDespacho = new Infraestructura();
         unaInfraestructuraDespacho.setIdInfraestructura(idInfraestructuraDespacho);
-        Movimiento unMovimiento = new Movimiento(unaInfraestructura, unaTransaccion, numeroFactura,unDetalleProducto, fecha, cantidad,unaUnidadMedida ,unDocumento, unaInfraestructuraDespacho, observacionn, estado,unUsuario);
+        Movimiento unMovimiento = new Movimiento(unaInfraestructura, unaTransaccion, numeroDocumento,unDetalleProducto, fecha, cantidad,unaUnidadMedida ,unDocumento, unaInfraestructuraDespacho, observacion, estado,unUsuario);
         boolean agregadoo = dProducto.agregarProducto(unInventarioInfraestructura,unMovimiento,idUsuario);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregadoo);

@@ -84,6 +84,14 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
             break;
             case "ListarProveedorProducto":ListarProveedorProducto(request,response);
             break;
+            case "ListarProveedorProductos":ListarProveedorProductos(request,response);
+            break;
+            case "ListarProveedoresYProductosPorCodigo":ListarProveedoresYProductosPorCodigo(request,response);
+            break;
+            case "BuscarPorProveedoryIdProducto":ListarProveedoresYProductosPorCodigoYidProveedor(request,response);
+            break;
+            case "ListarProveedoresYProductosPoridProveedor":ListarProveedoresYProductosPoridProveedor(request,response);
+            break;
         }
      }
  private void agregar(HttpServletRequest request, HttpServletResponse response) 
@@ -107,6 +115,44 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
         String idProducto = request.getParameter("idProducto");
     
     ArrayList<Proveedor> lista= dProveedorProducto.ListarProveedorProducto(idProducto);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+             private void ListarProveedorProductos(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+       
+        ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductos();
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+                        private void ListarProveedoresYProductosPorCodigo(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+       String codigoPro = request.getParameter("codigo");
+        ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductosPorCodigo(codigoPro);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+                                 private void ListarProveedoresYProductosPorCodigoYidProveedor(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+       String codigoPro = request.getParameter("codigo");
+       int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductosPorCodigoYidProveedor(codigoPro,idProveedor);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+                                                              private void ListarProveedoresYProductosPoridProveedor(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+
+       int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductosPoridProveedor(idProveedor);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
         out.print(json);

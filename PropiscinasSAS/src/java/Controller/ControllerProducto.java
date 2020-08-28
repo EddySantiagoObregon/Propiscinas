@@ -423,7 +423,7 @@ public class ControllerProducto extends HttpServlet {
         InventarioInfraestructura unInventarioInfraestructura = new InventarioInfraestructura(unDetalleProducto, fecha, unaInfraestructura, cantidadTotal,observacion,unUsuario);
         
         String estado="A";
-        int numerFactura = 0;
+        String numerFactura = " ";
         int idUnidadMedida = Integer.parseInt(request.getParameter("sIdUnidad"));
         UnidadMedida unaUnidadMedida= new UnidadMedida();
         unaUnidadMedida.setIdUnidadMedida(idUnidadMedida);
@@ -717,6 +717,9 @@ public class ControllerProducto extends HttpServlet {
         int idUsuario = dUsuario.idUsuario(correo);
         Usuario unUsuario = new Usuario();
         unUsuario.setIdUsuario(idUsuario);
+          int cantidadExistenteSalida= Integer.parseInt(request.getParameter("txt_CantidadExistente"));
+        int catidadEnviaraSalida = Integer.parseInt(request.getParameter("txt_Cantidad_Enviara"));
+        if(catidadEnviaraSalida<=cantidadExistenteSalida){
         String idProducto= request.getParameter("idProducto");
         DetalleProducto unDetalleProductoSalida= new DetalleProducto();
         unDetalleProductoSalida.setIdProducto(idProducto);
@@ -727,14 +730,13 @@ public class ControllerProducto extends HttpServlet {
         Transaccion unaTransaccionSalida= new Transaccion();
         unaTransaccionSalida.setIdTransaccion(idTransaccionSalida);
         String observacionInfraestructura = request.getParameter("txt_Observacion");
-        int cantidadExistenteSalida= Integer.parseInt(request.getParameter("txt_CantidadExistente"));
-        int catidadEnviaraSalida = Integer.parseInt(request.getParameter("txt_Cantidad_Enviara"));
+      
         int cantidadTotal = cantidadExistenteSalida-catidadEnviaraSalida;
         String fecha = obtenerFechaActual();
         InventarioInfraestructura unInventarioInfraestructura = new InventarioInfraestructura(unDetalleProductoSalida, fecha, unaInfraestructuraSalida, cantidadTotal,observacionInfraestructura,unUsuario);
         
         String estado="A";
-        int numerFactura = 0;
+        String numerFactura = "";
         int idUnidadMedida = Integer.parseInt(request.getParameter("sIdUnidad"));
         UnidadMedida unaUnidadMedida= new UnidadMedida();
         unaUnidadMedida.setIdUnidadMedida(idUnidadMedida);
@@ -769,7 +771,7 @@ public class ControllerProducto extends HttpServlet {
         int catidadEnviaraRecibe = Integer.parseInt(request.getParameter("txt_Cantidad_Enviara"));
         int cantidadTotalRecibe = cantidadExistenteRecibe+catidadEnviaraRecibe;
       InventarioInfraestructura unInventarioInfraestructuraRecibe = new InventarioInfraestructura(unDetalleProductoSalida, fecha, InfraestruturaRecibe, cantidadTotalRecibe,Observacion,unUsuario);
-        int numerFacturaRecibe = 0;
+        String numerFacturaRecibe = " ";
         int idUnidadMedidaRecibe = Integer.parseInt(request.getParameter("sIdUnidad"));
         UnidadMedida unaUnidadMedidaRecibe= new UnidadMedida();
         unaUnidadMedidaRecibe.setIdUnidadMedida(idUnidadMedidaRecibe);
@@ -790,6 +792,12 @@ public class ControllerProducto extends HttpServlet {
         String json = new Gson().toJson(agregadoo);
         out.print(json);
         }else{
+           PrintWriter out = response.getWriter();
+           String json = new Gson().toJson(agregado);
+           out.print(json);
+        }
+        }else{
+           boolean agregado = false;
            PrintWriter out = response.getWriter();
            String json = new Gson().toJson(agregado);
            out.print(json);

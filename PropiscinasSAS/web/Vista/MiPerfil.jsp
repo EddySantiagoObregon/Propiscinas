@@ -40,20 +40,29 @@
     <body style="-webkit-box-shadow: 2px 2px 5px #999;
   -moz-box-shadow: 2px 2px 5px #4998e8;">
         <script>
+      
               function mostrarContrasena(){
-      var tipo = document.getElementById("password");
+           var tipo = document.getElementById("password");
+       var ojo = document.getElementById("imgOjo");
+      
       if(tipo.type === "password"){
           tipo.type = "text";
+           ojo.style.display='none';
       }else{
           tipo.type = "password";
+          ojo.style.display='block';
       }
   }
     function mostrarContrasenaa(){
       var tipo = document.getElementById("passwordd");
+       var ojos = document.getElementById("imgOjos");
+      
       if(tipo.type === "password"){
           tipo.type = "text";
+           ojos.style.display='none';
       }else{
           tipo.type = "password";
+          ojos.style.display='block';
       }
   }
         </script>
@@ -125,10 +134,11 @@
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Proveedores
                                  </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
+                                      <div class="dropdown-menu">
+                                       <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
                                         <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
                                         <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarProductoDeProveedor.jsp">Listar producto de proveedor</a>
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
@@ -191,30 +201,49 @@
            <summary style="color: #ffffff;">Actualizar contraseña</summary>
 <div class="form-row" style="color: #ffffff;"> Contraseña nueva
     <div class="col">
-        <input  class="form-control" type="password" name="password" id="password" style="width: 608px;">
+        <input  class="form-control" type="password" name="password" id="password" style=" width: 716px;">
 </div>
     <div class="col">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="mostrarContrasena()" style="left: 25px;
-    top: 5px; ">
-        <label class="form-check-label"  style="margin-right: 0px;margin-left: 23px;margin-top: 3px;">
-            <img src="Imagenes/ojo.png" width="25" height="25" alt=""/></label>
+        
+        <img  style=" position: absolute;
+    width: 29px;
+    height: 30px;
+  
+  
+    cursor: pointer; z-index: 2; background-color: #007bff;" id="imgOjo" onclick="mostrarContrasena()" src="Imagenes/ojoCerrado.png" width="300" height="300" alt=""/>
+                <img  style=" position: absolute;
+    width: 29px;
+    height: 30px;
+  
+  
+    cursor: pointer; " onclick="mostrarContrasena()" src="Imagenes/ojoAbierto.png" width="300" height="300" alt=""/>
+  
     
   
 </div>
     <div class="form-row"style="color: #ffffff;" > Contraseña antigua
     <div class="col">
-        <input  class="form-control" type="password" name="password" id="passwordd" style="width: 608px;margin-left: 6px;">
+        <input  class="form-control" type="password" name="password" id="passwordd" style="width: 716px;margin-left: 6px;">
 </div>
-    <div class="col">
-        <input type="checkbox" class="form-check-input" id="exampleCheck11" onclick="mostrarContrasenaa()" style="left: 25px;
-    top: 5px;">
-        <label class="form-check-label" style="    margin-right: 0px;
-    margin-left: 23px;
-    margin-top: 3px;">   <img  src="Imagenes/ojo.png" width="25" height="25" alt=""/></label>
+        <div class="col">
+        
+        <img  style=" position: absolute;
+    width: 29px;
+    height: 30px;
+  
+  
+    cursor: pointer; z-index: 2; background-color: #007bff;" id="imgOjos" onclick="mostrarContrasenaa()" src="Imagenes/ojoCerrado.png" width="300" height="300" alt=""/>
+                <img  style=" position: absolute;
+    width: 29px;
+    height: 30px;
+  
+  
+    cursor: pointer; " onclick="mostrarContrasenaa()" src="Imagenes/ojoAbierto.png" width="300" height="300" alt=""/>
+  
     
   
 </div>
-        <a style="margin-left: 283px;
+        <a style="margin-left: 282px;
     margin-top: 6px;
     color: black;
     background-color:  aliceblue;

@@ -50,7 +50,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -86,7 +86,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -121,7 +121,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+               unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -156,7 +156,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -195,7 +195,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+               unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -231,7 +231,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -268,7 +268,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -306,7 +306,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -345,7 +345,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -384,7 +384,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -421,7 +421,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 
@@ -459,7 +459,7 @@ public class DatosProveedorProductoCompra {
          while(rs.next())
          {
               ProveedorProductoCompra unProveedorProductoCompra = new ProveedorProductoCompra();
-                unProveedorProductoCompra.setIdProveedorProductoCompra(rs.getInt("documento_numero_documento"));
+                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setIdProducto(rs.getString("documento_numero_documento"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unProveedorProductoCompra.getUnProveedorProducto().getUnDetalleProducto().setNombre(rs.getString("producto_nombre")); 

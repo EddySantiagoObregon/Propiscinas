@@ -578,6 +578,8 @@ function limpiarModal(){
        $("#txt_ObservacionDocumento").val("");
        $("#cb_TipoDocumento").val(0);
          $("#cb_Proveedor").empty();
+          $("#cb_Proveedor").empty();
+           $("#cb_Proveedor").empty();
     var idProducto = $("#idProducto").val();   
       $('#cb_Proveedor').append(
                          $('<option>',{
@@ -586,7 +588,7 @@ function limpiarModal(){
                         })
                       );
         $("#txt_ValorCompra").val(0);      
-       listarProveedorProducto(idProducto);
+       
      
        
 }

@@ -109,9 +109,10 @@
                                   Proveedores
                                  </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
+                                       <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
                                         <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
                                         <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarProductoDeProveedor.jsp">Listar producto de proveedor</a>
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
@@ -238,7 +239,7 @@
                       
                       <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Numero de documento</font></td>
-                        <td><input type="text" onkeypress="return validarNumero(event)" maxlength="9" name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
+                        <td><input type="text" maxlength="20" name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
                    
                     </tr>    
                    

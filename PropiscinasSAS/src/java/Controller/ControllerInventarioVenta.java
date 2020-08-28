@@ -244,7 +244,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         String nombreTipoDocumento = request.getParameter("tipoDocumento");
         String numeroDocumento = request.getParameter("numeroDocumento");
         
-        String observacionDocumento=request.getParameter("txt_ObservacionDocumento");
+        String observacionDocumento= request.getParameter("txt_ObservacionDocumento");
         boolean desactivado = dInventarioVenta.desactivado(cantidad, fech, IdProducto,cantidadNueva);
         if(desactivado==true){
         int idTipoDocumento = dInventarioVenta.TipoDocumentos(nombreTipoDocumento);
@@ -255,13 +255,13 @@ DatosUsuario dUsuario = new DatosUsuario();
         String fecha = obtenerFechaActual(); 
         TipoDocumento unTipoDocumento = new TipoDocumento();
         unTipoDocumento.setIdTipoDocumento(idTipoDocumento);
-        
+        String observacion = "REGISTRO DE DEVOLUCIÓN DE PRODUCTOS";
         Documento unDocumento = new Documento(numeroDocumento,unTipoDocumento,observacionDocumento);
         int idUnidadMedida = dVenta.UnidadMedidaa(IdProducto);
         UnidadMedida unaUnidadMedida = new UnidadMedida();
         unaUnidadMedida.setIdUnidadMedida(idUnidadMedida);
         int cantidadNuevaa = cantidadAcutal+cantidadDeVuelta; 
-        String observacion = "REGISTRO DE DEVOLUCIÓN DE PRODUCTOS";
+        
         unDetalleProducto.setIdProducto(IdProducto); 
         int idInfraestructura= 1; //idInfraestructura = sala de ventas
         Infraestructura unaInfraestructura = new Infraestructura();
@@ -270,14 +270,14 @@ DatosUsuario dUsuario = new DatosUsuario();
         Transaccion unaTransaccion = new Transaccion();
         unaTransaccion.setIdTransaccion(idTransaccion);
         String observacionn ="DEVOLUCION DEL PRODUCTO";
-        InventarioInfraestructura unInventarioInfraestructura = new InventarioInfraestructura(unDetalleProducto,fecha,unaInfraestructura,cantidadNuevaa,observacion,unUsuario);
+        InventarioInfraestructura unInventarioInfraestructura = new InventarioInfraestructura(unDetalleProducto,fecha,unaInfraestructura,cantidadNuevaa,observacionDocumento,unUsuario);
          String estado="A";
-        int numeroFactura=Integer.parseInt(numeroDocumento);
+        
         int idInfraestructuraDespacho = 4; //Infrtaestructura despacho (ninguna)
         Infraestructura unaInfraestructuraDespacho = new Infraestructura();
         unaInfraestructuraDespacho.setIdInfraestructura(idInfraestructuraDespacho);
-        Movimiento unMovimiento = new Movimiento(unaInfraestructura, unaTransaccion, numeroFactura,unDetalleProducto, fecha, cantidadDeVuelta,unaUnidadMedida ,unDocumento, unaInfraestructuraDespacho, observacionn, estado,unUsuario);
-        boolean agregadoo = dProducto.agregarProducto(unInventarioInfraestructura,unMovimiento,idUsuario);
+        Movimiento unMovimiento = new Movimiento(unaInfraestructura, unaTransaccion, numeroDocumento,unDetalleProducto, fecha, cantidadDeVuelta,unaUnidadMedida ,unDocumento, unaInfraestructuraDespacho, observacionn, estado,unUsuario);
+        boolean agregadoo = dProducto.agregarProductoDevolucionVenta(unInventarioInfraestructura,unMovimiento,idUsuario);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregadoo);
         out.print(json);

@@ -76,9 +76,8 @@ public class DatosVenta{
             ps.setInt(2,unDocumento.getUnTipoDocumento().getIdTipoDocumento());
             ps.setString(3,unDocumento.getObservacion());
             ps.executeUpdate();
-             String consultica="select documento_id from documento where documento_numero_documento=?";
+             String consultica="SELECT MAX(documento_id) AS documento_id FROM documento";
             ps=miConexion.prepareStatement(consultica);
-            ps.setString(1,unDocumento.getNumerodocumento());
             rs= ps.executeQuery();
             int idDocumento=0;
             if(rs.next())

@@ -4,7 +4,12 @@
     Author     : PAULA
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+  
+ if (session.getAttribute("idUsuario")==null){
+   response.sendRedirect("Salir.jsp");
+ }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -98,10 +103,11 @@
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Proveedores
                                  </button>
-                                    <div class="dropdown-menu">
+                                   <div class="dropdown-menu">
                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
                                         <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
                                         <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarProductoDeProveedor.jsp">Listar producto de proveedor</a>
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>

@@ -115,10 +115,11 @@
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Proveedores
                                  </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
+                                     <div class="dropdown-menu">
+                                       <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
                                         <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
                                         <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
+                                        <a class="dropdown-item" href="ListarProductoDeProveedor.jsp">Listar producto de proveedor</a>
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
@@ -223,7 +224,7 @@
                     
                     <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Numero de factura</font></td>
-                       <td><input style="height: 24.5px;" type="text" onkeypress="return validarNumero(event)" maxlength="9" name="txt_NumeroFactura" id="txt_NumeroFactura" class="form-control"  value="" required></textarea></td>
+                       <td><input style="height: 24.5px;"onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" maxlength="20" name="txt_NumeroFactura" id="txt_NumeroFactura" class="form-control"  value="" required></textarea></td>
                     </tr>
                      <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Tipo de documento </font></td>

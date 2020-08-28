@@ -15,7 +15,7 @@ public class Movimiento {
     private int idMovimiento;
     private Infraestructura unaInfraestructura;
     private Transaccion unaTransaccion;
-    private int numerofactura;
+    private String numerofactura;
     private DetalleProducto unDetalleProducto;
     private String fecharegistro;
     private int cantidad;
@@ -26,7 +26,7 @@ public class Movimiento {
     private String estado;
     private Usuario unUsuario;
 
-    public Movimiento( Infraestructura unaInfraestructura, Transaccion unaTransaccion, int numerofactura,DetalleProducto unDetalleProducto, String fecharegistro, int cantidad,UnidadMedida unaUnidadMedida,Documento unDocumento, Infraestructura unaInfraestructuraDespacho, String observacion, String estado,Usuario unUsuario) {
+    public Movimiento( Infraestructura unaInfraestructura, Transaccion unaTransaccion, String numerofactura,DetalleProducto unDetalleProducto, String fecharegistro, int cantidad,UnidadMedida unaUnidadMedida,Documento unDocumento, Infraestructura unaInfraestructuraDespacho, String observacion, String estado,Usuario unUsuario) {
         this.unaInfraestructura = unaInfraestructura;
         this.unaTransaccion = unaTransaccion;
         this.numerofactura = numerofactura;
@@ -111,11 +111,11 @@ public class Movimiento {
         this.unaTransaccion = unaTransaccion;
     }
 
-    public int getNumerofactura() {
+    public String getNumerofactura() {
         return numerofactura;
     }
 
-    public void setNumerofactura(int numerofactura) {
+    public void setNumerofactura(String numerofactura) {
         this.numerofactura = numerofactura;
     }
 

@@ -116,7 +116,7 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -224,7 +224,7 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -333,7 +333,7 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+        var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -442,7 +442,7 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+        var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -583,7 +583,7 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+        var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -692,7 +692,7 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+       var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -803,7 +803,7 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -913,7 +913,8 @@ if(cantidadMedida===0){
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.idProveedorProductoCompra);
+          var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+    
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   

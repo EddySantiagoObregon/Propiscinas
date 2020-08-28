@@ -257,11 +257,10 @@ function abrirModal(autoincrementable){
 function hacerdevolucion(){
     var cantidad =$("#txt_cantidadVenta").val();
     var cantidadDevuelta = $("#txt_cantidadDevuelta").val();
-    alert( cantidad+" cantidad de venta");
-    alert( cantidadDevuelta+" cantidad devuelta");
+
   
        var cantidadNueva = cantidad-cantidadDevuelta;
-       alert(cantidadNueva);
+     
     var parametros = {
                accion: "DevolucionProductos",
                txt_Correo:$("#Correo").val(),
@@ -324,7 +323,8 @@ function buscarVenta(){
  
 
  
- $.each(inventarioventas, function(j,inventarioventa){
+
+                $.each(inventarioventas, function(j,inventarioventa){
 
   
  
@@ -504,10 +504,9 @@ function buscarInventarioVentaPorFecha(){
              var body =document.getElementsByTagName("tbody")[0];
              
  
-
  
 
-           $.each(inventarioventas, function(j,inventarioventa){
+                $.each(inventarioventas, function(j,inventarioventa){
 
   
  
@@ -691,7 +690,9 @@ function buscarInventarioVentaPorProductoYFecha(){
 
  
 
-               $.each(inventarioventas, function(j,inventarioventa){
+ 
+
+                $.each(inventarioventas, function(j,inventarioventa){
 
   
  
@@ -875,7 +876,7 @@ function BuscarPorTipoDocumento(){
 
  
 
-           $.each(inventarioventas, function(j,inventarioventa){
+                $.each(inventarioventas, function(j,inventarioventa){
 
   
  
@@ -1055,9 +1056,10 @@ function BuscarPorTipoDocumentoYFecha(){
             fecha=[cantidad];
             cantidadd=[cantidad];
              var body =document.getElementsByTagName("tbody")[0];
-             
+        
  
- $.each(inventarioventas, function(j,inventarioventa){
+
+                $.each(inventarioventas, function(j,inventarioventa){
 
   
  
@@ -1241,7 +1243,8 @@ function BuscarPorProductoYTipoDocumentoYFecha(){
  
 
  
- $.each(inventarioventas, function(j,inventarioventa){
+
+                $.each(inventarioventas, function(j,inventarioventa){
 
   
  
@@ -1455,7 +1458,9 @@ function BuscarPorProductoYTipoDocumento(){
  
 
  
- $.each(inventarioventas, function(j,inventarioventa){
+ 
+
+                $.each(inventarioventas, function(j,inventarioventa){
 
   
  

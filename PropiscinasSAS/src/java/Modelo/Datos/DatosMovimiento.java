@@ -75,7 +75,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -159,7 +159,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -226,7 +226,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -295,7 +295,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -364,7 +364,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -434,7 +434,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -503,7 +503,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -572,7 +572,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
@@ -656,7 +656,7 @@ public class DatosMovimiento {
                 unMovimiento.setIdMovimiento(rs.getInt("movimiento_id"));
                 unMovimiento.getUnaInfraestructura().setDescripcion(rs.getString("infraestructura_descripcion"));
                 unMovimiento.getUnaTransaccion().setDescripcion(rs.getString("transaccion_descripcion"));
-                unMovimiento.setNumerofactura(rs.getInt("movimiento_numero_factura"));
+                unMovimiento.setNumerofactura(rs.getString("movimiento_numero_factura"));
                 unMovimiento.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unMovimiento.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
