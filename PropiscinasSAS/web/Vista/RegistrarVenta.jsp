@@ -147,10 +147,10 @@
    
         <div  style="width: 80%; border: 0 !important; color:  #472055; margin-left: 50px; align-content: center; display: table;"  align="center" >
            
-            <thead >
+            <thead>
                         
                             <tr>
-                                <th  colspan="2" style="text-align: center; margin-left: 10px"> Registrar venta</th>
+                                <th  colspan="2" style="text-align: center; margin-left: 10px"><h4> Registrar venta</h4></th>
                             </tr>
                         </thead>
                      
@@ -167,11 +167,17 @@
                             </script>
                     
                     <tr style="height: 40px;">
-                        <td class="negrita"><font color="black">Ingrese codigo  </font><br><font color="black">de barras:</font> </td>
-                        <td><input style="border-left-width: 0px; 
-  
+                        <td class="negrita"><font color="black">Ingrese codigo de barras  </font></td>
+                        <td><input style="border-left-width: 0px;
     height: 40px;
-    ;" onkeyup="buscarProducto()" maxlength="20" type="text" name="txt_Buscar"  id="txt_Buscar" class="form-control"  required>
+    width: 543px;
+    float: left;
+    margin-right: 16px;
+    " onkeyup="buscarProducto()" maxlength="20" type="text" name="txt_Buscar"  id="txt_Buscar" class="form-control"  required><button onclick="limpiarCaja()" ><img style="    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin-left: 159px;" src="Imagenes/papelera.png" width="100" height="100" alt=""/> </button>
+                            
                          <div id="msjNombre" style="text-align: center"></div>                       
                       </td>
                     </tr>

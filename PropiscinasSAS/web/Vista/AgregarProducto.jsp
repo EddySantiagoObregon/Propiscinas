@@ -137,14 +137,14 @@
         <tr class="bg-info text-white" >
             <th style="background-color: #007bff;color: #fff;">Codigo</th>
             <th style="background-color: #007bff;color: #fff;">Referencia</th>
+            <th style="background-color: #007bff;color: #fff;">Abreviatura</th>
+            <th style="background-color: #007bff;color: #fff;">Forma</th>        
             <th style="background-color: #007bff;color: #fff;">Nombre</th>
-            <th style="background-color: #007bff;color: #fff;">Abreviatura</th>        
+            <th style="background-color: #007bff;color: #fff;">Unidad de medida</th>
+            <th style="background-color: #007bff;color: #fff;">Presentación</th>           
+            <th style="background-color: #007bff;color: #fff;">Observacón</th>
             <th style="background-color: #007bff;color: #fff;">Grupo</th>
-            <th style="background-color: #007bff;color: #fff;">Presentacion</th>
-            <th style="background-color: #007bff;color: #fff;">Forma</th>           
-            <th style="background-color: #007bff;color: #fff;">UnidadMedida</th>
-            <th style="background-color: #007bff;color: #fff;">Detalle observación</th>
-            <th style="background-color: #007bff;color: #fff;">Detalle Estado</th>
+            <th style="background-color: #007bff;color: #fff;">Estado</th>
             <th style="background-color: #007bff;color: #fff;">Opción</th>
          
             

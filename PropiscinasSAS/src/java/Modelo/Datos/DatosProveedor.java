@@ -46,12 +46,13 @@ public class DatosProveedor {
 
            
             
-            String consulta1= "insert into proveedor values(null,?,?,?,?)";
+            String consulta1= "insert into proveedor values(null,?,?,?,?,?)";
             ps=miConexion.prepareStatement(consulta1);
             ps.setString(1,unProveedor.getNitProveedor());
             ps.setString(2,unProveedor.getNombre());
             ps.setString(3,unProveedor.getTelefono());
-            ps.setString(4, unProveedor.getEstado());
+            ps.setString(4,unProveedor.getCorreo());
+            ps.setString(5, unProveedor.getEstado());
             ps.executeUpdate();
             
           
@@ -116,7 +117,9 @@ public class DatosProveedor {
              unProveedor.setNitProveedor(rs.getString("proveedor_nit"));
              unProveedor.setNombre(rs.getString("proveedor_nombre"));
              unProveedor.setTelefono(rs.getString("proveedor_telefono"));
+             unProveedor.setCorreo(rs.getString("proveedor_correo"));
              unProveedor.setEstado(rs.getString("proveedor_estado"));
+             
              lista.add(unProveedor);
          }
          rs.close();
@@ -140,11 +143,12 @@ public class DatosProveedor {
          rs= ps.executeQuery();
          while(rs.next())
          {
-             unProveedor= new Proveedor();
+             unProveedor= new Proveedor(); 
              unProveedor.setIdProveedor(rs.getInt("proveedor_id"));
              unProveedor.setNitProveedor(rs.getString("proveedor_nit"));
              unProveedor.setNombre(rs.getString("proveedor_nombre"));
              unProveedor.setTelefono(rs.getString("proveedor_telefono"));
+             unProveedor.setCorreo(rs.getString("proveedor_correo"));
              unProveedor.setEstado(rs.getString("proveedor_estado"));
            
          }
@@ -157,18 +161,19 @@ public class DatosProveedor {
      
      return unProveedor;
    }   
-      public boolean EditarProveedor(String nit,String nombre,String telefono,String estado,int idProveedor){
+      public boolean EditarProveedor(String nit,String nombre,String telefono,String correo,String estado,int idProveedor){
            boolean agregado = false; 
           try
      {
          
-          String consulta ="UPDATE proveedor SET proveedor_nit =?,proveedor_nombre =?,proveedor_telefono=? ,proveedor_estado=? WHERE proveedor_id=?";
+          String consulta ="UPDATE proveedor SET proveedor_nit =?,proveedor_nombre =?,proveedor_telefono=?,proveedor_correo=? ,proveedor_estado=? WHERE proveedor_id=?";
         ps=miConexion.prepareStatement(consulta);
          ps.setString(1, nit);
          ps.setString(2,nombre);
          ps.setString(3, telefono);
-         ps.setString(4,estado);
-         ps.setInt(5,idProveedor);
+         ps.setString(4,correo);
+         ps.setString(5,estado);
+         ps.setInt(6,idProveedor);
          ps.executeUpdate();
          int si =ps.executeUpdate();
          if(si>0){
@@ -195,11 +200,12 @@ public class DatosProveedor {
          while(rs.next())
          {
              
-             Proveedor unProveedor= new Proveedor();
+             Proveedor  unProveedor= new Proveedor();
              unProveedor.setIdProveedor(rs.getInt("proveedor_id"));
              unProveedor.setNitProveedor(rs.getString("proveedor_nit"));
              unProveedor.setNombre(rs.getString("proveedor_nombre"));
              unProveedor.setTelefono(rs.getString("proveedor_telefono"));
+             unProveedor.setCorreo(rs.getString("proveedor_correo"));
              unProveedor.setEstado(rs.getString("proveedor_estado"));
              lista.add(unProveedor);
            

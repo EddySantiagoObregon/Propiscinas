@@ -162,8 +162,7 @@
 						</fieldset>
 						<br>
 						<fieldset>
-                  </form>                             
-							<legend style="color: #007bff !important;"><i class="zmdi zmdi-smartphone-android"></i> &nbsp; Telefonos</legend>
+                  </form>                        
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
@@ -173,7 +172,12 @@
 										
 										</div>
 				    				</div>
-								
+								<div class="col-xs-12 col-sm-6">
+								    	<div class="form-group label-floating">
+										  	<label class="control-label">Correo  </label>
+										  	<input id="txt_Correo" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txt_Correo"  pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,45}" class="form-control" type="text" name="titulo-reg" required="" maxlength="45">
+										</div>
+				    				</div>
 				    			
                                                                     <br>
                                                                     

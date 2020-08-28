@@ -294,11 +294,21 @@ function tipoDocumento()
 }
 function limpiar(){
     $("#txt_Nombre").val("");
-    $("#txt_Codigo").val("");
+    $("#txt_Buscar").val("");
     $("#txt_forma").val("");
     $("#txt_UnidadMedida").val("");
     $("#txt_Grupo").val("");
     $("#txt_Presentacion").val("");
     $("#txt_CantidadVendidaa").val("");
     $("#txt_Valor").val("");
+}
+function limpiarCaja(){
+    
+    $("#txt_Buscar").val("");
+    $("#txt_Nombre").val("");
+     $("#txt_forma").val("");
+    $("#txt_UnidadMedida").val("");
+    $("#txt_Grupo").val("");
+    $("#txt_Presentacion").val("");
+  
 }

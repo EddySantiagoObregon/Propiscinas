@@ -140,6 +140,7 @@
             <th style="background-color: #007bff;color: #fff;">Nit o identificacion</th>
             <th style="background-color: #007bff;color: #fff;">Nombre</th>
             <th style="background-color: #007bff;color: #fff;">Telefono</th>
+            <th style="background-color: #007bff;color: #fff;">Correo</th>
             <th style="background-color: #007bff;color: #fff;">Estado</th>         
             <th style="background-color: #007bff;color: #fff;">Editar</th>         
          
@@ -182,7 +183,12 @@
           </div>
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Telefono:</label>
-           <input style="padding-right: 31px; margin-right: 9px; " onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Telefono"  id="txt_Telefono" autocomplete="off" class="form-control" maxlength="45" required>
+            <input style="padding-right: 31px; margin-right: 9px; " placeholder="PUEDE COLOCAR VARIOS NÚMEROS" onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Telefono"  id="txt_Telefono" autocomplete="off" class="form-control" maxlength="45" required>
+            <div class="requerimientos"  id="msjNombre" style="text-align: center"></div>  
+          </div>
+          <div style="height: 60px;" class="form-group">
+            <label for="message-text" class="col-form-label">Correo:</label>
+            <input style="padding-right: 31px; margin-right: 9px; " onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="OPCIONAL" type="text" name="txt_Correo"  id="txt_Correo" autocomplete="off" class="form-control" maxlength="45" >
             <div class="requerimientos"  id="msjNombre" style="text-align: center"></div>  
           </div>
              <label for="message-text" class="col-form-label">Estado:</label>

@@ -14,15 +14,26 @@ public class Proveedor {
     private String nitProveedor;
     private String nombre;
     private String telefono;
+    private String correo;
     private String estado;
-    public Proveedor(String nitProveedor,String nombre,String telefono,String estado){
+    public Proveedor(String nitProveedor,String nombre,String telefono,String correo,String estado){
         this.nitProveedor=nitProveedor;
         this.nombre=nombre;
         this.telefono=telefono;
+        this.correo=correo;
         this.estado=estado;
+       
     }
       public Proveedor(){
        
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getEstado() {

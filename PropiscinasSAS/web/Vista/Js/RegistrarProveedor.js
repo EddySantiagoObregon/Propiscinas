@@ -26,7 +26,8 @@ function AgregarProveedor(){
                 accion: "AgregarProveedor",
                 txt_Nit: $("#txt_Nit").val(),
                 txt_Nombre:$("#txt_Nombre").val(),
-                txt_Telefono:$("#txt_Telefono").val()
+                txt_Telefono:$("#txt_Telefono").val(),
+                txt_Correo:$("#txt_Correo").val()
                 
          
             };
@@ -59,5 +60,6 @@ function limpiarModal(){
       $("#txt_Nit").val("");
       $("#txt_Nombre").val("");
       $("#txt_Telefono").val("");
+       $("#txt_Correo").val("");
        
 }

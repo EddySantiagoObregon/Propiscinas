@@ -47,7 +47,7 @@ function ListarProveedor(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 5; j++) {
+    for (var j = 0; j < 6; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -74,11 +74,18 @@ function ListarProveedor(){
   
   }
    if(j===3){
+     var textoCelda = document.createTextNode(proveedor.correo);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+   if(j===4){
      var textoCelda = document.createTextNode(proveedor.estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  
      if(j===4){
       var id=proveedor.idProveedor;;
       const fragment= document.createDocumentFragment();
@@ -140,6 +147,7 @@ function abrirModal(idProveedor){
                 $("#txt_Nombre").val(proveedor.nombre); 
                 $("#txt_Telefono").val(proveedor.telefono); 
                 $("#cb_Estado").val(proveedor.estado);
+                 $("#txt_Correo").val(proveedor.correo);
          
               }else{
                   alert("Error");
@@ -165,7 +173,8 @@ function EditarProveedor(){
                txt_Nit:$("#txt_Nit").val(),
                txt_Nombre:$("#txt_Nombre").val(),
                txt_Telefono:$("#txt_Telefono").val(),
-               cb_Estado:$("#cb_Estado").val()
+               cb_Estado:$("#cb_Estado").val(),
+               txt_Correo:$("#txt_Correo").val()
     };    
     $.ajax({          
         url: '../ControllerProveedor',         
@@ -222,14 +231,14 @@ function buscarProveedor(){
 
  
 
-                $.each(proveedores, function(j,proveedor){
+                   $.each(proveedores, function(j,proveedor){
 
   
  
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 5; j++) {
+    for (var j = 0; j < 6; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -256,11 +265,18 @@ function buscarProveedor(){
   
   }
    if(j===3){
+     var textoCelda = document.createTextNode(proveedor.correo);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+   if(j===4){
      var textoCelda = document.createTextNode(proveedor.estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  
      if(j===4){
       var id=proveedor.idProveedor;;
       const fragment= document.createDocumentFragment();

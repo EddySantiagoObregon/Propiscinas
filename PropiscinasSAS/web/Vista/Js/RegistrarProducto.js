@@ -170,7 +170,7 @@ $(function ()
   $('#txt_DetalleObservacion').keyup(function() {
      var txt_DetalleObservacion;
       txt_DetalleObservacion = document.getElementById("txt_DetalleObservacion").value;
-        if (txt_DetalleObservacion.length<1 || txt_DetalleObservacion.length >5){
+        if (txt_DetalleObservacion.length<1 || txt_DetalleObservacion.length >50){
         $("#msjtxt_DetalleObservacion").html("OBSERVACION MAXIMA DE 50 DIGITOS");
         return false;
     }else{

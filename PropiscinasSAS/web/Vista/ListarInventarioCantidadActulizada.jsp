@@ -35,9 +35,7 @@
        <header>
 <div class="logotipo">
              
-                    <a style="background-color: #007bff; position: fixed; font-family: sans-serif; border-radius: 10px;    left: 660px; color: white;  border-bottom: 40px;  padding-bottom: 10px;   padding-top: 10px;  padding-right: 10px; padding-left: 10px;" id="sNombre"></a>
-                      
-            
+                 
                       <img src="Imagenes/Pro-piscinas.png" width="1200" height="250"alt="">
 		
 		</div>

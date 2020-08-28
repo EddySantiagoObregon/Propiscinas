@@ -47,7 +47,7 @@
                     } catch (Exception e) {
                     }
                    %>">
-		<nav>
+		<nav >
 			<ul>
                             <li><a href="MenuPrincipal.jsp">Pro-Piscinas</a></li>
                            <div class="btn-group navuldiv">
@@ -136,7 +136,7 @@
                                 </button>   
 			<table  style="width: 98% ;font-size: 12.6px;"  id="tblMovimiento" class="table  table-striped" align="center">
     <thead>
-        <tr class="bg-info text-white" >
+        <tr  class="bg-info text-white" >
             <th style="background-color: #007bff;color: #fff;">Infraestructura</th>
             <th style="background-color: #007bff;color: #fff;">Transaccion</th>
             <th style="background-color: #007bff;color: #fff;">Nombre Producto</th>         

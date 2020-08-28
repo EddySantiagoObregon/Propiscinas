@@ -70,7 +70,7 @@ function ListarProducto(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 11; j++) {
+  for (var j = 0; j < 11; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -85,61 +85,64 @@ function ListarProducto(){
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-
-  if(j===2){
-     var textoCelda = document.createTextNode(detalleproducto.nombre);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  $("#nombrePro").html(detalleproducto.nombre);
-  }
-  if(j===3){
+   if(j===2){
      var textoCelda = document.createTextNode(detalleproducto.abreviatura);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
- 
-  if(j===4){
-     var textoCelda = document.createTextNode(detalleproducto.unGrupo.descripcion);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  if(j===5){
-     var textoCelda = document.createTextNode(detalleproducto.unaPresentacion.descripcion);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  if(j===6){
+  if(j===3){
      var textoCelda = document.createTextNode(detalleproducto.unaForma.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  var cantidad=detalleproducto.cantidadUnidad;
+  if(j===4){
+     var textoCelda = document.createTextNode(detalleproducto.nombre);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+ 
+    var cantidad=detalleproducto.cantidadUnidad;
   if(cantidad===0){
-   if(j===7){
+   if(j===5){
  
           var textoCelda = document.createTextNode(detalleproducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }else{
-       if(j===7){
+       if(j===5){
  
           var textoCelda = document.createTextNode(detalleproducto.cantidadUnidad+" "+detalleproducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
        }
    }
+ 
+ 
+  if(j===6){
+     var textoCelda = document.createTextNode(detalleproducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+
+
     
 
-  if(j===8){
+  if(j===7){
      var textoCelda = document.createTextNode(detalleproducto.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
+  }
+    if(j===8){
+     var textoCelda = document.createTextNode(detalleproducto.unGrupo.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
   }
    if(j===9){
      var textoCelda = document.createTextNode(detalleproducto.estado);
@@ -147,6 +150,7 @@ function ListarProducto(){
       hilera.appendChild(celda);
      
   }
+ 
   if(j===10){
       var id = detalleproducto.idProducto;
       const fragment= document.createDocumentFragment();
@@ -222,12 +226,12 @@ function  BuscarProducto(){
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 11; j++) {
+  for (var j = 0; j < 11; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
       var celda = document.createElement("td");
-   if(j===0){
+        if(j===0){
       var textoCelda = document.createTextNode(detalleproducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
@@ -237,64 +241,64 @@ function  BuscarProducto(){
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-
-  if(j===2){
-     var textoCelda = document.createTextNode(detalleproducto.nombre);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  if(j===3){
+   if(j===2){
      var textoCelda = document.createTextNode(detalleproducto.abreviatura);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
-  if(j===4){
-     var textoCelda = document.createTextNode(detalleproducto.unGrupo.descripcion);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  if(j===5){
-     var textoCelda = document.createTextNode(detalleproducto.unaPresentacion.descripcion);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  if(j===6){
+  if(j===3){
      var textoCelda = document.createTextNode(detalleproducto.unaForma.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
-   var cantidad=detalleproducto.cantidadUnidad;
+  if(j===4){
+     var textoCelda = document.createTextNode(detalleproducto.nombre);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+  }
+ 
+    var cantidad=detalleproducto.cantidadUnidad;
   if(cantidad===0){
-   if(j===7){
+   if(j===5){
  
           var textoCelda = document.createTextNode(detalleproducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }else{
-       if(j===7){
+       if(j===5){
  
           var textoCelda = document.createTextNode(detalleproducto.cantidadUnidad+" "+detalleproducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
        }
    }
-    
+ 
+ 
+  if(j===6){
+     var textoCelda = document.createTextNode(detalleproducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
   
+  }
+
+
     
 
-  if(j===8){
+  if(j===7){
      var textoCelda = document.createTextNode(detalleproducto.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
+  }
+    if(j===8){
+     var textoCelda = document.createTextNode(detalleproducto.unGrupo.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
   }
    if(j===9){
      var textoCelda = document.createTextNode(detalleproducto.estado);
@@ -302,6 +306,7 @@ function  BuscarProducto(){
       hilera.appendChild(celda);
      
   }
+ 
   if(j===10){
          var id = detalleproducto.idProducto;
       const fragment= document.createDocumentFragment();
