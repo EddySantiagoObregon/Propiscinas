@@ -84,7 +84,7 @@ function Productomasvendido(){
         
         labels: [Nombre[1],Nombre[2],Nombre[3]],
         datasets: [{
-            label: 'PRODUCTO MAS VENDIDO',
+            label: 'PRODUCTO MÁS VENDIDO',
             data: [numero1,numero2,numero3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -176,7 +176,7 @@ function Productomasvendidohoy(){
         
         labels: [Nombree[1],Nombree[2],Nombree[3]],
         datasets: [{
-            label: 'PRODUCTO MAS VENDIDO HOY',
+            label: 'PRODUCTO MÁS VENDIDO HOY',
             data: [numeroo1,numeroo2,numeroo3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

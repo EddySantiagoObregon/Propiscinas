@@ -209,7 +209,7 @@
   </div>
 </div>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

@@ -120,7 +120,7 @@
 		<section class="articles">
 			<article>
                              <input class="btn btn-primary" id="fecha" type="date">
-                              <input autocomplete="off" style="display: inline-grid; width: 572px; padding-top: 1px;" placeholder="BUSQUEDA POR NUMERO DE DOCUMENTO O CODIGO DE PRODUCTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                              <input autocomplete="off" style="display: inline-grid; width: 572px; padding-top: 1px;" placeholder="BUSQUEDA POR NÚMERO DE DOCUMENTO O CÓDIGO DE PRODUCTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
                                 
                          <select class="btn btn-primary" style="display: inline-grid; width: 320px;" name="cb_TipoDocumento" id="cb_TipoDocumento" class="form-control">
                                 <option value="0">TODOS LOS TIPOS DE DOCUMENTOS</option>
@@ -131,7 +131,7 @@
 			<table  style="width: 95% ;font-size: 12.6px;"  id="tblMovimiento" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
-            <th style="background-color: #007bff;color: #fff;">Codigo</th>
+            <th style="background-color: #007bff;color: #fff;">Código</th>
             <th style="background-color: #007bff;color: #fff;">Nombre</th>
             <th style="background-color: #007bff;color: #fff;">Fecha venta</th>
             <th style="background-color: #007bff;color: #fff;">Cantidad</th>         
@@ -224,7 +224,7 @@
   </div>
 </div>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

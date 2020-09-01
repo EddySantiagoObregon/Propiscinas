@@ -167,19 +167,7 @@ if (session.getAttribute("idUsuario")!=null){
                        <td><input   style="outline: auto;outline-color: dodgerblue;" required type="email" id="txt_Correo" class="form-control">
                            <div class="requerimientos"  id="msjCorreo" style="text-align: center"></div>    
                         </td>
-                    </tr>
-                        <tr style="height: 40px;">
-                       <td class="negrita"><font color="black">Contraseña</font></td>
-                       <td><input  style="outline: auto;outline-color: dodgerblue;"  required type="password" id="txt_Contrasena" class="form-control" >
-                            <div class="requerimientos"  id="msjContrasena" style="text-align: center"></div>   
-                        </td>
-                    </tr>
-                       <tr style="height: 40px;">
-                       <td class="negrita"><font color="black">Repita la contraseña</font></td>
-                       <td><input  style="outline: auto;outline-color: dodgerblue;" type="password"  id="txt_RepetirContrasena" class="form-control" >
-                           <div class="requerimientos"  id="msjRepetirContrasena" style="text-align: center"></div>    
-                        </td>
-                    </tr>
+                  
                       </form>
                        
                     </div>

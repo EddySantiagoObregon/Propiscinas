@@ -57,6 +57,7 @@ $(function ()
    $("#btnListar").click(function(){
         $("tbody tr").remove();
         $("#cb_Opciones").val(0);
+        $("#txt_Buscar").val("");
         listarCantidadActualizada(); 
     });
 

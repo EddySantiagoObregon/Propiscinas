@@ -127,7 +127,7 @@
 		<section class="articles">
 			<article>
                             
-                            <input autocomplete="off" style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                            <input autocomplete="off" style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar" placeholder="BUSQUEDA POR CÓDIGO O NOMBRE DEL PRODUCTO">
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnBuscar">🔎</button>
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                          
@@ -135,7 +135,7 @@
 			<table style="width: 100% ;font-size: 12px;"  id="tblProducto" class="table table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
-            <th style="background-color: #007bff;color: #fff;">Codigo</th>
+            <th style="background-color: #007bff;color: #fff;">Código</th>
             <th style="background-color: #007bff;color: #fff;">Referencia</th>
             <th style="background-color: #007bff;color: #fff;">Abreviatura</th>
             <th style="background-color: #007bff;color: #fff;">Forma</th>        
@@ -234,20 +234,20 @@
                     
                       <tr style="height: 40px;">
                             <td class="negrita"><font color="black">Observación producto</font></td>
-                            <td><textarea type="text" name="txt_Observacion" id="txt_Observacion" class="form-control" maxlength="150"  value="" required/></textarea></td>
+                            <td><textarea onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" name="txt_Observacion" id="txt_Observacion" class="form-control" maxlength="150"  value="" required/></textarea></td>
                    
                     </tr>
                   
                       
                       <tr style="height: 40px;">
-                            <td class="negrita"><font color="black">Numero de documento</font></td>
-                            <td><input type="text"  maxlength="20"name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
+                            <td class="negrita"><font color="black">Número de documento</font></td>
+                            <td><input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text"  maxlength="20"name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
                    
                     </tr>    
                    
                      <tr style="height: 40px;">
-                            <td class="negrita"><font color="black">Observacion documento</font></td>
-                            <td><textarea type="text" name="txt_ObservacionDocumento" id="txt_ObservacionDocumento" maxlength="45" class="form-control"  value="" required/></textarea></td>
+                            <td class="negrita"><font color="black">Observación documento</font></td>
+                            <td><textarea onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" name="txt_ObservacionDocumento" id="txt_ObservacionDocumento" maxlength="45" class="form-control"  value="" required/></textarea></td>
                    
                     </tr>   
                        
@@ -263,7 +263,7 @@
          
         </div>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

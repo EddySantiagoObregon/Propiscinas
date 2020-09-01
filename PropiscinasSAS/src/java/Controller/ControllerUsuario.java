@@ -7,6 +7,7 @@ package Controller;
 
 import Modelo.Datos.Correo;
 import Modelo.Datos.DatosUsuario;
+import Modelo.Entidad.EncriptarYDesencriptar;
 import Modelo.Entidad.Usuario;
 import com.google.gson.Gson;
 import java.io.File;
@@ -19,7 +20,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.security.MessageDigest;
+import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import javax.swing.JOptionPane;
+import org.apache.commons.codec.binary.Base64;
 /**
  *
  * @author PAULA
@@ -109,6 +116,7 @@ DatosUsuario dUsuario = new DatosUsuario();
     {
         String login = request.getParameter("txtLogin");
         String password = request.getParameter("txtPassword");
+
         if("propiscinasdelhuila2020@gmail.com".equals(login)&&"propiscinas123".equals(password)){
                 HttpSession session = request.getSession(true);
                 session.setAttribute("idUsuario","900127905");
@@ -118,10 +126,19 @@ DatosUsuario dUsuario = new DatosUsuario();
                 session.setAttribute("nombre", "Administrador");
                 response.sendRedirect(request.getContextPath() + "/Vista/AdministradorMenuPrincipal.jsp");
         }else{
+                   String contrasena = dUsuario.buscarContrasena(login);
+    EncriptarYDesencriptar unEnctiptarYDesencriptar = new EncriptarYDesencriptar();
+    String contrasenaEncriptada = unEnctiptarYDesencriptar.Desencriptar(contrasena);
+  
+                      if(password.equals(contrasenaEncriptada)){
+   
         Usuario unUsuario = new Usuario();
         unUsuario.setCorreo(login);
-        unUsuario.setContrasena(password);
+        unUsuario.setContrasena(contrasena);
         Usuario user= dUsuario.iniciarSesion(unUsuario);
+         
+        
+   
         if(user!=null)
         {
            
@@ -141,6 +158,11 @@ DatosUsuario dUsuario = new DatosUsuario();
             response.sendRedirect(request.getContextPath() + "/Vista/IniciarSesion.jsp?valor=x");
         }
         }
+                      else
+        {
+            response.sendRedirect(request.getContextPath() + "/Vista/IniciarSesion.jsp?valor=x");
+        }
+           }
     }
     private void RegistrarPersona(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -149,25 +171,23 @@ DatosUsuario dUsuario = new DatosUsuario();
         String nombre = request.getParameter("txt_Nombre");
         String telefono = request.getParameter("txt_Tel");
         String correo = request.getParameter("txt_Correo");
-        String contrasena = request.getParameter("txt_Contrasena");
-        Usuario unUsuario = new Usuario(identificacion, nombre, telefono, correo, contrasena);
+        
+        String secretKey = "0P1R2O3P4I5S6C7I8N9A0S";
+        EncriptarYDesencriptar unEnctiptarYDesencriptar = new EncriptarYDesencriptar();
+      
+        Usuario unUsuarioo = new Usuario();
+        unUsuarioo.genearPassword();
+        String password =unUsuarioo.getContrasena();
+        String contrasenaEncriptada = unEnctiptarYDesencriptar.Encriptar( password);
+        Usuario unUsuario = new Usuario(identificacion, nombre, telefono, correo, contrasenaEncriptada);
       boolean agregado = dUsuario.agregado(unUsuario);
+         if (agregado){
+        nuevoUsuario(unUsuario,password);
+    }
       PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregado);
         out.print(json);
-           if(unUsuario!=null)
-        {
-           
-               
-                HttpSession session = request.getSession(true);
-                session.setAttribute("idUsuario", unUsuario.getIdUsuario());
-                session.setAttribute("identificacion", unUsuario.getIdentificacion());
-                session.setAttribute("telefono", unUsuario.getTelefono());
-                session.setAttribute("correo", unUsuario.getCorreo());
-                session.setAttribute("nombre" , unUsuario.getNombre());
-                        
-                   
-        }
+    
     }
     private void actualizarPassword(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -178,36 +198,69 @@ DatosUsuario dUsuario = new DatosUsuario();
     user.setIdentificacion(identifica);
     user.setCorreo(correo);
     user.genearPassword();
+    String password=user.getContrasena();
+    String encrtiptar=user.getContrasena();
+    EncriptarYDesencriptar unEnctiptarYDesencriptar = new EncriptarYDesencriptar();
+    String contrasenaEncriptada = unEnctiptarYDesencriptar.Encriptar(encrtiptar);
+    user.setContrasena(contrasenaEncriptada);
     boolean actualizado = dUsuario.actualizarPassword(user);
     if (actualizado){
-        enviarNuevoPasswordCorreoElectronico(user);
+        enviarNuevoPasswordCorreoElectronico(user,password);
     }
     PrintWriter out = response.getWriter();
     String json = new Gson().toJson(actualizado);
     out.print(json);
     }
     
-          private void enviarNuevoPasswordCorreoElectronico(Usuario unUsuario){
-         
-         String correo = unUsuario.getCorreo();
+          private void enviarNuevoPasswordCorreoElectronico(Usuario unUsuario,String password){
+          Usuario unUsuarioo = dUsuario.nombre( unUsuario.getCorreo());
+         String correo = "propiscinasdelhuila2020@gmail.com";
          String Contraseña = unUsuario.getContrasena();
-         String asunto = "Restablecimiento de contraseña - Propiscinas del Huila  S.A.S ";
-         String mensaje = "Estimado(a) Usuario(a)"
-                + "<br><b>Su contraseña de acceso a Propiscinas del Huila  S.A.S ha sido</b>" 
+         String asunto = "Recuperación de contraseña de un usuario - Propiscinas del Huila  S.A.S ";
+         String mensaje =
+                 "<br><b>la datos contraseña de acceso a Propiscinas del Huila  S.A.S ha sido</b>" 
                 + "<br>restablecida correctamente.</b>" 
                 + "<br><b>       </b>" 
-                + "<br><b>Sus datos de acceso son: </b>"
+                + "<br><b>Los datos de acceso del usuario(a) " +unUsuarioo.getNombre() +"   son: </b>"
                 + "<br><b>       </b>" 
-                + "<br><b>Correo: </b>" + correo  
-                + "<br><b>Contraseña: </b>" + Contraseña
-                + "<br><b>       </b>" 
-                + "<br><b>Una vez ingrese con la nueva contraseña, se sugiere realizar el cambio por      </b>"  
-                + "<br><b>una contraseña de facil recordación para usted.    </b>" 
+                + "<br><b>Correo: </b>" + unUsuarioo.getCorreo()
+                + "<br><b>Contraseña: </b>" + password
+                + "<br><b>Una vez ingrese el usuario con la  contraseña, se sugiere realizar el cambio por      </b>"  
+                + "<br><b>una contraseña de facil recordación .    </b>" 
                 + "<br><b>       </b>" 
                 + "<br>_________________________________________________________________________________________</b>"
                  + "<br><b>       </b>" 
                  + "<br><b>Propiscinas del Huila  S.A.S</b>" 
-                 + "<br><br>Inicia sesion dando click aquí http://localhost:8080/PropiscinasV3/Vista/IniciarSesion.jsp";
+               +"<br><br><img src = 'https://fotos.subefotos.com/08f2b1e3c11d27e201e2a570ea2c2e29o.png' with='300px' height='220px'/>";
+            
+         Correo.enviarCorreo(correo, asunto, mensaje);
+     }  
+             private void nuevoUsuario(Usuario unUsuario,String password){
+         
+         String correo = "propiscinasdelhuila2020@gmail.com";
+         String Contraseña = unUsuario.getContrasena();
+         String asunto = "Usuario registrado - Propiscinas del Huila  S.A.S ";
+         String mensaje =
+                "<br><b>Usuario de acceso a Propiscinas del Huila  S.A.S ha sido creado</b>" 
+                + "<br>los datos del usuario son.</b>" 
+                + "<br><b>       </b>" 
+                + "<br><b>Datos personales: </b>"
+                + "<br><b>       </b>" 
+                  + "<br><b>Nombre: </b>" + unUsuario.getNombre()
+                  + "<br><b>Telefono: </b>" + unUsuario.getTelefono()
+                 
+                  + "<br><b>       </b>" 
+                  + "<br><b>Datos de acceso: </b>"
+                + "<br><b>Correo: </b>" + unUsuario.getCorreo()
+                + "<br><b>Contraseña: </b>" + password
+                + "<br><b>       </b>" 
+                + "<br><b>Una vez ingrese el usuario con la  contraseña, se sugiere realizar el cambio por      </b>"  
+                + "<br><b>una contraseña de facil recordación .    </b>" 
+                + "<br><b>       </b>" 
+                + "<br>_________________________________________________________________________________________</b>"
+                 + "<br><b>       </b>" 
+                 + "<br><b>Propiscinas del Huila  S.A.S</b>" 
+               +"<br><br><img src = 'https://fotos.subefotos.com/08f2b1e3c11d27e201e2a570ea2c2e29o.png' with='300px' height='220px'/>";
             
          Correo.enviarCorreo(correo, asunto, mensaje);
      }   
@@ -243,10 +296,24 @@ DatosUsuario dUsuario = new DatosUsuario();
         String correoDeBusqueda = request.getParameter("correoDeBusqueda");
         String contrasenaAntigua = request.getParameter("contrasenaAntigua");
         String contrasenaNueva= request.getParameter("contrasenaNueva");
-        boolean agregado = dUsuario.EditarContrasena(correoDeBusqueda,contrasenaAntigua,contrasenaNueva);
+        String secretKey = "0P1R2O3P4I5S6C7I8N9A0S";
+          EncriptarYDesencriptar unEncriptarYDesencriptar = new EncriptarYDesencriptar();
+
+        String contrasenaEncriptada = unEncriptarYDesencriptar.Encriptar(contrasenaAntigua);
+    String contrasena = dUsuario.buscarContrasena(correoDeBusqueda);
+  
+    if(contrasena.equals(contrasenaEncriptada)){
+        String contrasenaNuevaa = unEncriptarYDesencriptar.Encriptar(contrasenaNueva);
+        boolean agregado = dUsuario.EditarContrasena(correoDeBusqueda,contrasenaEncriptada,contrasenaNuevaa);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregado);
         out.print(json);
+    }else{
+         boolean agregado = false;
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(agregado);
+        out.print(json);
+    }
     }
                         private void ListarUsuario(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{

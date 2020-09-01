@@ -122,7 +122,7 @@
 		<section class="articles">
 			<article>
                             
-                                <input style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                                <input placeholder="BUSCAR POR NOMBRE O CÓDIGO DE PRODUCTO" style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar">
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnBuscar">🔎</button>
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                          
@@ -130,13 +130,13 @@
 			<table style="width: 100% ;font-size: 12px;"  id="tblProducto" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
-            <th style="background-color: #007bff;color: #fff;">Codigo</th>
+            <th style="background-color: #007bff;color: #fff;">Código</th>
             <th style="background-color: #007bff;color: #fff;">Referencia</th>
             <th style="background-color: #007bff;color: #fff;">Nombre</th>
             <th style="background-color: #007bff;color: #fff;">Abreviatura</th>     
             <th style="background-color: #007bff;color: #fff;">Grupo</th>
             <th style="background-color: #007bff;color: #fff;">SubGrupo</th>
-            <th style="background-color: #007bff;color: #fff;">Presentacion</th>           
+            <th style="background-color: #007bff;color: #fff;">Presentación</th>           
             <th style="background-color: #007bff;color: #fff;">UnidadMedida</th>
             <th style="background-color: #007bff;color: #fff;">Detalle observación</th>
             <th style="background-color: #007bff;color: #fff;">Detalle Estado</th>
@@ -192,7 +192,7 @@
         </div>
                 
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

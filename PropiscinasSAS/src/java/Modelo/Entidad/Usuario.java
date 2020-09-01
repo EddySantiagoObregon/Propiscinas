@@ -97,6 +97,9 @@ public class Usuario {
                     dijitos.substring(posDigitos,posDigitos+1)+
                     especiales.substring(posEspeciales,posEspeciales+1);
         }
+        
         this.contrasena=passwordGenerado;
     }
+   
+      
 }

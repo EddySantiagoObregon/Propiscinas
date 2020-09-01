@@ -190,20 +190,20 @@
                     <input type="hidden" id="cancod">
                     <tr style="height: 40px;">
                         <td class="negrita"><font color="black">Referencia</font></td>
-                        <td><input  onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" name="txt_Referencia"  id="txt_Referencia" class="form-control" autocomplete="off" required>
+                        <td><input  onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="20" type="text" name="txt_Referencia"  id="txt_Referencia" class="form-control" autocomplete="off" required>
                          <div class="requerimientos" id="msjReferencia" style="text-align: center"></div>                       
                       </td>
                     </tr>
                
                     <tr style="height: 40px;">
                         <td class="negrita"><font color="black">Nombre del producto</font></td>
-                        <td><input style="padding-right: 31px; margin-right: 9px; " onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Nombre"  id="txt_Nombre" autocomplete="off" class="form-control"  required>
+                        <td><input maxlength="50" style="padding-right: 31px; margin-right: 9px; " onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Nombre"  id="txt_Nombre" autocomplete="off" class="form-control"  required>
                          <div class="requerimientos"  id="msjNombre" style="text-align: center"></div>                       
                       </td>
                     </tr>
                     <tr style="height: 40px;">
                         <td class="negrita"><font color="black">Abreviatrura </font></td>
-                         <td><input onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Abreviatura"  id="txt_Abreviatura" class="form-control"  required>
+                         <td><input onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="5"  type="text" name="txt_Abreviatura"  id="txt_Abreviatura" class="form-control"  required>
                          <div  class="requerimientos" id="msjAbreviatura" style="text-align: center"></div>                       
                       </td>
                     </tr>
@@ -258,7 +258,7 @@
                     </tr>
                     <tr style="height: 40px;">
                           <td class="negrita"><font color="black">Observación detalle</font></td>
-                        <td><textarea onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_DetalleObservacion" id="txt_DetalleObservacion" class="form-control"  value="" required/></textarea>
+                          <td><textarea onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_DetalleObservacion" maxlength="500" id="txt_DetalleObservacion" class="form-control"  value="" required/></textarea>
                     <div class="requerimientos"  id="msjtxt_DetalleObservacion" style="text-align: center"></div>   
                     </td>
                     
@@ -335,19 +335,19 @@
                             
                      <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Referencia </font></td>
-                       <td><input   onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="_txt_Referencia" id="_txt_Referencia" class="form-control"  value="" required>
+                       <td><input   onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="20"  type="text" name="_txt_Referencia" id="_txt_Referencia" class="form-control"  value="" required>
                        <div class="requerimientos"  id="msj_txt_Referencia" style="text-align: center"></div>
                        </td>
                     </tr>
                             <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Nombre </font></td>
-                       <td><input readonly="readonly"   type="text" name="_txt_Nombre" id="_txt_Nombre" class="form-control"  value="" required>
+                       <td><input readonly="readonly"   type="text" name="_txt_Nombre"  id="_txt_Nombre" class="form-control"  value="" required>
                         </td>
                     </tr>
                    
                     <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Abreviatura </font></td>
-                       <td><input onkeyup="javascript:this.value=this.value.toUpperCase();"    type="text" name="_txt_Abreviatura" id="_txt_Abreviatura" class="form-control"  value="" required>
+                       <td><input onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="5"    type="text" name="_txt_Abreviatura" id="_txt_Abreviatura" class="form-control"  value="" required>
                        <div class="requerimientos"  id="msj_txt_Abreviatura" style="text-align: center"></div>
                        </td>
                     </tr>
@@ -382,7 +382,7 @@
                     </tr>
                     <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Observación detalle </font></td>
-                       <td><textarea  onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="_txt_DetalleObservacion" id="_txt_DetalleObservacion" class="form-control"  value="" required></textarea>
+                       <td><textarea  onkeyup="javascript:this.value=this.value.toUpperCase();"  maxlength="500" type="text" name="_txt_DetalleObservacion" id="_txt_DetalleObservacion" class="form-control"  value="" required></textarea>
                        <div class="requerimientos"  id="msj_txt_DetalleObservacion" style="text-align: center"></div>
                        </td>
                     </tr>
@@ -405,7 +405,7 @@
                  </div>
         </div>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

@@ -127,7 +127,7 @@
 		<section class="articles">
 			<article>
                             
-                            <input autocomplete="off" style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                            <input autocomplete="off" style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar" placeholder="BUSCAR POR NOMBRE O CÓDIGO DE PRODUCTO">
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnBuscar">🔎</button>
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnListar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                                 <a style="margin-bottom: 5px; padding-top: 2px;padding-bottom: 4px;" class="btn btn-primary btnListar" href="ImprimirEtiquetasCodigoBarras.jsp"><img width="40" height="30" src="Imagenes/cod.png"/>Generar etiquetas de codigo de barras</a>
@@ -136,7 +136,7 @@
 			<table  style="width: 100% ;font-size: 12px;" number-per-page="3" current-page=""  id="tblProducto" class="table  table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
-            <th style="background-color: #007bff;color: #fff;">Codigo</th>
+            <th style="background-color: #007bff;color: #fff;">Código</th>
             <th style="background-color: #007bff;color: #fff;">Referencia</th>
             <th style="background-color: #007bff;color: #fff;">Nombre</th>
             <th style="background-color: #007bff;color: #fff;">Abreviatura</th>         
@@ -176,17 +176,17 @@
         <div style="margin-top: 0px;   padding-top: 0px;" class="modal-body">
         <form>
             <div style="height: 60px;" class="form-group">
-            <label for="recipient-name" class="col-form-label">Codigo:</label>
+            <label for="recipient-name" class="col-form-label">Código:</label>
             <input readonly="readonly" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" name="txt_Codigo"  id="txt_Codigo" class="form-control" autocomplete="off" required>
           </div>
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Referencia:</label>
-            <input  onkeyup="javascript:this.value=this.value.toUpperCase();" type="text"  name="txt_Referencia"  id="txt_Referencia" class="form-control" autocomplete="off" required>
+            <input  onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" maxlength="20" name="txt_Referencia"  id="txt_Referencia" class="form-control" autocomplete="off" required>
              <div class="requerimientos" id="msjReferencia" style="text-align: center"></div>                       
           </div>
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Nombre del producto:</label>
-           <input style="padding-right: 31px; margin-right: 9px; " onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_Nombre"  id="txt_Nombre" autocomplete="off" class="form-control"  required>
+            <input style="padding-right: 31px; margin-right: 9px; " onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="50"  type="text" name="txt_Nombre"  id="txt_Nombre" autocomplete="off" class="form-control"  required>
             <div class="requerimientos"  id="msjNombre" style="text-align: center"></div>  
           </div>
           <div style="height: 60px;" class="form-group">
@@ -224,7 +224,7 @@
                        </div>
          <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Observación detalle</label>
-          <textarea onkeyup="javascript:this.value=this.value.toUpperCase();"  type="text" name="txt_DetalleObservacion" id="txt_DetalleObservacion" class="form-control"  value="" required/></textarea>
+            <textarea onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="500"  type="text" name="txt_DetalleObservacion" id="txt_DetalleObservacion" class="form-control"  value="" required/></textarea>
                     <div class="requerimientos"  id="msjtxt_DetalleObservacion" style="text-align: center"></div>   
                     </div>
         </form>
@@ -239,7 +239,7 @@
   </div>
 </div>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

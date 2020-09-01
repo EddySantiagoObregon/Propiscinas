@@ -167,7 +167,7 @@
                             </script>
                     
                     <tr style="height: 40px;">
-                        <td class="negrita"><font color="black">Ingrese codigo de barras  </font></td>
+                        <td class="negrita"><font color="black">Ingrese código de barras  </font></td>
                         <td><input style="border-left-width: 0px;
     height: 40px;
     width: 543px;
@@ -229,7 +229,7 @@
                     </tr>
                     
                     <tr style="height: 40px;">
-                       <td class="negrita"><font color="black">Numero de factura</font></td>
+                       <td class="negrita"><font color="black">Número de factura</font></td>
                        <td><input style="height: 24.5px;"onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" maxlength="20" name="txt_NumeroFactura" id="txt_NumeroFactura" class="form-control"  value="" required></textarea></td>
                     </tr>
                      <tr style="height: 40px;">
@@ -241,7 +241,7 @@
                     
                     <tr  style="height: 10px;">
                         <td colspan="2"  style="text-align: center; margin-left: 10px">
-                            <input style="margin: 20px;" id="btnAgregar" type="button" value="Agregar Venta" name="btnAgregar" class="btn btn-primary">
+                            <input style="margin: 20px;" id="btnAgregar" type="button" value="Agregar venta" name="btnAgregar" class="btn btn-primary">
                           
                         
                         </td>
@@ -299,7 +299,7 @@ display: none;"  id="tblMovimiento" class="table  table-striped" align="center">
 		
 	</section>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

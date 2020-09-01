@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ListarInventario</title>
+        <title>ListarInventarioDatosHistoricos</title>
            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -125,7 +125,7 @@
 		<section class="articles">
 			<article>
                             <input class="btn btn-primary" id="fecha" type="date">
-                            <input placeholder="BUSQUEDA POR CODIGO O NOMBRE DE PRODUCTO" autocomplete="off" style="display: inline-grid; width: 40%; padding-top: 1px;" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                            <input placeholder="BUSQUEDA POR CÓDIGO O NOMBRE DE PRODUCTO" autocomplete="off" style="display: inline-grid; width: 40%; padding-top: 1px;" type="text" id="txt_Buscar" class="form-control txt_Buscar">
                             <button style="" class="btn btn-primary btnBuscar" id="btnBuscar">🔎</button>
                             <button style="" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                             <select style="display: inline-grid; width: 300px; float: right;" name="cb_Infraestructura" id="cb_Infraestructura" class="form-control btn-primary">
@@ -140,15 +140,15 @@
 			<table style="width: 100% ;font-size: 12px;"  id="tblProducto" class="table table-striped" align="center">
     <thead>
         <tr class="bg-info text-white" >
-            <th style="background-color: #007bff;color: #fff;">Codigo</th>
+            <th style="background-color: #007bff;color: #fff;">Código</th>
             <th style="background-color: #007bff;color: #fff;">Fecha</th>
             <th style="background-color: #007bff;color: #fff;">Nombre</th>           
             <th style="background-color: #007bff;color: #fff;">Unidad medida</th>  
-            <th style="background-color: #007bff;color: #fff;">Presentacion</th>
+            <th style="background-color: #007bff;color: #fff;">Presentación</th>
             <th style="background-color: #007bff;color: #fff;">Grupo</th>
             <th style="background-color: #007bff;color: #fff;">Cantidad</th>
            <th style="background-color: #007bff;color: #fff;">Infraestructuara</th>
-            <th style="background-color: #007bff;color: #fff;">Observacion</th>
+            <th style="background-color: #007bff;color: #fff;">Observación</th>
             <th style="background-color: #007bff;color: #fff;">Usuario</th>
          
          
@@ -223,12 +223,12 @@
                     </tr>
                   
                           <tr style="height: 40px;">
-                            <td class="negrita"><font color="black">Numero de factura</font></td>
+                            <td class="negrita"><font color="black">Número de factura</font></td>
                         <td><input type="number" name="txt_NumeroFactura" id="txt_NumeroFactura" class="form-control"  value="" required/></input></td>
                    
                     </tr>   
                       <tr style="height: 40px;">
-                            <td class="negrita"><font color="black">Numero de documento</font></td>
+                            <td class="negrita"><font color="black">Número de documento</font></td>
                         <td><input type="number" name="txt_NumeroDocumento" id="txt_NumeroDocumento" class="form-control"  value="" required/></input></td>
                    
                     </tr>    
@@ -240,7 +240,7 @@
                         </td>
                     </tr>
                      <tr style="height: 40px;">
-                            <td class="negrita"><font color="black">Observacion documento</font></td>
+                            <td class="negrita"><font color="black">Observación documento</font></td>
                         <td><input type="text" name="txt_ObservacionDocumento" id="txt_ObservacionDocumento" class="form-control"  value="" required/></input></td>
                    
                     </tr>   
@@ -256,7 +256,7 @@
          
         </div>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

@@ -189,7 +189,7 @@
       <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
       <div class="card-block">
         <h4 class="card-title">BODEGA 1</h4>
-        <p class="card-text">Se referencia bodega 1 a la bodega ubicada en el barrio Caracoli</p>
+        <p class="card-text">Se referencia bodega 1 a la bodega ubicada en el barrio Caracolí</p>
       
       </div>
     </div>
@@ -199,7 +199,7 @@
       <img class="card-img-top" src="Imagenes/Pro-piscinas.png" alt="Card image cap">
       <div class="card-block">
         <h4 class="card-title">BODEGA 2</h4>
-        <p class="card-text">Se referencia bodega 2 a la bodega ubicada en las bodegas de palermo</p>
+        <p class="card-text">Se referencia bodega 2 a la bodega ubicada en las bodegas de Palermo</p>
        
       </div>
     </div>
@@ -216,7 +216,7 @@
         
 	</section>
 	<footer>
-		<p>Pro-Piscina del Huila S.A.S - 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

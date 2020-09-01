@@ -126,7 +126,7 @@
 		<section class="articles">
 			<article>
                             <input class="btn btn-primary" id="fecha" type="date">
-                            <input autocomplete="off" style="display: inline-grid; width: 610px; padding-top: 1px;" placeholder="BUSQUEDA POR NUMERO DE DOCUMENTO O CODIGO DE PRODUCTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                            <input autocomplete="off" style="display: inline-grid; width: 610px; padding-top: 1px;" placeholder="BUSQUEDA POR NÚMERO DE DOCUMENTO O CÓDIGO DE PRODUCTO" type="text" id="txt_Buscar" class="form-control txt_Buscar">
                                 
                          <select class="btn btn-primary" style="display: inline-grid; width: 320px;" name="cb_TipoDocumento" id="cb_TipoDocumento" class="form-control">
                                 <option value="0">TODOS LOS TIPOS DE DOCUMENTOS</option>
@@ -162,6 +162,9 @@
         
     </tbody>
 </table>
+                         <div style="z-index: 1;" id="botones" class="btn-group btn-group-xs" 
+                     role="group" arial-label="grupo">
+                </div>
                         </article>
 			
 			
@@ -171,7 +174,7 @@
 	</section>
         
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

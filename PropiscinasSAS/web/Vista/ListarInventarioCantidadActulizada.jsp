@@ -123,7 +123,7 @@
 		<section class="articles">
 			<article>
                           
-                            <input autocomplete="off" style="display: inline-grid;width: 40%;" type="text" id="txt_Buscar" class="form-control txt_Buscar1">
+                            <input autocomplete="off" style="display: inline-grid;width: 40%;" type="text" id="txt_Buscar" class="form-control txt_Buscar1" placeholder="BUSQUEDA POR CÓDIGO DE PRODUCTO Y NOMBRE">
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnBuscar">🔎</button>
                                   <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                          
@@ -259,7 +259,7 @@
          
         </div>
 	<footer>
-		<p>Pro-piscinas 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

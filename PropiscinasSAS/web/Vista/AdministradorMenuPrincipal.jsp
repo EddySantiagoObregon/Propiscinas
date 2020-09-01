@@ -183,7 +183,7 @@
         
 	</section>
 	<footer>
-		<p>Pro-Piscina del Huila S.A.S - 2020</p>
+		<p>PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

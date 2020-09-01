@@ -130,13 +130,7 @@ public class DatosInventarioVenta{
                 ps.setString(3,fecha);
                 ps.setString(4,codigo);
                 ps.executeUpdate();
-                 String consulta2= "UPDATE venta SET venta_cantidad=? where 	venta_cantidad=	? and venta_fecha_registro=? AND venta_producto_id  =?";
-                ps=miConexion.prepareStatement(consulta2);
-                ps.setInt(1, cantidadNueva);
-                ps.setInt(2,cantidad);
-                ps.setString(3,fecha);
-                ps.setString(4,codigo);
-                ps.executeUpdate();
+               
                 
                  desactivado=true;
                  this.miConexion.commit();

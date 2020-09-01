@@ -19,7 +19,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ListarMovimiento</title>
+        <title>MiPerfil</title>
            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -171,7 +171,7 @@
                           <form>
   <div class="form-group">
       <label for="" style="    text-align: left;
-             margin-right: 629px; color: #ffffff;">Identificacion</label>
+             margin-right: 629px; color: #ffffff;">Identificación</label>
     <input type="number" class="form-control" id="txt_Identificacionnn" aria-describedby="emailHelp" >
   </div>
   <div class="form-group">
@@ -181,7 +181,7 @@
   </div>
        <div class="form-group">
     <label for="" style="    text-align: left;
-    margin-right: 667px; color: #ffffff;">Telefono</label>
+    margin-right: 667px; color: #ffffff;">Teléfono</label>
     <input type="number" class="form-control" id="txt_Telefonooo">
   </div>
        <div class="form-group">

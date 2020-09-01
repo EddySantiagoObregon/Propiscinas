@@ -35,7 +35,7 @@ function EditarContrasena(){
                             $("#password").val("");
                            
                     }else{
-                            alert("Problemas al actualizar la contraseña");
+                            alert("La contraseña antigua es incorrecta");
                     }
                     
                 },

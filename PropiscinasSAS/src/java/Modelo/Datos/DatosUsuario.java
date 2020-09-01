@@ -37,6 +37,32 @@ public class DatosUsuario {
    {
        return mensaje;
    } 
+    public String buscarContrasena(String correo) {
+   
+      String contrasena="";
+       Usuario user= null;
+       this.mensaje=null;
+     
+       String consulta="select * from usuario where usuario_correo=? ";
+       try
+       {
+           ps=miConexion.prepareStatement(consulta);
+           ps.setString(1, correo);
+         
+           rs = ps.executeQuery();
+           if(rs.next())
+           {
+              
+             contrasena= rs.getString("usuario_contrasena");
+               
+           }
+           rs.close();
+       }catch(SQLException ex)
+       {
+           this.mensaje= ex.getMessage();
+       }
+       return contrasena;
+   }
     public Usuario iniciarSesion(Usuario unUsuario) {
    
       

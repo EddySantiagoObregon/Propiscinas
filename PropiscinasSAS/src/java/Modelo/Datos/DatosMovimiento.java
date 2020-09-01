@@ -134,7 +134,7 @@ public class DatosMovimiento {
 "INNER JOIN usuario ON movimiento.movimiento_usuario = usuario.idUsuario\n" +
 "INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id\n" +
 "WHERE\n" +
-"  producto.producto_id LIKE ? OR  infraestructura.infraestructura_descripcion LIKE ? OR transaccion.transaccion_descripcion LIKE ? OR movimiento.movimiento_numero_factura LIKE ? OR producto.producto_nombre LIKE ? OR forma.forma_descripcion LIKE ? OR detalle_producto.detalle_producto_cantidad_medida LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR grupo.grupo_descripcion LIKE ? OR movimiento.movimiento_fecha_resgistro LIKE ? OR movimiento.movimiento_cantidad LIKE ? OR documento.documento_numero_documento LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ? OR movimiento.movimiento_observacion LIKE ? OR usuario.usuario_nombre = ?";
+"  producto.producto_id LIKE ? OR  infraestructura.infraestructura_descripcion LIKE ? OR transaccion.transaccion_descripcion LIKE ? OR movimiento.movimiento_numero_factura LIKE ? OR producto.producto_nombre LIKE ? OR forma.forma_descripcion LIKE ? OR detalle_producto.detalle_producto_cantidad_medida LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR grupo.grupo_descripcion LIKE ? OR movimiento.movimiento_fecha_resgistro LIKE ? OR movimiento.movimiento_cantidad LIKE ? OR documento.documento_numero_documento LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ? OR movimiento.movimiento_observacion LIKE ? OR usuario.usuario_nombre = ?  ORDER BY movimiento.movimiento_fecha_resgistro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1,buscar);
             ps.setString(2,buscar);
@@ -631,7 +631,7 @@ public class DatosMovimiento {
 "INNER JOIN usuario ON movimiento.movimiento_usuario = usuario.idUsuario\n" +
 "INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id\n" +
 "WHERE\n" +
-"  producto.producto_id LIKE ? OR  infraestructura.infraestructura_descripcion LIKE ? OR transaccion.transaccion_descripcion LIKE ? OR movimiento.movimiento_numero_factura LIKE ? OR producto.producto_nombre LIKE ? OR forma.forma_descripcion LIKE ? OR detalle_producto.detalle_producto_cantidad_medida LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR grupo.grupo_descripcion LIKE ?  OR movimiento.movimiento_cantidad LIKE ? OR documento.documento_numero_documento LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ? OR movimiento.movimiento_observacion LIKE ? OR usuario.usuario_nombre = ? OR movimiento.movimiento_fecha_resgistro LIKE ?";
+"  producto.producto_id LIKE ? OR  infraestructura.infraestructura_descripcion LIKE ? OR transaccion.transaccion_descripcion LIKE ? OR movimiento.movimiento_numero_factura LIKE ? OR producto.producto_nombre LIKE ? OR forma.forma_descripcion LIKE ? OR detalle_producto.detalle_producto_cantidad_medida LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR grupo.grupo_descripcion LIKE ?  OR movimiento.movimiento_cantidad LIKE ? OR documento.documento_numero_documento LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ? OR movimiento.movimiento_observacion LIKE ? OR usuario.usuario_nombre = ? OR movimiento.movimiento_fecha_resgistro LIKE ?  ORDER BY movimiento.movimiento_fecha_resgistro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1,buscar);
             ps.setString(2,buscar);

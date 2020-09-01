@@ -279,16 +279,28 @@ public class ControllerProducto extends HttpServlet {
         cifra++;
         d=d*10;
         }while(res != n);
+         String contatenarCodigo="";
        if(cifra==3){
            StringNumero = "0"+numero;
-       }else{
+           contatenarCodigo= "75090"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+       }
+       if(cifra==4){
+           StringNumero = "0"+numero;
+           contatenarCodigo= "7509"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+       }
+       if(cifra==5){
          StringNumero = ""+numero;
+          contatenarCodigo= "7509"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+       }
+       if(cifra==2){
+         StringNumero = "00"+numero;
+          contatenarCodigo= "75090"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
        }
 
 
     
         String productoConvertir="null";
-        String contatenarCodigo= "75090"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+      
         double cantidadUnidad=Integer.parseInt(request.getParameter("txt_cantidadUnidad"));
          int productoConvertirCantidad= 0;
          String generaCodigoBarra="";
@@ -362,6 +374,7 @@ public class ControllerProducto extends HttpServlet {
         String cadenaForma = StringIdForma.substring(0,1);
         int cadenaIdForma = Integer.parseInt(cadenaForma);
         String StringNumero="";
+        String contatenarCodigo="";
         //Convertimos en String el numero incrementable;
         int n = numero;
         int res=0;
@@ -372,13 +385,25 @@ public class ControllerProducto extends HttpServlet {
         cifra++;
         d=d*10;
         }while(res != n);
-       if(cifra==3){
+          if(cifra==3){
            StringNumero = "0"+numero;
-       }else{
-         StringNumero = ""+numero;
+           contatenarCodigo= "75090"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
        }
+       if(cifra==4){
+           StringNumero = "0"+numero;
+           contatenarCodigo= "7509"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+       }
+       if(cifra==5){
+         StringNumero = ""+numero;
+          contatenarCodigo= "7509"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+       }
+       if(cifra==2){
+         StringNumero = "00"+numero;
+          contatenarCodigo= "75090"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+       }
+
         String nombreProductoConvertir= request.getParameter("_txt_Producto_Convertir");
-        String contatenarCodigo= "75090"+StringNumero+cadenaIdGrupo+cadenaIdPresentacion+cadenaIdForma+cadenaIdUnidadMedida;
+        
         double cantidadUnidad=Integer.parseInt(request.getParameter("_txt_cantidadUnidad"));
         int productoConvertirCantidad= Integer.parseInt(request.getParameter("_txt_Producto_Convertir_Cantidad"));
         String generaCodigoBarra="";

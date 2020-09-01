@@ -73,33 +73,6 @@ $(function(){
     }
   
  });
- /////////////////////////////////////
-  $('#txt_Contrasena').keyup(function() {
-     var txt_Contrasena;
-     txt_Contrasena = document.getElementById("txt_Contrasena").value;
-        if (txt_Contrasena.length<1 || txt_Contrasena.length >100){
-        $("#msjContrasena").html("Contraseña maxima de 100 caracteres");
-        return false;
-    }else{
-         $("#msjContrasena").html(" ");
-    }
-  
- });
- //////////////////////////////////////
-  $('#txt_RepetirContrasena').keyup(function() {
-     var txt_RepetirContrasena;
-     txt_RepetirContrasena = document.getElementById("txt_RepetirContrasena").value;
-     var contrasena= document.getElementById("txt_Contrasena").value;
-        contrasena+=0;
-        txt_RepetirContrasena+=0;
-        if (contrasena!==txt_RepetirContrasena) {
-           $("#msjRepetirContrasena").html("Las contraseñas no coinciden");
-           return false;
-      }else{
-         $("#msjRepetirContrasena").html(" ");
-    }
-  
- });
  ////////////////////////////////////
       $('#btnRegistrar').click(function(){ 
         
@@ -133,8 +106,7 @@ function RegistrarPersona(){
                 txt_Identificacion:$("#txt_Identificacion").val().trim(),
                 txt_Nombre:$("#txt_Nombre").val().trim(),
                 txt_Tel:$("#txt_Tel").val(),
-                txt_Correo:$("#txt_Correo").val().trim(),
-                txt_Contrasena:$("#txt_Contrasena").val().trim()
+                txt_Correo:$("#txt_Correo").val().trim()
              
                 
          
@@ -148,8 +120,8 @@ function RegistrarPersona(){
                 success: function(resultado){
                     console.log(resultado);
                     if(resultado){
-                     alert("Se registro correctamente!");
-                     location.href="MenuPrincipal.jsp";
+                     alert("Se ha registrado correctamente, colocate en contacto con el administrador para que te de la contraseña de acceso");
+              
                 } else{
                     alert("Problemas al registrar ");
                 }
