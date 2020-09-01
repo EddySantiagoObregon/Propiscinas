@@ -39,22 +39,30 @@ function listarVenta(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+      success: function (resultado) {
+        console.log(resultado);
             
-            ventas = resultado;          
+            ventas=resultado;          
             var cantidad;
             cantidad= ventas.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = ventas.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(ventas, function(j,venta){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -64,20 +72,20 @@ function listarVenta(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  var forma=venta.unDetalleProducto.unaForma.descripcion;
+  var forma=ventas[i].unDetalleProducto.unaForma.descripcion;
   if(forma==="SOLO"){
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }else{
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.unaForma.descripcion+" DE "+ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.cantidadUnidad+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -87,32 +95,32 @@ function listarVenta(){
   
  
   if(j===2){
-     var textoCelda = document.createTextNode(venta.fecharegistro);
+     var textoCelda = document.createTextNode(ventas[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===3){
-     var textoCelda = document.createTextNode(venta.cantidad);
+     var textoCelda = document.createTextNode(ventas[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 if(j===4){
-     var textoCelda = document.createTextNode(venta.valor);
+     var textoCelda = document.createTextNode(ventas[i].valor);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }             
    if(j===5){
-     var textoCelda = document.createTextNode(venta.estado);
+     var textoCelda = document.createTextNode(ventas[i].estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }    
 if(j===6){
-     var textoCelda = document.createTextNode(venta.unUsuario.nombre);
+     var textoCelda = document.createTextNode(ventas[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -122,6 +130,8 @@ if(j===6){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+  
+     
     body.appendChild(hilera);
   }
  
@@ -132,14 +142,55 @@ if(j===6){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarVenta(){
@@ -158,22 +209,30 @@ function BuscarVenta(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       success: function (resultado) {
+        console.log(resultado);
             
-            ventas = resultado;          
+            ventas=resultado;          
             var cantidad;
             cantidad= ventas.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = ventas.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(ventas, function(j,venta){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -183,53 +242,55 @@ function BuscarVenta(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  var forma=venta.unDetalleProducto.unaForma.descripcion;
+  var forma=ventas[i].unDetalleProducto.unaForma.descripcion;
   if(forma==="SOLO"){
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }else{
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.unaForma.descripcion+" DE "+ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.cantidadUnidad+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   }
 
+  
+ 
   if(j===2){
-     var textoCelda = document.createTextNode(venta.fecharegistro);
+     var textoCelda = document.createTextNode(ventas[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===3){
-     var textoCelda = document.createTextNode(venta.cantidad);
+     var textoCelda = document.createTextNode(ventas[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 if(j===4){
-     var textoCelda = document.createTextNode(venta.valor);
+     var textoCelda = document.createTextNode(ventas[i].valor);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }             
    if(j===5){
-     var textoCelda = document.createTextNode(venta.estado);
+     var textoCelda = document.createTextNode(ventas[i].estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }    
 if(j===6){
-     var textoCelda = document.createTextNode(venta.unUsuario.nombre);
+     var textoCelda = document.createTextNode(ventas[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -239,6 +300,8 @@ if(j===6){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+  
+     
     body.appendChild(hilera);
   }
  
@@ -249,15 +312,57 @@ if(j===6){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
+
 
 function BuscarVentaPorProductoYFecha(){
     $("tbody tr").remove();
@@ -277,21 +382,29 @@ function BuscarVentaPorProductoYFecha(){
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            ventas = resultado;          
+            ventas=resultado;          
             var cantidad;
             cantidad= ventas.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = ventas.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(ventas, function(j,venta){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -301,53 +414,55 @@ function BuscarVentaPorProductoYFecha(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-   var forma=venta.unDetalleProducto.unaForma.descripcion;
+  var forma=ventas[i].unDetalleProducto.unaForma.descripcion;
   if(forma==="SOLO"){
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }else{
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.unaForma.descripcion+" DE "+ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.cantidadUnidad+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   }
 
+  
+ 
   if(j===2){
-     var textoCelda = document.createTextNode(venta.fecharegistro);
+     var textoCelda = document.createTextNode(ventas[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===3){
-     var textoCelda = document.createTextNode(venta.cantidad);
+     var textoCelda = document.createTextNode(ventas[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 if(j===4){
-     var textoCelda = document.createTextNode(venta.valor);
+     var textoCelda = document.createTextNode(ventas[i].valor);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }             
    if(j===5){
-     var textoCelda = document.createTextNode(venta.estado);
+     var textoCelda = document.createTextNode(ventas[i].estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }    
 if(j===6){
-     var textoCelda = document.createTextNode(venta.unUsuario.nombre);
+     var textoCelda = document.createTextNode(ventas[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -357,6 +472,8 @@ if(j===6){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+  
+     
     body.appendChild(hilera);
   }
  
@@ -367,14 +484,55 @@ if(j===6){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarProductoPorFecha(){
@@ -389,22 +547,30 @@ function BuscarProductoPorFecha(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+         success: function (resultado) {
+        console.log(resultado);
             
-            ventas = resultado;          
+            ventas=resultado;          
             var cantidad;
             cantidad= ventas.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = ventas.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(ventas, function(j,venta){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -414,52 +580,55 @@ function BuscarProductoPorFecha(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  var forma=venta.unDetalleProducto.unaForma.descripcion;
+  var forma=ventas[i].unDetalleProducto.unaForma.descripcion;
   if(forma==="SOLO"){
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }else{
        if(j===1){
-      var textoCelda = document.createTextNode(venta.unDetalleProducto.unaForma.descripcion+" DE "+venta.unDetalleProducto.nombre+" "+venta.unDetalleProducto.cantidadUnidad+" "+venta.unDetalleProducto.unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(ventas[i].unDetalleProducto.unaForma.descripcion+" DE "+ventas[i].unDetalleProducto.nombre+" "+ventas[i].unDetalleProducto.cantidadUnidad+" "+ventas[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   }
+
+  
+ 
   if(j===2){
-     var textoCelda = document.createTextNode(venta.fecharegistro);
+     var textoCelda = document.createTextNode(ventas[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===3){
-     var textoCelda = document.createTextNode(venta.cantidad);
+     var textoCelda = document.createTextNode(ventas[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 if(j===4){
-     var textoCelda = document.createTextNode(venta.valor);
+     var textoCelda = document.createTextNode(ventas[i].valor);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }             
    if(j===5){
-     var textoCelda = document.createTextNode(venta.estado);
+     var textoCelda = document.createTextNode(ventas[i].estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
                         }    
 if(j===6){
-     var textoCelda = document.createTextNode(venta.unUsuario.nombre);
+     var textoCelda = document.createTextNode(ventas[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -469,6 +638,8 @@ if(j===6){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+  
+     
     body.appendChild(hilera);
   }
  
@@ -479,12 +650,53 @@ if(j===6){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }

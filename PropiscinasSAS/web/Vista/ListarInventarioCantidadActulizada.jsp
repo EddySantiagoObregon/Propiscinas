@@ -167,7 +167,12 @@
     <tbody id="Container" class="Container">
         
     </tbody>
+    
 </table>
+                         <div  id="botones"  style=" height: 60px;width:1163px; overflow:scroll; position:relative; overflow-x:scroll;
+     overflow-y:hidden;"class="btn-group btn-group-xs" 
+                     role="group" arial-label="grupo">
+                </div>
                         </article>
 			
 		</section>

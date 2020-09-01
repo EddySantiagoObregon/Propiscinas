@@ -37,18 +37,8 @@ $(function ()
    }); 
      ListarInventario();
     listarInfraestructura();
-    $(document).ready(function () {
-  $('#tblProducto').DataTable({
-    "paging": false // false to disable pagination (or any other option)
-  });
-  $('.dataTables_length').addClass('bs-select');
-});
-$(document).ready(function () {
-  $('#tblProducto').DataTable({
-    "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
-  });
-  $('.dataTables_length').addClass('bs-select');
-});
+
+
     $("#cb_Infraestructura").change(function(){
         var id=$("#cb_Infraestructura").val();
          if(id>0){
@@ -89,22 +79,30 @@ function listarCantidadActualizada(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+          success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -114,72 +112,74 @@ function listarCantidadActualizada(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===3){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
-      celda.appendChild(textoCelda);
-      hilera.appendChild(celda);
-  
-  }
-  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
-  if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+  if(j===3){
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
-      if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+      if(j===3){
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  }
+    if(j===4){
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+
   if(j===6){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+
 
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===8){
-     var textoCelda = document.createTextNode(unInventario.observacion);
+     var textoCelda = document.createTextNode(inventarios[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    if(j===9){
-     var textoCelda = document.createTextNode(unInventario.unUsuario.nombre);
+   if(j===9){
+     var textoCelda = document.createTextNode(inventarios[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -191,8 +191,7 @@ function listarCantidadActualizada(){
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -202,15 +201,56 @@ function listarCantidadActualizada(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
 function ListarInventario(){
      var parametros = {
                accion: "listarInventario"
@@ -223,22 +263,31 @@ function ListarInventario(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       
+      success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -248,53 +297,53 @@ function ListarInventario(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
     if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
   if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -303,19 +352,19 @@ function ListarInventario(){
 
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===8){
-     var textoCelda = document.createTextNode(unInventario.observacion);
+     var textoCelda = document.createTextNode(inventarios[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===9){
-     var textoCelda = document.createTextNode(unInventario.unUsuario.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -327,8 +376,7 @@ function ListarInventario(){
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -338,14 +386,55 @@ function ListarInventario(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 function ListarInventarioPorIdInfraestructura(){
      var parametros = {
@@ -359,22 +448,30 @@ function ListarInventarioPorIdInfraestructura(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+           success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -383,54 +480,54 @@ function ListarInventarioPorIdInfraestructura(){
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
       var celda = document.createElement("td");
-     if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+   if(j===0){
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-   var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
     if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
   if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -439,30 +536,31 @@ function ListarInventarioPorIdInfraestructura(){
 
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===8){
-     var textoCelda = document.createTextNode(unInventario.observacion);
+     var textoCelda = document.createTextNode(inventarios[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    if(j===9){
-     var textoCelda = document.createTextNode(unInventario.unUsuario.nombre);
+   if(j===9){
+     var textoCelda = document.createTextNode(inventarios[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  
+  
   
   
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -472,14 +570,55 @@ function ListarInventarioPorIdInfraestructura(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 function listarInfraestructura()
 {
@@ -530,22 +669,30 @@ function listarInventarioPorFecha(fecha){
                type: 'post',
                dataType: 'json',
                cache: false,
-              success: function (resultado) {
-            console.log(resultado);
+                  success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -554,84 +701,87 @@ function listarInventarioPorFecha(fecha){
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
       var celda = document.createElement("td");
-     if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+   if(j===0){
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
-  }  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+  }
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
     if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
   if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
 
+
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===8){
-     var textoCelda = document.createTextNode(unInventario.observacion);
+     var textoCelda = document.createTextNode(inventarios[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    if(j===9){
-     var textoCelda = document.createTextNode(unInventario.unUsuario.nombre);
+   if(j===9){
+     var textoCelda = document.createTextNode(inventarios[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  
+  
   
   
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -641,16 +791,56 @@ function listarInventarioPorFecha(fecha){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
-
 function listarInventarioPorFechaYCodigo(fecha){
 
     $("tbody tr").remove(); 
@@ -669,23 +859,30 @@ function listarInventarioPorFechaYCodigo(fecha){
                type: 'post',
                dataType: 'json',
                cache: false,
-              success: function (resultado) {
-            console.log(resultado);
-             $("tbody tr").remove(); 
-            inventarios = resultado;          
+                success: function (resultado) {
+        console.log(resultado);
             
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-            
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -694,85 +891,87 @@ function listarInventarioPorFechaYCodigo(fecha){
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
       var celda = document.createElement("td");
-     if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+   if(j===0){
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
     if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
   if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
 
+
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===8){
-     var textoCelda = document.createTextNode(unInventario.observacion);
+     var textoCelda = document.createTextNode(inventarios[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    if(j===9){
-     var textoCelda = document.createTextNode(unInventario.unUsuario.nombre);
+   if(j===9){
+     var textoCelda = document.createTextNode(inventarios[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  
+  
   
   
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -782,14 +981,55 @@ function listarInventarioPorFechaYCodigo(fecha){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
@@ -811,23 +1051,30 @@ function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
                type: 'post',
                dataType: 'json',
                cache: false,
-              success: function (resultado) {
-            console.log(resultado);
-             $("tbody tr").remove(); 
-            inventarios = resultado;          
+                success: function (resultado) {
+        console.log(resultado);
             
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-            
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -836,55 +1083,54 @@ function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
       var celda = document.createElement("td");
-     if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+   if(j===0){
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
- 
     if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
   if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -892,32 +1138,32 @@ function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
 
 
 
-
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===8){
-     var textoCelda = document.createTextNode(unInventario.observacion);
+     var textoCelda = document.createTextNode(inventarios[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    if(j===9){
-     var textoCelda = document.createTextNode(unInventario.unUsuario.nombre);
+   if(j===9){
+     var textoCelda = document.createTextNode(inventarios[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  
+  
   
   
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -927,16 +1173,56 @@ function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
-
 ///////////
 function buscarInventarioDatosHistoricos(){
 
@@ -956,23 +1242,30 @@ function buscarInventarioDatosHistoricos(){
                type: 'post',
                dataType: 'json',
                cache: false,
-              success: function (resultado) {
-            console.log(resultado);
-             $("tbody tr").remove(); 
-            inventarios = resultado;          
+                 success: function (resultado) {
+        console.log(resultado);
             
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-            
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -981,55 +1274,54 @@ function buscarInventarioDatosHistoricos(){
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
       var celda = document.createElement("td");
-     if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+   if(j===0){
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
-  
     if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
   if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -1037,32 +1329,32 @@ function buscarInventarioDatosHistoricos(){
 
 
 
-
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===8){
-     var textoCelda = document.createTextNode(unInventario.observacion);
+     var textoCelda = document.createTextNode(inventarios[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    if(j===9){
-     var textoCelda = document.createTextNode(unInventario.unUsuario.nombre);
+   if(j===9){
+     var textoCelda = document.createTextNode(inventarios[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
+  
+  
   
   
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -1072,12 +1364,53 @@ function buscarInventarioDatosHistoricos(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }

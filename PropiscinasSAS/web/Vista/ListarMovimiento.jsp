@@ -162,7 +162,8 @@
         
     </tbody>
 </table>
-                         <div style="z-index: 1;" id="botones" class="btn-group btn-group-xs" 
+                         <div  id="botones"  style=" height: 60px;width:1237px; overflow:scroll; position:relative; overflow-x:scroll;
+     overflow-y:hidden;"class="btn-group btn-group-xs" 
                      role="group" arial-label="grupo">
                 </div>
                         </article>

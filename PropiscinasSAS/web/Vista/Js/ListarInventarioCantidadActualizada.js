@@ -76,22 +76,30 @@ function listarCantidadActualizada(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+     success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -101,34 +109,34 @@ function listarCantidadActualizada(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -138,31 +146,31 @@ function listarCantidadActualizada(){
  
   
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
- var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -217,8 +225,7 @@ function listarCantidadActualizada(){
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -228,15 +235,56 @@ function listarCantidadActualizada(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
     function totalProductosInfraestructura(){
         $("tbody tr").remove(); 
      var parametros = {
@@ -250,22 +298,30 @@ function listarCantidadActualizada(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -275,65 +331,68 @@ function listarCantidadActualizada(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-     var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
+
+ 
+  
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode("TODAS");
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-   var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -388,8 +447,7 @@ function listarCantidadActualizada(){
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -399,15 +457,56 @@ function listarCantidadActualizada(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
     function BuscarProductoDeInfraestructura(){
         $("tbody tr").remove(); 
         var txtBuscar =$("#txt_Buscar").val().trim();
@@ -424,22 +523,30 @@ function listarCantidadActualizada(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+      success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -449,65 +556,68 @@ function listarCantidadActualizada(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
-  }    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+  }
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
+
+ 
+  
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -515,6 +625,7 @@ function listarCantidadActualizada(){
       const button= document.createElement('a');
                         button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🔴";
        button.appendChild(img);
@@ -530,6 +641,7 @@ function listarCantidadActualizada(){
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟡";
        button.appendChild(img);
@@ -545,6 +657,7 @@ function listarCantidadActualizada(){
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟢";
        button.appendChild(img);
@@ -559,8 +672,7 @@ function listarCantidadActualizada(){
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -570,15 +682,56 @@ function listarCantidadActualizada(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
     function listarCantidadActualizadaInfraestructura(numero){
         $("tbody tr").remove(); 
      var parametros = {
@@ -592,22 +745,30 @@ function listarCantidadActualizada(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -617,65 +778,68 @@ function listarCantidadActualizada(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
-  }    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+  }
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
+
+ 
+  
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
-  var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -683,6 +847,7 @@ function listarCantidadActualizada(){
       const button= document.createElement('a');
                         button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🔴";
        button.appendChild(img);
@@ -698,6 +863,7 @@ function listarCantidadActualizada(){
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟡";
        button.appendChild(img);
@@ -713,6 +879,7 @@ function listarCantidadActualizada(){
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟢";
        button.appendChild(img);
@@ -723,11 +890,11 @@ function listarCantidadActualizada(){
   
   
   
+  
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -737,15 +904,56 @@ function listarCantidadActualizada(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
       function BuscarCantidadActualizadaPorCodigoYInfraestructura(numero){
           $("tbody tr").remove(); 
           var txtBuscar =$("#txt_Buscar").val().trim();
@@ -763,21 +971,29 @@ function listarCantidadActualizada(){
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -787,65 +1003,68 @@ function listarCantidadActualizada(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
-  }    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+  }
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
+
+ 
+  
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -853,6 +1072,7 @@ var cantidadInventrario=unInventario.cantidad;
       const button= document.createElement('a');
                         button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🔴";
        button.appendChild(img);
@@ -868,6 +1088,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟡";
        button.appendChild(img);
@@ -883,6 +1104,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟢";
        button.appendChild(img);
@@ -897,8 +1119,7 @@ var cantidadInventrario=unInventario.cantidad;
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -908,15 +1129,56 @@ var cantidadInventrario=unInventario.cantidad;
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
      function BuscarCantidadActualizadaPorNombreYInfraestructura(numero){
          $("tbody tr").remove(); 
          var txtBuscar =$("#txt_Buscar").val().trim();
@@ -933,22 +1195,30 @@ var cantidadInventrario=unInventario.cantidad;
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+      success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -958,67 +1228,68 @@ var cantidadInventrario=unInventario.cantidad;
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
-  }    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+  }
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
 
+ 
+  
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
-  var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -1026,6 +1297,7 @@ var cantidadInventrario=unInventario.cantidad;
       const button= document.createElement('a');
                         button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🔴";
        button.appendChild(img);
@@ -1041,6 +1313,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟡";
        button.appendChild(img);
@@ -1056,6 +1329,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟢";
        button.appendChild(img);
@@ -1066,11 +1340,11 @@ var cantidadInventrario=unInventario.cantidad;
   
   
   
+  
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -1080,15 +1354,56 @@ var cantidadInventrario=unInventario.cantidad;
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
      function BuscarProducto(){
          $("tbody tr").remove(); 
          var txtBuscar =$("#txt_Buscar").val().trim();
@@ -1104,22 +1419,30 @@ var cantidadInventrario=unInventario.cantidad;
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+     success: function (resultado) {
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -1129,65 +1452,68 @@ var cantidadInventrario=unInventario.cantidad;
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
+
+ 
+  
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -1195,6 +1521,7 @@ var cantidadInventrario=unInventario.cantidad;
       const button= document.createElement('a');
                         button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🔴";
        button.appendChild(img);
@@ -1210,6 +1537,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟡";
        button.appendChild(img);
@@ -1225,6 +1553,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟢";
        button.appendChild(img);
@@ -1239,8 +1568,7 @@ var cantidadInventrario=unInventario.cantidad;
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -1250,15 +1578,56 @@ var cantidadInventrario=unInventario.cantidad;
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}
     function totalProductosInfraestructuraYcodigo()
     {
            var txtBuscar =$("#txt_Buscar").val().trim();
@@ -1275,21 +1644,29 @@ var cantidadInventrario=unInventario.cantidad;
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            inventarios = resultado;          
-    
+            inventarios=resultado;          
+            var cantidad;
             cantidad= inventarios.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = inventarios.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(inventarios, function(j,unInventario){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -1299,67 +1676,68 @@ var cantidadInventrario=unInventario.cantidad;
       // de la hilera de la tabla
       var celda = document.createElement("td");
    if(j===0){
-      var textoCelda = document.createTextNode(unInventario.unDetalleProducto.idProducto);
+      var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(unInventario.fecha);
+      var textoCelda = document.createTextNode(inventarios[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-    var cantidad=unInventario.unDetalleProducto.cantidadUnidad;
+    var cantidad=inventarios[i].unDetalleProducto.cantidadUnidad;
  
   if(cantidad===0){
   if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }else{
       if(j===3){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaForma.descripcion+" "+unInventario.unDetalleProducto.cantidadUnidad+" "+unInventario.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaForma.descripcion+" "+inventarios[i].unDetalleProducto.cantidadUnidad+" "+inventarios[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   }
 
+ 
+  
   if(j===4){
-     var textoCelda = document.createTextNode(unInventario.cantidad);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-  if(j===6){
-     var textoCelda = document.createTextNode(unInventario.unDetalleProducto.unGrupo.descripcion);
+ if(j===6){
+     var textoCelda = document.createTextNode(inventarios[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-
 
     if(j===7){
-     var textoCelda = document.createTextNode(unInventario.unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
-var cantidadInventrario=unInventario.cantidad;
+ var cantidadInventrario=inventarios[i].cantidad;
    if(cantidadInventrario<5){
          if(j===8){
      
@@ -1367,6 +1745,7 @@ var cantidadInventrario=unInventario.cantidad;
       const button= document.createElement('a');
                         button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🔴";
        button.appendChild(img);
@@ -1382,6 +1761,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟡";
        button.appendChild(img);
@@ -1397,6 +1777,7 @@ var cantidadInventrario=unInventario.cantidad;
                           
                            button.setAttribute('class','agregar');
                            button.setAttribute('id','agregar');
+                           button.setAttribute('style','position: absolute;margin-top: 10px;');
                            const img= document.createElement('img');
                            button.innerHTML="🟢";
        button.appendChild(img);
@@ -1411,8 +1792,7 @@ var cantidadInventrario=unInventario.cantidad;
     
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
-    
-    body.appendChild(hilera);
+   body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -1422,13 +1802,53 @@ var cantidadInventrario=unInventario.cantidad;
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
     }
-    
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
+}

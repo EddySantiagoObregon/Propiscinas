@@ -225,7 +225,7 @@ $("#botones button").remove();
                 var botones = '';
                 for(var i = 0; i < t; i++){
                     var cada = '';
-                    cada = "<button type='button' "+
+                    cada = "<button id='btnPagination' type='button' "+
                         "class='btn btn-info'>"+(i+1)+
                         "</button>";
                     botones += cada;
@@ -280,22 +280,31 @@ function BuscarMovimiento(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+      success: function (resultado) {
+        console.log(resultado);
             
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = movimientos.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-            $.each(movimientos, function(j,movimiento){
-
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
   
- 
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -305,29 +314,29 @@ function BuscarMovimiento(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(movimiento.unaInfraestructura.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(movimiento.unaTransaccion.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaTransaccion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
 
   if(j===2){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 
-  var cantidad =movimiento.unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
        if(j===3){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -335,26 +344,26 @@ function BuscarMovimiento(){
   }
   }else{
         if(j===3){
-          var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.cantidadUnidad+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }
   if(j===4){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(movimiento.fecharegistro);
+     var textoCelda = document.createTextNode(movimientos[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
    if(j===6){
-      var textoCelda = document.createTextNode(movimiento.cantidad);
+      var textoCelda = document.createTextNode(movimientos[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -362,24 +371,24 @@ function BuscarMovimiento(){
     
 
   if(j===7){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.numerodocumento);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.numerodocumento);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===8){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.unTipoDocumento.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.unTipoDocumento.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===9){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
-  var verdadero=movimiento.unaInfraestructuraDespacho.descripcion;
+  var verdadero=movimientos[i].unaInfraestructuraDespacho.descripcion;
   if(verdadero===" "){
       if(j===10){
      var textoCelda = document.createTextNode("NIGUNA");
@@ -389,20 +398,20 @@ function BuscarMovimiento(){
   }
   }else{
     if(j===10){
-     var textoCelda = document.createTextNode(movimiento.unaInfraestructuraDespacho.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unaInfraestructuraDespacho.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
   }
   if(j===11){
-     var textoCelda = document.createTextNode(movimiento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===12){
-     var textoCelda = document.createTextNode(movimiento.unUsuario.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
@@ -414,6 +423,7 @@ function BuscarMovimiento(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+     
     body.appendChild(hilera);
   }
  
@@ -424,15 +434,55 @@ function BuscarMovimiento(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
-               
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarMovimientoPorFecha(){
@@ -447,22 +497,31 @@ function BuscarMovimientoPorFecha(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       success: function (resultado) {
+        console.log(resultado);
             
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = movimientos.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(movimientos, function(j,movimiento){
-
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
   
- 
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -472,29 +531,29 @@ function BuscarMovimientoPorFecha(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(movimiento.unaInfraestructura.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(movimiento.unaTransaccion.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaTransaccion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
 
   if(j===2){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 
-  var cantidad =movimiento.unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
        if(j===3){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -502,26 +561,26 @@ function BuscarMovimientoPorFecha(){
   }
   }else{
         if(j===3){
-          var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.cantidadUnidad+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }
   if(j===4){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(movimiento.fecharegistro);
+     var textoCelda = document.createTextNode(movimientos[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
    if(j===6){
-      var textoCelda = document.createTextNode(movimiento.cantidad);
+      var textoCelda = document.createTextNode(movimientos[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -529,24 +588,24 @@ function BuscarMovimientoPorFecha(){
     
 
   if(j===7){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.numerodocumento);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.numerodocumento);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===8){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.unTipoDocumento.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.unTipoDocumento.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===9){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
-  var verdadero=movimiento.unaInfraestructuraDespacho.descripcion;
+  var verdadero=movimientos[i].unaInfraestructuraDespacho.descripcion;
   if(verdadero===" "){
       if(j===10){
      var textoCelda = document.createTextNode("NIGUNA");
@@ -556,20 +615,20 @@ function BuscarMovimientoPorFecha(){
   }
   }else{
     if(j===10){
-     var textoCelda = document.createTextNode(movimiento.unaInfraestructuraDespacho.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unaInfraestructuraDespacho.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
   }
   if(j===11){
-     var textoCelda = document.createTextNode(movimiento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===12){
-     var textoCelda = document.createTextNode(movimiento.unUsuario.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
@@ -581,6 +640,7 @@ function BuscarMovimientoPorFecha(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+     
     body.appendChild(hilera);
   }
  
@@ -591,14 +651,55 @@ function BuscarMovimientoPorFecha(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 
@@ -615,22 +716,31 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       success: function (resultado) {
+        console.log(resultado);
             
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = movimientos.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(movimientos, function(j,movimiento){
-
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
   
- 
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -640,29 +750,29 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(movimiento.unaInfraestructura.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(movimiento.unaTransaccion.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaTransaccion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
 
   if(j===2){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 
-  var cantidad =movimiento.unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
        if(j===3){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -670,26 +780,26 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
   }
   }else{
         if(j===3){
-          var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.cantidadUnidad+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }
   if(j===4){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(movimiento.fecharegistro);
+     var textoCelda = document.createTextNode(movimientos[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
    if(j===6){
-      var textoCelda = document.createTextNode(movimiento.cantidad);
+      var textoCelda = document.createTextNode(movimientos[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -697,24 +807,24 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
     
 
   if(j===7){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.numerodocumento);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.numerodocumento);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===8){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.unTipoDocumento.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.unTipoDocumento.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===9){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
-  var verdadero=movimiento.unaInfraestructuraDespacho.descripcion;
+  var verdadero=movimientos[i].unaInfraestructuraDespacho.descripcion;
   if(verdadero===" "){
       if(j===10){
      var textoCelda = document.createTextNode("NIGUNA");
@@ -724,20 +834,20 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
   }
   }else{
     if(j===10){
-     var textoCelda = document.createTextNode(movimiento.unaInfraestructuraDespacho.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unaInfraestructuraDespacho.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
   }
   if(j===11){
-     var textoCelda = document.createTextNode(movimiento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===12){
-     var textoCelda = document.createTextNode(movimiento.unUsuario.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
@@ -749,6 +859,7 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+     
     body.appendChild(hilera);
   }
  
@@ -759,14 +870,55 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function tipoDocumento()
@@ -815,22 +967,31 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+    success: function (resultado) {
+        console.log(resultado);
             
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = movimientos.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(movimientos, function(j,movimiento){
-
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
   
- 
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -840,29 +1001,29 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(movimiento.unaInfraestructura.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(movimiento.unaTransaccion.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaTransaccion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
 
   if(j===2){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 
-  var cantidad =movimiento.unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
        if(j===3){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -870,26 +1031,26 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
   }
   }else{
         if(j===3){
-          var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.cantidadUnidad+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }
   if(j===4){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(movimiento.fecharegistro);
+     var textoCelda = document.createTextNode(movimientos[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
    if(j===6){
-      var textoCelda = document.createTextNode(movimiento.cantidad);
+      var textoCelda = document.createTextNode(movimientos[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -897,24 +1058,24 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
     
 
   if(j===7){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.numerodocumento);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.numerodocumento);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===8){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.unTipoDocumento.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.unTipoDocumento.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===9){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
-  var verdadero=movimiento.unaInfraestructuraDespacho.descripcion;
+  var verdadero=movimientos[i].unaInfraestructuraDespacho.descripcion;
   if(verdadero===" "){
       if(j===10){
      var textoCelda = document.createTextNode("NIGUNA");
@@ -924,20 +1085,20 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
   }
   }else{
     if(j===10){
-     var textoCelda = document.createTextNode(movimiento.unaInfraestructuraDespacho.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unaInfraestructuraDespacho.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
   }
   if(j===11){
-     var textoCelda = document.createTextNode(movimiento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===12){
-     var textoCelda = document.createTextNode(movimiento.unUsuario.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
@@ -949,6 +1110,7 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+     
     body.appendChild(hilera);
   }
  
@@ -959,16 +1121,56 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
-
 function tipoDocumento()
 {
     var parametros={
@@ -1014,22 +1216,31 @@ function BuscarMovimientoTipoDocumento(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+     success: function (resultado) {
+        console.log(resultado);
             
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = movimientos.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(movimientos, function(j,movimiento){
-
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
   
- 
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -1039,29 +1250,29 @@ function BuscarMovimientoTipoDocumento(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(movimiento.unaInfraestructura.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(movimiento.unaTransaccion.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaTransaccion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
 
   if(j===2){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 
-  var cantidad =movimiento.unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
        if(j===3){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -1069,26 +1280,26 @@ function BuscarMovimientoTipoDocumento(){
   }
   }else{
         if(j===3){
-          var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.cantidadUnidad+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }
   if(j===4){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(movimiento.fecharegistro);
+     var textoCelda = document.createTextNode(movimientos[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
    if(j===6){
-      var textoCelda = document.createTextNode(movimiento.cantidad);
+      var textoCelda = document.createTextNode(movimientos[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -1096,24 +1307,24 @@ function BuscarMovimientoTipoDocumento(){
     
 
   if(j===7){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.numerodocumento);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.numerodocumento);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===8){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.unTipoDocumento.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.unTipoDocumento.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===9){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
-  var verdadero=movimiento.unaInfraestructuraDespacho.descripcion;
+  var verdadero=movimientos[i].unaInfraestructuraDespacho.descripcion;
   if(verdadero===" "){
       if(j===10){
      var textoCelda = document.createTextNode("NIGUNA");
@@ -1123,20 +1334,20 @@ function BuscarMovimientoTipoDocumento(){
   }
   }else{
     if(j===10){
-     var textoCelda = document.createTextNode(movimiento.unaInfraestructuraDespacho.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unaInfraestructuraDespacho.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
   }
   if(j===11){
-     var textoCelda = document.createTextNode(movimiento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===12){
-     var textoCelda = document.createTextNode(movimiento.unUsuario.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
@@ -1148,6 +1359,7 @@ function BuscarMovimientoTipoDocumento(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+     
     body.appendChild(hilera);
   }
  
@@ -1158,14 +1370,55 @@ function BuscarMovimientoTipoDocumento(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarMovimientoTipoDocumentoYFecha(){
@@ -1181,22 +1434,31 @@ function BuscarMovimientoTipoDocumentoYFecha(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+      success: function (resultado) {
+        console.log(resultado);
             
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = movimientos.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(movimientos, function(j,movimiento){
-
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
   
- 
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -1206,29 +1468,29 @@ function BuscarMovimientoTipoDocumentoYFecha(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(movimiento.unaInfraestructura.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(movimiento.unaTransaccion.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaTransaccion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
 
   if(j===2){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 
-  var cantidad =movimiento.unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
        if(j===3){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -1236,26 +1498,26 @@ function BuscarMovimientoTipoDocumentoYFecha(){
   }
   }else{
         if(j===3){
-          var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.cantidadUnidad+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }
   if(j===4){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(movimiento.fecharegistro);
+     var textoCelda = document.createTextNode(movimientos[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
    if(j===6){
-      var textoCelda = document.createTextNode(movimiento.cantidad);
+      var textoCelda = document.createTextNode(movimientos[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -1263,24 +1525,24 @@ function BuscarMovimientoTipoDocumentoYFecha(){
     
 
   if(j===7){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.numerodocumento);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.numerodocumento);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===8){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.unTipoDocumento.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.unTipoDocumento.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===9){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
-  var verdadero=movimiento.unaInfraestructuraDespacho.descripcion;
+  var verdadero=movimientos[i].unaInfraestructuraDespacho.descripcion;
   if(verdadero===" "){
       if(j===10){
      var textoCelda = document.createTextNode("NIGUNA");
@@ -1290,20 +1552,20 @@ function BuscarMovimientoTipoDocumentoYFecha(){
   }
   }else{
     if(j===10){
-     var textoCelda = document.createTextNode(movimiento.unaInfraestructuraDespacho.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unaInfraestructuraDespacho.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
   }
   if(j===11){
-     var textoCelda = document.createTextNode(movimiento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===12){
-     var textoCelda = document.createTextNode(movimiento.unUsuario.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
@@ -1315,6 +1577,7 @@ function BuscarMovimientoTipoDocumentoYFecha(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+     
     body.appendChild(hilera);
   }
  
@@ -1325,14 +1588,55 @@ function BuscarMovimientoTipoDocumentoYFecha(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarMovimientoTxt_BuscarYFecha(){
@@ -1348,22 +1652,31 @@ function BuscarMovimientoTxt_BuscarYFecha(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       success: function (resultado) {
+        console.log(resultado);
             
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = movimientos.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(movimientos, function(j,movimiento){
-
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
   
- 
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
@@ -1373,29 +1686,29 @@ function BuscarMovimientoTxt_BuscarYFecha(){
       // de la hilera de la tabla
       var celda = document.createElement("td");
       if(j===0){
-      var textoCelda = document.createTextNode(movimiento.unaInfraestructura.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   if(j===1){
-      var textoCelda = document.createTextNode(movimiento.unaTransaccion.descripcion);
+      var textoCelda = document.createTextNode(movimientos[i].unaTransaccion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
 
   if(j===2){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  
 
-  var cantidad =movimiento.unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
   if(cantidad===0){
        if(j===3){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -1403,26 +1716,26 @@ function BuscarMovimientoTxt_BuscarYFecha(){
   }
   }else{
         if(j===3){
-          var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unaForma.descripcion+" "+movimiento.unDetalleProducto.cantidadUnidad+" "+movimiento.unDetalleProducto.unaUnidadMedida.descripcion);
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
   }
   if(j===4){
-     var textoCelda = document.createTextNode(movimiento.unDetalleProducto.unGrupo.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unGrupo.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===5){
-     var textoCelda = document.createTextNode(movimiento.fecharegistro);
+     var textoCelda = document.createTextNode(movimientos[i].fecharegistro);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
 
    if(j===6){
-      var textoCelda = document.createTextNode(movimiento.cantidad);
+      var textoCelda = document.createTextNode(movimientos[i].cantidad);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
@@ -1430,24 +1743,24 @@ function BuscarMovimientoTxt_BuscarYFecha(){
     
 
   if(j===7){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.numerodocumento);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.numerodocumento);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===8){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.unTipoDocumento.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.unTipoDocumento.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===9){
-     var textoCelda = document.createTextNode(movimiento.unDocumento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].unDocumento.observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
-  var verdadero=movimiento.unaInfraestructuraDespacho.descripcion;
+  var verdadero=movimientos[i].unaInfraestructuraDespacho.descripcion;
   if(verdadero===" "){
       if(j===10){
      var textoCelda = document.createTextNode("NIGUNA");
@@ -1457,20 +1770,20 @@ function BuscarMovimientoTxt_BuscarYFecha(){
   }
   }else{
     if(j===10){
-     var textoCelda = document.createTextNode(movimiento.unaInfraestructuraDespacho.descripcion);
+     var textoCelda = document.createTextNode(movimientos[i].unaInfraestructuraDespacho.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
   }
   if(j===11){
-     var textoCelda = document.createTextNode(movimiento.observacion);
+     var textoCelda = document.createTextNode(movimientos[i].observacion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
   }
    if(j===12){
-     var textoCelda = document.createTextNode(movimiento.unUsuario.nombre);
+     var textoCelda = document.createTextNode(movimientos[i].unUsuario.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
      
@@ -1482,6 +1795,7 @@ function BuscarMovimientoTxt_BuscarYFecha(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
+     
     body.appendChild(hilera);
   }
  
@@ -1492,12 +1806,53 @@ function BuscarMovimientoTxt_BuscarYFecha(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }

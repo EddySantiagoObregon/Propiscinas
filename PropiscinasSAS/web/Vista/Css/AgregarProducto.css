@@ -129,3 +129,18 @@ footer{
 #alertaAmarilla{
    background-color: yellow;
 }
+#btnPagination{
+    background-color: #007bff;
+
+}
+#botones::-webkit-scrollbar{
+ 	width:7px;
+	height: 10px;
+        cursor: pointer;
+}
+#botones::-webkit-scrollbar-thumb{
+      cursor: pointer;
+
+	background:#007bff;
+         border-radius: 5px;
+}
