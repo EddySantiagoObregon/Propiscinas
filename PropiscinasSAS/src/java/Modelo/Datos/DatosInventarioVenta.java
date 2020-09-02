@@ -51,8 +51,9 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id\n" +
 "INNER JOIN usuario ON inventario_venta.inventario_venta_usuario=usuario.idUsuario\n" +
+"INNER JOIN presentacion	ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id\n" +
 "ORDER BY inventario_venta.inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             rs = ps.executeQuery();
@@ -62,6 +63,7 @@ public class DatosInventarioVenta{
                 InventarioVenta unInventarioVenta = new InventarioVenta();
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
@@ -88,7 +90,8 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  WHERE documento.documento_numero_documento=? ORDER BY inventario_venta.inventario_venta_fecha_registro DESC";
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario\n" +
+"INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id WHERE documento.documento_numero_documento=? ORDER BY inventario_venta.inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, factura);
             rs = ps.executeQuery();
@@ -98,6 +101,7 @@ public class DatosInventarioVenta{
                 InventarioVenta unInventarioVenta = new InventarioVenta();
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
@@ -166,14 +170,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* \n" +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* \n" +
 "                   FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id \n" +
 "                    INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id \n" +
 "                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id \n" +
 "                    INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id \n" +
 "                    INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id \n" +
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
-"                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  \n" +
+"                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario "
+                    + "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id  \n" +
 "   WHERE inventario_venta.inventario_venta_producto_id LIKE ? OR producto.producto_referencia LIKE ? OR producto.producto_nombre LIKE ? OR producto.producto_abreviatura LIKE ? OR \n" +
 "   forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
@@ -198,6 +203,7 @@ public class DatosInventarioVenta{
                 InventarioVenta unInventarioVenta = new InventarioVenta();
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
@@ -224,14 +230,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* \n" +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* \n" +
 "                   FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id \n" +
 "                 INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id \n" +
 "                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id \n" +
 "                    INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id \n" +
 "                    INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id \n" +
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
-"                   INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario " +
+"                   INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario "
+                    + "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id  " +
 "   WHERE  inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, "%"+fecha+"%");
@@ -245,6 +252,7 @@ public class DatosInventarioVenta{
                 InventarioVenta unInventarioVenta = new InventarioVenta();
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
@@ -271,14 +279,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* " +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* " +
                   " FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id "+
                   "  INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id "+ 
                   "  INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id "+
                   "  INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id "+
                   "  INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id "+
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
-                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
+                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "
+                    + "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id "+
   " WHERE inventario_venta.inventario_venta_producto_id LIKE ? OR producto.producto_referencia LIKE ? OR producto.producto_nombre LIKE ? OR producto.producto_abreviatura LIKE ? OR  "+
  "  forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
@@ -303,6 +312,7 @@ public class DatosInventarioVenta{
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unInventarioVenta.setFecharegistro(rs.getString("inventario_venta_fecha_registro"));
@@ -329,14 +339,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* \n" +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* \n" +
 "                   FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id \n" +
 "                    INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id \n" +
 "                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id \n" +
 "                   INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id \n" +
 "                    INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id \n" +
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
-"                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  \n" +
+"                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario "
+                    + "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id  \n" +
 "  WHERE tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setInt(1, TipoDocumento);
@@ -349,6 +360,7 @@ public class DatosInventarioVenta{
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unInventarioVenta.setFecharegistro(rs.getString("inventario_venta_fecha_registro"));
@@ -375,14 +387,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* \n" +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.*  \n" +
 "                   FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id \n" +
 "                    INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id \n" +
 "                    INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id \n" +
 "                   INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id \n" +
 "                    INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id \n" +
 "                    INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id \n" +
-"                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  \n" +
+"                    INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario "
+                    + "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id  \n" +
 "  WHERE tipo_documento.tipo_documento_id=? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setInt(1, TipoDocumento);
@@ -392,6 +405,7 @@ public class DatosInventarioVenta{
            while(rs.next())
             {
                 InventarioVenta unInventarioVenta = new InventarioVenta();
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
@@ -421,14 +435,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* " +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* " +
                   " FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id "+
                   "  INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id "+ 
                   "  INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id "+
                   "  INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id "+
                   "  INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id "+
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
-                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
+                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "
+                    + "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id "+
   " WHERE inventario_venta.inventario_venta_producto_id LIKE ? OR producto.producto_referencia LIKE ? OR producto.producto_nombre LIKE ? OR producto.producto_abreviatura LIKE ? OR  "+
  "  forma.forma_descripcion LIKE ? OR unidad_medida.unidad_medida_descripcion LIKE ? OR tipo_documento.tipo_documento_descripcion LIKE ?  OR documento.documento_numero_documento LIKE ? OR forma.forma_descripcion LIKE ? OR  usuario.usuario_identificacion LIKE ? OR usuario.usuario_nombre LIKE ? OR inventario_venta_estado LIKE ? AND tipo_documento.tipo_documento_id=? AND inventario_venta_fecha_registro LIKE ? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
@@ -454,6 +469,7 @@ public class DatosInventarioVenta{
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unInventarioVenta.setFecharegistro(rs.getString("inventario_venta_fecha_registro"));
@@ -479,14 +495,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* " +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* " +
                   " FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id "+
                   "  INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id "+ 
                   "  INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id "+
                   "  INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id "+
                   "  INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id "+
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
-                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
+                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario "
+                    + "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id  "+
   " WHERE inventario_venta.inventario_venta_producto_id LIKE ? AND tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, buscar);
@@ -499,6 +516,7 @@ public class DatosInventarioVenta{
                 InventarioVenta unInventarioVenta = new InventarioVenta();
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unInventarioVenta.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
@@ -525,14 +543,15 @@ public class DatosInventarioVenta{
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.* " +
+            String consulta = "SELECT producto.*, inventario_venta.*, detalle_producto.*, unidad_medida.*, documento.*, tipo_documento.*,forma.*,usuario.*,presentacion.* " +
                   " FROM inventario_venta INNER JOIN producto ON inventario_venta.inventario_venta_producto_id = producto.producto_id "+
                   "  INNER JOIN detalle_producto ON detalle_producto.detalle_producto_producto_id = producto.producto_id "+ 
                   "  INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida = unidad_medida.unidad_medida_id "+
                   "  INNER JOIN documento ON inventario_venta.inventario_venta_documento = documento.documento_id "+
                   "  INNER JOIN tipo_documento ON documento.documento_tipo_documento = tipo_documento.tipo_documento_id "+
                   "  INNER JOIN forma ON detalle_producto.detalle_producto_forma_id = forma.forma_id "+
-                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario  "+
+                  "  INNER JOIN usuario on inventario_venta.inventario_venta_usuario=usuario.idUsuario "
+                    + " INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id "+
   " WHERE documento.documento_numero_documento LIKE ? AND tipo_documento.tipo_documento_id=? ORDER BY inventario_venta_fecha_registro DESC";
             ps=this.miConexion.prepareStatement(consulta);
             ps.setString(1, buscar);
@@ -544,6 +563,7 @@ public class DatosInventarioVenta{
             {
                 InventarioVenta unInventarioVenta = new InventarioVenta();
                 unInventarioVenta.getUnDetalleProducto().setIdProducto(rs.getString("inventario_venta_producto_id"));
+                unInventarioVenta.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
                 unInventarioVenta.getUnDetalleProducto().setNombre(rs.getString("producto_nombre"));
                 unInventarioVenta.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));

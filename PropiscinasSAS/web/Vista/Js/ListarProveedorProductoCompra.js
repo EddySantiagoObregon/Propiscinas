@@ -53,26 +53,36 @@ function ListarProveedorProductoCompra(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+          success: function (resultado) {
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -81,22 +91,22 @@ function ListarProveedorProductoCompra(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
 if(cantidadMedida===0){
      if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -104,19 +114,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -127,7 +137,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -137,14 +149,55 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarPorNombre(){
@@ -161,26 +214,36 @@ function BuscarPorNombre(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+         success: function (resultado) {
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -189,22 +252,22 @@ function BuscarPorNombre(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
 if(cantidadMedida===0){
      if(j===1){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -212,19 +275,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -235,7 +298,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -245,14 +310,55 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarPorNombreYFecha(){
@@ -271,25 +377,35 @@ function BuscarPorNombreYFecha(){
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -298,22 +414,22 @@ function BuscarPorNombreYFecha(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
 if(cantidadMedida===0){
      if(j===1){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -321,19 +437,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-        var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -344,7 +460,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -354,16 +472,56 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
-
 
 function BuscarPorFecha(){
     $("tbody tr").remove();
@@ -380,25 +538,35 @@ function BuscarPorFecha(){
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -407,22 +575,22 @@ function BuscarPorFecha(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
 if(cantidadMedida===0){
      if(j===1){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -430,19 +598,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-        var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -453,7 +621,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -463,14 +633,55 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 function ListarProveedorr()
 {
@@ -521,25 +732,35 @@ function BuscarPorProveedor(idProveedor){
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -548,22 +769,22 @@ function BuscarPorProveedor(idProveedor){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
 if(cantidadMedida===0){
      if(j===1){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -571,19 +792,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-        var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -594,7 +815,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -604,14 +827,55 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarPorProveedorYFecha(idProveedor){
@@ -630,25 +894,35 @@ function BuscarPorProveedorYFecha(idProveedor){
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -657,22 +931,22 @@ function BuscarPorProveedorYFecha(idProveedor){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
 if(cantidadMedida===0){
      if(j===1){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -680,19 +954,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-       var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -703,7 +977,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -713,14 +989,55 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 
 function BuscarPorProveedorYFechaYidProducto(idProveedor){
@@ -740,26 +1057,36 @@ function BuscarPorProveedorYFechaYidProducto(idProveedor){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+       success: function (resultado) {
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -768,22 +1095,22 @@ function BuscarPorProveedorYFechaYidProducto(idProveedor){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
 if(cantidadMedida===0){
      if(j===1){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -791,19 +1118,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -814,7 +1141,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -824,16 +1153,56 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
-
 function BuscarPorProveedorYidProducto(idProveedor){
     $("tbody tr").remove();
      var txtBuscar =$("#txt_Buscar").val().trim();
@@ -851,25 +1220,35 @@ function BuscarPorProveedorYidProducto(idProveedor){
         type: 'post',        
         cache: false,
         success: function (resultado) {
-            console.log(resultado);
+        console.log(resultado);
             
-            proveedoresproductocompra = resultado;          
+           proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             var body =document.getElementsByTagName("tbody")[0];
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedoresproductocompra.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedoresproductocompra, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
     for (var j = 0; j < 5; j++) {
+
+
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -878,22 +1257,22 @@ function BuscarPorProveedorYidProducto(idProveedor){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unProveedor.nombre);
+      var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unProveedor.nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+var cantidadMedida =proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad;
 
-var cantidadMedida =proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad;
 if(cantidadMedida===0){
      if(j===1){
-      var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 }else{
     
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedor.unProveedorProducto.unDetalleProducto.nombre+" "+proveedor.unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedor.unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedor.unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaForma.descripcion+" DE "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.nombre+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.cantidadUnidad+" "+ proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaUnidadMedida.descripcion+" "+proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -901,20 +1280,19 @@ if(cantidadMedida===0){
   }
 
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.fecha);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].fecha);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.compra);
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].compra);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-          var textoCelda = document.createTextNode(proveedor.unProveedorProducto.unDetalleProducto.idProducto);
-    
+     var textoCelda = document.createTextNode(proveedoresproductocompra[i].unProveedorProducto.unDetalleProducto.idProducto);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -925,7 +1303,9 @@ if(cantidadMedida===0){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+ 
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -935,12 +1315,53 @@ if(cantidadMedida===0){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }

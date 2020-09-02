@@ -114,12 +114,12 @@ $("#botones button").remove();
   var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -127,18 +127,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }
@@ -398,15 +398,15 @@ $("#botones button").remove();
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  var cantidadU =inventarioventas[i].cantidadUnidad;
+    var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -414,18 +414,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }
@@ -629,15 +629,15 @@ $("#botones button").remove();
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  var cantidadU =inventarioventas[i].cantidadUnidad;
+   var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -645,18 +645,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }
@@ -863,15 +863,15 @@ $("#botones button").remove();
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  var cantidadU =inventarioventas[i].cantidadUnidad;
+   var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -879,18 +879,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }
@@ -1095,15 +1095,15 @@ $("#botones button").remove();
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
-  var cantidadU =inventarioventas[i].cantidadUnidad;
+    var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -1111,18 +1111,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }
@@ -1331,12 +1331,12 @@ $("#botones button").remove();
   var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -1344,18 +1344,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }
@@ -1563,15 +1563,16 @@ $("#botones button").remove();
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
+ 
   var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -1579,18 +1580,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }
@@ -1831,12 +1832,12 @@ $("#botones button").remove();
   var cantidadU =inventarioventas[i].cantidadUnidad;
   if(cantidadU>0){
   if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
       
       
-              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+              var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].cantidadUnidad+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
               nombre[autoincrementable]=name;
                             }
   }
@@ -1844,18 +1845,18 @@ $("#botones button").remove();
       var Forma = inventarioventas[i].unDetalleProducto.unaForma.descripcion;
       if (Forma==="SOLO"){
      if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }   
                         }else{
                               if(j===1){
-      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion);
+      var textoCelda = document.createTextNode(inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
-       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion;
+       var name=inventarioventas[i].unDetalleProducto.unaForma.descripcion+" DE "+inventarioventas[i].unDetalleProducto.nombre+" "+inventarioventas[i].unaUnidadMedida.descripcion+" "+inventarioventas[i].unDetalleProducto.unaPresentacion.descripcion;
        nombre[autoincrementable]=name;
                             }     
                         }

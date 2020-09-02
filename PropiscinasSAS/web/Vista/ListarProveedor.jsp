@@ -129,7 +129,7 @@
 		<section class="articles">
 			<article>
                             
-                            <input autocomplete="off" style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar">
+                            <input autocomplete="off" placeholder="BUSCAR POR NOMBRE DEL PROVEEDOR"style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar">
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnBuscar">🔎 </button>
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnListar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                               
@@ -155,6 +155,10 @@
         
     </tbody>
 </table>
+                                         <div  id="botones"  style=" height: 60px;width:1163px; overflow:scroll; position:relative; overflow-x:scroll;
+     overflow-y:hidden;"class="btn-group btn-group-xs" 
+                     role="group" arial-label="grupo">
+                </div>
                         </article>
 			
 			

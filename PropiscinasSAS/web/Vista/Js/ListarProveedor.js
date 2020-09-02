@@ -28,26 +28,34 @@ function ListarProveedor(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+           success: function (resultado) {
+        console.log(resultado);
             
-            proveedores = resultado;          
+            proveedor=resultado;          
             var cantidad;
-            cantidad= proveedores.length;
-             var body =document.getElementsByTagName("tbody")[0];
+            cantidad= proveedor.length;
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedor.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                $.each(proveedores, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 6; j++) {
+    for (var j = 0; j < 11; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -56,38 +64,38 @@ function ListarProveedor(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.nitProveedor);
+      var textoCelda = document.createTextNode(proveedor[i].nitProveedor);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.nombre);
+     var textoCelda = document.createTextNode(proveedor[i].nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.telefono);
+     var textoCelda = document.createTextNode(proveedor[i].telefono);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.correo);
+     var textoCelda = document.createTextNode(proveedor[i].correo);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.estado);
+     var textoCelda = document.createTextNode(proveedor[i].estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   
      if(j===4){
-      var id=proveedor.idProveedor;;
+      var id=proveedor[i].idProveedor;;
       const fragment= document.createDocumentFragment();
       const button= document.createElement('a');
                            button.setAttribute('onclick', 'abrirModal('+id+')');
@@ -106,7 +114,8 @@ function ListarProveedor(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -116,14 +125,55 @@ function ListarProveedor(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }
 function abrirModal(idProveedor){
     $("#idProveedor").val(idProveedor);
@@ -219,26 +269,34 @@ function buscarProveedor(){
         dataType:'json',
         type: 'post',        
         cache: false,
-        success: function (resultado) {
-            console.log(resultado);
+           success: function (resultado) {
+        console.log(resultado);
             
-            proveedores = resultado;          
+            proveedor=resultado;          
             var cantidad;
-            cantidad= proveedores.length;
-             var body =document.getElementsByTagName("tbody")[0];
+            cantidad= proveedor.length;
+             
              
  
-
+   
+            
+            var pag = 1;
+            var totales = proveedor.length;
+            var xPag = 15;
+            var nPag = Math.ceil(totales / xPag);
+            var offset = (pag - 1) * xPag;
+            var hasta = pag * xPag;
+$("#botones button").remove();
  
 
-                   $.each(proveedores, function(j,proveedor){
-
-  
- 
+    function mostrarLista(desde,hasta){     
+        $("tbody tr").remove();
+      for(var i = desde; i < hasta; i++){
+ var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 6; j++) {
+    for (var j = 0; j < 11; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -247,38 +305,38 @@ function buscarProveedor(){
     
 
   if(j===0){
-      var textoCelda = document.createTextNode(proveedor.nitProveedor);
+      var textoCelda = document.createTextNode(proveedor[i].nitProveedor);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   }
 
   if(j===1){
-     var textoCelda = document.createTextNode(proveedor.nombre);
+     var textoCelda = document.createTextNode(proveedor[i].nombre);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   if(j===2){
-     var textoCelda = document.createTextNode(proveedor.telefono);
+     var textoCelda = document.createTextNode(proveedor[i].telefono);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===3){
-     var textoCelda = document.createTextNode(proveedor.correo);
+     var textoCelda = document.createTextNode(proveedor[i].correo);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
    if(j===4){
-     var textoCelda = document.createTextNode(proveedor.estado);
+     var textoCelda = document.createTextNode(proveedor[i].estado);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
   
      if(j===4){
-      var id=proveedor.idProveedor;;
+      var id=proveedor[i].idProveedor;;
       const fragment= document.createDocumentFragment();
       const button= document.createElement('a');
                            button.setAttribute('onclick', 'abrirModal('+id+')');
@@ -297,7 +355,8 @@ function buscarProveedor(){
  
     // agrega la hilera al final de la tabla (al final del elemento tblbody)
     
-    body.appendChild(hilera);
+
+body.appendChild(hilera);
   }
  
   // posiciona el <tbody> debajo del elemento <table>
@@ -307,12 +366,53 @@ function buscarProveedor(){
   // modifica el atributo "border" de la tabla y lo fija a "2";
  
 
- });
 
-        },
-      
-        error: function(ex){
-          console.log(ex.responseText);
+
         }
-    });          
+    }
+          function mostrarBotones(t){
+                var botones = '';
+                for(var i = 0; i < t; i++){
+                    var cada = '';
+                    cada = "<button id='btnPagination' type='button' "+
+                        "class='btn btn-info'>"+(i+1)+
+                        "</button>";
+                    botones += cada;
+                }
+                
+                $('#botones').append(botones);
+            }
+            
+            function quitarActivo(){
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    $(losBotones[i]).removeClass('active');
+                }
+            }
+            
+            mostrarLista(offset,hasta);
+            mostrarBotones(nPag);
+            
+          $( document ).ready(function(){
+                // Activar el primer botón
+                $('#botones button:first-child').addClass('active');
+                
+                // Poner oyentes a cada botón
+                var losBotones = document.querySelectorAll('#botones button');
+                for(var i = 0; i < losBotones.length; i++){
+                    losBotones[i].addEventListener('click',function(){
+                        quitarActivo();
+                        var indice = parseInt(this.textContent);
+                        var o = (indice -1) * xPag;
+                        var h = indice * xPag;
+                        mostrarLista(o,h);
+                        $(this).addClass('active');
+                    });
+                }
+            });
+    }
+     
+        
+    });
+   
 }

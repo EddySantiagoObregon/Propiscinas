@@ -81,6 +81,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
@@ -165,6 +166,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
@@ -232,6 +234,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
@@ -301,6 +304,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
@@ -370,6 +374,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
@@ -442,6 +447,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
                 unMovimiento.getUnDocumento().getUnTipoDocumento().setDescripcion(rs.getString("tipo_documento_descripcion"));
                 unMovimiento.getUnDocumento().setObservacion(rs.getString("documento_observacion"));
@@ -510,6 +516,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
                 unMovimiento.getUnDocumento().getUnTipoDocumento().setDescripcion(rs.getString("tipo_documento_descripcion"));
@@ -578,6 +585,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));
@@ -662,6 +670,7 @@ public class DatosMovimiento {
                 unMovimiento.getUnDetalleProducto().setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
                 unMovimiento.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
                 unMovimiento.getUnDetalleProducto().getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unMovimiento.getUnDetalleProducto().getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
                 unMovimiento.setFecharegistro(rs.getString("movimiento_fecha_resgistro"));
                 unMovimiento.setCantidad(rs.getInt("movimiento_cantidad"));
                 unMovimiento.getUnDocumento().setNumerodocumento(rs.getString("documento_numero_documento"));

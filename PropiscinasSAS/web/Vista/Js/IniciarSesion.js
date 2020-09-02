@@ -123,13 +123,24 @@ function RegistrarPersona(){
                      alert("Se ha registrado correctamente, colocate en contacto con el administrador para que te de la contraseña de acceso");
               
                 } else{
-                    alert("Problemas al registrar ");
+                    var nit=("#msjNit").val();
+                   var nombre=  $("#msjNombre").val();
+                   var identificacion=  $("#msjIdentificacion").val();
+                   var correo=   $("#msjCorreo").val();
+                    var telefono=    $("#msjTelefono").val();
+                    alert("Problemas al registrar "+nit+" "+nombre+" "+identificacion+" "+correo+" "+telefono);
                 }
                            
  
                 },
                 error:function(ex)
                 {
+                      var nit=("#msjNit").val();
+                   var nombre=  $("#msjNombre").val();
+                   var identificacion=  $("#msjIdentificacion").val();
+                   var correo=   $("#msjCorreo").val();
+                    var telefono=    $("#msjTelefono").val();
+                    alert("Problemas al registrar "+nit+" "+nombre+" "+identificacion+" "+correo+" "+telefono);
                     console.log(ex);
                 }
             });

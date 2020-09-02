@@ -63,6 +63,13 @@ if (session.getAttribute("idUsuario")!=null){
           ojo.style.display='block';
       }
   }
+   function validarNumero(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla===8) return true; 
+    patron =/[0-9]/;
+    te = String.fromCharCode(tecla); 
+    return patron.test(te); 
+ }
 </script>
 
 <body>
@@ -158,7 +165,7 @@ if (session.getAttribute("idUsuario")!=null){
                     
                         <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Telefono</font></td>
-                        <td><input  style="outline: auto;outline-color: dodgerblue;" required type="number"   id="txt_Tel"class="form-control">
+                       <td><input  style="outline: auto;outline-color: dodgerblue;" required type="text" maxlength="30"  onkeypress="return validarNumero(event)"   id="txt_Tel"class="form-control">
                             <div class="requerimientos"  id="msjTelefono" style="text-align: center"></div>     
                         </td>
                     </tr>
