@@ -11,7 +11,7 @@ $(function ()
     var correo= $("#Correo").val();
   
     listarInfraestructura();
-    listarInfraestructuraCambio();
+   
     ListarProducto();
     $('#btnListar').click(function(){
         $("tbody tr").remove(); 
@@ -29,13 +29,23 @@ $(function ()
     //Uso el evento chaange para cuando seleccione la infraestructura le aparezca la cantidad de de producto que tiene en el inventario.
       $("#cb_Infraestructura").change(function(){
       $("#txt_CantidadExistente").empty();
+       $("#cb_InfraestructuraCambio").empty();
+       $('#cb_InfraestructuraCambio').append(
+                         $('<option>',{
+                            
+                            value: 0,
+                            text: "Seleccioné"
+                        })
+                      );
     seleccionarInventario($("#cb_Infraestructura").val());
-  
+     listarInfraestructuraCambio($("#cb_Infraestructura").val());
     });
      $("#cb_InfraestructuraCambio").change(function(){
       $("#txt_CantidadCambio").empty();
+      
     seleccionarInventarioI($("#cb_InfraestructuraCambio").val());
   
+
     });
     
 });
@@ -604,11 +614,13 @@ function listarInfraestructura()
             }
         });
 }
-function listarInfraestructuraCambio()
+function listarInfraestructuraCambio(idInfraestrucutura)
 {
+        
     var parametros=
             {
-                accion:"ListarInfraestructura"
+                accion:"ListarInfraestructuraCambio",
+                idInfraestructura:idInfraestrucutura
             };
             $.ajax({
                url: '../ControllerProducto' ,
@@ -698,7 +710,6 @@ function limpiarModal(){
        $("#txt_NumeroFactura").val("");
        $("#txt_Observacion").val("");
        $("#cb_Infraestructura").val(0);
-       $("#txt_NumeroDocumento").val("");
-       $("#txt_ObservacionDocumento").val("");
+       
        $("#cb_TipoDocumento").val(0);
 }

@@ -34,7 +34,7 @@ function recuperarClave(){
                    if(resultado)
                    {
                        document.body.style.cursor = "default";
-                      alert("Se ha enviado un mensaje a su correo con su nueva contraseña");
+                      alert("Se ha enviado un mensaje al  correo del administrador para que le de  su nueva contraseña");
                    }else
                    {
                        document.body.style.cursor = "default";

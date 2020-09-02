@@ -134,7 +134,22 @@
 		<section class="articles">
                     
                     <article>
-			
+			   <article>
+                             <details id="detalle" close>
+                                 
+
+                                 <summary ><a style="color:#23186b;font-size: 30.5px !important;">Producto más vendido hoy</a></summary>
+                                 <center>
+                                 <div style="width: 700px;   position: sticky;">
+                                <canvas style="    width: 735px;height: 682px; "  id="myChar" ></canvas>
+    </div>
+                                     </center>
+                    </details>
+                            
+                            
+                
+                       
+                        </article>
 			<article>
                              <details id="detalle" close>
                                  
@@ -151,17 +166,15 @@
                     </details>
                             
                         </article>
-                        <article>
+                     
+                          <article>
                              <details id="detalle" close>
                                  
 
-                                 <summary ><a style="color:#23186b;font-size: 30.5px !important;">Producto más vendido hoy</a></summary>
+                                 <summary ><a style="color:#23186b;font-size: 30.5px !important;">Producto menos vendido </a></summary>
                                  <center>
-                                 <div style="width: 700px;
-    position: sticky;">
-                                <canvas style="    
-    width: 735px;
-    height: 682px; "  id="myChar" ></canvas>
+                                 <div style="width: 700px;  position: sticky;">
+                                <canvas style="    width: 735px;height: 682px; "  id="myCha" ></canvas>
     </div>
                                      </center>
                     </details>

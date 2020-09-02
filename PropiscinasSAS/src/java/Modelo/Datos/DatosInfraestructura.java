@@ -58,4 +58,31 @@ public class DatosInfraestructura {
      
      return lista;
    }
+   
+           
+   public ArrayList<Infraestructura> ListarInfraestructuraCambio(int idInfraestructura)
+   {
+     this.mensaje=null;
+     ArrayList<Infraestructura> lista= new ArrayList<>();
+     String consulta="SELECT * FROM infraestructura WHERE infraestructura_descripcion NOT LIKE ' ' AND infraestructura_id NOT LIKE ? ORDER BY infraestructura_descripcion ASC";
+     try
+     {
+         ps=miConexion.prepareStatement(consulta);
+         ps.setInt(1,idInfraestructura);
+         rs= ps.executeQuery();
+         while(rs.next())
+         {
+             Infraestructura unaInfraestructura= new Infraestructura(rs.getString("infraestructura_descripcion"));
+             unaInfraestructura.setIdInfraestructura(rs.getInt("infraestructura_id"));
+             lista.add(unaInfraestructura);
+         }
+         rs.close();
+                 
+     }catch(SQLException ex)
+     {
+         this.mensaje=ex.getMessage();
+     }
+     
+     return lista;
+   }
 }

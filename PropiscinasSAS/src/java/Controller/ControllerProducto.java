@@ -200,6 +200,9 @@ public class ControllerProducto extends HttpServlet {
             case "ListarProductoEliminarJSP":ListarProductoEliminarJSP(request,response);
             break;
             case "BuscarEliminarJSP":BuscarEliminarJSP(request,response);
+            break;
+            case "ListarInfraestructuraCambio":ListarInfraestructuraCambio(request,response);
+            break;
          }
     }
 
@@ -560,6 +563,18 @@ public class ControllerProducto extends HttpServlet {
             throws ServletException, IOException
     {
        ArrayList<Infraestructura> lista= dInfraestructura.ListarInfraestructura();
+       PrintWriter out= response.getWriter();
+       String json= new Gson().toJson(lista);
+       out.print(json);
+     
+}
+    
+            //Este metodo listamos las infraestructuras 
+    private void ListarInfraestructuraCambio(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException, IOException
+    {
+       int  idInfraestructura = Integer.parseInt(request.getParameter("idInfraestructura"));
+       ArrayList<Infraestructura> lista= dInfraestructura.ListarInfraestructuraCambio(idInfraestructura);
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
        out.print(json);

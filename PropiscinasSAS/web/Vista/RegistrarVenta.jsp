@@ -235,7 +235,7 @@
                      <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Tipo de documento </font></td>
                         <td><select name="cb_TipoDocumento" id="cb_TipoDocumento" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                         </td>
                     </tr>
                     

@@ -194,7 +194,7 @@
                           <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Infraestructura</font></td>
                         <td><select name="cb_Infraestructura" id="cb_Infraestructura" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                                 </select>
                         </td>
                     </tr>  
@@ -230,7 +230,7 @@
                      <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Proveedor</font></td>
                         <td><select name="cb_Proveedor" id="cb_Proveedor" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                                 </select>
                         </td>
                     </tr>  

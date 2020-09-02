@@ -275,7 +275,7 @@
 		<p style="    text-shadow:
 2px 2px 0 #AAA,
       6px 6px 2px #777,
-      12px 12px 8px #444 ;">Pro-piscinas 2020</p>
+      12px 12px 8px #444 ;">PRO-PISCINAS DEL HUILA S.A.S</p>
 	</footer>
     </body>
 </html>

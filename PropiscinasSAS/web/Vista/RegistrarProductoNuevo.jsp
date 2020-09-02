@@ -226,27 +226,27 @@
                     <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Grupo </font></td>
                         <td><select name="cb_Grupo" id="cb_Grupo" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                         </td>
                     </tr>
                     
                      <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Presentación: </font></td>
                         <td><select name="cb_Presentacion" id="cb_Presentacion" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                         </td>
                     </tr>
                                         <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Forma </font></td>
                         <td><select name="cb_Forma" id="cb_Forma" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                         </td>
                     </tr>
                      
                     <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Unidad Medida </font></td>
                         <td><select name="cb_UnidadMedida" id="cb_UnidadMedida" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                         </td>
                     </tr>
 

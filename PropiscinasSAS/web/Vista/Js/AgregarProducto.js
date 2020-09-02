@@ -674,8 +674,8 @@ function limpiarModal(){
        $("#txt_NumeroFactura").val("");
        $("#txt_Observacion").val("");
        $("#cb_Infraestructura").val(0);
-       $("#txt_NumeroDocumento").val("");
-       $("#txt_ObservacionDocumento").val("");
+     
+
        $("#cb_TipoDocumento").val(0);
          $("#cb_Proveedor").empty();
           $("#cb_Proveedor").empty();

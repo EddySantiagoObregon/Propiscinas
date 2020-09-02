@@ -122,6 +122,8 @@ DatosUsuario dUsuario = new DatosUsuario();
             break;
             case "Productomasvendidohoy":Productomasvendidohoy(request,response);
             break;
+            case "Productomenosvendido":Productomenosvendido(request,response);
+            break;
          }
     }
 
@@ -325,6 +327,15 @@ DatosUsuario dUsuario = new DatosUsuario();
     throws ServletException, IOException{
                           
                  ArrayList<InventarioVenta> lista= dInventarioVenta.Productomasvendidohoy();
+                 PrintWriter out = response.getWriter();
+                 String json = new Gson().toJson(lista);
+                 out.print(json);
+        }
+                       
+                                        private void Productomenosvendido(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException{
+                          
+                 ArrayList<InventarioVenta> lista= dInventarioVenta.Productomenosvendido();
                  PrintWriter out = response.getWriter();
                  String json = new Gson().toJson(lista);
                  out.print(json);

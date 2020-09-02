@@ -194,7 +194,7 @@
                           <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Infraestructura que envía los productos</font></td>
                         <td><select name="cb_Infraestructura" id="cb_Infraestructura" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                                 </select>
                         </td>
                     </tr>  
@@ -212,7 +212,7 @@
                     </tr> 
                     <td class="negrita"><font color="black">Infraestructura que recibe los productos</font></td>
                         <td><select name="cb_InfraestructuraCambio" id="cb_InfraestructuraCambio" class="form-control">
-                                <option value="0">Seleccione</option>
+                                <option value="0">Seleccioné</option>
                                 </select>
                         </td>
                     </tr>  
