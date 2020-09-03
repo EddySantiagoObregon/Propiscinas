@@ -546,12 +546,7 @@ private String obtenerFechaActual(){
         try
         {
             this.miConexion.setAutoCommit(false);
-            String consulta = "SELECT detalle_producto.*,producto.*,grupo.*,presentacion.*,forma.*,unidad_medida.* "
-                 +" FROM detalle_producto INNER JOIN producto on detalle_producto.detalle_producto_producto_id=producto.producto_id "
-                 + "INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id "
-                 + "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id "
-                 + "INNER JOIN presentacion on detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id "
-                 + "INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id where detalle_producto_estado = 'A' ";
+            String consulta = "SELECT detalle_producto.*,producto.*,grupo.*,presentacion.*,forma.*,unidad_medida.* FROM detalle_producto INNER JOIN producto on detalle_producto.detalle_producto_producto_id=producto.producto_id INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id INNER JOIN presentacion on detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id where detalle_producto_estado = 'A' ORDER BY `producto`.`producto_nombre` ASC";
             ps=this.miConexion.prepareStatement(consulta);
             
             rs = ps.executeQuery();

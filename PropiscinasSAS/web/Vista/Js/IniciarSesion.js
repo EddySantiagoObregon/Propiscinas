@@ -98,7 +98,7 @@ $(function(){
 
 function RegistrarPersona(){
          
-         
+  document.body.style.cursor = "progress";       
 
         var parametros=
             {
@@ -120,27 +120,22 @@ function RegistrarPersona(){
                 success: function(resultado){
                     console.log(resultado);
                     if(resultado){
+                         
                      alert("Se ha registrado correctamente, colocate en contacto con el administrador para que te de la contraseña de acceso");
+                     document.body.style.cursor = "default";
               
                 } else{
-                    var nit=("#msjNit").val();
-                   var nombre=  $("#msjNombre").val();
-                   var identificacion=  $("#msjIdentificacion").val();
-                   var correo=   $("#msjCorreo").val();
-                    var telefono=    $("#msjTelefono").val();
-                    alert("Problemas al registrar "+nit+" "+nombre+" "+identificacion+" "+correo+" "+telefono);
+                     document.body.style.cursor = "default";
+                 
+                    alert("Problemas al registrar ");
                 }
                            
  
                 },
                 error:function(ex)
                 {
-                      var nit=("#msjNit").val();
-                   var nombre=  $("#msjNombre").val();
-                   var identificacion=  $("#msjIdentificacion").val();
-                   var correo=   $("#msjCorreo").val();
-                    var telefono=    $("#msjTelefono").val();
-                    alert("Problemas al registrar "+nit+" "+nombre+" "+identificacion+" "+correo+" "+telefono);
+                     document.body.style.cursor = "default";
+                    alert("Problemas al registrar ");
                     console.log(ex);
                 }
             });

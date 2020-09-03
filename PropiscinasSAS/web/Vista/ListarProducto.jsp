@@ -131,7 +131,14 @@
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnBuscar">🔎</button>
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnListar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                                 <a style="margin-bottom: 5px; padding-top: 2px;padding-bottom: 4px;" class="btn btn-primary btnListar" href="ImprimirEtiquetasCodigoBarras.jsp"><img width="40" height="30" src="Imagenes/cod.png"/>Generar etiquetas de codigo de barras</a>
-                         
+                         <form action="/PropiscinasSAS/pdfImprimirTodosLosProductos">
+    
+   <input style="    position: absolute;
+    top: 350px;
+    left: 163.5;
+    margin-left: 910px;" value="Generar PDF todos los productos"id="generar" type="submit" 
+       class="btn btn-primary">
+           </form>
                             
 			<table  style="width: 100% ;font-size: 12px;" number-per-page="3" current-page=""  id="tblProducto" class="table  table-striped" align="center">
     <thead>

@@ -387,7 +387,7 @@ $("#botones button").remove();
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode("TODAS");
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -1732,7 +1732,7 @@ $("#botones button").remove();
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
+     var textoCelda = document.createTextNode("TODAS");
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
