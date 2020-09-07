@@ -54,8 +54,20 @@
                                    
                                     <a class="dropdown-item" href="ListarProducto.jsp">Listar productos</a>
                                    
-                                    <a class="dropdown-item" href="EliminarProducto.jsp">Eliminar producto</a>
+                                    <a class="dropdown-item" href="InactivarProducto.jsp">Inactivar producto</a>
                                  </div>
+                            </div>
+                             <div class="btn-group navuldiv">
+                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Inventario
+                                 </button>
+                                    <div class="dropdown-menu">
+                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
+                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
+                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
+                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
+                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
+                                    </div>
                             </div>
                             <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,19 +80,7 @@
                                         <a class="dropdown-item" href="DevolucionVenta.jsp">Devolución de venta</a>
                                     </div>
                             </div>
-                               <div class="btn-group navuldiv">
-                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Inventario
-                                 </button>
-                                    <div class="dropdown-menu">
-                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
-                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
-                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
-                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
-                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
-                                    </div>
-                            </div>
-                                                           <div class="btn-group navuldiv">
+                                         <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Movimiento
                                  </button>
@@ -103,7 +103,7 @@
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
-                                                      <div class="btn-group navuldiv" style="float: right;">
+                            <div class="btn-group navuldiv" style="float: right;">
                               <button style="height: 40px; "type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                <a id="perfilNombre"></a>
                                  </button>
@@ -112,7 +112,6 @@
                                  <a class="dropdown-item" href="Salir.jsp">Salir</a>
                                  </div>
                             </div>
-                                 
 			</ul>
 		</nav>
 	</header>
@@ -122,9 +121,34 @@
                     <article style="    padding-bottom: 90px;">
                         
                       
-            
-                 
+                        
+                      
+                
 
+                      
+                        
+                        <table border="0">
+                  
+                            <tbody>
+                                <tr>
+                                    <td style="    width: 741px;"><a style="    margin-left: 31px;">Número de documento</a></td>
+                                    <td style="     margin-left: 71px;
+    width: 373px;">  <a style="    ">Observación  documento</a></td>
+                                </tr>
+                                <tr>
+                                    <td >  <input style="    width: 319px;
+                               margin-left: 31px; "type="text" id="txt_NumeroDocumento" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="20"class="form-control">
+                 </td>
+                                    <td>        
+                        <input style="    "type="text" id="txt_observacionDocumento" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="45"class="form-control">
+               </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        
+                        
+                        
                         <table style="width: 1002.22222px;
     height: 102.22222px;" border="0">
 

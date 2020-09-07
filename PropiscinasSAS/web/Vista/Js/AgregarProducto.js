@@ -63,7 +63,9 @@ function ListarProducto(){
             productos=resultado;          
             var cantidad;
             cantidad= productos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -267,7 +269,9 @@ function  BuscarProducto(){
             var cantidad;
             cantidad= productos.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -615,7 +619,9 @@ function listarProveedorProducto(idProducto)
 
 //Esta funcion agrega la cantidad de productos
 function AgregarProducto(correo){
-         
+         var txt_ObservacionDocumentoo = $("#txt_ObservacionDocumento").val();
+         var txt_numeroDocumentoo=$("#txt_NumeroDocumento").val();
+         if(txt_ObservacionDocumentoo!==""&&txt_numeroDocumentoo!==""){
         var parametros=
             {
                 accion: "AgregarProducto",
@@ -656,7 +662,7 @@ function AgregarProducto(correo){
                       $("#txt_CantidadExistente").val(total);
                       limpiarModal();
                 } else{
-                    alert("error");
+                    alert("TODOS LOS CAMPOS SON OBLIGATORIOS");
                 }
                            
  
@@ -666,6 +672,9 @@ function AgregarProducto(correo){
                     console.log(ex);
                 }
             });
+        }else{
+            alert("TODOS LOS CAMPOS SON REQUERIDOS");
+        }
 }
 
 function limpiarModal(){

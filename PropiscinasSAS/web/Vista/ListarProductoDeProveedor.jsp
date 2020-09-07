@@ -50,7 +50,7 @@
 		<nav>
 			<ul>
                             <li><a href="MenuPrincipal.jsp">Pro-Piscinas</a></li>
-                         <div class="btn-group navuldiv">
+                           <div class="btn-group navuldiv">
                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Producto
                                  </button>
@@ -59,8 +59,20 @@
                                    
                                     <a class="dropdown-item" href="ListarProducto.jsp">Listar productos</a>
                                    
-                                    <a class="dropdown-item" href="EliminarProducto.jsp">Eliminar producto</a>
+                                    <a class="dropdown-item" href="InactivarProducto.jsp">Inactivar producto</a>
                                  </div>
+                            </div>
+                             <div class="btn-group navuldiv">
+                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Inventario
+                                 </button>
+                                    <div class="dropdown-menu">
+                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
+                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
+                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
+                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
+                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
+                                    </div>
                             </div>
                             <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,19 +85,7 @@
                                         <a class="dropdown-item" href="DevolucionVenta.jsp">Devolución de venta</a>
                                     </div>
                             </div>
-                               <div class="btn-group navuldiv">
-                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Inventario
-                                 </button>
-                                    <div class="dropdown-menu">
-                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
-                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
-                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
-                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
-                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
-                                    </div>
-                            </div>
-                                                           <div class="btn-group navuldiv">
+                                         <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Movimiento
                                  </button>
@@ -100,7 +100,7 @@
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Proveedores
                                  </button>
-                                      <div class="dropdown-menu">
+                                     <div class="dropdown-menu">
                                        <a class="dropdown-item" href="RegistrarProveedor.jsp">Registrar </a>
                                         <a class="dropdown-item" href="AgregarProveedorProducto.jsp">Agregar proveedor producto</a>
                                         <a class="dropdown-item" href="ListarProveedor.jsp">Listar Proveedor</a>
@@ -108,7 +108,7 @@
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
-                                                         <div class="btn-group navuldiv" style="float: right;">
+                            <div class="btn-group navuldiv" style="float: right;">
                               <button style="height: 40px; "type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                <a id="perfilNombre"></a>
                                  </button>
@@ -137,7 +137,10 @@
     <thead>
         <tr class="bg-info text-white" >
             <th style="background-color: #007bff;color: #fff;">Nombre proveedor</th>
-            <th style="background-color: #007bff;color: #fff;">Producto</th>       
+            <th style="background-color: #007bff;color: #fff;">Producto</th>  
+            <th style="background-color: #007bff;color: #fff;">Estado</th>       
+            <th style="background-color: #007bff;color: #fff;">Desactivar proveedor</th>       
+            
         
         </tr>
     </thead>

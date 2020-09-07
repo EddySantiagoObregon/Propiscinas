@@ -55,7 +55,7 @@ public boolean agregado(int idProveedor,String idProducto){
 
            
             if(ProveedorProducto==0){
-            String consulta1= "insert into proveedor_producto values(null,?,?)";
+            String consulta1= "insert into proveedor_producto values(null,?,?,'A')";
             ps=miConexion.prepareStatement(consulta1);
             ps.setInt(1,idProveedor);
             ps.setString(2,idProducto);
@@ -90,7 +90,7 @@ public boolean agregado(int idProveedor,String idProducto){
      ArrayList<Proveedor> lista= new ArrayList<>();
      String consulta=" SELECT producto.*,proveedor.*,proveedor_producto.* FROM proveedor_producto " +
 " INNER JOIN producto ON proveedor_producto.proveedor_producto_producto_id=producto.producto_id " +
-" INNER JOIN proveedor ON proveedor_producto.proveedor_producto_proveedor_id=proveedor.proveedor_id where producto_id=? and proveedor_estado='A' ORDER BY proveedor_nombre ASC";
+" INNER JOIN proveedor ON proveedor_producto.proveedor_producto_proveedor_id=proveedor.proveedor_id where producto_id=? and proveedor_estado='A' and proveedor_producto_estado='A' ORDER BY proveedor_nombre ASC";
      try
      {
          ps=miConexion.prepareStatement(consulta);
@@ -144,6 +144,7 @@ public boolean agregado(int idProveedor,String idProducto){
              unProveedorProducto.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
              unProveedorProducto.getUnDetalleProducto().setCantidadUnidad(rs.getDouble("detalle_producto_cantidad_medida"));
              unProveedorProducto.getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
+             unProveedorProducto.setEstado(rs.getString("proveedor_producto_estado"));
              lista.add(unProveedorProducto);
          }
          rs.close();
@@ -190,6 +191,7 @@ public boolean agregado(int idProveedor,String idProducto){
              unProveedorProducto.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
              unProveedorProducto.getUnDetalleProducto().setCantidadUnidad(rs.getDouble("detalle_producto_cantidad_medida"));
              unProveedorProducto.getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
+             unProveedorProducto.setEstado(rs.getString("proveedor_producto_estado"));
              lista.add(unProveedorProducto);
          }
          rs.close();
@@ -237,6 +239,7 @@ public boolean agregado(int idProveedor,String idProducto){
              unProveedorProducto.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
              unProveedorProducto.getUnDetalleProducto().setCantidadUnidad(rs.getDouble("detalle_producto_cantidad_medida"));
              unProveedorProducto.getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
+             unProveedorProducto.setEstado(rs.getString("proveedor_producto_estado"));
              lista.add(unProveedorProducto);
          }
          rs.close();
@@ -282,6 +285,7 @@ public boolean agregado(int idProveedor,String idProducto){
              unProveedorProducto.getUnDetalleProducto().getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
              unProveedorProducto.getUnDetalleProducto().setCantidadUnidad(rs.getDouble("detalle_producto_cantidad_medida"));
              unProveedorProducto.getUnProveedor().setNombre(rs.getString("proveedor_nombre"));
+             unProveedorProducto.setEstado(rs.getString("proveedor_producto_estado"));
              lista.add(unProveedorProducto);
          }
          rs.close();
@@ -293,5 +297,78 @@ public boolean agregado(int idProveedor,String idProducto){
      
      return lista;
    }
+            
+                          public boolean Desactivado(int id){
+        boolean eliminado = false;
+            try{  
+  
+            
+        String consulta1="UPDATE proveedor_producto SET proveedor_producto_estado = 'I' WHERE proveedor_producto.proveedor_producto_id = ? "; 
+            this.miConexion.setAutoCommit(false);   
+            
+            ps=miConexion.prepareStatement(consulta1);
+            ps.setInt(1,id);
+            ps.executeUpdate();
+
+            
+                                   
+         
+      
+           this.miConexion.commit();
+    
+           
+           eliminado=true;
+         
+                    
+          
+       }catch(SQLException ex)
+       {
+         try
+         {
+             this.mensaje=ex.getMessage();
+             this.miConexion.rollback();
+         }catch(SQLException ex1)
+                 {
+                     this.mensaje= ex1.getMessage();
+                 }
+       }
+        return eliminado;
+    }
+                                     public boolean Activado(int id){
+        boolean Activado = false;
+            try{  
+  
+            
+        String consulta1="UPDATE proveedor_producto SET proveedor_producto_estado = 'A' WHERE proveedor_producto.proveedor_producto_id = ? "; 
+            this.miConexion.setAutoCommit(false);   
+            
+            ps=miConexion.prepareStatement(consulta1);
+            ps.setInt(1,id);
+            ps.executeUpdate();
+
+            
+                                   
+         
+      
+           this.miConexion.commit();
+    
+           
+           Activado=true;
+         
+                    
+          
+       }catch(SQLException ex)
+       {
+         try
+         {
+             this.mensaje=ex.getMessage();
+             this.miConexion.rollback();
+         }catch(SQLException ex1)
+                 {
+                     this.mensaje= ex1.getMessage();
+                 }
+       }
+        return Activado;
+    }
 
 }

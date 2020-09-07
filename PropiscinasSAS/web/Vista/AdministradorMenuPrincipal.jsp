@@ -96,7 +96,7 @@
 
       <div class="card-block">
         <h4 class="card-title">Usuarios</h4>
-        <p class="card-text">Visualiza los usuarios creados,  editar el correo electronico y identificacion de un usuario.</p>
+        <p class="card-text">Visualiza los usuarios creados,  editar el correo electronico e identificación de un usuario.</p>
         <center>
         <a style="    margin-bottom: 12px;" href="AdministradorUsuario.jsp" class="btn btn-primary">Clic aquí</a>
         </center>

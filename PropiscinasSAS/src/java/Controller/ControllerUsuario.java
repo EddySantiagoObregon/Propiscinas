@@ -117,15 +117,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         String login = request.getParameter("txtLogin");
         String password = request.getParameter("txtPassword");
 
-        if("propiscinasdelhuila2020@gmail.com".equals(login)&&"propiscinas123".equals(password)){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("idUsuario","900127905");
-                session.setAttribute("identificacion", "Administrador");
-                session.setAttribute("correo","Administrador");
-                session.setAttribute("telefono","Administrador");
-                session.setAttribute("nombre", "Administrador");
-                response.sendRedirect(request.getContextPath() + "/Vista/AdministradorMenuPrincipal.jsp");
-        }else{
+    
                    String contrasena = dUsuario.buscarContrasena(login);
     EncriptarYDesencriptar unEnctiptarYDesencriptar = new EncriptarYDesencriptar();
     String contrasenaEncriptada = unEnctiptarYDesencriptar.Desencriptar(contrasena);
@@ -141,7 +133,15 @@ DatosUsuario dUsuario = new DatosUsuario();
    
         if(user!=null)
         {
-           
+               if("propiscinasdelhuila2020@gmail.com".equals(user.getCorreo())){
+                HttpSession session = request.getSession(true);
+                session.setAttribute("idUsuario","900127905");
+                session.setAttribute("identificacion", "Administrador");
+                session.setAttribute("correo","Administrador");
+                session.setAttribute("telefono","Administrador");
+                session.setAttribute("nombre", "Administrador");
+                response.sendRedirect(request.getContextPath() + "/Vista/AdministradorMenuPrincipal.jsp");
+        }else{
                
                 HttpSession session = request.getSession(true);
                 session.setAttribute("idUsuario", user.getIdUsuario());
@@ -152,7 +152,7 @@ DatosUsuario dUsuario = new DatosUsuario();
                 response.sendRedirect(request.getContextPath() + "/Vista/MenuPrincipal.jsp");  
                        
                 
-         
+               }
         }else
         {
             response.sendRedirect(request.getContextPath() + "/Vista/IniciarSesion.jsp?valor=x");
@@ -162,7 +162,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         {
             response.sendRedirect(request.getContextPath() + "/Vista/IniciarSesion.jsp?valor=x");
         }
-           }
+
     }
     private void RegistrarPersona(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException

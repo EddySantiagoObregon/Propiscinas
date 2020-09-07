@@ -71,6 +71,9 @@ function listarForma(){
             Formas = resultado;          
             var cantidad;
             cantidad= Formas.length;
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              var body =document.getElementsByTagName("tbody")[0];
              
  

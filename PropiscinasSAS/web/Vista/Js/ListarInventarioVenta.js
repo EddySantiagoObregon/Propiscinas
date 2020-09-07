@@ -75,7 +75,9 @@ function listarVenta(){
             var offset = (pag - 1) * xPag;
             var hasta = pag * xPag;
 $("#botones button").remove();
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
 
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
@@ -245,7 +247,9 @@ function buscarVenta(){
             var offset = (pag - 1) * xPag;
             var hasta = pag * xPag;
 $("#botones button").remove();
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
 
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
@@ -412,7 +416,9 @@ function buscarInventarioVentaPorFecha(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
+   if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
@@ -582,7 +588,9 @@ function buscarInventarioVentaPorProductoYFecha(){
             var offset = (pag - 1) * xPag;
             var hasta = pag * xPag;
 $("#botones button").remove();
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
 
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
@@ -749,7 +757,9 @@ function BuscarPorTipoDocumento(){
             var offset = (pag - 1) * xPag;
             var hasta = pag * xPag;
 $("#botones button").remove();
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
 
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
@@ -917,7 +927,9 @@ function BuscarPorTipoDocumentoYFecha(){
             var offset = (pag - 1) * xPag;
             var hasta = pag * xPag;
 $("#botones button").remove();
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
 
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
@@ -1088,7 +1100,9 @@ function BuscarPorProductoYTipoDocumentoYFecha(){
             var offset = (pag - 1) * xPag;
             var hasta = pag * xPag;
 $("#botones button").remove();
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
 
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
@@ -1290,7 +1304,9 @@ function BuscarPorProductoYTipoDocumento(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
+   if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){

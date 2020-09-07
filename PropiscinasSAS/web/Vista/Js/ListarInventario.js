@@ -85,7 +85,9 @@ function listarCantidadActualizada(){
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -270,7 +272,9 @@ function ListarInventario(){
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -454,7 +458,9 @@ function ListarInventarioPorIdInfraestructura(){
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -676,7 +682,9 @@ function listarInventarioPorFecha(fecha){
             var cantidad;
             cantidad= inventarios.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -866,7 +874,9 @@ function listarInventarioPorFechaYCodigo(fecha){
             var cantidad;
             cantidad= inventarios.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -1058,7 +1068,9 @@ function listarInventarioPorFechaYCodigoYInfraestructura(fecha,infraestructura){
             var cantidad;
             cantidad= inventarios.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -1248,7 +1260,9 @@ function buscarInventarioDatosHistoricos(){
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    

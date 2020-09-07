@@ -147,31 +147,31 @@ if (session.getAttribute("idUsuario")!=null){
                             <form>
                                             <tr style="height: 40px;">
                         <td class="negrita"><font color="black">Nit de la empresa</font></td>
-                         <td><input  style="outline: auto; outline-color: dodgerblue;" required type="number" name="txt_Nit"  id="txt_Nit" class="form-control"  required>
+                         <td><input  style="outline: auto; outline-color: dodgerblue;" required type="number" name="txt_Nit" autocomplete="off"  id="txt_Nit" class="form-control"  required>
                          <div class="requerimientos"  id="msjNit" style="text-align: center"></div>
                       </td>
                     </tr>
                         <tr style="height: 40px;">
-                       <td class="negrita"><font color="black">Identificacion:</font></td>
-                        <td><input style="outline: auto;outline-color: dodgerblue;" required class="form-control"type="number" id="txt_Identificacion">
+                       <td class="negrita"><font color="black">Identificación:</font></td>
+                        <td><input style="outline: auto;outline-color: dodgerblue;" required class="form-control"type="number" autocomplete="off" id="txt_Identificacion">
                           <div class="requerimientos"  id="msjIdentificacion" style="text-align: center"></div>         
                         </td>
                     </t  <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Nombre:</font></td>
-                        <td><input  style="outline: auto;outline-color: dodgerblue;" required type="text"  id="txt_Nombre"class="form-control">
+                        <td><input  style="outline: auto;outline-color: dodgerblue;" required type="text" autocomplete="off"  id="txt_Nombre"class="form-control">
                            <div class="requerimientos"  id="msjNombre" style="text-align: center"></div>      
                         </td>
                     </tr>
                     
                         <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Telefono</font></td>
-                       <td><input  style="outline: auto;outline-color: dodgerblue;" required type="text" maxlength="30"  onkeypress="return validarNumero(event)"   id="txt_Tel"class="form-control">
+                       <td><input  style="outline: auto;outline-color: dodgerblue;" required type="text" maxlength="30"  autocomplete="off" onkeypress="return validarNumero(event)"   id="txt_Tel"class="form-control">
                             <div class="requerimientos"  id="msjTelefono" style="text-align: center"></div>     
                         </td>
                     </tr>
                        <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Correo</font></td>
-                       <td><input   style="outline: auto;outline-color: dodgerblue;" required type="email" id="txt_Correo" class="form-control">
+                       <td><input   style="outline: auto;outline-color: dodgerblue;" required type="email" autocomplete="off" id="txt_Correo" class="form-control">
                            <div class="requerimientos"  id="msjCorreo" style="text-align: center"></div>    
                         </td>
                   
@@ -206,12 +206,12 @@ if (session.getAttribute("idUsuario")!=null){
                     
                         <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Identificacion:</font></td>
-                        <td><input style="outline: auto;outline-color: dodgerblue;" name="txtIdentificacion" id="txtIdentificacion" required class="form-control"type="number" id="txt_Identificacion">
+                        <td><input style="outline: auto;outline-color: dodgerblue;" name="txtIdentificacion" autocomplete="off" id="txtIdentificacion" required class="form-control"type="number" id="txt_Identificacion">
                           <div class="requerimientos"  id="msjIdentificacion" style="text-align: center"></div>         
                         </td>
                     </t  <tr style="height: 40px;">
                        <td class="negrita"><font color="black">Ingrese su correo electronico:</font></td>
-                        <td><input  style="outline: auto;outline-color: dodgerblue;" required type="text"  itype="email" name="txtCorreo" id="txtCorreo" class="form-control">
+                        <td><input  style="outline: auto;outline-color: dodgerblue;" required type="text"  autocomplete="off" itype="email" name="txtCorreo" id="txtCorreo" class="form-control">
                            <div class="requerimientos"  id="msjNombre" style="text-align: center"></div>      
                         </td>
                     </tr>

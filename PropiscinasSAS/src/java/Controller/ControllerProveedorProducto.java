@@ -92,6 +92,10 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
             break;
             case "ListarProveedoresYProductosPoridProveedor":ListarProveedoresYProductosPoridProveedor(request,response);
             break;
+            case "Activar":Activado(request,response);
+            break;
+            case "Desactivar":Desactivado(request,response);
+            break;
         }
      }
  private void agregar(HttpServletRequest request, HttpServletResponse response) 
@@ -155,6 +159,27 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
         ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductosPoridProveedor(idProveedor);
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
+        out.print(json);
+    }
+                                                              
+           private void Activado(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+
+       int idProveedor = Integer.parseInt(request.getParameter("id"));
+        boolean agreado= dProveedorProducto.Activado(idProveedor);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(agreado);
+        out.print(json);
+    }
+                 private void Desactivado(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
+    {
+
+       int idProveedor = Integer.parseInt(request.getParameter("id"));
+        boolean agreado= dProveedorProducto.Desactivado(idProveedor);
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(agreado);
         out.print(json);
     }
     /**

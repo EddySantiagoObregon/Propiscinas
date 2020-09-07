@@ -57,8 +57,20 @@
                                    
                                     <a class="dropdown-item" href="ListarProducto.jsp">Listar productos</a>
                                    
-                                    <a class="dropdown-item" href="EliminarProducto.jsp">Eliminar producto</a>
+                                    <a class="dropdown-item" href="InactivarProducto.jsp">Inactivar producto</a>
                                  </div>
+                            </div>
+                             <div class="btn-group navuldiv">
+                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Inventario
+                                 </button>
+                                    <div class="dropdown-menu">
+                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
+                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
+                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
+                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
+                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
+                                    </div>
                             </div>
                             <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,19 +83,7 @@
                                         <a class="dropdown-item" href="DevolucionVenta.jsp">Devolución de venta</a>
                                     </div>
                             </div>
-                               <div class="btn-group navuldiv">
-                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Inventario
-                                 </button>
-                                    <div class="dropdown-menu">
-                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
-                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
-                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
-                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
-                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
-                                    </div>
-                            </div>
-                                                           <div class="btn-group navuldiv">
+                                         <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Movimiento
                                  </button>

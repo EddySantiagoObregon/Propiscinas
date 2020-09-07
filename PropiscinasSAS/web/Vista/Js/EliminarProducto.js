@@ -39,7 +39,9 @@ function ListarProducto(){
             var cantidad;
             cantidad= productos.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -260,7 +262,7 @@ function abrirModal(id){
                    {
                      
                       $("tbody tr").remove(); 
-                      alert("Eliminado correctamente");
+                      alert("Inactivado correctamente");
                     
                        ListarProducto();
                        limpiar();
@@ -343,7 +345,9 @@ function  BuscarProducto(){
             var cantidad;
             cantidad= productos.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             

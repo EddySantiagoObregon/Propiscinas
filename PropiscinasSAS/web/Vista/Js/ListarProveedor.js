@@ -35,7 +35,9 @@ function ListarProveedor(){
             var cantidad;
             cantidad= proveedor.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -275,7 +277,9 @@ function buscarProveedor(){
             proveedor=resultado;          
             var cantidad;
             cantidad= proveedor.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    

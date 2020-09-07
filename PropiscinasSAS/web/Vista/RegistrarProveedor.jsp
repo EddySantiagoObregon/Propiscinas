@@ -46,7 +46,7 @@
 		<nav>
 			<ul>
                             <li><a href="MenuPrincipal.jsp">Pro-Piscinas</a></li>
-                            <div class="btn-group navuldiv">
+                           <div class="btn-group navuldiv">
                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Producto
                                  </button>
@@ -55,8 +55,20 @@
                                    
                                     <a class="dropdown-item" href="ListarProducto.jsp">Listar productos</a>
                                    
-                                    <a class="dropdown-item" href="EliminarProducto.jsp">Eliminar producto</a>
+                                    <a class="dropdown-item" href="InactivarProducto.jsp">Inactivar producto</a>
                                  </div>
+                            </div>
+                             <div class="btn-group navuldiv">
+                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Inventario
+                                 </button>
+                                    <div class="dropdown-menu">
+                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
+                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
+                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
+                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
+                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
+                                    </div>
                             </div>
                             <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,19 +81,7 @@
                                         <a class="dropdown-item" href="DevolucionVenta.jsp">Devolución de venta</a>
                                     </div>
                             </div>
-                               <div class="btn-group navuldiv">
-                                 <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Inventario
-                                 </button>
-                                    <div class="dropdown-menu">
-                                     <a class="dropdown-item" href="AgregarProducto.jsp">Registrar entrada del producto</a>
-                                     <a class="dropdown-item" href="CambioDeProductosEnInfraestructura.jsp">Movimiento de productos</a>
-                                     <a class="dropdown-item" href="ConvertirProducto.jsp">Convertir productos</a>
-                                     <a class="dropdown-item" href="ListarInventario.jsp">Listar inventario datos historicos</a>
-                                     <a class="dropdown-item" href="ListarInventarioCantidadActulizada.jsp">Listar inventario cantidad actualizada</a>
-                                    </div>
-                            </div>
-                                                           <div class="btn-group navuldiv">
+                                         <div class="btn-group navuldiv">
                                  <button style="height: 40px;"type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Movimiento
                                  </button>
@@ -104,7 +104,7 @@
                                         <a class="dropdown-item" href="ListarCompraProveedor.jsp">Listar compra a proveedores</a>
                                     </div>
                             </div>
-                                                        <div class="btn-group navuldiv" style="float: right;">
+                            <div class="btn-group navuldiv" style="float: right;">
                               <button style="height: 40px; "type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                <a id="perfilNombre"></a>
                                  </button>
@@ -113,7 +113,6 @@
                                  <a class="dropdown-item" href="Salir.jsp">Salir</a>
                                  </div>
                             </div>
-                                 
 			</ul>
 		</nav>
 	</header>
@@ -144,13 +143,13 @@
 									<div class="col-xs-12 col-sm-6">
 								    	<div class="form-group label-floating">
 										  	<label class="control-label">Nro. Identificación o nit*</label>
-                              <input id="txt_Nit" name="NrIdentificacion" pattern="[a-zA-Z0-9-]{1,15}" class="form-control" type="text" name="codigo-reg" required="" maxlength="15">
+                                                                                        <input id="txt_Nit" name="NrIdentificacion" pattern="[a-zA-Z0-9-]{1,15}" class="form-control" type="text" name="codigo-reg" required="" autocomplete="off" maxlength="15">
 										</div>
 				    				</div>
 									<div class="col-xs-12 col-sm-6">
 								    	<div class="form-group label-floating">
 										  	<label class="control-label">Nombre  </label>
-										  	<input id="txt_Nombre" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txt_Nombre"  pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,45}" class="form-control" type="text" name="titulo-reg" required="" maxlength="45">
+										  	<input id="txt_Nombre" onkeyup="javascript:this.value=this.value.toUpperCase();" autocomplete="off" name="txt_Nombre"  pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,45}" class="form-control" type="text" name="titulo-reg" required="" maxlength="45">
 										</div>
 				    				</div>
 				    			
@@ -168,14 +167,14 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group label-floating">
 										  	<label class="control-label" >Nro. Telefonico</label>
-										    	<input id="txt_Telefono"  name="txt_Nombre"  pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,45}" class="form-control" type="text" name="titulo-reg" required="" maxlength="45">
+										    	<input id="txt_Telefono"  name="txt_Nombre"  autocomplete="off" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,45}" class="form-control" type="text" name="titulo-reg" required="" maxlength="45">
 										
 										</div>
 				    				</div>
 								<div class="col-xs-12 col-sm-6">
 								    	<div class="form-group label-floating">
 										  	<label class="control-label">Correo  </label>
-										  	<input id="txt_Correo" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txt_Correo"  pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,45}" class="form-control" type="text" name="titulo-reg" required="" maxlength="45">
+										  	<input id="txt_Correo" autocomplete="off" onkeyup="javascript:this.value=this.value.toUpperCase();" name="txt_Correo"  pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,45}" class="form-control" type="text" name="titulo-reg" required="" maxlength="45">
 										</div>
 				    				</div>
 				    			

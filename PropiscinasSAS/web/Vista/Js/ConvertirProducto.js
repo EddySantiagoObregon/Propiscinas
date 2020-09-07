@@ -101,13 +101,18 @@ function listarInfraestructura()
     }
 function convertirPro(correo)
 {
+    var numeroDocumentoo=$("#txt_NumeroDocumento").val();
+    var observacionDocumentoo=$("#txt_observacionDocumento").val();
+    if(numeroDocumentoo!==""&&observacionDocumentoo!==""){
          
         var parametros=
             {
                 accion: "CovertirProducto",
                 txt_Correo:correo,
                 cb_ProductoConvertir:$("#cb_ProductoConvertir").val(),
-                cb_Infraestructura:$("#cb_Infraestructura").val()
+                cb_Infraestructura:$("#cb_Infraestructura").val(),
+                numeroDocumento:$("#txt_NumeroDocumento").val(),
+                observacionDocumento:$("#txt_observacionDocumento").val()
                 
                 
          
@@ -125,7 +130,7 @@ function convertirPro(correo)
                       alert("LA CANTIDAD DEL PRODUCTO SE CONVIRTIO");
                       
                 } else{
-                    alert("NO HAY CANTIDAD DE ESTE PRODUCTO EN ESTA BODEGA PARA CONVERTIRSE!");
+                    alert("NO HAY CANTIDAD DE ESTE PRODUCTO EN ESTA INGRAESTURA PARA PODER CONVERTIRSE!");
                 }
                     
  
@@ -136,4 +141,7 @@ function convertirPro(correo)
                     console.log(ex);
                 }
             });
+        }else{
+            alert("TODOS LOS CAMPOS SON REQUERIDOS");
+        }
 }

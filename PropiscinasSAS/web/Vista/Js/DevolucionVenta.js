@@ -81,7 +81,9 @@ function listarVenta(){
             cadigo = [cantidad];
             fecha=[cantidad];
             cantidadd=[cantidad];
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -369,7 +371,9 @@ function buscarVenta(){
             fecha=[cantidad];
             cantidadd=[cantidad];
              
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
    
             
             var pag = 1;
@@ -599,7 +603,9 @@ function buscarInventarioVentaPorFecha(){
             cadigo = [cantidad];
             fecha=[cantidad];
             cantidadd=[cantidad];
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -834,7 +840,9 @@ function buscarInventarioVentaPorProductoYFecha(){
             fecha=[cantidad];
             cantidadd=[cantidad];
              
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
    
             
             var pag = 1;
@@ -1065,7 +1073,9 @@ function BuscarPorTipoDocumento(){
             cadigo = [cantidad];
             fecha=[cantidad];
             cantidadd=[cantidad];
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -1299,7 +1309,9 @@ function BuscarPorTipoDocumentoYFecha(){
             fecha=[cantidad];
             cantidadd=[cantidad];
              
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
    
             
             var pag = 1;
@@ -1534,7 +1546,9 @@ function BuscarPorProductoYTipoDocumentoYFecha(){
             fecha=[cantidad];
             cantidadd=[cantidad];
              
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
    
             
             var pag = 1;
@@ -1800,7 +1814,9 @@ function BuscarPorProductoYTipoDocumento(){
             fecha=[cantidad];
             cantidadd=[cantidad];
              
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
    
             
             var pag = 1;

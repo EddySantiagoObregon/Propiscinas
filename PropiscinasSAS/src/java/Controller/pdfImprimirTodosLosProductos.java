@@ -85,7 +85,7 @@ DatosProducto dProducto = new DatosProducto();
          
                    }
                    if(!"SOLO".equals(forma)&&cantidadUnidad>0){
-                           parametro =(new Paragraph(lista.get(x).getIdProducto()+""+lista.get(x).getUnaForma().getDescripcion()+" DE "+lista.get(x).getNombre()+" "+lista.get(x).getCantidadUnidad()+" "+lista.get(x).getUnaUnidadMedida().getDescripcion()+" "+lista.get(x).getUnaPresentacion().getDescripcion()+". Grupo: "+lista.get(x).getUnGrupo().getDescripcion(),FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD, BaseColor.BLACK)));
+                           parametro =(new Paragraph(lista.get(x).getIdProducto()+" "+lista.get(x).getUnaForma().getDescripcion()+" DE "+lista.get(x).getNombre()+" "+lista.get(x).getCantidadUnidad()+" "+lista.get(x).getUnaUnidadMedida().getDescripcion()+" "+lista.get(x).getUnaPresentacion().getDescripcion()+". Grupo: "+lista.get(x).getUnGrupo().getDescripcion(),FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD, BaseColor.BLACK)));
          
                    }
                    

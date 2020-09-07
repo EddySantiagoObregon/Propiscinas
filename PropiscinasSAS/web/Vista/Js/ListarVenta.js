@@ -46,7 +46,9 @@ function listarVenta(){
             var cantidad;
             cantidad= ventas.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -215,7 +217,9 @@ function BuscarVenta(){
             ventas=resultado;          
             var cantidad;
             cantidad= ventas.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -388,7 +392,9 @@ function BuscarVentaPorProductoYFecha(){
             var cantidad;
             cantidad= ventas.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -554,7 +560,9 @@ function BuscarProductoPorFecha(){
             var cantidad;
             cantidad= ventas.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             

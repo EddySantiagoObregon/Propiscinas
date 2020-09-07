@@ -67,7 +67,9 @@ function ListarProducto(){
             productos=resultado;          
             var cantidad;
             cantidad= productos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -275,7 +277,9 @@ function  BuscarProducto(){
              
              
  
-   
+      if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
             
             var pag = 1;
             var totales = productos.length;
@@ -654,7 +658,9 @@ function listarInfraestructuraCambio(idInfraestrucutura)
 
 //Esta funcion agrega la cantidad de productos
 function CambioProductos(correo){
-   
+   var txt_ObservacionDocumentoo = $("#txt_ObservacionDocumento").val();
+         var txt_numeroDocumentoo=$("#txt_NumeroDocumento").val();
+         if(txt_ObservacionDocumentoo!==""&&txt_numeroDocumentoo!==""){
         var parametros=
             {
                 accion: "CambioProductosEnInfraestructuras",
@@ -702,6 +708,9 @@ function CambioProductos(correo){
                     console.log(ex);
                 }
             });
+        }else{
+            alert("TODOS LOS CAMPOS SON REQUERIDOS");
+        }
        
 }
 function limpiarModal(){

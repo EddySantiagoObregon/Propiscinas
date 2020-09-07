@@ -48,7 +48,9 @@ function ListarProducto(){
             productos=resultado;          
             var cantidad;
             cantidad= productos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -248,7 +250,9 @@ function  BuscarProducto(){
             productos=resultado;          
             var cantidad;
             cantidad= productos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    

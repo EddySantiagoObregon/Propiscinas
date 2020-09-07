@@ -13,13 +13,23 @@ public class ProveedorProducto {
     private int idProveedorProducto;
     private Proveedor unProveedor;
     private DetalleProducto unDetalleProducto;
-    public ProveedorProducto(Proveedor unProveedor,DetalleProducto unDetalleProducto){
+    private String estado;
+    public ProveedorProducto(Proveedor unProveedor,DetalleProducto unDetalleProducto,String estado){
         this.unProveedor=unProveedor;
         this.unDetalleProducto=unDetalleProducto;
+        this.estado=estado;
     }
     public ProveedorProducto(){
         unDetalleProducto = new DetalleProducto();
         unProveedor = new Proveedor();
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getIdProveedorProducto() {

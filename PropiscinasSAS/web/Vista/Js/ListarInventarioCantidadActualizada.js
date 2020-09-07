@@ -84,7 +84,9 @@ function listarCantidadActualizada(){
             cantidad= inventarios.length;
              
              
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
    
             
             var pag = 1;
@@ -304,7 +306,9 @@ $("#botones button").remove();
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -529,7 +533,9 @@ $("#botones button").remove();
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+               if(cantidad===0){
+                 alert("No hay ningún dato");
+             } 
              
  
    
@@ -752,7 +758,9 @@ $("#botones button").remove();
             var cantidad;
             cantidad= inventarios.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -976,7 +984,9 @@ $("#botones button").remove();
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -1202,7 +1212,9 @@ $("#botones button").remove();
             var cantidad;
             cantidad= inventarios.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -1425,7 +1437,9 @@ $("#botones button").remove();
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -1649,7 +1663,9 @@ $("#botones button").remove();
             inventarios=resultado;          
             var cantidad;
             cantidad= inventarios.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    

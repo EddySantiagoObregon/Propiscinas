@@ -69,7 +69,9 @@ function listarMovimiento(){
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -286,7 +288,9 @@ function BuscarMovimiento(){
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -503,7 +507,9 @@ function BuscarMovimientoPorFecha(){
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -722,7 +728,9 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -974,7 +982,9 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
             var cantidad;
             cantidad= movimientos.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -1224,7 +1234,9 @@ function BuscarMovimientoTipoDocumento(){
             cantidad= movimientos.length;
              
              
- 
+    if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
    
             
             var pag = 1;
@@ -1440,7 +1452,9 @@ function BuscarMovimientoTipoDocumentoYFecha(){
             movimientos = resultado;          
             var cantidad;
             cantidad= movimientos.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -1658,7 +1672,9 @@ function BuscarMovimientoTxt_BuscarYFecha(){
             var cantidad;
             cantidad= movimientos.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             

@@ -59,7 +59,9 @@ function ListarProveedorProductoCompra(){
            proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -220,7 +222,9 @@ function BuscarPorNombre(){
            proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -382,7 +386,9 @@ function BuscarPorNombreYFecha(){
            proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -543,7 +549,9 @@ function BuscarPorFecha(){
            proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -738,7 +746,9 @@ function BuscarPorProveedor(idProveedor){
             var cantidad;
             cantidad= proveedoresproductocompra.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -900,7 +910,9 @@ function BuscarPorProveedorYFecha(idProveedor){
             var cantidad;
             cantidad= proveedoresproductocompra.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             
@@ -1063,7 +1075,9 @@ function BuscarPorProveedorYFechaYidProducto(idProveedor){
            proveedoresproductocompra=resultado;          
             var cantidad;
             cantidad= proveedoresproductocompra.length;
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
              
  
    
@@ -1226,7 +1240,9 @@ function BuscarPorProveedorYidProducto(idProveedor){
             var cantidad;
             cantidad= proveedoresproductocompra.length;
              
-             
+                if(cantidad===0){
+                 alert("No hay ningún dato");
+             }
  
    
             

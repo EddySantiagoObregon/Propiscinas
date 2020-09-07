@@ -33,6 +33,9 @@ function ListarUsuario(){
             usuarios = resultado;          
             var cantidad;
             cantidad= usuarios.length;
+              if(cantidad===0){
+                 alert("No hay ningún usuario creado");
+             }
              var body =document.getElementsByTagName("tbody")[0];
              
  
