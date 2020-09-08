@@ -140,7 +140,7 @@
             <th style="background-color: #007bff;color: #fff;">Producto</th>
             <th style="background-color: #007bff;color: #fff;">Fecha </th>
             <th style="background-color: #007bff;color: #fff;">Precio compra</th>         
-            <th style="background-color: #007bff;color: #fff;">Numero de documento</th>
+            <th style="background-color: #007bff;color: #fff;">Número de documento</th>
         
         </tr>
     </thead>

@@ -9,80 +9,73 @@ $(function(){
      
       $('#btnAbrirRegistrar').click(function(){ 
                 $("#modal").modal(); 
-   });
-   //////////////////////////////////////
-    $('#txt_Nit').keyup(function() {
-     var txt_Nit;
-      txt_Nit = document.getElementById("txt_Nit").value;
-        if (txt_Nit!=='900127905'){
+      });
+        $('#btnRegistrar').click(function(){ 
+        $("#msjIdentificacion").empty();
+        $("#msjNombre").empty();
+        $("#msjTelefono").empty();
+        $("#msjCorreo").empty();
+        $("#msjNit").empty();
+     
+    var Identificacion,Nombre,Telefono,Correo,Nit,Expresion,Expresion2;
+    Identificacion = document.getElementById("txt_Identificacion").value;
+    Nombre = document.getElementById("txt_Nombre").value;
+    Telefono = document.getElementById("txt_Tel").value;
+    Correo = document.getElementById("txt_Correo").value;
+    Nit = document.getElementById("txt_Nit").value;
+    Expresion = /\w+@\w+\.+[a-z]/; 
+    Expresion2 = /[a-z]/;
+
+    if (Identificacion === "" || Nombre === "" ||  Telefono === "" || Correo==="" || Nit===""){
+        alert("Todos los campos son requeridos");
+       return false;
+    }
+        else if (Nit!=="900127905"){
         $("#msjNit").html("Nit incorrecto");
         return false;
-    }else{
-         $("#msjNit").html(" ");
     }
-  
- });
-  
-   //////////////////////////////////////////
-    $('#txt_Identificacion').keyup(function() {
-     var txt_Identificacion;
-      txt_Identificacion = document.getElementById("txt_Identificacion").value;
-        if (txt_Identificacion.length<1 || txt_Identificacion.length >11){
-        $("#msjIdentificacion").html("Identificacíon maxima de 11 digitos");
+    else if (Identificacion.length>11){
+        $("#msjIdentificacion").html("Identificación muy larga");
         return false;
-    }else{
-         $("#msjIdentificacion").html(" ");
-    }
-  
- });
- ////////////////////////////////////////////
-     $('#txt_Nombre').keyup(function() {
-     var txt_Nombre;
-     txt_Nombre = document.getElementById("txt_Nombre").value;
-        if (txt_Nombre.length<1 || txt_Nombre.length >100){
-        $("#msjNombre").html("Nombre maximo de 100 digitos");
-        return false;
-    }else{
-         $("#msjNombre").html(" ");
-    }
-  
- });
- 
- ///////////////////////////////////////
-  $('#txt_Telefono').keyup(function() {
-     var txt_Telefono;
-     txt_Telefono = document.getElementById("txt_Telefono").value;
-        if (txt_Telefono.length<1 || txt_Telefono.length >15){
-        $("#msjTelefono").html("Telefono maximo de 15 digitos");
-        return false;
-    }else{
-         $("#msjTelefono").html(" ");
-    }
-  
- });
- 
- //////////////////////////////////////
-   $('#txt_Correo').keyup(function() {
-     var txt_Correo;
-     txt_Correo = document.getElementById("txt_Correo").value;
-        if (txt_Correo.length<1 || txt_Correo.length >100){
-        $("#msjCorreo").html("Correo maximo de 100 caracteres");
-        return false;
-    }else{
-         $("#msjCorreo").html(" ");
-    }
-  
- });
- ////////////////////////////////////
-      $('#btnRegistrar').click(function(){ 
         
-          var nit=$("#txt_Nit").val();
-          if(nit==="900127905"){
-                
-                RegistrarPersona();
-          }else{
-              alert("Nit incorrecto");
-          }
+    }
+     else if (isNaN(Identificacion)){
+        $("#msjIdentificacion").html("En la identifcación no se permite letras");
+        return false;
+    }
+    else if (Nombre.length>100){
+        $("#msjNombre").html("Nombre muy largo");
+        return false;
+    }
+     else if (!Expresion2.test(Nombre)){
+           $("#msjNombre").html("No se permiten números");
+        return false;
+    }
+      
+  
+    else if (Telefono.length>15){
+        $("#msjTelefono").html("Telefono  muy largo");
+        return false;
+    }
+ 
+    else if (isNaN(Telefono)){
+        $("#msjTelefono").html("Telefono  no es un número");
+        return false;
+    }
+ 
+    
+    else if (Correo.length>100){
+        $("#msjCorreo").html("Correo  muy largo");
+        return false;
+    }
+     else if (!Expresion.test(Correo)){
+        $("#msjCorreo").html("El correo no es válido");
+        return false;
+    }
+     
+ 
+        
+              RegistrarPersona();
             
    });
    

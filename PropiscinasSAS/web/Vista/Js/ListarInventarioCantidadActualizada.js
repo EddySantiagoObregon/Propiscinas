@@ -173,7 +173,7 @@ $("#botones button").remove();
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -328,8 +328,7 @@ $("#botones button").remove();
  var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
- 
-    for (var j = 0; j < 9; j++) {
+   for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -391,13 +390,13 @@ $("#botones button").remove();
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode("TODAS");
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -555,8 +554,7 @@ $("#botones button").remove();
  var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
- 
-    for (var j = 0; j < 9; j++) {
+   for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -624,7 +622,7 @@ $("#botones button").remove();
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -780,7 +778,7 @@ $("#botones button").remove();
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 9; j++) {
+     for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -848,7 +846,7 @@ $("#botones button").remove();
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1007,7 +1005,7 @@ $("#botones button").remove();
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 9; j++) {
+     for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -1075,7 +1073,7 @@ $("#botones button").remove();
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1234,7 +1232,7 @@ $("#botones button").remove();
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 9; j++) {
+     for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -1302,7 +1300,7 @@ $("#botones button").remove();
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1460,7 +1458,7 @@ $("#botones button").remove();
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-    for (var j = 0; j < 9; j++) {
+     for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -1528,7 +1526,7 @@ $("#botones button").remove();
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1748,13 +1746,13 @@ $("#botones button").remove();
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode("TODAS");
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
   }
  var cantidadInventrario=inventarios[i].cantidad;
-   if(cantidadInventrario<5){
+   if(cantidadInventrario<6){
          if(j===8){
      
       const fragment= document.createDocumentFragment();

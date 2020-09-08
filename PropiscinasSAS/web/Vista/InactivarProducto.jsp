@@ -135,8 +135,8 @@
             <th style="background-color: #007bff;color: #fff;">Nombre</th>
             <th style="background-color: #007bff;color: #fff;">Abreviatura</th>     
             <th style="background-color: #007bff;color: #fff;">Grupo</th>
-            <th style="background-color: #007bff;color: #fff;">SubGrupo</th>
-            <th style="background-color: #007bff;color: #fff;">Presentación</th>           
+            <th style="background-color: #007bff;color: #fff;">Presentación</th>
+            <th style="background-color: #007bff;color: #fff;">Forma</th>           
             <th style="background-color: #007bff;color: #fff;">UnidadMedida</th>
             <th style="background-color: #007bff;color: #fff;">Detalle observación</th>
             <th style="background-color: #007bff;color: #fff;">Detalle Estado</th>
