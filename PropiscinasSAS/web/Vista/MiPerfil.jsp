@@ -65,7 +65,16 @@
           ojos.style.display='block';
       }
   }
+      function validarNumero(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla===8) return true; 
+    patron =/[0-9]/;
+    te = String.fromCharCode(tecla); 
+    return patron.test(te); 
+ }
+
         </script>
+ 
        <header>
 <div class="logotipo">
              
@@ -169,22 +178,22 @@
   <div class="form-group">
       <label for="" style="    text-align: left;
              margin-right: 629px; color: #ffffff;">Identificación</label>
-    <input type="number" class="form-control" id="txt_Identificacionnn" aria-describedby="emailHelp" >
+             <input type="text" maxlength="11" onkeypress="return validarNumero(event)" class="form-control" id="txt_Identificacionnn" aria-describedby="emailHelp" >
   </div>
   <div class="form-group">
     <label for="" style="    text-align: left;
     margin-right: 667px; color: #ffffff;">Nombre</label>
-    <input type="text" class="form-control" id="txt_Nombreee">
+    <input type="text" maxlength="100" class="form-control" id="txt_Nombreee">
   </div>
        <div class="form-group">
     <label for="" style="    text-align: left;
     margin-right: 667px; color: #ffffff;">Teléfono</label>
-    <input type="number" class="form-control" id="txt_Telefonooo">
+    <input onkeypress="return validarNumero(event)"  maxlength="30" class="form-control" id="txt_Telefonooo">
   </div>
        <div class="form-group">
     <label for="" style="    text-align: left;
     margin-right: 670px;color: #ffffff;">Correo</label>
-    <input type="email" class="form-control" id="txt_Correooo">
+    <input type="email" maxlength="100" class="form-control" id="txt_Correooo">
   </div>
        
   <div class="form-group form-check">
