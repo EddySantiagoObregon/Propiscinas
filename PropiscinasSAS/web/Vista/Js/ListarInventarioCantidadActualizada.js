@@ -188,7 +188,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -204,7 +204,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -322,13 +322,14 @@ $("#botones button").remove();
 $("#botones button").remove();
  
 
-    function mostrarLista(desde,hasta){     
+   function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
  var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
-   for (var j = 0; j < 9; j++) {
+ 
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -390,7 +391,7 @@ $("#botones button").remove();
   }
 
     if(j===7){
-     var textoCelda = document.createTextNode("TODAS");
+     var textoCelda = document.createTextNode(inventarios[i].unaInfraestructura.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
   
@@ -411,7 +412,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -427,7 +428,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -548,13 +549,14 @@ $("#botones button").remove();
 $("#botones button").remove();
  
 
-    function mostrarLista(desde,hasta){     
+     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
  var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
-   for (var j = 0; j < 9; j++) {
+ 
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -637,7 +639,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -653,7 +655,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -771,14 +773,14 @@ $("#botones button").remove();
 $("#botones button").remove();
  
 
-    function mostrarLista(desde,hasta){     
+   function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
  var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-     for (var j = 0; j < 9; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -861,7 +863,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -877,7 +879,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1005,7 +1007,7 @@ $("#botones button").remove();
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-     for (var j = 0; j < 9; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -1088,7 +1090,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1104,7 +1106,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1225,14 +1227,14 @@ $("#botones button").remove();
 $("#botones button").remove();
  
 
-    function mostrarLista(desde,hasta){     
+     function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
  var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-     for (var j = 0; j < 9; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -1315,7 +1317,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1331,7 +1333,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1450,15 +1452,14 @@ $("#botones button").remove();
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
  var body =document.getElementsByTagName("tbody")[0];
     // Crea las hileras de la tabla
     var hilera = document.createElement("tr");
  
-     for (var j = 0; j < 9; j++) {
+    for (var j = 0; j < 9; j++) {
       // Crea un elemento <td> y un nodo de texto, haz que el nodo de
       // texto sea el contenido de <td>, ubica el elemento <td> al final
       // de la hilera de la tabla
@@ -1541,7 +1542,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1557,7 +1558,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1676,8 +1677,7 @@ $("#botones button").remove();
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
  var body =document.getElementsByTagName("tbody")[0];
@@ -1767,7 +1767,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-  if(cantidadInventrario>5&&cantidadInventrario<20){
+  if(cantidadInventrario>5&&cantidadInventrario<25){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
@@ -1783,7 +1783,7 @@ $("#botones button").remove();
       hilera.appendChild(button);
       }
   }
-    if(cantidadInventrario>5&&cantidadInventrario>20){
+    if(cantidadInventrario>24){
       if(j===8){
      
       const fragment= document.createDocumentFragment();
