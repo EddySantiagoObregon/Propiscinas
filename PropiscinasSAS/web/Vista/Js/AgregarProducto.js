@@ -652,7 +652,7 @@ function AgregarProducto(correo){
                       
                           
                       
-                    
+                    document.getElementById('btnAgregarCantidad').disabled=false;
                       alert("La cantidad del producto se agrego correctamente");
                       var cantidad=$("#txt_Cantidad").val();
                       var cantidadExistente=$("#txt_CantidadExistente").val();
@@ -662,6 +662,7 @@ function AgregarProducto(correo){
                       $("#txt_CantidadExistente").val(total);
                       limpiarModal();
                 } else{
+                    document.getElementById('btnAgregarCantidad').disabled=false;
                     alert("TODOS LOS CAMPOS SON OBLIGATORIOS");
                 }
                            
@@ -673,6 +674,7 @@ function AgregarProducto(correo){
                 }
             });
         }else{
+             document.getElementById('btnAgregarCantidad').disabled=false;
             alert("TODOS LOS CAMPOS SON REQUERIDOS");
         }
 }

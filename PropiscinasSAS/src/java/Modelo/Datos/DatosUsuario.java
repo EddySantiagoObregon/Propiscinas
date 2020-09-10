@@ -290,7 +290,7 @@ public class DatosUsuario {
    {
      this.mensaje=null;
      ArrayList<Usuario> lista= new ArrayList<>();
-     String consulta="SELECT * FROM usuario ORDER BY usuario_nombre ASC";
+     String consulta="SELECT * FROM usuario WHERE usuario_correo NOT LIKE 'propiscinasdelhuila2020@gmail.com' ";
      try
      {
          ps=miConexion.prepareStatement(consulta);

@@ -693,11 +693,12 @@ function CambioProductos(correo){
                       
                           
                       
-                    
+                     document.getElementById('btnAgregarCambio').disabled=false;
                       alert("La cantidad del producto se cambio correctamente");
                       location.href="CambioDeProductosEnInfraestructura.jsp";
                       limpiarModal();
                 } else{
+                     document.getElementById('btnAgregarCambio').disabled=false;
                     alert("La cantidad que quiere enviar debe ser menos a la cantidad actual en esta infraestructura");
                 }
                            
@@ -709,6 +710,7 @@ function CambioProductos(correo){
                 }
             });
         }else{
+            document.getElementById('btnAgregarCambio').disabled=false;
             alert("TODOS LOS CAMPOS SON REQUERIDOS");
         }
        

@@ -137,10 +137,10 @@
                                 </tr>
                                 <tr>
                                     <td >  <input style="    width: 319px;
-                               margin-left: 31px; "type="text" id="txt_NumeroDocumento" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="20"class="form-control">
+                               margin-left: 31px; " autocomplete="off" type="text" id="txt_NumeroDocumento" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="20"class="form-control">
                  </td>
                                     <td>        
-                        <input style="    "type="text" id="txt_observacionDocumento" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="45"class="form-control">
+                                        <input autocomplete="off" style="    "type="text" id="txt_observacionDocumento" onkeyup="javascript:this.value=this.value.toUpperCase();" maxlength="45"class="form-control">
                </td>
                                 </tr>
                             </tbody>
@@ -188,7 +188,7 @@
                         </article>
                     <article style="    padding-bottom: 20px;">
                         <center>
-                            <button id="btnConvertir" class="btn btn-primary">Convertir producto</button>
+                            <button onclick="this.disabled=true" id="btnConvertir" class="btn btn-primary">Convertir producto</button>
                         </center>
                         </article>
 		

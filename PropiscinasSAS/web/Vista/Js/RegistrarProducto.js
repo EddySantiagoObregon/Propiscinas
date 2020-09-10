@@ -450,6 +450,7 @@ function agregarProducto()
                    console.log(resultado);
                    if(resultado)
                    {
+                        document.getElementById('btnAgregar').disabled=false;
                       var can=$("#txt_cancod").val();
                       if(can>0){
                            n =  new Date();
@@ -697,7 +698,8 @@ function agregarProducto()
                        
                        limpiar();
                    }else{
-                       alert("Fallo al agregar el producto!");
+                        document.getElementById('btnAgregar').disabled=false;
+                       alert("Fallo al agregar el producto || Todos los campos son requeridos");
                    }
                    
                    $("#msj").show();
@@ -728,10 +730,13 @@ function agregarProductoBotella_Bolsa()
                    console.log(resultado);
                    if(resultado)
                    {
+                       
+                        document.getElementById('btnRegistrarProo').disabled=false;
                        alert("registrado");
                        limpiarModal();
                    }else
                    {
+                       document.getElementById('btnRegistrarProo').disabled=false;
                        alert("Problemas al agregar producto");
                        
                    }

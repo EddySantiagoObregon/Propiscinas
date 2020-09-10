@@ -33,10 +33,14 @@ function recuperarClave(){
                    console.log(resultado);
                    if(resultado)
                    {
+                       document.getElementById('btnRecuperarClaveModal').disabled=false;
+
                        document.body.style.cursor = "default";
                       alert("Se ha enviado un mensaje al  correo del administrador para que le de  su nueva contraseña");
                    }else
                    {
+                       document.getElementById('btnRecuperarClaveModal').disabled=false;
+
                        document.body.style.cursor = "default";
                        alert("Identificación o correo electrónico incorrectos");
                    }
@@ -44,8 +48,10 @@ function recuperarClave(){
             },
             error: function(ex)
             {
+                document.getElementById('btnRecuperarClaveModal').disabled=false;
+
                 document.body.style.cursor = "default";
-                alert("Identificación o correo electrónico incorrectos");
+                alert("Todos los campos son requeridos");
                 console.log(ex.responseText);
             }
         });

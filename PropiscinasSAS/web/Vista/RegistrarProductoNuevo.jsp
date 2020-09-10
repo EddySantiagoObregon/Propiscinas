@@ -272,7 +272,7 @@
                     
                     <tr  style="height: 10px;">
                         <td colspan="2"  style="text-align: center; margin-left: 10px">
-                         <input style="margin: 20px;" id="btnAgregar"  type="button" value="Registrar" name="btnAgregar" class="btn btn-primary">
+                         <input style="margin: 20px;" id="btnAgregar" onclick="this.disabled=true"  type="button" value="Registrar" name="btnAgregar" class="btn btn-primary">
                           
                         
                         </td>
@@ -389,7 +389,7 @@
                     
                     <tr  style="height: 10px;">
                         <td colspan="2"  style="text-align: center; margin-left: 10px">
-                            <input style="margin: 20px;" id="btnRegistrarProo" type="button" value="Registrar Producto" name="btnRegistrarProo" class="btn btn-primary">
+                            <input style="margin: 20px;" id="btnRegistrarProo" onclick="this.disabled=true" type="button" value="Registrar Producto" name="btnRegistrarProo" class="btn btn-primary">
                           
                         
                         </td>

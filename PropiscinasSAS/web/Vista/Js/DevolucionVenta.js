@@ -57,7 +57,16 @@ $(function(){
         listarVenta(); 
     });
     $("#btnEditar").click(function(){
-       hacerdevolucion(); 
+        var txt_cantidadDevuelta = $("#txt_cantidadDevuelta").val();
+        var txt_ObservacionDocumento = $("#txt_ObservacionDocumento").val();
+        if(txt_cantidadDevuelta!==""&&txt_ObservacionDocumento!==""){
+             hacerdevolucion(); 
+        }else{
+            alert("TODOS LOS CAMPOS SON REQUERIDOS");
+            document.getElementById('btnEditar').disabled=false;
+        }
+
+      
     });
 });
 function listarVenta(){
@@ -337,11 +346,18 @@ function hacerdevolucion(){
                  $("#txt_cantidadVenta").val(cantidadNueva);
                  $("#txt_cantidadDevuelta").val("");
                  $("#txt_ObservacionDocumento").val("");
+                 document.getElementById('btnEditar').disabled=false;
+                 
                 listarVenta();
             }else{
+                document.getElementById('btnEditar').disabled=false;
                 alert("La cantidad de devolción debe de ser menor a la cantidad de venta y mayor que 0");
             }
-        }
+        },error: function(ex)
+            {
+                document.getElementById('btnEditar').disabled=false;
+                console.log(ex.responseText);
+            }
     });
 
 }

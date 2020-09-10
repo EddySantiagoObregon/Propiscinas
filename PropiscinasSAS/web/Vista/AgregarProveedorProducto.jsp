@@ -184,7 +184,7 @@
           <div style="height: 60px;" class="form-group">
             <label for="message-text" class="col-form-label">Proveedor:</label>
         <select name="cb_Proveedor" id="cb_Proveedor" class="form-control">
-            <option value="0">Seleccione</option> </select>
+            <option value="0">Seleccioné</option> </select>
           </div>
           
       
@@ -197,7 +197,7 @@
                        
                     </div>
                     <div class="modal-footer">
-                        <button style="background-color: #007bff;color: #fff;" type="button" class="btn" id="btnAgregarProveedor" class="btnAgregarProveedor" >Agregar</button>
+                        <button style="background-color: #007bff;color: #fff;" type="button" class="btn" onclick="this.disabled=true" id="btnAgregarProveedor" class="btnAgregarProveedor" >Agregar</button>
                      
                         <button style="background-color: #007bff;color: #fff;" onclick="limpiarModal()" type="button" class="btn" data-dismiss="modal">Cerrar</button>
                        

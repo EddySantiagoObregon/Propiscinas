@@ -21,9 +21,9 @@ public class Conexion
 
    private static Connection conexion;
   private static final String driver="com.mysql.jdbc.Driver";
-  private static final String usuario="root";
-  private static final String password="";
-  private static final String url="jdbc:mysql://localhost:3306/propiscinasv3";
+  private static final String usuario="prueba";
+  private static final String password="colombia1";
+  private static final String url="jdbc:mysql://35.245.144.165/propiscinas";
   private static String mensaje;
  public static Connection getConexion()
   {

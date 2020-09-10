@@ -240,7 +240,7 @@
                     
                     <tr  style="height: 10px;">
                         <td colspan="2"  style="text-align: center; margin-left: 10px">
-                            <input style="margin: 20px;" id="btnAgregar" type="button" value="Agregar venta" name="btnAgregar" class="btn btn-primary">
+                            <input style="margin: 20px;" id="btnAgregar" onclick="this.disabled=true" type="button" value="Agregar venta" name="btnAgregar" class="btn btn-primary">
                           
                         
                         </td>

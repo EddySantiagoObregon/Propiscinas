@@ -217,7 +217,7 @@
     left: 242px;" >
           <button style="background-color: #007bff;
     color: #fff;
-    margin-top: 13px;" type="button" class="btn" id="btnEditar" class="btnEditar" >Hacer devolución</button>
+    margin-top: 13px;" type="button" class="btn" id="btnEditar" onclick="this.disabled=true" class="btnEditar" >Hacer devolución</button>
                      
                         <button style="background-color: #007bff;color: #fff;margin-top: 12px;" onclick="limpiarModal()" type="button" class="btn" data-dismiss="modal">Cerrar</button>
                        

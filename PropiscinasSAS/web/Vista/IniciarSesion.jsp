@@ -179,7 +179,7 @@ if (session.getAttribute("idUsuario")!=null){
                        
                     </div>
                     <div class="modal-footer">
-                        <button style="background-color: #007bff;color: #fff;" type="button" class="btn" id="btnRegistrar" class="btnRegistrar" >Registrar</button>
+                        <button style="background-color: #007bff;color: #fff;" onclick="this.disabled=true" type="button" class="btn" id="btnRegistrar" class="btnRegistrar" >Registrar</button>
                      
                         <button style="background-color: #007bff;color: #fff;" onclick="limpiarModal()" type="button" class="btn" data-dismiss="modal">Cerrar</button>
                        
@@ -220,7 +220,7 @@ if (session.getAttribute("idUsuario")!=null){
                        
                     </div>
                     <div class="modal-footer">
-                        <button style="background-color: #007bff;color: #fff;" type="button" class="btn"  id="btnRecuperarClaveModal" class="btnRegistrar" >Recuperar contraseña</button>
+                        <button style="background-color: #007bff;color: #fff;" onclick="this.disabled=true"  type="button" class="btn"  id="btnRecuperarClaveModal" class="btnRegistrar" >Recuperar contraseña</button>
                      
                         <button style="background-color: #007bff;color: #fff;" onclick="limpiarModalRecuperar()" type="button" class="btn" data-dismiss="modal">Cerrar</button>
                        

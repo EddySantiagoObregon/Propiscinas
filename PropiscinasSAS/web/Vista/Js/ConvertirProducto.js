@@ -126,10 +126,12 @@ function convertirPro(correo)
                 success: function(resultado){
                     console.log(resultado);
                     if(resultado){
-                     
+                     document.getElementById('btnConvertir').disabled=false;
                       alert("LA CANTIDAD DEL PRODUCTO SE CONVIRTIO");
-                      
+                      limpiar();
                 } else{
+                    limpiar();
+                    document.getElementById('btnConvertir').disabled=false;
                     alert("NO HAY CANTIDAD DE ESTE PRODUCTO EN ESTA INGRAESTURA PARA PODER CONVERTIRSE!");
                 }
                     
@@ -137,11 +139,19 @@ function convertirPro(correo)
                 },
                 error:function(ex)
                 {
+                    document.getElementById('btnConvertir').disabled=false;
                      alert("ESTE PRODUCTO NO HAY EN BODEGA");
                     console.log(ex);
                 }
             });
         }else{
+            document.getElementById('btnConvertir').disabled=false;
             alert("TODOS LOS CAMPOS SON REQUERIDOS");
         }
+}
+function limpiar() {
+    $("#txt_NumeroDocumento").val("");
+    $("#txt_observacionDocumento").val("");
+    $("#cb_ProductoConvertir").val(0);
+    $("#cb_Infraestructura").val(0);
 }

@@ -26,6 +26,7 @@ $(function(){
      if(cantidad>0){
      AgregarVenta(correo);
  }else{
+     document.getElementById('btnAgregar').disabled=false;
      alert("La cantidad vendida tiene que ser mayor que 0");
  }
  });
@@ -120,14 +121,14 @@ function AgregarVenta(correo){
                       $("tbody tr").remove(); 
                       alert("Producto agregado a la venta");
                       
-                      
+                      document.getElementById('btnAgregar').disabled=false;
                       document.getElementById('tblMovimiento').style.display = 'block';
                       listarVentaPorFactura();
                       limpiar();
                     
                    }else
                    {
-                       
+                        document.getElementById('btnAgregar').disabled=false;
                        alert("No hay esta cantidad de productos en la sala de ventas");
                    }
                    $("#msj").show();

@@ -171,20 +171,17 @@ DatosUsuario dUsuario = new DatosUsuario();
         String nombre = request.getParameter("txt_Nombre");
         String telefono = request.getParameter("txt_Tel");
         String correo = request.getParameter("txt_Correo");
-        
-        String secretKey = "0P1R2O3P4I5S6C7I8N9A0S";
         EncriptarYDesencriptar unEnctiptarYDesencriptar = new EncriptarYDesencriptar();
-      
         Usuario unUsuarioo = new Usuario();
         unUsuarioo.genearPassword();
         String password =unUsuarioo.getContrasena();
         String contrasenaEncriptada = unEnctiptarYDesencriptar.Encriptar( password);
         Usuario unUsuario = new Usuario(identificacion, nombre, telefono, correo, contrasenaEncriptada);
-      boolean agregado = dUsuario.agregado(unUsuario);
-         if (agregado){
-        nuevoUsuario(unUsuario,password);
-    }
-      PrintWriter out = response.getWriter();
+        boolean agregado = dUsuario.agregado(unUsuario);
+        if (agregado){
+            nuevoUsuario(unUsuario,password);
+        }
+        PrintWriter out = response.getWriter();
         String json = new Gson().toJson(agregado);
         out.print(json);
     
@@ -218,7 +215,7 @@ DatosUsuario dUsuario = new DatosUsuario();
          String Contraseña = unUsuario.getContrasena();
          String asunto = "Recuperación de contraseña de un usuario - Propiscinas del Huila  S.A.S ";
          String mensaje =
-                 "<br><b>la datos contraseña de acceso a Propiscinas del Huila  S.A.S ha sido</b>" 
+                 "<br><b>la  contraseña de acceso a Propiscinas del Huila  S.A.S ha sido</b>" 
                 + "<br>restablecida correctamente.</b>" 
                 + "<br><b>       </b>" 
                 + "<br><b>Los datos de acceso del usuario(a) " +unUsuarioo.getNombre() +"   son: </b>"

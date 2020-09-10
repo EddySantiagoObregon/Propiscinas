@@ -25,9 +25,14 @@ $(function ()
    }); 
    
    $('#btnAgregarProveedor').click(function(){ 
- 
+  var cb_Proveedor = $("#cb_Proveedor").val();
+  if(cb_Proveedor!=='0'){
+      document.getElementById('btnAgregarProveedor').disabled=false;
         AgregarProveedor();
-      
+    }else{
+        document.getElementById('btnAgregarProveedor').disabled=false;
+        alert("Seleccioné el proveedor");
+    }
    }); 
 });
 //Esta funcion es la que lista todo los producto para poder agregar la cantidad al producto
@@ -511,12 +516,13 @@ function AgregarProveedor(){
                      
                       
                        
-                      
+                      document.getElementById('btnAgregarProveedor').disabled=false;
                     
                       alert("Proveedor agregado correctamente al producto");
                  
                       limpiarModal();
                 } else{
+                    document.getElementById('btnAgregarProveedor').disabled=false;
                     alert("Este producto ya tiene este proveedor");
                 }
                            
@@ -524,6 +530,7 @@ function AgregarProveedor(){
                 },
                 error:function(ex)
                 {
+                    document.getElementById('btnAgregarProveedor').disabled=false;
                     console.log(ex);
                 }
             });
