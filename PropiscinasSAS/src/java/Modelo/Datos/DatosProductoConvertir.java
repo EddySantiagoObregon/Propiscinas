@@ -164,29 +164,20 @@ public class DatosProductoConvertir {
               
             }
              rs.close();
-              
+              this.miConexion.commit();
         }catch(SQLException ex)
         {
             this.mensaje= ex.getMessage();
       
              }
          
-            this.miConexion.commit();
+            
               }
-        }catch(SQLException ex)
-        {
-
-         
-          
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+        }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
        
         return unInventario;
    }
@@ -207,21 +198,12 @@ public class DatosProductoConvertir {
                
                 }
          
-            
-        }catch(SQLException ex)
-        {
-
-         
-          
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+            this.miConexion.commit();
+        }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         
         
        
@@ -242,21 +224,12 @@ public class DatosProductoConvertir {
                 {
                 cantidadMedida = rs.getInt("convertir_producto_cantidad_unidad");
                 }
-      
-        }catch(SQLException ex)
-        {
-
-         
-          
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+      this.miConexion.commit();
+        }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         
         
        
@@ -279,21 +252,12 @@ public class DatosProductoConvertir {
                 {
                 CantidadActual= rs.getInt("inventario_cantidad_total");
                 }
-            
-        }catch(SQLException ex)
-        {
-
-         
-          
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+            this.miConexion.commit();
+        }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         
         
        
@@ -380,20 +344,11 @@ public class DatosProductoConvertir {
          
             this.miConexion.commit();
               }
-        }catch(SQLException ex)
-        {
-
-         
-          
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+        }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
        
         return unMovimiento;
    }
@@ -414,20 +369,11 @@ public class DatosProductoConvertir {
           
                 //Falta terminar de aca para abajo
         
-        }catch(SQLException ex)
-        {
-
-         
-          
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+        }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
        
     return forma;
       

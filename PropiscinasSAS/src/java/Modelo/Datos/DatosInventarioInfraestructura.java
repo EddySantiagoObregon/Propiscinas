@@ -105,6 +105,7 @@ public class DatosInventarioInfraestructura {
     public ArrayList<InventarioInfraestructura> listaInventario(){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.*,usuario.* "+
 "FROM inventario_infraestructura " +
 "INNER JOIN producto on inventario_infraestructura.inventario_producto_id=producto.producto_id " +
@@ -148,6 +149,7 @@ public class DatosInventarioInfraestructura {
     public ArrayList<InventarioInfraestructura> listaInventario(int id){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.*,usuario.* "+
 "FROM inventario_infraestructura " +
 "INNER JOIN producto on inventario_infraestructura.inventario_producto_id=producto.producto_id " +
@@ -192,6 +194,7 @@ public class DatosInventarioInfraestructura {
      public ArrayList<InventarioInfraestructura> listaInventarioCantidadActual(){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta=" SELECT  inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
 "FROM inventario_infraestructura_cantidad_actual \n" +
 "INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
@@ -235,6 +238,7 @@ public class DatosInventarioInfraestructura {
       public ArrayList<InventarioInfraestructura> listaInventarioCantidadActualInfraestructura(int infraestructura){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta=" SELECT  inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
 "FROM inventario_infraestructura_cantidad_actual " +
 "INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id " +
@@ -243,7 +247,7 @@ public class DatosInventarioInfraestructura {
 "INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id " +
 "INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id " +
 "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id " +
-"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id WHERE infraestructura.infraestructura_id=?  ORDER BY inventario_fecha_registro DESC";
+"INNER JOIN unidad_medida ON detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id WHERE infraestructura.infraestructura_id=?  ORDER BY inventario_infraestructura_cantidad_actual.inventario_cantidad_total ASC";
    ps=this.miConexion.prepareStatement(consulta);
           ps.setInt(1,infraestructura);
             rs = ps.executeQuery();
@@ -280,6 +284,7 @@ public class DatosInventarioInfraestructura {
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
              
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT SUM(inventario_cantidad_total) AS SUMA,inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
 "FROM inventario_infraestructura_cantidad_actual \n" +
 "INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
@@ -322,7 +327,7 @@ public class DatosInventarioInfraestructura {
              public ArrayList<InventarioInfraestructura> totalProductosInfraestructuraYcodigo(String codigo){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
-             
+              this.miConexion.setAutoCommit(false);
         String consulta="SELECT SUM(inventario_cantidad_total) AS SUMA,inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
 "FROM inventario_infraestructura_cantidad_actual \n" +
 "INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
@@ -365,6 +370,7 @@ public class DatosInventarioInfraestructura {
                 public ArrayList<InventarioInfraestructura> BuscarProductoCantidadActualPorNombreYInfraestructura(String nombre,int infraestructura){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
 "FROM inventario_infraestructura_cantidad_actual \n" +
 "INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
@@ -407,6 +413,7 @@ public class DatosInventarioInfraestructura {
                          public ArrayList<InventarioInfraestructura> BuscarProductoCantidadActualPorCodigoYInfraestructura(String codigo,int infraestructura){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura_cantidad_actual.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.* \n" +
 "FROM inventario_infraestructura_cantidad_actual \n" +
 "INNER JOIN producto on inventario_infraestructura_cantidad_actual.inventario_producto_id=producto.producto_id \n" +
@@ -504,6 +511,7 @@ public class DatosInventarioInfraestructura {
            public ArrayList<InventarioInfraestructura> listaInventarioPorFecha(String fecha){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.*,usuario.* "+
 "FROM inventario_infraestructura " +
 "INNER JOIN producto on inventario_infraestructura.inventario_producto_id=producto.producto_id " +
@@ -547,6 +555,7 @@ public class DatosInventarioInfraestructura {
             public ArrayList<InventarioInfraestructura> listaInventarioPorFechaYCodigo(String fecha,String codigo){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.*,usuario.* \n" +
 "FROM inventario_infraestructura \n" +
 "INNER JOIN producto on inventario_infraestructura.inventario_producto_id=producto.producto_id \n" +
@@ -592,6 +601,7 @@ public class DatosInventarioInfraestructura {
                                 public ArrayList<InventarioInfraestructura> listaInventarioPorFechaYNombre(String fecha,String nombre){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.*,usuario.* \n" +
 "FROM inventario_infraestructura \n" +
 "INNER JOIN producto on inventario_infraestructura.inventario_producto_id=producto.producto_id \n" +
@@ -637,6 +647,7 @@ public class DatosInventarioInfraestructura {
                           public ArrayList<InventarioInfraestructura> listaInventarioPorFechaYCodigoYInfraestructura(String fecha,String codigo,int infraestructura){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.*,usuario.* \n" +
 "FROM inventario_infraestructura \n" +
 "INNER JOIN producto on inventario_infraestructura.inventario_producto_id=producto.producto_id \n" +
@@ -682,6 +693,7 @@ public class DatosInventarioInfraestructura {
                           public ArrayList<InventarioInfraestructura> listaInventarioPorFechaYNombreYInfraestructura(String fecha,String nombrePro,int infraestructura){
         ArrayList<InventarioInfraestructura> lista= new ArrayList<>();
         try{
+             this.miConexion.setAutoCommit(false);
         String consulta="SELECT  inventario_infraestructura.*, producto.*, infraestructura.*,infraestructura.*, detalle_producto.*, grupo.*,forma.*,presentacion.*,unidad_medida.*,usuario.* \n" +
 "FROM inventario_infraestructura \n" +
 "INNER JOIN producto on inventario_infraestructura.inventario_producto_id=producto.producto_id \n" +

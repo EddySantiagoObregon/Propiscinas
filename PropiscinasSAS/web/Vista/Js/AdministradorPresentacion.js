@@ -20,7 +20,7 @@ $(function(){
 
 });
 function Agregar(){
-   alert("qweeerty");
+  
      var parametros = {
                accion: "agregar",
                nombre:$("#txt_Nombre1").val()

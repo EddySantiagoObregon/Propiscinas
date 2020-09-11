@@ -38,6 +38,8 @@ public class DatosMovimiento {
    {
      this.mensaje=null;
      ArrayList<Movimiento> lista= new ArrayList<>();
+     try
+     {
      String consulta="SELECT\n" +
 "   (SELECT infraestructura_descripcion AS despacho FROM infraestructura WHERE infraestructura_id=movimiento_infraestructura_despacho ),\n" +
 "    movimiento.*,\n" +
@@ -65,8 +67,8 @@ public class DatosMovimiento {
 "INNER JOIN presentacion ON detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id\n" +
 "INNER JOIN usuario ON movimiento.movimiento_usuario=usuario.idUsuario \n" +
 "INNER JOIN tipo_documento on documento.documento_tipo_documento=tipo_documento.tipo_documento_id ORDER BY movimiento.movimiento_fecha_resgistro DESC";
-     try
-     {
+     
+         
          ps=miConexion.prepareStatement(consulta);
          rs= ps.executeQuery();
          while(rs.next())
@@ -178,7 +180,7 @@ public class DatosMovimiento {
                 lista.add(unMovimiento);
          }
          rs.close();
-                 
+        this.miConexion.commit();         
      }catch(SQLException ex)
      {
          this.mensaje=ex.getMessage();

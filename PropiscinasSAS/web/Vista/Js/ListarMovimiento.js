@@ -119,7 +119,26 @@ $("#botones button").remove();
  
 
   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -132,6 +151,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){
@@ -303,8 +324,7 @@ function BuscarMovimiento(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
   
@@ -338,7 +358,26 @@ $("#botones button").remove();
  
 
   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -351,6 +390,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){
@@ -522,8 +563,7 @@ function BuscarMovimientoPorFecha(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
   
@@ -556,8 +596,27 @@ $("#botones button").remove();
   }
  
 
-   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -570,6 +629,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){
@@ -742,9 +803,7 @@ function BuscarMovimientoPorFechaYNumeroDocumento(){
             var offset = (pag - 1) * xPag;
             var hasta = pag * xPag;
 $("#botones button").remove();
- 
-
-    function mostrarLista(desde,hasta){     
+  function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
   
@@ -778,7 +837,26 @@ $("#botones button").remove();
  
 
   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -791,6 +869,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){
@@ -996,8 +1076,7 @@ function BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
   
@@ -1030,8 +1109,27 @@ $("#botones button").remove();
   }
  
 
-   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -1044,6 +1142,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){
@@ -1247,8 +1347,7 @@ function BuscarMovimientoTipoDocumento(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
   
@@ -1282,7 +1381,26 @@ $("#botones button").remove();
  
 
   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -1295,6 +1413,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){
@@ -1467,8 +1587,7 @@ function BuscarMovimientoTipoDocumentoYFecha(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
   
@@ -1500,8 +1619,28 @@ $("#botones button").remove();
   
   }
  
+
   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -1514,6 +1653,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){
@@ -1651,7 +1792,6 @@ $("#botones button").remove();
     });
    
 }
-
 function BuscarMovimientoTxt_BuscarYFecha(){
      $("tbody tr").remove(); 
      var parametros = {
@@ -1686,8 +1826,7 @@ function BuscarMovimientoTxt_BuscarYFecha(){
             var hasta = pag * xPag;
 $("#botones button").remove();
  
-
-    function mostrarLista(desde,hasta){     
+ function mostrarLista(desde,hasta){     
         $("tbody tr").remove();
       for(var i = desde; i < hasta; i++){
   
@@ -1721,7 +1860,26 @@ $("#botones button").remove();
  
 
   var cantidad =movimientos[i].unDetalleProducto.cantidadUnidad;
+  var forma=movimientos[i].unDetalleProducto.unaForma.descripcion;
+  if(forma==="SOLO"){
   if(cantidad===0){
+       if(j===3){
+     var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  
+                            
+  }
+  }else{
+        if(j===3){
+          var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
+      celda.appendChild(textoCelda);
+      hilera.appendChild(celda);
+  }
+  
+  }
+  }else{
+       if(cantidad===0){
        if(j===3){
      var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
@@ -1734,6 +1892,8 @@ $("#botones button").remove();
           var textoCelda = document.createTextNode(movimientos[i].unDetalleProducto.unaForma.descripcion+" "+movimientos[i].unDetalleProducto.cantidadUnidad+" "+movimientos[i].unDetalleProducto.unaUnidadMedida.descripcion+" "+movimientos[i].unDetalleProducto.unaPresentacion.descripcion);
       celda.appendChild(textoCelda);
       hilera.appendChild(celda);
+  }
+  
   }
   }
   if(j===4){

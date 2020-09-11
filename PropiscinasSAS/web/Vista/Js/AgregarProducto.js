@@ -660,7 +660,7 @@ function AgregarProducto(correo){
                       var existentePar= parseInt(cantidadExistente);
                       var total= (cantidadPar+existentePar);
                       $("#txt_CantidadExistente").val(total);
-                      limpiarModal();
+                      limpiar();
                 } else{
                     document.getElementById('btnAgregarCantidad').disabled=false;
                     alert("TODOS LOS CAMPOS SON OBLIGATORIOS");
@@ -678,7 +678,22 @@ function AgregarProducto(correo){
             alert("TODOS LOS CAMPOS SON REQUERIDOS");
         }
 }
+function limpiar(){
+    
+      $("#txt_Cantidad").val("");
+       $("#txt_NumeroFactura").val("");
+       $("#txt_Observacion").val("");
+       $("#cb_Infraestructura").val(0);
+     
 
+       $("#cb_TipoDocumento").val(0);
+         $("#cb_Proveedor").val(0);
+
+        $("#txt_ValorCompra").val(0);      
+       
+     
+       
+}
 function limpiarModal(){
     
       $("#txt_Cantidad").val("");

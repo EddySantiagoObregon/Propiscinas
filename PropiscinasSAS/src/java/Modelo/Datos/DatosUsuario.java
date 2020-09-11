@@ -107,16 +107,9 @@ public class DatosUsuario {
          ps.setString(5, unUsuario.getContrasena());
          ps.executeUpdate();
          agregado=true;
-        }catch(SQLException ex)  {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
-                 {
-                     this.mensaje= ex1.getMessage();
-                 }
-       }
+        }catch(SQLException ex){
+                    this.mensaje=ex.getMessage();
+                }
          return agregado;
     }
     public boolean actualizarPassword(Usuario unUsuario){
@@ -201,6 +194,7 @@ public class DatosUsuario {
            int idUsuario=0;
           try
      {
+         this.miConexion.setAutoCommit(false); 
          
           String consultica = "SELECT idUsuario FROM usuario where usuario_correo=?";
          
@@ -227,6 +221,7 @@ public class DatosUsuario {
          if(si>0){
                agregado = true;
          }
+         this.miConexion.commit();
         
   }catch(SQLException ex)
     {

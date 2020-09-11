@@ -187,17 +187,11 @@ public class DatosProducto{
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return agregado;
    }
      public boolean repetirCod(String referencia,String fecha,int cancod){
@@ -253,17 +247,11 @@ public class DatosProducto{
                 Logger.getLogger(DatosProducto.class.getName()).log(Level.SEVERE, null, ex);
             }
            
-                }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+                }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
          repetir=true;
          
          return repetir;
@@ -366,17 +354,11 @@ private String obtenerFechaActual(){
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return agregado;
     }
     public boolean agregarProductoDevolucionVenta(InventarioInfraestructura unInventarioInfraestructura,Movimiento unMovimiento,int idUsuario){
@@ -466,17 +448,11 @@ private String obtenerFechaActual(){
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return agregado;
     }
      public boolean agregarProvedorProductoCompra(int idProveedorProducto,String fecha,String precioCompra,int idUsuario){
@@ -528,17 +504,7 @@ private String obtenerFechaActual(){
     }
 
 
-     public boolean agregarProducto(){
-         boolean agregado = true;
-         String consulta="SELECT detalle_producto.*,producto.*,grupo.*,sub_grupo.*,presentacion.*,unidad_medida.* "
-                 +" FROM detalle_producto INNER JOIN producto on detalle_producto.detalle_producto_producto_id=producto.producto_id "
-                 + "INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id "
-                 + "INNER JOIN sub_grupo ON detalle_producto.detalle_producto_sub_grupo_id=sub_grupo.sub_grupo_id "
-                 + "INNER JOIN presentacion on detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id "
-                 + "INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id";
-         
-         return agregado;
-     }
+
        public ArrayList<DetalleProducto>Listar()
     {
             this.mensaje=null;
@@ -634,17 +600,11 @@ private String obtenerFechaActual(){
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return eliminado;
     }
                         public boolean Activar(String id){
@@ -670,17 +630,11 @@ private String obtenerFechaActual(){
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return eliminado;
     }
    
@@ -884,17 +838,11 @@ private String obtenerFechaActual(){
                 encontrado=true;
             }
             
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return encontrado;
     }
                        
@@ -912,17 +860,11 @@ private String obtenerFechaActual(){
                 encontrado=true;
             }
             
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return encontrado;
     }
 
@@ -941,17 +883,11 @@ private String obtenerFechaActual(){
                 encontrado=true;
             }
             
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return encontrado;
     }
          

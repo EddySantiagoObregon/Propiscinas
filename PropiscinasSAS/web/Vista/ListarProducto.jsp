@@ -5,15 +5,16 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-  
+
+ request.setCharacterEncoding("UTF-8"); 
  if (session.getAttribute("idUsuario")==null){
    response.sendRedirect("Salir.jsp");
  }
 %>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>ListarProducto</title>
         <script src="Js/jquery.dataTables.min.js" type="text/javascript"></script>
          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -127,7 +128,7 @@
 		<section class="articles">
 			<article>
                             
-                            <input autocomplete="off" style="display: inline-grid; width: 40%" type="text" id="txt_Buscar" class="form-control txt_Buscar" placeholder="BUSCAR POR NOMBRE O CÓDIGO DE PRODUCTO">
+                            <input autocomplete="off" style="display: inline-grid; width: 39%" type="text" id="txt_Buscar" class="form-control txt_Buscar" placeholder="BUSCAR POR NOMBRE O CÓDIGO DE PRODUCTO">
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnBuscar" id="btnBuscar">🔎</button>
                                 <button style="margin-bottom: 5px;" class="btn btn-primary btnListar" id="btnListar"><img width="18" height="18" src="Imagenes/actualizar.png"/></button>
                                 <a style="margin-bottom: 5px; padding-top: 2px;padding-bottom: 4px;" class="btn btn-primary btnListar" href="ImprimirEtiquetasCodigoBarras.jsp"><img width="40" height="30" src="Imagenes/cod.png"/>Generar etiquetas de codigo de barras</a>
@@ -136,7 +137,7 @@
    <input style="    position: absolute;
     top: 350px;
     left: 163.5;
-    margin-left: 910px;" value="Generar PDF todos los productos"id="generar" type="submit" 
+    margin-left: 900px;" value="Generar PDF todos los productos"id="generar" type="submit" 
        class="btn btn-primary">
            </form>
                             

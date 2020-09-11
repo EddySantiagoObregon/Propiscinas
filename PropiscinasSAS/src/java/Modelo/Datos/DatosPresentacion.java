@@ -153,16 +153,10 @@ public class DatosPresentacion {
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
-                 }
+                 
        }
         return agregado;
    }  
@@ -190,17 +184,11 @@ public class DatosPresentacion {
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return eliminado;
     }
            

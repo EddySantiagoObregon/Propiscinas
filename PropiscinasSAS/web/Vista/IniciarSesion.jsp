@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    
+  
 if (session.getAttribute("idUsuario")!=null){
    response.sendRedirect("MenuPrincipal.jsp");
 }else{

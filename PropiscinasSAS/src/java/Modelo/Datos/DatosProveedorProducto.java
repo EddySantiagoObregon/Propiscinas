@@ -71,17 +71,11 @@ public boolean agregado(int idProveedor,String idProducto){
          
                      this.miConexion.commit();
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return agregado;
    }
  public ArrayList<Proveedor> ListarProveedorProducto(String idProducto)
@@ -321,26 +315,20 @@ public boolean agregado(int idProveedor,String idProducto){
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return eliminado;
     }
                                      public boolean Activado(int id){
         boolean Activado = false;
             try{  
   
-            
+              this.miConexion.setAutoCommit(false);  
         String consulta1="UPDATE proveedor_producto SET proveedor_producto_estado = 'A' WHERE proveedor_producto.proveedor_producto_id = ? "; 
-            this.miConexion.setAutoCommit(false);   
+           
             
             ps=miConexion.prepareStatement(consulta1);
             ps.setInt(1,id);
@@ -357,17 +345,11 @@ public boolean agregado(int idProveedor,String idProducto){
          
                     
           
-       }catch(SQLException ex)
-       {
-         try
-         {
-             this.mensaje=ex.getMessage();
-             this.miConexion.rollback();
-         }catch(SQLException ex1)
+       }catch(SQLException ex1)
                  {
                      this.mensaje= ex1.getMessage();
                  }
-       }
+       
         return Activado;
     }
 
