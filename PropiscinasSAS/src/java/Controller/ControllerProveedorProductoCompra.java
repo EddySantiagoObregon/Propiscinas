@@ -104,6 +104,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     throws ServletException, IOException
     {
     
+        response.setContentType("text/html; charset=UTF-8");
         ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.ListarProveedorProductoCompra();
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
@@ -122,6 +123,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     private void BuscarPorNombre(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         String buscar = request.getParameter("buscar");
        ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorNombre(buscar);
         int numero = lista.size();
@@ -151,6 +153,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
  private void BuscarPorNombreYFecha(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         String buscar = request.getParameter("buscar");
         String fecha = request.getParameter("fecha");
         ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorNombreYFecha(buscar,fecha);
@@ -162,6 +165,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     throws ServletException, IOException
     {
       
+        response.setContentType("text/html; charset=UTF-8");
         String fecha = request.getParameter("fecha");
         ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorFecha(fecha);
         PrintWriter out = response.getWriter();
@@ -173,6 +177,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     throws ServletException, IOException
     {
       
+        response.setContentType("text/html; charset=UTF-8");
         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
         ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorProveedor(idProveedor);
         PrintWriter out = response.getWriter();
@@ -183,6 +188,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     throws ServletException, IOException
     {
       
+        response.setContentType("text/html; charset=UTF-8");
         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
         String fecha = request.getParameter("fecha");
         ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorProveedorYFecha(idProveedor,fecha);
@@ -194,6 +200,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     throws ServletException, IOException
     {
       
+        response.setContentType("text/html; charset=UTF-8");
         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
         String fecha = request.getParameter("fecha");
         String idProducto = request.getParameter("idProducto");
@@ -215,6 +222,7 @@ DatosProveedorProductoCompra dproveedorProductoCompra = new DatosProveedorProduc
     throws ServletException, IOException
     {
       
+        response.setContentType("text/html; charset=UTF-8");
         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
         String idProducto = request.getParameter("idProducto");
         ArrayList<ProveedorProductoCompra> lista= dproveedorProductoCompra.BuscarPorProveedorYidProducto(idProveedor,idProducto);

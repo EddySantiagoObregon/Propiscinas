@@ -35,7 +35,7 @@ $(function(){
         $("#msjNit").html("Nit incorrecto");
         return false;
     }
-    else if (Identificacion.length>11){
+    else if (Identificacion.length>10){
         $("#msjIdentificacion").html("Identificación muy larga");
         document.getElementById('btnRegistrar').disabled=false;
         return false;

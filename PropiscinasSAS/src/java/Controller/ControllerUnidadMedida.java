@@ -97,6 +97,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         
+        response.setContentType("text/html; charset=UTF-8");
         String descripcion = request.getParameter("nombre");
         String observacion = " ";
         String estado ="A";
@@ -110,6 +111,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
        
        
+        response.setContentType("text/html; charset=UTF-8");
         ArrayList<UnidadMedida> lista = dUnidadMedida.ListarUnidadMedidas();
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
@@ -118,6 +120,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
                                        private void desactivarUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
         int idUnidadMedida = Integer.parseInt(request.getParameter("id"));
         String estado  = request.getParameter("cb_Estado");
         boolean  desactivar = dUnidadMedida.DesactivaroActivar(idUnidadMedida, estado);
@@ -128,6 +131,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             private void obtenerUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
         int idGrupo = Integer.parseInt(request.getParameter("id"));
   
         UnidadMedida unaUnidadMedida = dUnidadMedida.obetenerUnidadMedidaId(idGrupo);

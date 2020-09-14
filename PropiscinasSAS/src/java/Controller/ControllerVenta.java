@@ -129,6 +129,7 @@ DatosUsuario dUsuario = new DatosUsuario();
      private void agregar(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         String correo = request.getParameter("txt_Correo");
         int idUsuario = dUsuario.idUsuario(correo);
         Usuario unUsuario = new Usuario();
@@ -206,6 +207,7 @@ DatosUsuario dUsuario = new DatosUsuario();
      }
              private void listarVenta(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
                  ArrayList<Venta> lista= dVenta.listarVenta();
                  PrintWriter out = response.getWriter();
                  String json = new Gson().toJson(lista);
@@ -213,6 +215,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         }
                   private void listarTipoDocumento(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
                  ArrayList<TipoDocumento> lista= dTipoDocumento.ListarTipoDocumento();
                  PrintWriter out = response.getWriter();
                  String json = new Gson().toJson(lista);
@@ -220,6 +223,7 @@ DatosUsuario dUsuario = new DatosUsuario();
         }
                   private void BuscarVenta(HttpServletRequest request , HttpServletResponse response)
                   throws ServletException,IOException{
+        response.setContentType("text/html; charset=UTF-8");
                       String buscar = request.getParameter("buscar");
                       ArrayList<Venta> lista = dVenta.BuscarVenta(buscar);
                       PrintWriter out = response.getWriter();
@@ -229,6 +233,7 @@ DatosUsuario dUsuario = new DatosUsuario();
 
     private void BuscarVentaPorProductoYFecha(HttpServletRequest request , HttpServletResponse response)
                   throws ServletException,IOException{
+        response.setContentType("text/html; charset=UTF-8");
                       String buscar = request.getParameter("buscar");
                       String fecha = request.getParameter("fecha");
                       ArrayList<Venta> lista = dVenta.BuscarVentaPorFechaYAtributosProducto(buscar,fecha);
@@ -238,6 +243,7 @@ DatosUsuario dUsuario = new DatosUsuario();
                   }
       private void BuscarProductoPorFecha(HttpServletRequest request , HttpServletResponse response)
                   throws ServletException,IOException{
+        response.setContentType("text/html; charset=UTF-8");
                       String fecha = request.getParameter("fecha");
                       ArrayList<Venta> lista = dVenta.BuscarVentaPorFecha(fecha);
                       PrintWriter out = response.getWriter();

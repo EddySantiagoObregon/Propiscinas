@@ -128,6 +128,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
   //para mostrar la cantidad que tiene el producto
     private void seleccionar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
         String Buscar = request.getParameter("buscar");
         String infraestructura = request.getParameter("infraestructura");
        InventarioInfraestructura inv =  dInventario.elegido(Buscar,infraestructura);
@@ -138,6 +139,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
      private void seleccionar2(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+          response.setContentType("text/html; charset=UTF-8");
         String Buscar = request.getParameter("buscar");
         String infraestructura = request.getParameter("infraestructura");
        InventarioInfraestructura inv =  dInventario.elegido2(Buscar,infraestructura);
@@ -149,7 +151,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     
        private void listarInventario(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-       
+        response.setContentType("text/html; charset=UTF-8");
        ArrayList<InventarioInfraestructura> lista= dInventario.listaInventario();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -158,6 +160,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
           private void listarInventarioIdInfraestructura(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
        int id = Integer.parseInt(request.getParameter("infraestructura"));
        ArrayList<InventarioInfraestructura> lista= dInventario.listaInventario(id);
        PrintWriter out= response.getWriter();
@@ -169,6 +172,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
 
     private void listarCantidadActualizada(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
        
        ArrayList<InventarioInfraestructura> lista= dInventario.listaInventarioCantidadActual();
        PrintWriter out= response.getWriter();
@@ -179,6 +183,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
          private void totalProductosInfraestructura(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        ArrayList<InventarioInfraestructura> lista= dInventario.totalProductosInfraestructura();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -187,6 +192,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
                 private void totalProductosInfraestructuraYcodigo(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        String buscar = request.getParameter("buscar");
        ArrayList<InventarioInfraestructura> lista= dInventario.totalProductosInfraestructuraYcodigo(buscar);
        PrintWriter out= response.getWriter();
@@ -195,6 +201,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
          private void listarCantidadActualizadaInfraestructura(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
        int Infraestructura = Integer.parseInt(request.getParameter("infraestructura"));
        ArrayList<InventarioInfraestructura> lista= dInventario.listaInventarioCantidadActualInfraestructura(Infraestructura);
        PrintWriter out= response.getWriter();
@@ -204,6 +211,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
               private void BuscarCantidadActualizadaPorCodigoYInfraestructura(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
        String buscar = request.getParameter("buscar1");
        int Infraestructura = Integer.parseInt(request.getParameter("infraestructura"));
        ArrayList<InventarioInfraestructura> lista= dInventario.BuscarProductoCantidadActualPorCodigoYInfraestructura(buscar,Infraestructura);
@@ -214,6 +222,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
                    private void BuscarCantidadActualizadaPorNombreYInfraestructura(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
        String buscar = request.getParameter("buscar1");
        int Infraestructura = Integer.parseInt(request.getParameter("infraestructura"));
        ArrayList<InventarioInfraestructura> lista= dInventario.BuscarProductoCantidadActualPorNombreYInfraestructura(buscar,Infraestructura);
@@ -225,6 +234,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
 
     private void buscarProducto(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException,IOException {
+        response.setContentType("text/html; charset=UTF-8");
          String buscar = request.getParameter("buscar");
       ArrayList<InventarioInfraestructura> lista= dInventario.buscarProducto(buscar);
        PrintWriter out= response.getWriter();
@@ -233,6 +243,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
         private void listarInventarioPorFecha(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException,IOException {
+        response.setContentType("text/html; charset=UTF-8");
          String fecha = request.getParameter("fecha");
       ArrayList<InventarioInfraestructura> lista= dInventario.listaInventarioPorFecha(fecha);
        PrintWriter out= response.getWriter();
@@ -241,6 +252,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
         private void listarInventarioPorFechaYCodigo(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException,IOException {
+        response.setContentType("text/html; charset=UTF-8");
          String fecha = request.getParameter("fecha");
          String codigo = request.getParameter("codigo");
       ArrayList<InventarioInfraestructura> lista= dInventario.listaInventarioPorFechaYCodigo(fecha,codigo);
@@ -260,6 +272,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
     }
            private void listarInventarioPorFechaYCodigoYInfraestructura(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException,IOException {
+        response.setContentType("text/html; charset=UTF-8");
          String fecha = request.getParameter("fecha");
          String codigo = request.getParameter("codigo");
          int infraesctructura = Integer.parseInt(request.getParameter("infraestructura"));
@@ -280,6 +293,7 @@ public class ControllerInventarioInfraestructura extends HttpServlet {
         
        private void buscarInventarioDatosHistoricos(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException,IOException {
+        response.setContentType("text/html; charset=UTF-8");
        String codigo = request.getParameter("codigo");
        ArrayList<InventarioInfraestructura> lista= dInventario.buscarInventarioDatosHistoricos(codigo);
        PrintWriter out= response.getWriter();

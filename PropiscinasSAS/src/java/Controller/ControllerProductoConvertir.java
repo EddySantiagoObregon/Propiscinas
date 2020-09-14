@@ -115,6 +115,7 @@ DatosUsuario dUsuario = new DatosUsuario();
  private void listarProductoConvertir(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        ArrayList<ProductoConvertir> lista= dProductoConvertir.ListarProductoConvertir();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -123,6 +124,7 @@ DatosUsuario dUsuario = new DatosUsuario();
   private void listarProductoConvertirCb(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        ArrayList<ProductoConvertir> lista= dProductoConvertir.ListarProductoConvertirCb();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -131,6 +133,7 @@ DatosUsuario dUsuario = new DatosUsuario();
   private void CovertirProducto(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         String correo = request.getParameter("txt_Correo");
         int idUsuario = dUsuario.idUsuario(correo);
         Usuario unUsuario = new Usuario();

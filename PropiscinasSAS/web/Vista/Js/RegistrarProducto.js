@@ -732,7 +732,7 @@ function agregarProductoBotella_Bolsa()
                    {
                        
                         document.getElementById('btnRegistrarProo').disabled=false;
-                       alert("registrado");
+                       alert("Registrado");
                        limpiarModal();
                    }else
                    {

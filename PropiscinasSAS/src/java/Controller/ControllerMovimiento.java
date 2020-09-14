@@ -108,6 +108,7 @@ DatosMovimiento dMovimiento = new DatosMovimiento();
 
     private void listarMovimiento(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
        
        ArrayList<Movimiento> lista= dMovimiento.listarMovimiento();
        PrintWriter out= response.getWriter();
@@ -117,6 +118,7 @@ DatosMovimiento dMovimiento = new DatosMovimiento();
     }
        private void BuscarMovimiento(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
         String Buscar = request.getParameter("buscar");
         ArrayList<Movimiento> lista= dMovimiento.buscarMovimiento(Buscar);
        PrintWriter out= response.getWriter();
@@ -125,6 +127,7 @@ DatosMovimiento dMovimiento = new DatosMovimiento();
     }
         private void BuscarMovimientoPorFecha(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
         String fecha = request.getParameter("fecha");
         ArrayList<Movimiento> lista= dMovimiento.BuscarMovimientoPorFecha(fecha);
        PrintWriter out= response.getWriter();
@@ -134,6 +137,7 @@ DatosMovimiento dMovimiento = new DatosMovimiento();
         
          private void BuscarMovimientoPorFechaYNumeroDocumento(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
         String numeroDocumento = request.getParameter("buscar");
         String fecha = request.getParameter("fecha");
         ArrayList<Movimiento> lista= dMovimiento.BuscarMovimientoPorFechaYNumeroDocumento(fecha,numeroDocumento);
@@ -151,6 +155,7 @@ DatosMovimiento dMovimiento = new DatosMovimiento();
     }
       private void BuscarMovimientoPorFechaYNumeroDocumentoYTipoDocumento(HttpServletRequest request,HttpServletResponse response)
               throws ServletException,IOException{
+        response.setContentType("text/html; charset=UTF-8");
           String numeroDocumento = request.getParameter("buscar");
         String fecha = request.getParameter("fecha");
         int tipoDocumento = Integer.parseInt(request.getParameter("idTipoDocumento"));
@@ -171,6 +176,7 @@ DatosMovimiento dMovimiento = new DatosMovimiento();
       
               private void BuscarMovimientoTipoDocumento(HttpServletRequest request,HttpServletResponse response)
               throws ServletException,IOException{
+        response.setContentType("text/html; charset=UTF-8");
                 
                  int tipoDocumento = Integer.parseInt(request.getParameter("idTipoDocumento"));
                  ArrayList<Movimiento> lista= dMovimiento.BuscarMovimientoTipoDocumento(tipoDocumento);
@@ -183,6 +189,7 @@ DatosMovimiento dMovimiento = new DatosMovimiento();
               
            private void BuscarMovimientoTipoDocumentoYFecha(HttpServletRequest request,HttpServletResponse response)
               throws ServletException,IOException{
+        response.setContentType("text/html; charset=UTF-8");
                 String fecha = request.getParameter("fecha");
                  int tipoDocumento = Integer.parseInt(request.getParameter("idTipoDocumento"));
                  ArrayList<Movimiento> lista= dMovimiento.BuscarMovimientoTipoDocumentoYFecha(fecha,tipoDocumento);

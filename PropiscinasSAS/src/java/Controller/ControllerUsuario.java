@@ -114,6 +114,7 @@ DatosUsuario dUsuario = new DatosUsuario();
     private void iniciarSesion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         String login = request.getParameter("txtLogin");
         String password = request.getParameter("txtPassword");
 
@@ -167,6 +168,7 @@ DatosUsuario dUsuario = new DatosUsuario();
     private void RegistrarPersona(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         int identificacion = Integer.parseInt(request.getParameter("txt_Identificacion"));
         String nombre = request.getParameter("txt_Nombre");
         String telefono = request.getParameter("txt_Tel");
@@ -189,6 +191,7 @@ DatosUsuario dUsuario = new DatosUsuario();
     private void actualizarPassword(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
     int identifica = Integer.parseInt(request.getParameter("identificacion"));
     String correo = request.getParameter("correo");
     Usuario user = new Usuario();
@@ -265,6 +268,7 @@ DatosUsuario dUsuario = new DatosUsuario();
     private void nombre(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         String correo = request.getParameter("Correo");
         Usuario unUsuario = dUsuario.nombre(correo);
         PrintWriter out = response.getWriter();
@@ -275,6 +279,7 @@ DatosUsuario dUsuario = new DatosUsuario();
             private void ActualizarDatos(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         int identificacion = Integer.parseInt(request.getParameter("identificacion"));
         String nombre = request.getParameter("nombre");
         String telefono = request.getParameter("telefono");
@@ -290,6 +295,7 @@ DatosUsuario dUsuario = new DatosUsuario();
             throws ServletException, IOException
     {
         
+        response.setContentType("text/html; charset=UTF-8");
         String correoDeBusqueda = request.getParameter("correoDeBusqueda");
         String contrasenaAntigua = request.getParameter("contrasenaAntigua");
         String contrasenaNueva= request.getParameter("contrasenaNueva");
@@ -316,6 +322,7 @@ DatosUsuario dUsuario = new DatosUsuario();
             throws ServletException, IOException{
        
        
+        response.setContentType("text/html; charset=UTF-8");
         ArrayList<Usuario> lista = dUsuario.ListarUsuarios();
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
@@ -325,6 +332,7 @@ DatosUsuario dUsuario = new DatosUsuario();
   private void obtenerUsuario(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
        int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
         Usuario unUsuario = dUsuario.obtenerUsuario(idUsuario);
         PrintWriter out = response.getWriter();
@@ -334,6 +342,7 @@ DatosUsuario dUsuario = new DatosUsuario();
   
           private void EditarUsuario(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
        int identificacion =  Integer.parseInt(request.getParameter("identificacion"));
        String nombre = request.getParameter("txt_Nombre");
        String telefono = request.getParameter("txt_Telefono");

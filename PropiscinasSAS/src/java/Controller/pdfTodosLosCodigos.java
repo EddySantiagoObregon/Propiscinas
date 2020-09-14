@@ -6,6 +6,7 @@
 package Controller;
 
 import Modelo.Datos.DatosProducto;
+import Modelo.Entidad.DetalleProducto;
 import Modelo.Entidad.Producto;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -13,6 +14,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.Barcode128;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.IOException;
@@ -48,19 +50,40 @@ DatosProducto dProducto = new DatosProducto();
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, DocumentException {
-     Producto unProducto = new Producto();
+        response.setContentType("text/html; charset=UTF-8");
+     DetalleProducto unProducto = new DetalleProducto();
       response.setContentType("application/pdf");
         OutputStream out = response.getOutputStream();
-        ArrayList<Producto> lista= dProducto.generarCodigoBarras();
+        ArrayList<DetalleProducto> lista= dProducto.Listar();
+        ArrayList listaaa = new ArrayList();
+     
        int numero = lista.size();
-      
-         if (numero%2!=0){
+ 
+       for(int x=0;x<numero;x++){
+         String forma=lista.get(x).getUnaForma().getDescripcion();
+                   double cantidadUnidad = lista.get(x).getCantidadUnidad();
+                   if(forma.equals("SOLO")&&cantidadUnidad==0){
+                       listaaa.add(lista.get(x).getNombre()+" "+lista.get(x).getUnaUnidadMedida().getDescripcion()+" "+lista.get(x).getUnaPresentacion().getDescripcion());
+               
+                   }
+                    if(forma.equals("SOLO")&&cantidadUnidad>0){
+                        listaaa.add(lista.get(x).getNombre()+" "+lista.get(x).getCantidadUnidad()+" "+lista.get(x).getUnaUnidadMedida().getDescripcion()+" "+lista.get(x).getUnaPresentacion().getDescripcion());
+         
+                   }
+                   if(!"SOLO".equals(forma)&&cantidadUnidad>0){
+                          listaaa.add(lista.get(x).getUnaForma().getDescripcion()+" DE "+lista.get(x).getNombre()+" "+lista.get(x).getCantidadUnidad()+" "+lista.get(x).getUnaUnidadMedida().getDescripcion()+" "+lista.get(x).getUnaPresentacion().getDescripcion());
+         
+                   }
+       }
+          if (numero%2!=0){
            numero++;
            String a="dsad";
            unProducto.setIdProducto("0000000000000");
            unProducto.setNombre("xxxxxxxxxx");
-              lista.add(unProducto);
+            lista.add(unProducto);
+              listaaa.add("xxxxxxxxxxx");
             }
+        
         try  {
             try{
                 Document documento = new Document();
@@ -82,7 +105,7 @@ DatosProducto dProducto = new DatosProducto();
                  code128.setCode(lista.get(x).getIdProducto());
                    
                Image img128 = code128.createImageWithBarcode(pdf.getDirectContentUnder(), BaseColor.BLACK, BaseColor.BLACK);
-                   table.addCell(lista.get(x).getNombre());
+                   table.addCell(listaaa.get(x).toString());
                    table.addCell(img128);
                  
                   

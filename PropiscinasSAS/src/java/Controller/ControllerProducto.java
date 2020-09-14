@@ -98,6 +98,7 @@ public class ControllerProducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -221,16 +222,22 @@ public class ControllerProducto extends HttpServlet {
      private void agregar(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         int si=0;
         String _referencia= "";
-        Autoincrementable auto = dProducto.numero();
-        int numero = auto.getNumero();
+      
+       
         
         String referencia= request.getParameter("txt_Referencia");
         String nombre = request.getParameter("txt_Nombre");
         String codigo="";
         
+        int numero=0;
         String check=  request.getParameter("check");
+        if(!"SI".equals(check)){
+            Autoincrementable auto = dProducto.numero();
+            numero = auto.getNumero();
+        }
         String codigoString=request.getParameter("content");
         
         
@@ -325,6 +332,7 @@ public class ControllerProducto extends HttpServlet {
      private void agregar2(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
         Autoincrementable auto = dProducto.numero();
         int si=1;
         String _referencia= request.getParameter("_referencia");
@@ -429,7 +437,7 @@ public class ControllerProducto extends HttpServlet {
     private void AgregarProducto(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     { 
-        
+        response.setContentType("text/html; charset=UTF-8");
         String correo = request.getParameter("txt_Correo");
         int idUsuario = dUsuario.idUsuario(correo);
         Usuario unUsuario = new Usuario();
@@ -502,6 +510,7 @@ public class ControllerProducto extends HttpServlet {
     private void listarGrupo(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Grupo> lista= dGrupo.ListarGrupo();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -515,6 +524,7 @@ public class ControllerProducto extends HttpServlet {
     private void listarPresentacion(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Presentacion> lista= dPresentacion.ListarPresentacion();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -524,6 +534,7 @@ public class ControllerProducto extends HttpServlet {
       private void listarPresentacionCanenca(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Presentacion> lista= dPresentacion.listarPresentacionCaneca();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -533,6 +544,7 @@ public class ControllerProducto extends HttpServlet {
            private void listarPresentacionGalon(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Presentacion> lista= dPresentacion.listarPresentacionGalon();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -542,6 +554,7 @@ public class ControllerProducto extends HttpServlet {
                   private void listarPresentacionBulto(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Presentacion> lista= dPresentacion.listarPresentacionBulto();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -552,6 +565,7 @@ public class ControllerProducto extends HttpServlet {
     private void listarUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<UnidadMedida> lista= dUnidadMedida.ListarUnidadMedida();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -562,6 +576,7 @@ public class ControllerProducto extends HttpServlet {
     private void listarInfraestructura(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Infraestructura> lista= dInfraestructura.ListarInfraestructura();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -573,6 +588,7 @@ public class ControllerProducto extends HttpServlet {
     private void ListarInfraestructuraCambio(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        int  idInfraestructura = Integer.parseInt(request.getParameter("idInfraestructura"));
        ArrayList<Infraestructura> lista= dInfraestructura.ListarInfraestructuraCambio(idInfraestructura);
        PrintWriter out= response.getWriter();
@@ -584,6 +600,7 @@ public class ControllerProducto extends HttpServlet {
     private void listarTransaccion(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Transaccion> lista= dTransaccion.ListarTransaccion();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -594,6 +611,8 @@ public class ControllerProducto extends HttpServlet {
       private void listarDetalleProducto(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<DetalleProducto> lista= dProducto.Listar();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -604,6 +623,7 @@ public class ControllerProducto extends HttpServlet {
                private void ListarProductoEliminarJSP(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<DetalleProducto> lista= dProducto.ListarProductoEliminarJSP();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -614,6 +634,7 @@ public class ControllerProducto extends HttpServlet {
        private void listarForma(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<Forma> lista= dForma.ListarForma();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -624,6 +645,7 @@ public class ControllerProducto extends HttpServlet {
        private void Eliminar(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String id = request.getParameter("id");
        boolean eliminado= dProducto.Eliminado(id);
        PrintWriter out= response.getWriter();
@@ -636,6 +658,7 @@ public class ControllerProducto extends HttpServlet {
                   private void Activar(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String id = request.getParameter("id");
        boolean eliminado= dProducto.Activar(id);
        PrintWriter out= response.getWriter();
@@ -646,6 +669,7 @@ public class ControllerProducto extends HttpServlet {
        //Este metodo lo que hace es buscar el producto mediante un parametro que llegue desde la vista 
        private void Buscar(HttpServletRequest request, HttpServletResponse response)            throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String buscar =request.getParameter("txt_Buscar");
        ArrayList<DetalleProducto> lista= dProducto.buscarProducto(buscar);
        PrintWriter out= response.getWriter();
@@ -656,6 +680,7 @@ public class ControllerProducto extends HttpServlet {
               //Buscar el prodocuto en el formulario eliminar Producto
               private void BuscarEliminarJSP(HttpServletRequest request, HttpServletResponse response)            throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String buscar =request.getParameter("txt_Buscar");
        ArrayList<DetalleProducto> lista= dProducto.BuscarEliminarJSP(buscar);
        PrintWriter out= response.getWriter();
@@ -666,8 +691,8 @@ public class ControllerProducto extends HttpServlet {
           private void Seleccionado(HttpServletRequest request, HttpServletResponse response)            throws ServletException, IOException
     {
       
-       
-       String id =request.getParameter("id");
+        response.setContentType("text/html; charset=UTF-8");
+        String id =request.getParameter("id");
         DetalleProducto det = dProducto.obtenerProPorId(id);
         PrintWriter out= response.getWriter();
         String json = new Gson().toJson(det);
@@ -680,6 +705,7 @@ public class ControllerProducto extends HttpServlet {
     private void listarTipoDocumento(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<TipoDocumento> lista= dTipoDocumento.ListarTipoDocumento();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -690,6 +716,7 @@ public class ControllerProducto extends HttpServlet {
     private void repetirCodigo(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String referencia = request.getParameter("referencia");
        String fecha = request.getParameter("fecha");
        int cancod = Integer.parseInt(request.getParameter("cancod"));
@@ -703,6 +730,7 @@ public class ControllerProducto extends HttpServlet {
     private void listarProductoConvetir(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        ArrayList<DetalleProducto> lista= dProducto.listarProductoConvertir();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -712,6 +740,7 @@ public class ControllerProducto extends HttpServlet {
       private void CodigoIgual(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String id = request.getParameter("codigo");
        boolean encontrado= dProducto.codigoIgual(id);
        PrintWriter out= response.getWriter();
@@ -723,6 +752,7 @@ public class ControllerProducto extends HttpServlet {
                    private void abreviaturaigual(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String id = request.getParameter("abreviatura");
        boolean encontrado= dProducto.abreviaturaigual(id);
        PrintWriter out= response.getWriter();
@@ -734,6 +764,7 @@ public class ControllerProducto extends HttpServlet {
     private void referencia(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+       response.setContentType("text/html; charset=UTF-8");
        String id = request.getParameter("referencia");
        boolean encontrado= dProducto.referenciaigual(id);
        PrintWriter out= response.getWriter();
@@ -743,6 +774,7 @@ public class ControllerProducto extends HttpServlet {
     //En el formulario Registrar venta usamos este metodo para buscar el producto 
    private void consultarProductoVenta(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
         String codigo = request.getParameter("txt_Buscar");
         DetalleProducto unDetalleProducto= dProducto.obtenerProductoBuscadoVenta(codigo);
         PrintWriter out = response.getWriter();
@@ -752,7 +784,7 @@ public class ControllerProducto extends HttpServlet {
     private void CambioProductosEnInfraestructuras(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     { 
-        
+        response.setContentType("text/html; charset=UTF-8");
         String correo = request.getParameter("txt_Correo");
         int idUsuario = dUsuario.idUsuario(correo);
         Usuario unUsuario = new Usuario();
@@ -846,6 +878,7 @@ public class ControllerProducto extends HttpServlet {
     
                private void obtenerProductoSeleccionado(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
         String codigo = request.getParameter("codigo");
         DetalleProducto unDetalleProducto= dProducto.obtenerProductoSeleccionado(codigo);
         PrintWriter out = response.getWriter();
@@ -854,6 +887,7 @@ public class ControllerProducto extends HttpServlet {
     }
                       private void EditarProducto(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
         String codigo=request.getParameter("txt_Codigo");
         String referencia= request.getParameter("txt_Referencia");
         String nombre = request.getParameter("txt_Nombre");
@@ -871,7 +905,7 @@ public class ControllerProducto extends HttpServlet {
     }
                                  private void GenerarCodigoDeBarras(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
-        
+      response.setContentType("text/html; charset=UTF-8"); 
       response.setContentType("application/pdf");
         OutputStream out = response.getOutputStream();
         ArrayList<Producto> lista= dProducto.generarCodigoBarras();
@@ -928,7 +962,7 @@ public class ControllerProducto extends HttpServlet {
                 
                                          private void GenerarCodigoDeBarrasPorGrupo(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
-        
+     response.setContentType("text/html; charset=UTF-8"); 
      int idGrupo = Integer.parseInt(request.getParameter("idGrupo"));
   ArrayList<Producto> lista= dProducto.generarCodigoBarrasPorGrupo(idGrupo);
        int numero = lista.size();
@@ -983,6 +1017,7 @@ public class ControllerProducto extends HttpServlet {
 }
                                                                     private void GenerarCodigoDeBarraIndependiente(HttpServletRequest request,HttpServletResponse response)
         throws ServletException, IOException{
+      response.setContentType("text/html; charset=UTF-8");                                                                   
       String codigo = request.getParameter("codigo");
       int numero= Integer.parseInt(request.getParameter("cantidad"));
 

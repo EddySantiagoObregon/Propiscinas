@@ -96,7 +96,7 @@ DatosForma dForma = new  DatosForma();
                      private void Agregar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        
+         response.setContentType("text/html; charset=UTF-8");
         String descripcion = request.getParameter("nombre");
         String observacion = " ";
         String estado ="A";
@@ -109,7 +109,7 @@ DatosForma dForma = new  DatosForma();
                         private void listarUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
-       
+        response.setContentType("text/html; charset=UTF-8");
         ArrayList<Forma> lista = dForma.ListarFormas();
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
@@ -117,7 +117,7 @@ DatosForma dForma = new  DatosForma();
     }
                                        private void desactivarUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
-       
+        response.setContentType("text/html; charset=UTF-8");
         int idForma = Integer.parseInt(request.getParameter("id"));
         String estado  = request.getParameter("cb_Estado");
         boolean  desactivar = dForma.DesactivaroActivar(idForma, estado);
@@ -127,7 +127,7 @@ DatosForma dForma = new  DatosForma();
     }
             private void obtenerUnidadMedida(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
-       
+        response.setContentType("text/html; charset=UTF-8");
         int idGrupo = Integer.parseInt(request.getParameter("id"));
   
         Forma unaForma = dForma.obetenerFormaId(idGrupo);

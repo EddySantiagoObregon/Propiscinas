@@ -56,6 +56,7 @@ DatosProducto dProducto = new DatosProducto();
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
         DetalleProducto unDetalleProducto = new DetalleProducto();
          response.setContentType("application/pdf");
         OutputStream out = response.getOutputStream();

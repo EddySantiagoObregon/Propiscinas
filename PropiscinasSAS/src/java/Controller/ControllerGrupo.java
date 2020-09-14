@@ -96,7 +96,7 @@ DatosGrupo dGrupo = new DatosGrupo();
                      private void Agregar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        
+         response.setContentType("text/html; charset=UTF-8");
         String descripcion = request.getParameter("nombre");
         String observacion = " ";
         String estado ="A";
@@ -109,7 +109,7 @@ DatosGrupo dGrupo = new DatosGrupo();
                         private void listarGrupos(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
-       
+       response.setContentType("text/html; charset=UTF-8");
         ArrayList<Grupo> lista = dGrupo.ListarGrupos();
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(lista);
@@ -117,7 +117,7 @@ DatosGrupo dGrupo = new DatosGrupo();
     }
                                        private void desactivarGrupo(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
-       
+        response.setContentType("text/html; charset=UTF-8");
         int idGrupo = Integer.parseInt(request.getParameter("id"));
         String estado  = request.getParameter("cb_Estado");
         boolean  desactivar = dGrupo.DesactivaroActivar(idGrupo, estado);
@@ -127,7 +127,7 @@ DatosGrupo dGrupo = new DatosGrupo();
     }
             private void obtenerGrupo(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
-       
+        response.setContentType("text/html; charset=UTF-8");
         int idGrupo = Integer.parseInt(request.getParameter("id"));
   
         Grupo unGrupo = dGrupo.obetenerGrupoId(idGrupo);

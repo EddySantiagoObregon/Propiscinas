@@ -107,6 +107,7 @@ DatosProveedor dProveedor = new DatosProveedor();
     private void AgregarProveedor(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        String nit = request.getParameter("txt_Nit");
        String nombre = request.getParameter("txt_Nombre");
        String telefono = request.getParameter("txt_Telefono");
@@ -121,6 +122,7 @@ DatosProveedor dProveedor = new DatosProveedor();
   private void listarProveedor(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        ArrayList<Proveedor> lista= dProveedor.ListarProveedor();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -130,6 +132,7 @@ DatosProveedor dProveedor = new DatosProveedor();
   private void listarProveedores(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        ArrayList<Proveedor> lista= dProveedor.ListarProveedores();
        PrintWriter out= response.getWriter();
        String json= new Gson().toJson(lista);
@@ -139,6 +142,7 @@ DatosProveedor dProveedor = new DatosProveedor();
 
     private void obtenerProveedor(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
+        response.setContentType("text/html; charset=UTF-8");
             int Proveedor = Integer.parseInt(request.getParameter("idProveedor"));
             Proveedor unProveedor = dProveedor.obtenerProveedor(Proveedor);
             PrintWriter out= response.getWriter();
@@ -150,6 +154,7 @@ DatosProveedor dProveedor = new DatosProveedor();
     private void EditarProveedor(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
         String nit = request.getParameter("txt_Nit");
         String numero = request.getParameter("txt_Nombre");
         String telefono = request.getParameter("txt_Telefono");
@@ -166,6 +171,7 @@ DatosProveedor dProveedor = new DatosProveedor();
     private void buscarProveedor(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
         String buscar = request.getParameter("buscar");
         ArrayList<Proveedor> lista = dProveedor.buscarProveedor(buscar);
         PrintWriter out = response.getWriter();

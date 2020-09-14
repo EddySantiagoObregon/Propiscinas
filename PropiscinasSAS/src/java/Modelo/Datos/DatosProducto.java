@@ -82,9 +82,9 @@ public class DatosProducto{
            String consulta2="insert into autoincrementable values(null,0100)";
            ps=miConexion.prepareStatement(consulta2);
            ps.executeUpdate();
-           String consulta3="select * from autoincrementable where autoincrementableNumero=? ";
+           String consulta3="select * from autoincrementable where 	autoincrementableNumero=? ";
            ps=miConexion.prepareStatement(consulta3);
-           ps.setInt(1, 0100);
+           ps.setInt(1, 100);
            
            rs = ps.executeQuery();
            if(rs.next())
@@ -515,6 +515,42 @@ private String obtenerFechaActual(){
             String consulta = "SELECT detalle_producto.*,producto.*,grupo.*,presentacion.*,forma.*,unidad_medida.* FROM detalle_producto INNER JOIN producto on detalle_producto.detalle_producto_producto_id=producto.producto_id INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id INNER JOIN presentacion on detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id where detalle_producto_estado = 'A' ORDER BY `producto`.`producto_nombre` ASC";
             ps=this.miConexion.prepareStatement(consulta);
             
+            rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                DetalleProducto unDetalleProducto = new DetalleProducto();
+                unDetalleProducto.setIdProducto(rs.getString("producto_id"));
+                unDetalleProducto.setReferencia(rs.getString("producto_referencia"));
+                unDetalleProducto.setNombre(rs.getString("producto_nombre"));
+                unDetalleProducto.setAbreviatura(rs.getString("producto_abreviatura"));
+                unDetalleProducto.getUnGrupo().setDescripcion(rs.getString("grupo_descripcion"));
+                unDetalleProducto.getUnaPresentacion().setDescripcion(rs.getString("presentacion_descripcion"));
+                unDetalleProducto.getUnaForma().setDescripcion(rs.getString("forma_descripcion"));
+                unDetalleProducto.setCantidadUnidad(rs.getInt("detalle_producto_cantidad_medida"));
+                unDetalleProducto.getUnaUnidadMedida().setDescripcion(rs.getString("unidad_medida_descripcion"));
+                unDetalleProducto.setObservacion(rs.getString("detalle_producto_observacion"));
+                unDetalleProducto.setEstado(rs.getString("detalle_producto_estado"));
+                lista.add(unDetalleProducto);
+            }
+             rs.close();
+            this.miConexion.commit();
+        }catch(SQLException ex)
+        {
+            this.mensaje= ex.getMessage();
+        }
+        return lista;
+}
+       public ArrayList<DetalleProducto>ListarPorGrupo(int grupo)
+    {
+            this.mensaje=null;
+     ArrayList<DetalleProducto> lista= new ArrayList<>();
+        try
+        {
+            this.miConexion.setAutoCommit(false);
+            String consulta = "SELECT detalle_producto.*,producto.*,grupo.*,presentacion.*,forma.*,unidad_medida.* FROM detalle_producto INNER JOIN producto on detalle_producto.detalle_producto_producto_id=producto.producto_id INNER JOIN grupo on detalle_producto.detalle_producto_grupo_id=grupo.grupo_id INNER JOIN forma ON detalle_producto.detalle_producto_forma_id=forma.forma_id INNER JOIN presentacion on detalle_producto.detalle_producto_presentacion_id=presentacion.presentacion_id INNER JOIN unidad_medida on detalle_producto.detalle_unidad_medida=unidad_medida.unidad_medida_id where producto_genero_codigo_barra='SI' AND grupo.grupo_id= ? ORDER BY `producto`.`producto_nombre` ASC";
+            ps=this.miConexion.prepareStatement(consulta);
+            ps.setInt(1, grupo);
             rs = ps.executeQuery();
             
             while(rs.next())
@@ -973,7 +1009,6 @@ private String obtenerFechaActual(){
         if(rs.next())
         {
                 unDetalle = new DetalleProducto();
-                
                 unDetalle.setIdProducto(rs.getString("producto_id"));
                 unDetalle.setReferencia(rs.getString("producto_referencia"));
                 unDetalle.setNombre(rs.getString("producto_nombre"));

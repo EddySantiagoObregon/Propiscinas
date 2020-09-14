@@ -102,6 +102,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
     throws ServletException, IOException
     {
     
+        response.setContentType("text/html; charset=UTF-8");
 
         String idProducto = request.getParameter("idProducto");
         int idProveedor = Integer.parseInt(request.getParameter("cb_Proveedor"));
@@ -116,6 +117,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
     {
     
 
+        response.setContentType("text/html; charset=UTF-8");
         String idProducto = request.getParameter("idProducto");
     
     ArrayList<Proveedor> lista= dProveedorProducto.ListarProveedorProducto(idProducto);
@@ -126,6 +128,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
              private void ListarProveedorProductos(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        
         ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductos();
         PrintWriter out = response.getWriter();
@@ -135,6 +138,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
                         private void ListarProveedoresYProductosPorCodigo(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        String codigoPro = request.getParameter("codigo");
         ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductosPorCodigo(codigoPro);
         PrintWriter out = response.getWriter();
@@ -144,6 +148,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
                                  private void ListarProveedoresYProductosPorCodigoYidProveedor(HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException
     {
+        response.setContentType("text/html; charset=UTF-8");
        String codigoPro = request.getParameter("codigo");
        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
         ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductosPorCodigoYidProveedor(codigoPro,idProveedor);
@@ -155,6 +160,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
     throws ServletException, IOException
     {
 
+        response.setContentType("text/html; charset=UTF-8");
        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
         ArrayList<ProveedorProducto> lista= dProveedorProducto.ListarProveedoresYProductosPoridProveedor(idProveedor);
         PrintWriter out = response.getWriter();
@@ -166,6 +172,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
     throws ServletException, IOException
     {
 
+        response.setContentType("text/html; charset=UTF-8");
        int idProveedor = Integer.parseInt(request.getParameter("id"));
         boolean agreado= dProveedorProducto.Activado(idProveedor);
         PrintWriter out = response.getWriter();
@@ -176,6 +183,7 @@ DatosProveedorProducto dProveedorProducto = new DatosProveedorProducto();
     throws ServletException, IOException
     {
 
+        response.setContentType("text/html; charset=UTF-8");
        int idProveedor = Integer.parseInt(request.getParameter("id"));
         boolean agreado= dProveedorProducto.Desactivado(idProveedor);
         PrintWriter out = response.getWriter();

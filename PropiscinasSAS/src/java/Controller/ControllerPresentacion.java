@@ -97,6 +97,7 @@ DatosPresentacion dPresentacion = new DatosPresentacion();
             throws ServletException, IOException
     {
         
+        response.setContentType("text/html; charset=UTF-8");
         String descripcion = request.getParameter("nombre");
         String observacion = " ";
         String estado ="A";
@@ -109,6 +110,7 @@ DatosPresentacion dPresentacion = new DatosPresentacion();
                         private void listarPresentacion(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
        
         ArrayList<Presentacion> lista = dPresentacion.ListarPresentaciones();
         PrintWriter out = response.getWriter();
@@ -118,6 +120,7 @@ DatosPresentacion dPresentacion = new DatosPresentacion();
                                        private void desactivarPresentacion(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
         int idPresentacion = Integer.parseInt(request.getParameter("id"));
         String estado  = request.getParameter("cb_Estado");
         boolean  desactivar = dPresentacion.DesactivaroActivar(idPresentacion, estado);
@@ -128,6 +131,7 @@ DatosPresentacion dPresentacion = new DatosPresentacion();
             private void obtenerPresentacion(HttpServletRequest request,HttpServletResponse response)
             throws ServletException, IOException{
        
+        response.setContentType("text/html; charset=UTF-8");
         int idGrupo = Integer.parseInt(request.getParameter("id"));
   
         Presentacion unaPresentacion = dPresentacion.obetenerPresentacionId(idGrupo);

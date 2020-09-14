@@ -43,6 +43,7 @@ DatosProducto dProducto = new DatosProducto();
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
        response.setContentType("application/pdf");
          String codigo = request.getParameter("codigo");
       int cantidad= Integer.parseInt(request.getParameter("cantidad"));
